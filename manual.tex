@@ -1,0 +1,27 @@
+
+\documentclass[twoside]{article}
+\usepackage[francais]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\author{KostiTeam}
+\title{Manuel d'utilisation LXC}
+\begin{document}
+
+\maketitle
+
+Toutes les commandes ex\'ecut\'ees sont effectu\'ees en root (super-utilisateur).
+
+Cr\'eer un container\\
+\#lxc-create -t download -n name: cr\'eer un container de nom name en proposant la liste des images d’OS possibles \`a t\'el\'echarger. 
+
+\#lxc-create -t download -n name -d debian -r jessie -a i386: cr\'eer un container de nom name en t\'el\'echargeant une image de distribution debian de release jessie et d’architecture i386 (32 bits).
+  
+Important: cr\'eer un container d\’architecture 64 bits sur un host 32 bits ne fonctionne pas.
+
+\#lxc-ls: obtenir la liste des containers cr\'e\'es –fancy pour une liste plus d\'etaill\'ee.
+  
+D\'emarrer un container
+
+\#lxc-start -n name  -d d\'emarrer le container de nom name en daemon (-d).
+\end{document}
+
