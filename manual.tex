@@ -1,27 +1,46 @@
 
 \documentclass[twoside]{article}
 \usepackage[francais]{babel}
-\usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
+\frenchspacing
 \author{KostiTeam}
 \title{Manuel d'utilisation LXC}
 \begin{document}
 
 \maketitle
+\newpage
+\tableofcontents
+\newpage
 
+\section{Bien d\'ebuter}
 Toutes les commandes ex\'ecut\'ees sont effectu\'ees en root (super-utilisateur).
 
-Cr\'eer un container\\
-\#lxc-create -t download -n name: cr\'eer un container de nom name en proposant la liste des images d’OS possibles \`a t\'el\'echarger. 
+\subsection{Installer LXC}
+\subsubsection{Arch-linux}
+\emph{\#pacman -S lxc arch-install-scripts}
+\subsubsection{Debian}
+\emph{\#apt-get install lxc}
 
-\#lxc-create -t download -n name -d debian -r jessie -a i386: cr\'eer un container de nom name en t\'el\'echargeant une image de distribution debian de release jessie et d’architecture i386 (32 bits).
+\subsection{Cr\'eer un container}
+\emph{\#lxc-create -t download -n name}: cr\'eer un container de nom name en proposant la liste des images d'OS possibles \`a t\'el\'echarger.\\ 
+
+\emph{\#lxc-create -t download -n name -d debian -r jessie -a i386}: cr\'eer un container de nom \emph{name} en t\'el\'echargeant une image de distribution \emph{debian}, de release \emph{jessie} et d'architecture \emph{i386} (32 bits).\footnote{Cr\'eer un container d'architecture 64 bits sur un host 32 bits \textbf{ne fonctionne pas}.}\\
+
+\emph{\#lxc-ls}: obtenir la liste des containers cr\'e\'es --fancy pour plus de d\'etails.\\
   
-Important: cr\'eer un container d\’architecture 64 bits sur un host 32 bits ne fonctionne pas.
+\subsection{D\'emarrer un container}
+\emph{\#lxc-start -n name  -d}: d\'emarrer le container de nom \emph{name} en daemon \emph{(-d)}.\\
+Par d\'efaut, aucun compte utilisateur n'est cr\'e\'e. Il faut donc se connecter en root.\\ 
 
-\#lxc-ls: obtenir la liste des containers cr\'e\'es –fancy pour une liste plus d\'etaill\'ee.
-  
-D\'emarrer un container
+\emph{\#lxc-attach -n name}: se connecter en root sur le container \emph{name}.\\
+Une fois un compte utilisateur cr\'e\'e, il est possible de lancer un terminal sur une session.\\
 
-\#lxc-start -n name  -d d\'emarrer le container de nom name en daemon (-d).
+\emph{\#lxc-console -n name -t 0}: ouvrir un \'ecran de login sur le terminal tty0 du container \emph{name}.\footnote{\textbf{BUG:} sur certaines distributions, -t diff\'erent de 0 ne fonctionne pas}\\
+
+\subsection{Configurer un container}
+\subsubsection{Fichier de configuration}
+Le fichier de configuration d'un container \emph{name} est contenue dans le fichier /var/lib/lxc/\emph{name}/config.
+
+
 \end{document}
 
