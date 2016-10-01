@@ -39,7 +39,63 @@ Une fois un compte utilisateur cr\'e\'e, il est possible de lancer un terminal s
 
 \subsection{Configurer un container}
 \subsubsection{Fichier de configuration}
-Le fichier de configuration d'un container \emph{name} est contenue dans le fichier /var/lib/lxc/\emph{name}/config.
+Le fichier de configuration d'un container \emph{name} est /var/lib/lxc/\emph{name}/config. Voici un exemple de configuration de passerelle:\\
+\emph{RTFM: lxc.container.conf}\\
+
+\noindent
+\textbf{/var/lib/lxc/passerelle/config}\\
+
+\noindent
+\# Distribution configuration\\
+lxc.include = /usr/share/lxc/config/debian.common.conf\\
+lxc.arch = x86\_64\\
+
+\noindent
+\# Container specific configuration\\
+lxc.rootfs = /var/lib/lxc/passerelle/rootfs\\
+lxc.rootfs.backend = dir\\
+lxc.utsname = passerelle\\
+
+\noindent
+\# Network configuration\\
+lxc.network.type = veth\\
+lxc.network.name = eth0\\
+lxc.network.link = lxcbr0\\
+lxc.network.flags = up\\
+lxc.network.hwaddr = 00:16:3e:5b:0e:8f\\
+lxc.network.ipv4 = 172.16.1.1\\
+lxc.network.ipv6 = fec00:0:0:2::1\\
+
+\noindent
+lxc.network.type = veth\\
+lxc.network.name = eth1\\
+lxc.network.link = lxcbr0\\
+lxc.network.flags = up\\
+lxc.network.hwaddr = 00:16:3e:5b:0e:8f\\
+lxc.network.ipv4 = 192.168.1.1\\
+lxc.network.ipv6 = fc00:0:0:1::1\\
+
+Ici, le container poss\`ede deux interfaces (eth0 et eth1) avec chacune leurs adresses ipv4 (lxc.network.ipv4),
+ipv6 (lxc.network.ipv6) et MAC (hwaddr).\\
+lxc.network.flags indique quelle action effectuer (up active l'interface).\\
+lxc.network.type indique quelle type de virtualisation de réseau utiliser (RTFM).\\
+lxc.network.link indique l'interface \`a utiliser pour le vrai trafic, cette notion sera vu plus en d\'etail par la suite.\\
+
+\subsubsection{ifconfig, ip}
+
+***Commandes ip/ifconfig pour ipv4,ipv6***
+
+\subsection{Relier les containers}
+\subsubsection{Les Bridges -- Ponts}
+
+Pour relier les containers entre eux, ou m\^eme au host, LXC utilise les bridge (pont en francais). Lors de
+la cr\'eation d'un container, l'activation de chacune de ses interfaces va cr\'eer une interface sur la machine
+host. Relier ces interfaces \`a un m\^eme pont permet de relier les containers "physiquement".\\
+
+\noindent
+\emph{\#brctl addbr br0}: cr\'ee un bridge de nom \emph{br0}\\
+\emph{\#ifconfig br0 up}: active l'interface \emph{br0}
+
 
 
 \end{document}
