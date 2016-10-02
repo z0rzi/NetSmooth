@@ -1,5 +1,5 @@
 
-\documentclass[twoside]{article}
+\documentclass{article}
 \usepackage[francais]{babel}
 \usepackage[T1]{fontenc}
 \frenchspacing
@@ -91,24 +91,23 @@ Pour relier les containers entre eux, ou m\^eme au host, LXC utilise les bridge 
 la cr\'eation d'un container, l'activation de chacune de ses interfaces va cr\'eer une interface sur la machine
 host. Relier ces interfaces \`a un m\^eme pont permet de relier les containers "physiquement".
 
-\subsubsection{La methode manuelle}
+\subsubsection{La m\'ethode manuelle}
 
 Il est possible de relier les containers apres les avoir lancer:
 
 \noindent
 \emph{\#brctl addbr br0}: cr\'ee un bridge de nom \emph{br0}\\
 \emph{\#ifconfig br0 up}: active l'interface \emph{br0}\\
-\emph{\#brctl addif br0 VETH12345}: relie le bridge \emph{br0} a l'interface virtuelle correspondante \`a l'interface physique \emph{VETH12345}\foonote{Voir l'autre doc pour plus de details sur le nom de l'interface}\\
+\emph{\#brctl addif br0 VETH12345}: relie le bridge \emph{br0} \`a l'interface physique \emph{VETH12345}\foonote{Voir l'autre doc pour plus de details sur le nom de l'interface}\\
 
-\subsubsection{La methode automatique}
+\subsubsection{La m\'ethode automatique}
 
-Ou, il est possible de relier les containers par le fichier de configuration\foonote{\textbf{attention : }le pont ne peut pas etre \textbf{cr\'e\'e} par le fichier de configuration, il faut le cr\'eer \`a la main} pr\'esent\'e precedement:
+Il est aussi possible de relier les containers par le fichier de configuration.\footnote{\textbf{Attention : }le pont ne peut pas \^etre \textbf{cr\'e\'e} par le fichier de configuration. Il faut le cr\'eer manuellement.}
 
 \noindent
-\emph{\#lxc.network.link} permet de pr\'eciser le pont auquel relier l'interface cr\'e\'ee.
+\emph{\#lxc.network.link} permet de pr\'eciser le pont auquel relier l'interface cr\'e\'ee.\\
 
-donc, ici:\\
-
+Exemple:\\
 \noindent
 lxc.network.type = veth\\
 lxc.network.name = eth1\\
@@ -118,7 +117,8 @@ lxc.network.hwaddr = 00:16:3e:5b:0e:8f\\
 lxc.network.ipv4 = 192.168.1.1\\
 lxc.network.ipv6 = fc00:0:0:1::1\\
 
-l'interface vas etre reli\'ee au pont lxcbr0
+\noindent
+L'interface eth1 sera reli\'ee (indirectement) au pont lxcbr0.
 
 
 \end{document}
