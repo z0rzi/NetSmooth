@@ -33,9 +33,10 @@ Toutes les commandes ex\'ecut\'ees sont effectu\'ees en root (super-utilisateur)
 Par d\'efaut, aucun compte utilisateur n'est cr\'e\'e. Il faut donc se connecter en root.\\ 
 
 \emph{\#lxc-attach -n name}: se connecter en root sur le container \emph{name}.\\
-Une fois un compte utilisateur cr\'e\'e, il est possible de lancer un terminal sur une session.\\
+Une fois un compte utilisateur cr\'e\'e, et le container lanc\'e, il est possible de se connecter a une session en particulier.\\
 
 \emph{\#lxc-console -n name -t 0}: ouvrir un \'ecran de login sur le terminal tty0 du container \emph{name}.\footnote{\textbf{BUG:} sur certaines distributions, -t diff\'erent de 0 ne fonctionne pas}\\
+Ou, si le conatiner est stopp\'e, il est possible de lancer le container sur un \'ecran de login, en enlevant l'option \emph{-d} a la commande \emph{lxc-start}
 
 \subsection{Configurer un container}
 \subsubsection{Fichier de configuration}
@@ -75,8 +76,8 @@ lxc.network.hwaddr = 00:16:3e:5b:0e:8f\\
 lxc.network.ipv4 = 192.168.1.1\\
 lxc.network.ipv6 = fc00:0:0:1::1\\
 
-Ici, le container poss\`ede deux interfaces (eth0 et eth1) avec chacune leurs adresses ipv4 (lxc.network.ipv4),
-ipv6 (lxc.network.ipv6) et MAC (hwaddr).\\
+Ici, le container poss\`ede deux interfaces (eth0 et eth1) avec chacune leurs adresses ipv4 (\emph{lxc.network.ipv4}),
+ipv6 (\emph{lxc.network.ipv6}) et MAC (\emph{lxc.network.hwaddr}).\\
 lxc.network.flags indique quelle action effectuer (up active l'interface).\\
 lxc.network.type indique quelle type de virtualisation de réseau utiliser (RTFM).\\
 lxc.network.link indique l'interface \`a utiliser pour le vrai trafic, cette notion sera vu plus en d\'etail par la suite.\\
@@ -87,22 +88,23 @@ lxc.network.link indique l'interface \`a utiliser pour le vrai trafic, cette not
 
 \subsection{Relier les containers avec les ponts (ou bridges)}
 
-Pour relier les containers entre eux, ou m\^eme au host, LXC utilise les bridge (pont en francais). Lors de
-la cr\'eation d'un container, l'activation de chacune de ses interfaces va cr\'eer une interface sur la machine
+Pour relier les containers entre eux, ou m\^eme au host, LXC utilise les bridge (pont en francais). Lors du
+lancement d'un container, l'activation de chacune de ses interfaces virtuelles va cr\'eer une interface sur la machine
 host. Relier ces interfaces \`a un m\^eme pont permet de relier les containers "physiquement".
 
 \subsubsection{La m\'ethode manuelle}
 
-Il est possible de relier les containers apres les avoir lancer:
+Il est possible de relier les containers aux bridges apres les avoir lancer:
 
 \noindent
 \emph{\#brctl addbr br0}: cr\'ee un bridge de nom \emph{br0}\\
 \emph{\#ifconfig br0 up}: active l'interface \emph{br0}\\
-\emph{\#brctl addif br0 VETH12345}: relie le bridge \emph{br0} \`a l'interface physique \emph{VETH12345}\foonote{Voir l'autre doc pour plus de details sur le nom de l'interface}\\
+\emph{\#brctl addif br0 VETH12345}: relie le bridge \emph{br0} \`a l'interface physique \emph{VETH12345}\footnote{Voir l'autre doc pour plus de details sur le nom de l'interface}\\
 
 \subsubsection{La m\'ethode automatique}
 
 Il est aussi possible de relier les containers par le fichier de configuration.\footnote{\textbf{Attention : }le pont ne peut pas \^etre \textbf{cr\'e\'e} par le fichier de configuration. Il faut le cr\'eer manuellement.}
+Attention, si vous esssayez de lancer un container, qui d\'epend d'un bridge non cr\'e\'e, il y aura une erreur.
 
 \noindent
 \emph{\#lxc.network.link} permet de pr\'eciser le pont auquel relier l'interface cr\'e\'ee.\\
@@ -118,7 +120,7 @@ lxc.network.ipv4 = 192.168.1.1\\
 lxc.network.ipv6 = fc00:0:0:1::1\\
 
 \noindent
-L'interface eth1 sera reli\'ee (indirectement) au pont lxcbr0.
+L'interface eth1 sera reli\'ee (indirectement) au pont \emph{lxcbr0}.
 
 
 \end{document}
