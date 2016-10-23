@@ -16,7 +16,7 @@
 \newpage
 
 \section{Probl\'ematique}
-La virtualisation peut \^etre utile dans diverses situations. En effet, virtualiser un environnement/un objet permet de trouver ses caract\'eristiques optimales à moindre coût. De plus, cela permet aussi d'acqu\'erir des comp\'etences sans pour autant disposer de mat\'eriel. Dans le cadre d'\'etudes informatiques, il peut \^etre pratique de simuler des r\'eseaux dans lesquels des machines dialoguent. Marionnet est un exemple de logiciel de simulation de r\'eseaux. Cependant, après l'avoir utiliser un tant soit peu, il s'avère que plusieurs d\'efauts g\^enent son utilisation : 
+La virtualisation peut \^etre utile dans diverses situations. En effet, virtualiser un environnement/un objet permet de trouver ses caract\'eristiques optimales \`a moindre co\^ut. De plus, cela permet aussi d'acqu\'erir des comp\'etences sans pour autant disposer de mat\'eriel. Dans le cadre d'\'etudes informatiques, il peut \^etre pratique de simuler des r\'eseaux dans lesquels des machines dialoguent. Marionnet est un exemple de logiciel de simulation de r\'eseaux. Cependant, apr\`es l'avoir utiliser un tant soit peu, il s'av\`ere que plusieurs d\'efauts g\^enent son utilisation : 
 \begin{itemize}
   \item crashs assez fr\'equents;
   \item impossible de changer les configurations des machines en marche;
@@ -26,7 +26,30 @@ La virtualisation peut \^etre utile dans diverses situations. En effet, virtuali
 \end{itemize}
 
 \\
-Face à ces problèmes, nous avons donc d\'ecid\'e de cr\'eer un nouveau simulateur de r\'eseaux.
+Face \'a ces probl\`emes, nous avons donc d\'ecid\'e de cr\'eer un nouveau simulateur de r\'eseaux.
+
+\section{Solution}
+Pour pallier les probl\`emes expos\'es pr\'ecedemment, il nous semble pertinent de ne pas virtualiser les machines utilis\'ees  (VM) mais uniquement les environnements (VE). En effet, virtualiser une machine revient \'a virtualiser un environnement (software), mais aussi le mat\'eriel physique (hardware tel que la RAM, processeur etc.).\\La virtualisation d'environnement r\'epond plus \`a nos probl\`emes de performances :  virtualiser un environnement en utilisant le m\^eme mat\'eriel physique permettrait un gain notable de performances, notamment lorsque le nombre de machines est important. \\
+Pour virtualiser les environnements, nous avons choisi d'utiliser la technologie des ``container'' de LXC (LinuX Chroot).
+
+\section{Pourquoi LXC ?}
+LXC est l'ensemble bien connu d'outils, modèles, bibliothèque et connecteurs pour diff\'erents langages, et permet de cr\'eer des containers Linux. LXC est bas niveau, très flexible et couvre à peu près toutes les technologies de confinement supportes par le noyau.\\LXC possède sa propre API, notamment en C/C++, ce qui nous permet de l'int\'egrer ) notre projet efficacement. LXC est plus l\'eger que des technologies comme Docker (qui d\'ecoule d'ailleurs de LXC)
+
+\section{Architecture du programme}
+\subsection{Vues}
+\input{vuesFile}
+\subsection{Diagrammes}
+\input{diagrammesFile}
+
+\section{Etapes pr\'evues}
+
+\input{diagrammeGantFile}
+
+\section{Notice d'utilisation}
+\input{noticeUtilisationFile}
+
+\section{Rapport de bug}
+\input{rapportDeBugFile}
 
 \end{document}
 
