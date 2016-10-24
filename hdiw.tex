@@ -1,17 +1,4 @@
-\documentclass{article}
-\usepackage[english]{babel}
-\usepackage[T1]{fontenc}
-\frenchspacing
-\author{KostiTeam}
-\title{LXC, Comment ca marche?}
-\begin{document}
-
-\maketitle
-\newpage
-\tableofcontents
-\newpage
-
-\section{La virtualisation}
+\subsection{La virtualisation}
 La virtualisation est le fait de cr\'eer une version virtuelle d'une entit\'e physique, ces versions virtuelles
 sont alors appel\'ees Machines virtuelles ou VM (Virtual Machine). Nous 
 pouvons prendre comme exemple Virtual Box, qui est un outil de virtualisation 
@@ -29,7 +16,7 @@ d'exploitation de la machine h\^ote. En revanche, la machine h\^ote, elle, a acc
 Cette isolation entre les machines virtuelles et la machine h\^ote, permet de garantir une certaine s\'ecurit\'e.\\
 
 
-\section{Les containers, leur fonctionnement}
+\subsection{Les containers, leur fonctionnement}
 Les environnements virtuels, ou, containers (conteneurs en francais)  doivent, en premier temps, \^etre cr\'e\'es
 \`a l'aide de la commande "\emph{lxc-create ...}" (voir notices pour plus de pr\'ecisions sur les commandes). De
 nombreux syst\`emes d'exploitation seront alors propos\'es, (nous avons choisi de prendre Debian, Jessie,
@@ -48,8 +35,8 @@ utilisateur (ou root) car, premi\`erement, par d\'efaut, aucun profil d'utilisat
 et, de plus, cela permet d'avoir l'entier contr\^ole du container afin de, par exemple, modifier son adresse ipv4.\\
 
 
-\section{Bridges et fonctionnement r\'eseau}
-\subsection{fichier config}
+\subsection{Bridges et fonctionnement r\'eseau}
+\subsubsection{fichier config}
 Comme expliqu\'e plus haut, les param\`etres r\'eseaux du container peuvent \^etre modifi\'es via le fichier config.
 Dans ce fichier, chaque "\emph{block}" permet de d\'efinir une interface. Un block commence toujours par la 
 d\'efinition du type de r\'eseau, nous allons donc nous int\'eresser tout d'abord au type de r\'eseau ("\emph{lxc.network.type}").
@@ -66,7 +53,7 @@ Le dernier param\`etre que nous verrons pour ce fichier est le lien ("\emph{lxc.
 va permettre d'indiquer \`a quel bridge nous voulons connecter notre interface.\\
 
 
-\subsection{Bridges}
+\subsubsection{Bridges}
 Les bridges (ou pont en francais) sont des \'equipements r\'eseaux qui permettent de relier deux (ou plus)
 interfaces de mani\`ere compl\`etement transparente: en observant les paquets qui transitent, le pont peut 
 connaitre les adresses mac des interfaces, et ainsi, rediriger les paquets. Les ponts peuvent par exemple,
