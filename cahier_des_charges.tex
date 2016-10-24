@@ -32,8 +32,12 @@ Face \'a ces probl\`emes, nous avons donc d\'ecid\'e de cr\'eer un nouveau simul
 Pour pallier les probl\`emes expos\'es pr\'ecedemment, il nous semble pertinent de ne pas virtualiser les machines utilis\'ees  (VM) mais uniquement les environnements (VE). En effet, virtualiser une machine revient \'a virtualiser un environnement (software), mais aussi le mat\'eriel physique (hardware tel que la RAM, processeur etc.).\\La virtualisation d'environnement r\'epond plus \`a nos probl\`emes de performances :  virtualiser un environnement en utilisant le m\^eme mat\'eriel physique permettrait un gain notable de performances, notamment lorsque le nombre de machines est important. \\
 Pour virtualiser les environnements, nous avons choisi d'utiliser la technologie des ``container'' de LXC (LinuX Chroot).
 
-\section{Pourquoi LXC ?}
+\section{LXC}
+\subsection{Pourquoi LXC ?}
 LXC est l'ensemble bien connu d'outils, modèles, bibliothèque et connecteurs pour diff\'erents langages, et permet de cr\'eer des containers Linux. LXC est bas niveau, très flexible et couvre à peu près toutes les technologies de confinement supportes par le noyau.\\LXC possède sa propre API, notamment en C/C++, ce qui nous permet de l'int\'egrer ) notre projet efficacement. LXC est plus l\'eger que des technologies comme Docker (qui d\'ecoule d'ailleurs de LXC)
+
+\subsection{Fonctionnement de LXC}
+\input{hdiw.tex}
 
 \section{Architecture du programme}
 \subsection{Vues}
