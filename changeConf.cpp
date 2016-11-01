@@ -5,9 +5,10 @@ void salut(void){
   printf("salut\n");
 }
 
-int main() {
+int main(int argc, char ** argv) {
   struct lxc_container *c;
   int ret = 1;
+  struct lxc_attach_command_t t = {argv[0],argv};
 
   /* Setup container struct */
   c = lxc_container_new("apicontainer", NULL);
