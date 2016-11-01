@@ -5,6 +5,9 @@
 \documentclass[a4paper]{article}
 \usepackage[francais]{babel}
 \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
 \frenchspacing
 \author{KostiTeam}
 \title{Cahier des charges}
@@ -75,17 +78,30 @@ Il est plus l\'eger que des technologies comme Docker (qui h\'erite de LXC) et c
 
 \subsection{Fonctionnement de LXC}
 \input{hdiw.tex}
-
+\newpage
 \section{Architecture du programme}
 \subsection{Vues}
+Le logiciel a une seule interface : 
+\begin{center}
+\includegraphics[scale=0.2]{bulto.png}
+\end{center}
+
+Elle est divisible en 4 parties : 
+\begin{itemize}
+\item La barre supérieure (Fichier, Éditions, Aide...),
+\item la barre de sélection (à gauche) où on peut choisir quel entité ajouter,
+\item l'écran principal (au centre),
+\item la barre d'information (à droite) où sont affichées les configurations des entités sélectionnées.
+\end{itemize}
+
 \subsection{Diagrammes}
 
 
 \section{Etapes pr\'evues}
 
 
-\section{Notice d'utilisation}
-
+\section{Notice d'utilisation de LXC}
+\input{manual.tex}
 \section{Rapport de bug}
 
 \end{document}
