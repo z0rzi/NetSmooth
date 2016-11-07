@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include <lxc/lxccontainer.h>
 
-void salut(void){
-  printf("salut\n");
-}
 
 int main(int argc, char ** argv) {
   struct lxc_container *c;
   int ret = 1;
-  struct lxc_attach_command_t t = {argv[0],argv};
-
+  char *prog[0];
+  char executable[8]={'.','/','s','a','l','u','t','\0'};
+  prog[0]=executable;
+  struct lxc_attach_command_t t = {prog[0],prog};
+  lxc_attach_options_t options = LXC_ATTACH_OPTIONS_DEFAULT;
+  lxc_attach_exec_t salut;
+  pid_t pid;
   /* Setup container struct */
   c = lxc_container_new("apicontainer", NULL);
   if (!c) {
@@ -28,7 +30,10 @@ int main(int argc, char ** argv) {
   printf("Container state: %s\n", c->state(c));
   printf("Container PID: %d\n", c->init_pid(c));
 
-  c->attach(c,salut,NULL,NULL,NULL);
+  pid=c->init_pid(c);
+  if(c->attach(c,salut,&t,&options,&pid)!=0){
+    printf("dommage ça marche pas");
+  }
 
 
   /* Stop the container */
