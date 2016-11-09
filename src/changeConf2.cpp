@@ -5,8 +5,8 @@
 int main(void) {
   struct lxc_container *c;
   int ret = 1;
-  char *argv[] = {"echo", "salut", NULL};
-    lxc_attach_command_t command = {"echo", argv};
+  char *argv[] = {"ifconfig",NULL};
+    lxc_attach_command_t command = {"ifconfig", argv};
   lxc_attach_options_t options = LXC_ATTACH_OPTIONS_DEFAULT;
   lxc_attach_exec_t salut;
   pid_t pid;
