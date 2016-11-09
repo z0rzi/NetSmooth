@@ -2,13 +2,11 @@
 #include <lxc/lxccontainer.h>
 
 
-int main(int argc, char ** argv) {
+int main(void) {
   struct lxc_container *c;
   int ret = 1;
-  char *prog[0];
-  char executable[8]={'.','/','s','a','l','u','t','\0'};
-  prog[0]=executable;
-  struct lxc_attach_command_t t = {prog[0],prog};
+  char *argv[] = {"echo", "salut", NULL};
+    lxc_attach_command_t command = {"echo", argv};
   lxc_attach_options_t options = LXC_ATTACH_OPTIONS_DEFAULT;
   lxc_attach_exec_t salut;
   pid_t pid;
@@ -30,8 +28,7 @@ int main(int argc, char ** argv) {
   printf("Container state: %s\n", c->state(c));
   printf("Container PID: %d\n", c->init_pid(c));
 
-  pid=c->init_pid(c);
-  if(c->attach(c,salut,&t,&options,&pid)!=0){
+  if(c->attach(c,lxc_attach_run_command,&command,&options,&pid)!=0){
     printf("dommage ça marche pas");
   }
 
