@@ -46,7 +46,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYRF8Q1sVNw68="
 							},
-							"name": "créer machine hub passerelle",
+							"name": "créer machine/hub/passerelle",
 							"visible": true,
 							"defaultDiagram": false,
 							"ownedViews": [
@@ -81,7 +81,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "créer machine hub passerelle",
+											"text": "créer machine/hub/passerelle",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -299,7 +299,7 @@
 											"left": 354,
 											"top": 80,
 											"width": 1,
-											"height": 491,
+											"height": 425,
 											"autoResize": false
 										}
 									],
@@ -315,7 +315,7 @@
 									"left": 312,
 									"top": 40,
 									"width": 83.57177734375,
-									"height": 531,
+									"height": 465,
 									"autoResize": false,
 									"stereotypeDisplay": "label",
 									"showVisibility": true,
@@ -497,7 +497,7 @@
 											"left": 619,
 											"top": 80,
 											"width": 1,
-											"height": 473,
+											"height": 433,
 											"autoResize": false
 										}
 									],
@@ -513,7 +513,7 @@
 									"left": 568,
 									"top": 40,
 									"width": 102,
-									"height": 513,
+									"height": 473,
 									"autoResize": false,
 									"stereotypeDisplay": "label",
 									"showVisibility": true,
@@ -695,7 +695,7 @@
 											"left": 880,
 											"top": 80,
 											"width": 1,
-											"height": 491,
+											"height": 433,
 											"autoResize": false
 										}
 									],
@@ -711,7 +711,7 @@
 									"left": 832,
 									"top": 40,
 									"width": 95.86083984375,
-									"height": 531,
+									"height": 473,
 									"autoResize": false,
 									"stereotypeDisplay": "label",
 									"showVisibility": true,
@@ -893,7 +893,7 @@
 											"left": 1109,
 											"top": 80,
 											"width": 1,
-											"height": 473,
+											"height": 433,
 											"autoResize": false
 										}
 									],
@@ -909,7 +909,7 @@
 									"left": 1072,
 									"top": 40,
 									"width": 73,
-									"height": 513,
+									"height": 473,
 									"autoResize": false,
 									"stereotypeDisplay": "label",
 									"showVisibility": true,
@@ -952,9 +952,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 384,
+											"left": 405,
 											"top": 177,
-											"width": 199,
+											"width": 156,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -964,7 +964,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "1 : appuyer click sur icon machine",
+											"text": "1 : click sur icône machine",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -1119,13 +1119,13 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 630,
+											"left": 648,
 											"top": 200,
 											"width": 218,
 											"height": 13,
 											"autoResize": false,
-											"alpha": 1.8045384808397666,
-											"distance": 86.34813257969161,
+											"alpha": 1.7644173011391815,
+											"distance": 103.94229168149026,
 											"hostEdge": {
 												"$ref": "AAAAAAFYRGNS28YCtBk="
 											},
@@ -1286,9 +1286,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 647,
+											"left": 654,
 											"top": 334,
-											"width": 110,
+											"width": 96,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 0.11189025370440409,
@@ -1298,7 +1298,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "3 : relacher le click",
+											"text": "3 : relacher click",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -1453,19 +1453,19 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 935,
-											"top": 364,
-											"width": 118,
+											"left": 962,
+											"top": 363,
+											"width": 48,
 											"height": 13,
 											"autoResize": false,
-											"alpha": 1.5707963267948966,
-											"distance": 10,
+											"alpha": -4.037648647917532,
+											"distance": 12.806248474865697,
 											"hostEdge": {
 												"$ref": "AAAAAAFYRGU3rcY1oDs="
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "4 : creation machine",
+											"text": "4 : créer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -1774,7 +1774,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYRF8Q1sVNw68="
 							},
-							"name": "appuyer click sur icon machine",
+							"name": "click sur icône machine",
 							"source": {
 								"$ref": "AAAAAAFYRGGZVcVit18="
 							},
@@ -1808,7 +1808,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYRF8Q1sVNw68="
 							},
-							"name": "relacher le click",
+							"name": "relacher click",
 							"source": {
 								"$ref": "AAAAAAFYRGGZVcVit18="
 							},
@@ -1825,7 +1825,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYRF8Q1sVNw68="
 							},
-							"name": "creation machine",
+							"name": "créer",
 							"source": {
 								"$ref": "AAAAAAFYRGHtDcWi0m8="
 							},
@@ -2011,7 +2011,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYRG34O8aDv7I="
 							},
-							"name": "créer machine hub passerelle 2",
+							"name": "créer machine/hub/passerelle 2",
 							"visible": true,
 							"defaultDiagram": false,
 							"ownedViews": [
@@ -2046,7 +2046,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "créer machine hub passerelle 2",
+											"text": "créer machine/hub/passerelle 2",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -2087,8 +2087,8 @@
 									"containerExtending": false,
 									"left": 72,
 									"top": 104,
-									"width": 1201,
-									"height": 705,
+									"width": 1009,
+									"height": 441,
 									"autoResize": false,
 									"nameLabel": {
 										"$ref": "AAAAAAFYRG34O8aGUfk="
@@ -2929,7 +2929,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "1 : click sur icone machine",
+											"text": "1 : click sur icône machine",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -3084,13 +3084,13 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 488,
-											"top": 176,
+											"left": 520,
+											"top": 192,
 											"width": 193,
 											"height": 13,
 											"autoResize": false,
-											"alpha": 1.8382060890686682,
-											"distance": 75.69015788066504,
+											"alpha": 1.60887214876184,
+											"distance": 105.07616285342742,
 											"hostEdge": {
 												"$ref": "AAAAAAFYRHDnFMdSO6I="
 											},
@@ -3418,9 +3418,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 809,
+											"left": 844,
 											"top": 338,
-											"width": 118,
+											"width": 48,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -3430,7 +3430,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "4 : création machine",
+											"text": "4 : créer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -3739,7 +3739,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYRG34O8aDv7I="
 							},
-							"name": "click sur icone machine",
+							"name": "click sur icône machine",
 							"source": {
 								"$ref": "AAAAAAFYRG8cLMa7AGc="
 							},
@@ -3790,7 +3790,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYRG34O8aDv7I="
 							},
-							"name": "création machine",
+							"name": "créer",
 							"source": {
 								"$ref": "AAAAAAFYRG9cb8b725E="
 							},
@@ -4005,7 +4005,7 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 87,
+											"left": 79,
 											"top": 21,
 											"width": 154,
 											"height": 13,
@@ -4030,7 +4030,7 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 21,
+											"left": 13,
 											"top": 21,
 											"width": 61,
 											"height": 13,
@@ -4050,7 +4050,7 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 16,
+									"left": 8,
 									"top": 16,
 									"width": 1153,
 									"height": 833,
@@ -4684,9 +4684,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 347,
+											"left": 397,
 											"top": 128,
-											"width": 146,
+											"width": 46,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -4696,7 +4696,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "1 : click sur une machine",
+											"text": "1 : click",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -5185,9 +5185,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 571,
+											"left": 569,
 											"top": 365,
-											"width": 139,
+											"width": 143,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -5197,7 +5197,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "4 : modifie configuration",
+											"text": "4 : modifier configuration",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -5506,7 +5506,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYRHTKl8fPPlQ="
 							},
-							"name": "click sur une machine",
+							"name": "click",
 							"source": {
 								"$ref": "AAAAAAFYRHi0WsfhV9Y="
 							},
@@ -5557,7 +5557,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYRHTKl8fPPlQ="
 							},
-							"name": "modifie configuration",
+							"name": "modifier configuration",
 							"source": {
 								"$ref": "AAAAAAFYRh+lWmsn2VI="
 							},
@@ -5937,7 +5937,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYRi1nlW3Y8Mw="
 							},
-							"name": "demarer une machine",
+							"name": "démarrer une machine",
 							"visible": true,
 							"defaultDiagram": false,
 							"ownedViews": [
@@ -5968,11 +5968,11 @@
 											"containerExtending": false,
 											"left": 135,
 											"top": 29,
-											"width": 126,
+											"width": 130,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "demarer une machine",
+											"text": "démarrer une machine",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -6013,8 +6013,8 @@
 									"containerExtending": false,
 									"left": 64,
 									"top": 24,
-									"width": 1097,
-									"height": 769,
+									"width": 865,
+									"height": 337,
 									"autoResize": false,
 									"nameLabel": {
 										"$ref": "AAAAAAFYRi1nlW3bABY="
@@ -6190,7 +6190,7 @@
 											"left": 346,
 											"top": 80,
 											"width": 1,
-											"height": 713,
+											"height": 265,
 											"autoResize": false
 										}
 									],
@@ -6206,7 +6206,7 @@
 									"left": 304,
 									"top": 40,
 									"width": 83.57177734375,
-									"height": 753,
+									"height": 305,
 									"autoResize": false,
 									"stereotypeDisplay": "label",
 									"showVisibility": true,
@@ -6388,7 +6388,7 @@
 											"left": 612,
 											"top": 80,
 											"width": 1,
-											"height": 721,
+											"height": 257,
 											"autoResize": false
 										}
 									],
@@ -6404,7 +6404,7 @@
 									"left": 576,
 									"top": 40,
 									"width": 72.736328125,
-									"height": 761,
+									"height": 297,
 									"autoResize": false,
 									"stereotypeDisplay": "label",
 									"showVisibility": true,
@@ -6447,9 +6447,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 404,
+											"left": 403,
 											"top": 144,
-											"width": 142,
+											"width": 145,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -6459,7 +6459,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "1 : click alumer machine",
+											"text": "1 : click allumer machine",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -6614,9 +6614,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 654,
+											"left": 668,
 											"top": 200,
-											"width": 241,
+											"width": 213,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.6025306978063651,
@@ -6626,7 +6626,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "2 : demarrage du container correspondant",
+											"text": "2 : démarrer container correspondant",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -6768,7 +6768,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYRi1nlW3Y8Mw="
 							},
-							"name": "click alumer machine",
+							"name": "click allumer machine",
 							"source": {
 								"$ref": "AAAAAAFYRi2ok23qwoo="
 							},
@@ -6785,7 +6785,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYRi1nlW3Y8Mw="
 							},
-							"name": "demarrage du container correspondant",
+							"name": "démarrer container correspondant",
 							"source": {
 								"$ref": "AAAAAAFYRi3QvW4KiMQ="
 							},
@@ -6921,7 +6921,7 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 111,
+											"left": 103,
 											"top": 93,
 											"width": 184,
 											"height": 13,
@@ -6946,7 +6946,7 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 45,
+											"left": 37,
 											"top": 93,
 											"width": 61,
 											"height": 13,
@@ -6966,10 +6966,10 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 40,
+									"left": 32,
 									"top": 88,
-									"width": 1105,
-									"height": 793,
+									"width": 937,
+									"height": 353,
 									"autoResize": false,
 									"nameLabel": {
 										"$ref": "AAAAAAFYRkFwuG56fMg="
@@ -7145,7 +7145,7 @@
 											"left": 418,
 											"top": 80,
 											"width": 1,
-											"height": 561,
+											"height": 361,
 											"autoResize": false
 										}
 									],
@@ -7161,7 +7161,7 @@
 									"left": 376,
 									"top": 40,
 									"width": 83.57177734375,
-									"height": 601,
+									"height": 401,
 									"autoResize": false,
 									"stereotypeDisplay": "label",
 									"showVisibility": true,
@@ -7343,7 +7343,7 @@
 											"left": 668,
 											"top": 80,
 											"width": 1,
-											"height": 569,
+											"height": 361,
 											"autoResize": false
 										}
 									],
@@ -7359,7 +7359,7 @@
 									"left": 632,
 									"top": 40,
 									"width": 72.736328125,
-									"height": 609,
+									"height": 401,
 									"autoResize": false,
 									"stereotypeDisplay": "label",
 									"showVisibility": true,
@@ -7581,7 +7581,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "2 : ouvre le terminal correspondant",
+											"text": "2 : ouvrir le terminal correspondant",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -7740,7 +7740,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYRkFwuG53S+E="
 							},
-							"name": "ouvre le terminal correspondant",
+							"name": "ouvrir le terminal correspondant",
 							"source": {
 								"$ref": "AAAAAAFYRkIMvW6sDFs="
 							},
@@ -10935,6 +10935,7 @@
 					"visibility": "public",
 					"isStatic": false,
 					"isLeaf": false,
+					"type": "",
 					"isReadOnly": false,
 					"isOrdered": false,
 					"isUnique": false,
