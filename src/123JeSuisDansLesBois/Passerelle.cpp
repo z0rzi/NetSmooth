@@ -7,7 +7,7 @@ using namespace std;
 int Passerelle::numPass=0;
 
 Passerelle::Passerelle(struct lxc_container *container)
-		:Entitee(numPass, 'P'), m_container(container)
+		:Entitee(numPass, TYPE_PASSERELLE), m_container(container)
 {
 	numPass++;
 }

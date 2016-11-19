@@ -4,10 +4,17 @@
 
 using namespace std;
 
-Entitee::Entitee(int numType, const char type)
+Entitee::Entitee(int numType, int type)
 {
 	char nomBridge[10];
-	sprintf(nomBridge, "br%c%d", type, numType);
+	char caratype='\0';
+	if(type==TYPE_MACHINE)
+		caratype='M';
+	if(type==TYPE_PASSERELLE)
+		caratype='P';
+	if(type==TYPE_HUB)
+		caratype='H';
+	sprintf(nomBridge, "br%c%d", caratype, numType);
 	m_bridge_virtuel=nomBridge;
 	m_type=type;
 	m_bridge_reel="\0";
@@ -29,22 +36,17 @@ void Entitee::setBridge_reel(string bridge)
 	m_bridge_reel=bridge;
 }
 
-void Entitee::machineLancee()
+void Entitee::setEtatMachine(bool etat)
 {
-	m_running=1;
+	m_running=etat;
 }
 
-void Entitee::machineAretee()
-{
-	m_running=0;
-}
-
-int Entitee::getEtatMachine()
+bool Entitee::getEtatMachine()
 {
 	return m_running;
 }
 
-char Entitee::getType()
+int Entitee::getType()
 {
 	return m_type;
 }

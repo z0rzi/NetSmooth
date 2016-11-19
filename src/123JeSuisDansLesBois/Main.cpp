@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <strings.h>
 
+#include "Constantes.h"
 #include "Machine.h"
 #include "Passerelle.h"
 #include "Cable.h"
@@ -299,7 +300,7 @@ void launchMachine(Machine *m)
 
 	lancerContainer(m->getContainer());
 
-	m->machineLancee();	/* modifie flag dans entitee */
+	m->setEtatMachine(MACHINE_LANCEE);	/* modifie flag dans entitee */
 
 	modifBridgesSousReseau(m, "\0");
 }
@@ -309,7 +310,7 @@ void launchHub(Hub *h)
 	if(h->getEtatMachine()==1)
 		return;			/*si l'entitee est deja lancé, on s'en va*/
 
-	h->machineLancee();
+	h->setEtatMachine(MACHINE_LANCEE);
 
 	modifBridgesSousReseau(h, "\0");
 }
