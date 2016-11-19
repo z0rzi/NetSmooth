@@ -1,0 +1,29 @@
+A FAIRE:
+
+-machine créée -> bridge initiale = NULL
+
+-machine allumée -> toute seule -> bridge reste NULL
+
+-gw + hub -> a son propre bridge initial (=nom initial EX: brP2)
+
+-si machine ou gw ou hub est allumé et a cables avec autres entitee alumee -> connecte machine au 
+ bridge du nom de la machine de plus haute prioritee 
+
+-connection hub + gw -> hub prend le bridge de gw
+
+-commenter le bash + tous les .h
+
+-semaphore -> lancer petit executable C a la fin de script bash pour ouvrire semaphore
+
+
+
+FAIT:
+
+
+-MachineLancee + MachineArretee -> transformer en booleeen au lieu de int
+
+-machine lancee + machine arrette -> transforme en setEtat(true/false)
+
+-type = int + define au lieu de char
+	-> define dans un autre fichier
+
