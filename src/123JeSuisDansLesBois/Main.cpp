@@ -104,6 +104,7 @@ void lancerXterm(Machine* m)
 	}
 }
 
+
 /*
  *	ATTENTION Fonction compliquée (plus ou moins)
  *	
@@ -124,124 +125,203 @@ void lancerXterm(Machine* m)
  *	OU
  *	"\0" en cas d'erreur
  */
-string modifBridgesSousReseau(Entitee* e, string bridge)
+//string modifBridgesSousReseau(Entitee* e, string bridge)
+//{
+//	sleep(1);
+//	cout << "je passe : " << e->getType() << endl;
+//	int i;
+//	vector<Cable*> listCable;
+//	if(bridge=="\0")
+//	{			/* ne s'execute que au premier passage: permet de determiner le bridge a adopter par
+//				 * le sous-reseau*/
+//		cout << "premier tour" << endl;
+//		int ok=-1;
+//		listCable=e->getCables();
+//		for(i=0 ; i<listCable.size() && ok==-1 ; i++)
+//		{					/* on verifie qu'il y a des machines allumées connectées*/
+//			Entitee* ext[2];
+//			listCable[i]->getExtremites(ext);
+//			if(ext[0]->getEtatMachine()==1 && ext[1]->getEtatMachine()==1)
+//			{
+//				ok=i;
+//			}
+//		}
+//		if(ok==-1)
+//		{					/* si y a pas de liens, on prend le bridge 'virtuel', et on
+//							 * a personne d'autre a modifier, donc on quitte  */
+//			cout << "aucunes connexions" << endl;
+//			bridge=e->getBridge_vir();
+//			creerBridge(bridge.c_str());
+//			lxc_container* cont;
+//			if(e->getType()=='M')
+//			{
+//				cont=((Machine*)e)->getContainer();
+//				if(e->getBridge_reel()!="\0")			/* si y a deja un bridge, on l'enleve */
+//				{						/* mais normalement ca devrias pas passer
+//										 * par la: c'est le premier tour, donc 
+//										 * bridge_reel devrait etre egal a "\0" */
+//					separerContainerEtBridge(cont, e->getBridge_reel().c_str());
+//					e->setBridge_reel("\0");
+//					cout << e->getType() << " prend bridge " << "NULL" << endl;
+//				}
+//				sleep(1);
+//				lierContainerEtBridge(cont, bridge.c_str());
+//				cout << "ici" << endl;
+//			}
+//			if(e->getType()=='P')
+//			{
+//				cont=((Passerelle*)e)->getContainer();
+//				if(e->getBridge_reel()!="\0")			/* si y a deja un bridge, on l'enleve*/
+//				{						/* mais meme chose qu'au dessus */
+//					separerContainerEtBridge(cont, e->getBridge_reel().c_str());
+//					cout << e->getType() << " separe bridge " << e->getBridge_reel() << endl;
+//					e->setBridge_reel("\0");
+//					cout << e->getType() << " prend bridge NULL " << endl;
+//				}
+//				sleep(1);
+//				lierContainerEtBridge(cont, bridge.c_str());
+//				cout << e->getType() << " prend bridge " << bridge << endl;
+//			}
+//			e->setBridge_reel(bridge);
+//			cout << e->getType() << " prend bridge " << bridge << endl;
+//			return "\0";
+//		}
+//		/* si y a des liens, le bridge a 'adopter' est le bridge
+//		 ** de la premiere machine allumée connectée*/
+//		Entitee* ext[2];
+//		listCable[ok]->getExtremites(ext);
+//		if(ext[0]->getBridge_vir()!=e->getBridge_vir())	/* on regarde quelle extremité du cable est    */
+//			bridge=ext[0]->getBridge_reel();		/* le container en argument de cette fonction  */
+//		else
+//			bridge=ext[1]->getBridge_reel();
+//		creerBridge(bridge.c_str());
+//	}
+//	else
+//		listCable=e->getCables();
+//
+//	lxc_container* cont;
+//	if(e->getType()=='M')
+//	{
+//		cont=((Machine*)e)->getContainer();
+//		if(e->getBridge_reel()!="\0")			/*si y a deja un bridge, on l'enleve*/
+//		{
+//			separerContainerEtBridge(cont, e->getBridge_reel().c_str());
+//			cout << e->getType() << " separe bridge " << e->getBridge_reel() << endl;
+//			e->setBridge_reel("\0");
+//			cout << e->getType() << " prend bridge NULL " << endl;
+//		}
+//		sleep(1);					
+//		lierContainerEtBridge(cont, bridge.c_str());	/* et on se lie au bon bridge */
+//		cout << e->getType() << " prend bridge " << bridge << endl;
+//	}
+//	if(e->getType()=='P')
+//	{
+//		cont=((Passerelle*)e)->getContainer();
+//		if(e->getBridge_reel()!="\0")			/*si y a deja un bridge, on l'enleve*/
+//		{
+//			separerContainerEtBridge(cont, e->getBridge_reel().c_str());
+//			cout << e->getType() << " separe bridge " << e->getBridge_reel() << endl;
+//			e->setBridge_reel("\0");
+//			cout << e->getType() << " prend bridge NULL " << endl;
+//		}
+//		sleep(1);
+//		lierContainerEtBridge(cont, bridge.c_str());	/* et on se lit au bon bridge */
+//		cout << e->getType() << " prend bridge " << bridge << endl;
+//	}
+//
+//	e->setBridge_reel(bridge);
+//	for(i=0 ; i<listCable.size() ; i++)
+//	{
+//		Entitee* extremitees[2];
+//		listCable[i]->getExtremites(extremitees);
+//
+//		if(extremitees[0]->getBridge_reel()!=bridge && extremitees[0]->getEtatMachine()==1)
+//			modifBridgesSousReseau(extremitees[0], bridge);
+//		if(extremitees[1]->getBridge_reel()!=bridge && extremitees[1]->getEtatMachine()==1)
+//			modifBridgesSousReseau(extremitees[1], bridge);
+//	}
+//
+//	return bridge;	/*retourne le bridge auquel tout le monde s'est attaché*/
+//}
+
+void modifBridgesSousReseau2(Entitee* e, string bridge)
 {
-	sleep(1);
-	cout << "je passe : " << e->getType() << endl;
 	int i;
-	vector<Cable*> listCable;
-	if(bridge=="\0")
-	{			/* ne s'execute que au premier passage: permet de determiner le bridge a adopter par
-				 * le sous-reseau*/
-		cout << "premier tour" << endl;
-		int ok=-1;
-		listCable=e->getCables();
-		for(i=0 ; i<listCable.size() && ok==-1 ; i++)
-		{					/* on verifie qu'il y a des machines allumées connectées*/
-			Entitee* ext[2];
-			listCable[i]->getExtremites(ext);
-			if(ext[0]->getEtatMachine()==1 && ext[1]->getEtatMachine()==1)
-			{
-				ok=i;
-			}
-		}
-		if(ok==-1)
-		{					/* si y a pas de liens, on prend le bridge 'virtuel', et on
-							 * a personne d'autre a modifier, donc on quitte  */
-			cout << "aucunes connexions" << endl;
-			bridge=e->getBridge_vir();
-			creerBridge(bridge.c_str());
-			lxc_container* cont;
-			if(e->getType()=='M')
-			{
-				cont=((Machine*)e)->getContainer();
-				if(e->getBridge_reel()!="\0")			/* si y a deja un bridge, on l'enleve */
-				{						/* mais normalement ca devrias pas passer
-										 * par la: c'est le premier tour, donc 
-										 * bridge_reel devrait etre egal a "\0" */
-					separerContainerEtBridge(cont, e->getBridge_reel().c_str());
-					e->setBridge_reel("\0");
-					cout << e->getType() << " prend bridge " << "NULL" << endl;
-				}
-				sleep(1);
-				lierContainerEtBridge(cont, bridge.c_str());
-				cout << "ici" << endl;
-			}
-			if(e->getType()=='P')
-			{
-				cont=((Passerelle*)e)->getContainer();
-				if(e->getBridge_reel()!="\0")			/* si y a deja un bridge, on l'enleve*/
-				{						/* mais meme chose qu'au dessus */
-					separerContainerEtBridge(cont, e->getBridge_reel().c_str());
-					cout << e->getType() << " separe bridge " << e->getBridge_reel() << endl;
-					e->setBridge_reel("\0");
-					cout << e->getType() << " prend bridge NULL " << endl;
-				}
-				sleep(1);
-				lierContainerEtBridge(cont, bridge.c_str());
-				cout << e->getType() << " prend bridge " << bridge << endl;
-			}
-			e->setBridge_reel(bridge);
-			cout << e->getType() << " prend bridge " << bridge << endl;
-			return "\0";
-		}
-		/* si y a des liens, le bridge a 'adopter' est le bridge
-		 ** de la premiere machine allumée connectée*/
-		Entitee* ext[2];
-		listCable[ok]->getExtremites(ext);
-		if(ext[0]->getBridge_vir()!=e->getBridge_vir())	/* on regarde quelle extremité du cable est    */
-			bridge=ext[0]->getBridge_reel();		/* le container en argument de cette fonction  */
-		else
-			bridge=ext[1]->getBridge_reel();
-		creerBridge(bridge.c_str());
-	}
-	else
-		listCable=e->getCables();
-
-	lxc_container* cont;
-	if(e->getType()=='M')
-	{
-		cont=((Machine*)e)->getContainer();
-		if(e->getBridge_reel()!="\0")			/*si y a deja un bridge, on l'enleve*/
-		{
-			separerContainerEtBridge(cont, e->getBridge_reel().c_str());
-			cout << e->getType() << " separe bridge " << e->getBridge_reel() << endl;
-			e->setBridge_reel("\0");
-			cout << e->getType() << " prend bridge NULL " << endl;
-		}
-		sleep(1);					
-		lierContainerEtBridge(cont, bridge.c_str());	/* et on se lie au bon bridge */
-		cout << e->getType() << " prend bridge " << bridge << endl;
-	}
-	if(e->getType()=='P')
-	{
-		cont=((Passerelle*)e)->getContainer();
-		if(e->getBridge_reel()!="\0")			/*si y a deja un bridge, on l'enleve*/
-		{
-			separerContainerEtBridge(cont, e->getBridge_reel().c_str());
-			cout << e->getType() << " separe bridge " << e->getBridge_reel() << endl;
-			e->setBridge_reel("\0");
-			cout << e->getType() << " prend bridge NULL " << endl;
-		}
-		sleep(1);
-		lierContainerEtBridge(cont, bridge.c_str());	/* et on se lit au bon bridge */
-		cout << e->getType() << " prend bridge " << bridge << endl;
-	}
-
-	e->setBridge_reel(bridge);
+	vector<Cable*> listCable=e->getCables();
+	e->setBridgeActuel(bridge);
 	for(i=0 ; i<listCable.size() ; i++)
 	{
-		Entitee* extremitees[2];
-		listCable[i]->getExtremites(extremitees);
+		Entitee* ext[2];
+		Entitee* autre;
+		listCable[i]->getExtremites(ext);
 
-		if(extremitees[0]->getBridge_reel()!=bridge && extremitees[0]->getEtatMachine()==1)
-			modifBridgesSousReseau(extremitees[0], bridge);
-		if(extremitees[1]->getBridge_reel()!=bridge && extremitees[1]->getEtatMachine()==1)
-			modifBridgesSousReseau(extremitees[1], bridge);
+		if(e == ext[0])			/* ATTENTION PAS SUR QUE CA MARCHE MAIS Y A PAS DE RAISONS POUR QUE CA MARCHE PAS, LES ADRESSES DEVRAIENT ETRE LES MEMES */
+			autre=ext[1];
+		else
+			autre=ext[0];
+
+		if(autre->getEtatMachine()==MACHINE_LANCEE && autre->getBridgeActuel()!=bridge)
+			modifBridgesSousReseau2(autre, bridge);
 	}
 
-	return bridge;	/*retourne le bridge auquel tout le monde s'est attaché*/
 }
+
+void modifBridgesSousReseau(Entitee* e)
+{
+	vector<Cable*> listCable=e->getCables();
+	vector<Cable*> listCableValables;
+	int i;
+	Entitee* supperieur=NULL;
+
+	e->setConnexion(true);
+
+	if(listCable.size()==0)
+		return;		/* est connecté a personne */
+
+	for(i=0 ; i<listCable.size() ; i++)
+	{
+		Entitee* ext[2];
+		listCable[i]->getExtremites(ext);
+		if(ext[0]->getEtatMachine()==MACHINE_LANCEE && ext[1]->getEtatMachine()==MACHINE_LANCEE)
+		{
+			listCableValables.push_back(listCable[i]);
+			if(ext[0]->getType() > e->getType())	/* si y a des machines de prioritée plus haute que moi dans mes environs */
+				supperieur=ext[0];
+			if(ext[1]->getType() > e->getType())
+				supperieur=ext[1];
+		}
+	}
+	if(listCableValables.size()==0)	/* est connecté a personne d'allumé */
+		return;
+
+	/* est connecté a qqn d'allumé */
+
+	if(supperieur!=NULL)	/* donc y a qqn de plus haute prioritée que mois dans mon entourage */
+		modifBridgesSousReseau2(e, supperieur->getBridgeActuel());
+	else
+	{
+		e->setBridgeActuel(e->getBridgeInit());
+		for(i=0 ; i<listCableValables.size() ; i++)
+		{
+			Entitee* ext[2];
+			Entitee* autre;
+			listCableValables[i]->getExtremites(ext);
+
+			if(e == ext[0])			/* ATTENTION PAS SUR QUE CA MARCHE MAIS Y A PAS DE RAISONS POUR QUE CA MARCHE PAS, LES ADRESSES DEVRAIENT ETRE LES MEMES */
+				autre=ext[1];
+			else
+				autre=ext[0];
+			if(autre->getConnexion()==false)
+			{
+				autre->setConnexion(true);
+				autre->setBridgeActuel(e->getBridgeActuel());
+			}
+			else
+				modifBridgesSousReseau2(autre, e->getBridgeActuel());
+		}
+	}
+}
+
 
 int lancerCommande(char** commande, struct lxc_container *c)
 {	/* ex: lancerCommance({"ifconfig", "eth0", "192.168.0.15", "up"}, c);
@@ -302,7 +382,7 @@ void launchMachine(Machine *m)
 
 	m->setEtatMachine(MACHINE_LANCEE);	/* modifie flag dans entitee */
 
-	modifBridgesSousReseau(m, "\0");
+	//modifBridgesSousReseau(m, "\0");
 }
 
 void launchHub(Hub *h)
@@ -312,7 +392,7 @@ void launchHub(Hub *h)
 
 	h->setEtatMachine(MACHINE_LANCEE);
 
-	modifBridgesSousReseau(h, "\0");
+	//modifBridgesSousReseau(h, "\0");
 }
 
 int main(void)

@@ -9,31 +9,35 @@ Entitee::Entitee(int numType, int type)
 	char nomBridge[10];
 	char caratype='\0';
 	if(type==TYPE_MACHINE)
-		caratype='M';
-	if(type==TYPE_PASSERELLE)
-		caratype='P';
-	if(type==TYPE_HUB)
-		caratype='H';
-	sprintf(nomBridge, "br%c%d", caratype, numType);
-	m_bridge_virtuel=nomBridge;
+		m_bridgeInit="\0";
+	else
+	{
+		if(type==TYPE_PASSERELLE)
+			caratype='P';
+		if(type==TYPE_HUB)
+			caratype='H';
+		sprintf(nomBridge, "br%c%d", caratype, numType);
+		m_bridgeInit=nomBridge;
+	}
 	m_type=type;
-	m_bridge_reel="\0";
-	m_running=0;
+	m_bridgeActuel=m_bridgeInit;
+	m_running=false;
+	m_estConnecteAuBridge=false;
 }
 
-string Entitee::getBridge_vir(void) const
+string Entitee::getBridgeInit(void) const
 {
-	return m_bridge_virtuel;
+	return m_bridgeInit;
 }
 
-string Entitee::getBridge_reel(void) const
+string Entitee::getBridgeActuel(void) const
 {
-	return m_bridge_reel;
+	return m_bridgeActuel;
 }
 
-void Entitee::setBridge_reel(string bridge)
+void Entitee::setBridgeActuel(string bridge)
 {
-	m_bridge_reel=bridge;
+	m_bridgeActuel=bridge;
 }
 
 void Entitee::setEtatMachine(bool etat)
@@ -59,4 +63,14 @@ void Entitee::addCable(Cable *cable)
 vector<Cable*> Entitee::getCables(void)
 {
 	return m_cableList;
+}
+
+void Entitee::setConnexion(bool con)
+{
+	m_estConnecteAuBridge=con;
+}
+
+bool Entitee::getConnexion(void) const
+{
+	return m_estConnecteAuBridge;
 }

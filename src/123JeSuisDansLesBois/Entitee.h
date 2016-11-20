@@ -27,9 +27,9 @@ class Entitee
 		 */
 		Entitee(int numType, int type);
 
-		std::string getBridge_vir(void) const;
-		std::string getBridge_reel(void) const;
-		void setBridge_reel(std::string bridge);
+		std::string getBridgeInit(void) const;
+		std::string getBridgeActuel(void) const;
+		void setBridgeActuel(std::string bridge);
 
 		/*	getEtatMachine
 		 *
@@ -98,31 +98,14 @@ class Entitee
 		 */
 		void addCable(Cable *cable);
 
-	protected:
-		/*
-		 *	le bridge virtuel est unique a chaque entitée,
-		 *	c'est le nom de bridge que l'on va créer et auquel
-		 *	la machine va se connecter si on la demare et que elle
-		 *	n'est connectée a personne d'allumé
-		 *	
-		 *	il commence toujours par "br", puis un charactere
-		 *	suivant son type: 'H' 'M' ou 'P', et enfin le numero
-		 *	de création de l'entitée; par exemple, si un hub
-		 *	est le 3eme a etre créé, son numero de créqtion sera
-		 *	2 (car 0, 1, 2)
-		 *	
-		 *	exemple : brH0  brM6  brP3
-		 */
-		std::string m_bridge_virtuel;
+		void setConnexion(bool con);
+		bool getConnexion(void) const;
 
-		/*
-		 *	le bridge reel est le bridge auquel la machine
-		 *	est connecté, on l'initialise juste avant de
-		 *	démarer la machine, en observant ses connexions:
-		 *	ca sera soit le bridge reel de son entourage, 
-		 *	soit son bridge virtuel
-		 */
-		std::string m_bridge_reel;
+	protected:
+		std::string m_bridgeInit;
+		std::string m_bridgeActuel;
+
+		bool m_estConnecteAuBridge;
 		
 		/*	variable representant l'etat de l'entitée
 		 *	elle vaut true si la machine est allumée et

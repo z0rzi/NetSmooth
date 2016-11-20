@@ -7,7 +7,7 @@
 
 /* variable Type dans Entitee */
 #define TYPE_MACHINE 0
-#define TYPE_PASSERELLE 1
-#define TYPE_HUB 2
+#define TYPE_HUB 1
+#define TYPE_PASSERELLE 2
 
 #endif

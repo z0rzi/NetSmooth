@@ -1,5 +1,18 @@
 A FAIRE:
 
+allumage de la machine = bridgeActuel pas pris en compte
+
+	-> on regarde les environs 	-> si personne = on sort, pas de connexions a bridge
+					-> si qqn = on regarde qui c'est, 	superieur a nous = 	on prend son bridge actuel si il en a un, sinon, on prend son bridgeInit, et on 
+													le fait prendre son bridgeInit, et on met sur les 2 machines qu'elles sont connectees
+										
+										inferieur a nous = 	on le fait prendre lui et tout son sous-reseau notre nom de bridgeInit, et on prend
+													notre nom de bridgeInit, et on dit qu'on est connecte
+
+
+
+
+
 -machine créée -> bridge initiale = NULL
 
 -machine allumée -> toute seule -> bridge reste NULL
@@ -14,6 +27,12 @@ A FAIRE:
 -commenter le bash + tous les .h
 
 -semaphore -> lancer petit executable C a la fin de script bash pour ouvrire semaphore
+
+-string bridge_initial
+
+-string bridge_actuel
+
+-bool estConnecteAuBridge
 
 
 
