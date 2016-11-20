@@ -14,18 +14,20 @@ class Cable
 	public:
 		Cable(Entitee *ext1, Entitee *ext2);
 
-		/*		getExtremitees
+		/*	getExtremitees
 		 *	
 		 *	ARGS:
-		 *	arr: tableau vide de 2 cases:
-		 *	     Entitee bobo[2];
-		 *	     le code rempli ce tableau avec les
-		 *	     extremitées du cable
+		 *	-arr: 		doit etre un tableau vide de 2 cases:
+		 *	     		Entitee bobo[2]; par exemple
+		 *	    		le code rempli ce tableau avec les
+		 *	    		adresses des extremitées du cable
 		 */
 		void getExtremites(Entitee** arr) const;
 
 	private:
-		/* les deux extrémitées du cable (ext comme extrémitée) */
+		/* 	les adresses des deux extrémitées du
+		 *	cable (ext comme extrémitée) 
+		 */
 		Entitee *m_ext1;
 		Entitee *m_ext2;
 };

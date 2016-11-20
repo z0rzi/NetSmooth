@@ -10,6 +10,11 @@
 class Hub : public Entitee
 {
 	public:
+		/*	Hub
+		 *
+		 *	constructeur de la classe, il appelle le constructeur
+		 *	de son parent
+		 */
 		Hub();
 
 	private:

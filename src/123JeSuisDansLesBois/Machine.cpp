@@ -7,7 +7,7 @@ using namespace std;
 int Machine::numMachine=0;
 
 Machine::Machine(struct lxc_container *container)
-		:Entitee(numMachine, 'M'), m_container(container)
+		:Entitee(numMachine, TYPE_MACHINE), m_container(container)
 {
 	numMachine++;
 }
