@@ -14,18 +14,9 @@ class DataBase
 
     static DataBase getDataBase();
 
-		/*	addCable
-		 *	
-		 *	ARGS:
-		 *	-arr: 		doit etre un tableau vide de 2 cases:
-		 *	     		Entitee bobo[2]; par exemple
-		 *	    		le code rempli ce tableau avec les
-		 *	    		adresses des extremitées du cable
-		 */
-
-    void addMachine(Machine* m);
-    void rmMachine(Machine* m);
-    vector<Machine*> getMachines();
+    static void addMachine(Machine* m);
+    static void rmMachine(Machine* m);
+    static std::vector<Machine*> getMachines();
 
     /** faire la même chose pour tous les types**/
 
