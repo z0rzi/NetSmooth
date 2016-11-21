@@ -16,3 +16,13 @@ struct lxc_container* Machine::getContainer(void) const
 {
 	return m_container;
 }
+
+void Machine::setIpConfig(struct paramIp* ip)
+{
+	m_paramIp=ip;
+}
+
+struct paramIp* Machine::getIpConfig() const
+{
+	return m_paramIp;
+}

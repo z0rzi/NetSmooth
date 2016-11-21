@@ -7,6 +7,22 @@
 #include "Entitee.h"
 #include "Cable.h"
 
+struct paramRoutage
+{
+	std::string interface;
+	std::string destination;
+	std::string passerelle;
+};
+struct paramIp
+{
+	std::string interface;
+	std::string ipv4;
+	std::string maskv4;
+	std::string ipv6;
+	std::string maskv6;
+};
+
+
 class Machine : public Entitee
 {
 	public:
@@ -30,6 +46,8 @@ class Machine : public Entitee
 		 */
 		struct lxc_container* getContainer(void) const;
 
+		void setIpConfig(struct paramIp* ip);
+		struct paramIp* getIpConfig() const;
 	private:
 		/*	container associé a la machine, quand on
 		 *	fait tourner la machine, c'est ce container
@@ -37,21 +55,9 @@ class Machine : public Entitee
 		 */
 		struct lxc_container *m_container;
 
-		/*	ipv4 de la machine
-		 */
-		std::string m_ipv4;
+		struct paramIp* m_paramIp;
 
-		/*	masque ipv4 de la machine
-		 */
-		std::string m_masqueIpv4;
-
-		/*	ipv6 de la machine
-		 */
-		std::string m_ipv6;
-
-		/*	masque ipv6 de la machine
-		 */
-		std::string m_masqueIpv6;
+		struct paramRoutage* m_paramRoutage;
 
 		/*	numero de la machine, il est unique a chaque
 		*	machine; il s'incrémente a la création de
