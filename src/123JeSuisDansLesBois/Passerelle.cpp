@@ -1,18 +1,11 @@
 #include "Passerelle.h"
-#include "Cable.h"
-#include "Entitee.h"
 
 using namespace std;
 
 int Passerelle::numPass=0;
 
 Passerelle::Passerelle(struct lxc_container *container)
-		:Entitee(numPass, TYPE_PASSERELLE), m_container(container)
+		:Ordinateur(numPass, TYPE_PASSERELLE, container)
 {
 	numPass++;
-}
-
-struct lxc_container* Passerelle::getContainer(void) const
-{
-	return m_container;
 }

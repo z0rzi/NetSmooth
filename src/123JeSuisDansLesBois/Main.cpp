@@ -212,16 +212,46 @@ void modifBridgesSousReseau(Entitee* e)
 	}
 }
 
-int lancerCommandeDansContainer(char** commande, struct lxc_container *c)
+int lancerCommandeDansContainer(const char** commande, struct lxc_container *c)
 {	/* ex: lancerCommance({"ifconfig", "eth0", "192.168.0.15", "up"}, c);
 	 *   pas convaincu, que le premier 
 	 *   arg fonctionne comme ca*/
 	lxc_attach_options_t options = LXC_ATTACH_OPTIONS_DEFAULT;
-	lxc_attach_command_t cmd={commande[0], commande};		/* rien de compliqué par ici, juste */
+	lxc_attach_command_t cmd={(char*)commande[0], (char**)commande};		/* rien de compliqué par ici, juste */
 	pid_t pid=c->init_pid(c);					/* transférer les arguments la ou il faut
 									 * pour lancer une commande dans le container*/
 
 	c->attach(c, lxc_attach_run_command, &cmd, &options, &pid);
+}
+
+void appliquerParamIp(Entitee* e)
+{
+	if(e->getType()==TYPE_HUB)
+		return;
+
+	lxc_container* c;
+	int i;
+
+	c=((Ordinateur*)e)->getContainer();
+	vector<struct paramIp> tab=((Ordinateur*)e)->getIpConfig();
+	for(i=0 ; i<tab.size() ; i++)
+	{
+		const char* cmd[]={"ifconfig", tab[i].interface.c_str(), tab[i].ipv4.c_str(), "netmask", tab[i].maskv4.c_str(), "up"};
+		cout << "i = " << i << endl;
+		cout << "cmd = " << cmd [0] << cmd [1] << cmd [2] << cmd [3] << cmd [4] << cmd [5] << endl;
+		sleep(1);
+
+		lxc_attach_options_t options = LXC_ATTACH_OPTIONS_DEFAULT;
+		lxc_attach_command_t commande={(char*)cmd[0], (char**)cmd};		/* rien de compliqué par ici, juste */
+		pid_t pid=c->init_pid(c);					/* transférer les arguments la ou il faut
+										 * pour lancer une commande dans le container*/
+
+		c->attach(c, lxc_attach_run_command, &commande, &options, &pid);
+	}
+}
+
+void appliquerParamRoutage(Entitee* e)
+{
 }
 
 int stoperContainer(struct lxc_container* cnt)
@@ -276,6 +306,9 @@ void launchEntitee(Entitee* e)
 	e->setEtatMachine(MACHINE_LANCEE);	/* modifie flag dans entitee */
 
 	modifBridgesSousReseau(e);
+
+	appliquerParamIp(e);
+	appliquerParamRoutage(e);
 }
 
 int main(void)
@@ -286,6 +319,19 @@ int main(void)
 
 	Machine m0(cnt1), m1(cnt2);
 	Passerelle p(cnt3);
+
+	struct paramIp ip={"eth0", "192.168.0.10", "255.255.255.0", "", ""};
+	m0.addIpConfig(ip);
+
+	ip.ipv4="172.16.0.10";
+	m1.addIpConfig(ip);
+
+	ip.ipv4="172.16.0.1";
+	p.addIpConfig(ip);
+	ip.interface="eth1";
+	ip.ipv4="192.168.0.1";
+	p.addIpConfig(ip);
+
 
 	Hub h0, h1;
 
