@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "Entitee.h"
-#include "Cable.h"
 
 class Hub : public Entitee
 {

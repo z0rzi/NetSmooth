@@ -4,11 +4,10 @@
 #include <iostream>
 #include <lxc/lxccontainer.h>
 
-#include "Cable.h"
-#include "Ordinateur.h"
+#include "Machine.h"
 
 
-class Passerelle : public Ordinateur
+class Passerelle : public Machine
 {
 	public:
 		/*	Passerelle

@@ -1,7 +1,5 @@
 #include "Entitee.h"
 
-#include <iostream>
-
 using namespace std;
 
 Entitee::Entitee(int numType, int type)

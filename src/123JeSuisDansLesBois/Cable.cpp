@@ -1,6 +1,4 @@
 #include "Cable.h"
-#include "Machine.h"
-#include "Entitee.h"
 
 using namespace std;
 

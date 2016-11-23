@@ -9,7 +9,7 @@
 #include <sys/types.h>
 
 #include "Constantes.h"
-#include "Machine.h"
+#include "Ordinateur.h"
 #include "Passerelle.h"
 #include "Cable.h"
 #include "Hub.h"
@@ -52,6 +52,26 @@ void detruireBridge(const char* nomPont)
 	while(waitpid(0, &useless, WUNTRACED)<0);
 }
 
+void force_stopperContainer(struct lxc_container* c)
+{
+	int x=fork();
+
+	if(x==-1)
+	{
+		perror("fork");
+		exit(1);
+	}
+	if(x==0)
+	{
+		char cntName[20];
+		c->get_config_item(c, "lxc.utsname", cntName, 20);
+		execl("./stopperContainer.sh", "stopContainer", cntName, NULL);
+		exit(0);
+	}
+	int useless;
+	while(waitpid(0, &useless, WUNTRACED)<0);
+}
+
 void lierContainerEtBridge(lxc_container* c, const char* bridge)
 {
 	int x=fork();
@@ -73,14 +93,14 @@ void lierContainerEtBridge(lxc_container* c, const char* bridge)
 }
 
 /* 
-*	lance un xterm representnt le terminal d'une Machine (donc d'un container)
+*	lance un xterm representnt le terminal d'une Ordinateur (donc d'un container)
 */
 void lancerXterm(Entitee* e)
 {
 	int x=fork();
 	lxc_container* c;
 	if(e->getType()==TYPE_MACHINE)
-		c=((Machine*)e)->getContainer();
+		c=((Ordinateur*)e)->getContainer();
 	if(e->getType()==TYPE_PASSERELLE)
 		c=((Passerelle*)e)->getContainer();
 	if(e->getType()==TYPE_HUB)
@@ -106,7 +126,7 @@ void appliquerBridgeEntiteeSuivante(Entitee* e, string bridge)
 	vector<Cable*> listCable=e->getCables();
 	e->setBridgeActuel(bridge);
 	if(e->getType()==TYPE_MACHINE)
-		lierContainerEtBridge(((Machine*)e)->getContainer(), e->getBridgeActuel().c_str());
+		lierContainerEtBridge(((Ordinateur*)e)->getContainer(), e->getBridgeActuel().c_str());
 	if(e->getType()==TYPE_PASSERELLE)
 		lierContainerEtBridge(((Passerelle*)e)->getContainer(), e->getBridgeActuel().c_str());
 	for(i=0 ; i<listCable.size() ; i++)
@@ -180,7 +200,7 @@ void modifBridgesSousReseau(Entitee* e)
 		e->setBridgeActuel(e->getBridgeInit());
 		creerBridge(e->getBridgeActuel().c_str());
 		if(e->getType()==TYPE_MACHINE)	/* ne devrais pas passer par la car si il a pas de supperieur et que c'est une machine, ca veut dire pas de connexions */
-			lierContainerEtBridge(((Machine*)e)->getContainer(), e->getBridgeActuel().c_str());
+			lierContainerEtBridge(((Ordinateur*)e)->getContainer(), e->getBridgeActuel().c_str());
 		if(e->getType()==TYPE_PASSERELLE)
 			lierContainerEtBridge(((Passerelle*)e)->getContainer(), e->getBridgeActuel().c_str());
 		for(i=0 ; i<listCableValables.size() ; i++)
@@ -198,7 +218,7 @@ void modifBridgesSousReseau(Entitee* e)
 				autre->setConnexion(true);
 				autre->setBridgeActuel(e->getBridgeActuel());
 				if(autre->getType()==TYPE_MACHINE)
-					lierContainerEtBridge(((Machine*)autre)->getContainer(), autre->getBridgeActuel().c_str());
+					lierContainerEtBridge(((Ordinateur*)autre)->getContainer(), autre->getBridgeActuel().c_str());
 				if(autre->getType()==TYPE_PASSERELLE)
 					lierContainerEtBridge(((Passerelle*)autre)->getContainer(), autre->getBridgeActuel().c_str());
 			}
@@ -232,47 +252,43 @@ void appliquerParamIp(Entitee* e)
 	lxc_container* c;
 	int i;
 
-	c=((Ordinateur*)e)->getContainer();
-	vector<struct paramIp> tab=((Ordinateur*)e)->getIpConfig();
+	c=((Machine*)e)->getContainer();
+	vector<struct paramIp> tab=((Machine*)e)->getIpConfig();
 	for(i=0 ; i<tab.size() ; i++)
 	{
-		const char* cmd[]={"ifconfig", tab[i].interface.c_str(), tab[i].ipv4.c_str(), "netmask", tab[i].maskv4.c_str(), "up"};
-		cout << "i = " << i << endl;
-		cout << "cmd = " << cmd [0] << cmd [1] << cmd [2] << cmd [3] << cmd [4] << cmd [5] << endl;
-		sleep(1);
+		const char* cmd[]={"ifconfig", tab[i].interface.c_str(), tab[i].ipv4.c_str(), "netmask", tab[i].maskv4.c_str(), "up", NULL};
 
-		lxc_attach_options_t options = LXC_ATTACH_OPTIONS_DEFAULT;
-		lxc_attach_command_t commande={(char*)cmd[0], (char**)cmd};		/* rien de compliqué par ici, juste */
-		pid_t pid=c->init_pid(c);					/* transférer les arguments la ou il faut
-										 * pour lancer une commande dans le container*/
-
-		c->attach(c, lxc_attach_run_command, &commande, &options, &pid);
+		lancerCommandeDansContainer(cmd, c);
 	}
 }
 
 void appliquerParamRoutage(Entitee* e)
 {
+	if(e->getType()==TYPE_HUB)
+		return;
+
+	lxc_container* c;
+	int i;
+
+	c=((Machine*)e)->getContainer();
+	vector<struct paramRoutage> tab=((Machine*)e)->getRouteConfig();
+	for(i=0 ; i<tab.size() ; i++)
+	{
+		const char* cmd[]={"route", "add", "-net", tab[i].destination.c_str(), "gw", tab[i].passerelle.c_str(), "dev", tab[i].interface.c_str(), NULL};
+
+		lancerCommandeDansContainer(cmd, c);
+	}
 }
 
 int stoperContainer(struct lxc_container* cnt)
 {
 	int tst;
 
-	tst = cnt->shutdown(cnt, 10);
+	tst = cnt->shutdown(cnt, 3);
 	if(!tst)
 	{
 		printf("Failed to cleanly stop the container, forcing.\n");
-		tst = cnt->stop(cnt);	/*plus violent que shutdown*/
-		if(!tst) {
-			cout << "Failed to stop the container, forcing even more" << endl;
-			pid_t pid = cnt->init_pid(cnt);
-			tst = kill(pid, SIGINT);	/* kill le PID en dernier recours */
-			if(tst==-1)
-			{
-				cout << "impossible to close the container, I give up" << endl;
-				exit(1);
-			}
-		}
+		force_stopperContainer(cnt);	/*plus violent que shutdown*/
 	}
 	cout << "container succefully stopped" << endl;
 	return 0;
@@ -299,7 +315,7 @@ void launchEntitee(Entitee* e)
 		return;
 
 	if(e->getType()==TYPE_MACHINE)
-		lancerContainer(((Machine*)e)->getContainer());
+		lancerContainer(((Ordinateur*)e)->getContainer());
 	if(e->getType()==TYPE_PASSERELLE)
 		lancerContainer(((Passerelle*)e)->getContainer());
 
@@ -317,7 +333,7 @@ int main(void)
 	struct lxc_container* cnt2=lxc_container_new("machine1", NULL);
 	struct lxc_container* cnt3=lxc_container_new("gateway0", NULL);
 
-	Machine m0(cnt1), m1(cnt2);
+	Ordinateur m0(cnt1), m1(cnt2);
 	Passerelle p(cnt3);
 
 	struct paramIp ip={"eth0", "192.168.0.10", "255.255.255.0", "", ""};
@@ -333,6 +349,13 @@ int main(void)
 	p.addIpConfig(ip);
 
 
+	struct paramRoutage route={"eth0", "172.16.0.0/24", "192.168.0.1"};
+	m0.addRouteConfig(route);
+
+	route.destination="192.168.0.0/24";
+	route.passerelle="172.16.0.1";
+	m1.addRouteConfig(route);
+	
 	Hub h0, h1;
 
 	Cable c0(&m0, &h0);
