@@ -29,6 +29,7 @@ class Machine : public Entitee
 {
   public:
     Machine(int num, int type, struct lxc_container* c);
+
     /*	getContainer
      *
      *	permet de recuperer le container associé a la machine

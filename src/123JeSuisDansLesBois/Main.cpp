@@ -16,50 +16,6 @@
 
 using namespace std;
 
-void creerBridge(const char* nomPont)
-{
-	int x=fork();
-
-	if(x==-1)
-	{
-		perror("fork");
-		exit(1);
-	}
-	if(x==0)
-	{
-		execl("./creerBridge.sh", "createBridge", nomPont, NULL);
-		exit(0);
-	}
-	int useless;
-	while(waitpid(0, &useless, WUNTRACED)<0);
-}
-
-void detruireBridge(const char* nomPont)
-{
-	int x=fork();
-
-	if(x==-1)
-	{
-		perror("fork");
-		exit(1);
-	}
-	if(x==0)
-	{
-		execl("./detruireBridge.sh", "destroyBridge", nomPont, NULL);
-		exit(0);
-	}
-	int useless;
-	while(waitpid(0, &useless, WUNTRACED)<0);
-}
-
-
-
-
-
-
-
-
-
 int main(void)
 {
 	struct lxc_container* cnt1=lxc_container_new("machine0", NULL);
@@ -107,23 +63,23 @@ int main(void)
 	p.addCable(&c3);
 	h1.addCable(&c3);
 
-	launchEntitee(&m0);
-	launchEntitee(&m1);
-	launchEntitee(&h0);
-	launchEntitee(&h1);
-	launchEntitee(&p);
+	m0.launchEntitee();
+	m1.launchEntitee();
+	h0.launchEntitee();
+	h1.launchEntitee();
+	p.launchEntitee();
 
-	lancerXterm(&m0);
-	lancerXterm(&m1);
-	lancerXterm(&p);
+	m0.lancerXterm();
+	m1.lancerXterm();
+	p.lancerXterm();
 
 	cout << "entrez quelque chose pour finir" << endl;
 	int bobo;
 	cin >> bobo;
 
-	stoperContainer(cnt1);
-	stoperContainer(cnt2);
-	stoperContainer(cnt3);
+	m0.stopperContainer();
+	m1.stopperContainer();
+	p.stopperContainer();
 
 
 	return 0;

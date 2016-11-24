@@ -101,7 +101,7 @@ void Machine::lierABridge()
 	{
 		char cntName[20];
 		this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
-		execl("./joinCntAndBridge.sh", "joinCntBridge", cntName,this->m_bridgeActuel, NULL);
+		execl("./joinCntAndBridge.sh", "joinCntBridge", cntName,this->m_bridgeActuel.c_str(), NULL);
 		exit(0);
 	}
 	int useless;
@@ -109,9 +109,7 @@ void Machine::lierABridge()
 }
 
 int Machine::lancerCommandeDansContainer(const char** commande)
-{	/* ex: lancerCommance({"ifconfig", "eth0", "192.168.0.15", "up"}, c);
-	 *   pas convaincu, que le premier 
-	 *   arg fonctionne comme ca*/
+{
 	lxc_attach_options_t options = LXC_ATTACH_OPTIONS_DEFAULT;
 	lxc_attach_command_t cmd={(char*)commande[0], (char**)commande};		/* rien de compliqué par ici, juste */
 	pid_t pid=(this->m_container)->init_pid(this->m_container);					/* transférer les arguments la ou il faut

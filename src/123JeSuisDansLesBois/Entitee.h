@@ -9,6 +9,7 @@ class Cable;
 #include <strings.h>
 #include "Cable.h"
 #include "Constantes.h"
+#include "Bridge.h"
 
 class Entitee
 {
@@ -33,7 +34,7 @@ class Entitee
     std::string getBridgeActuel(void) const;
     void setBridgeActuel(std::string bridge);
 
-    /*	getEtatMachine
+    /*	getEtatEntitee
      *
      *	permet d'obtenir l'etat de la machine
      *	
@@ -45,9 +46,9 @@ class Entitee
      *	cette methode est applicable sur n'importe
      *	quel entitee, cad Machine, Passerelle ou Hub
      */
-    bool getEtatMachine(void);
+    bool getEtatEntitee(void);
 
-    /*	setEtatMachine
+    /*	setEtatEntitee
      *
      *	permet de modifier l'etat de la machine
      *	
@@ -60,7 +61,7 @@ class Entitee
      *	cette methode est applicable sur n'importe
      *	quel entitee, cad Machine, Passerelle ou Hub
      */
-    void setEtatMachine(bool etat);
+    void setEtatEntitee(bool etat);
 
     /*	getType
      *
