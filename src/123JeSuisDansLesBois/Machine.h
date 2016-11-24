@@ -11,49 +11,62 @@ class Entitee;
 
 struct paramRoutage
 {
-	std::string interface;
-	std::string destination;
-	std::string passerelle;
+  std::string interface;
+  std::string destination;
+  std::string passerelle;
 };
 struct paramIp
 {
-	std::string interface;
-	std::string ipv4;
-	std::string maskv4;
-	std::string ipv6;
-	std::string maskv6;
+  std::string interface;
+  std::string ipv4;
+  std::string maskv4;
+  std::string ipv6;
+  std::string maskv6;
 };
 
 
 class Machine : public Entitee
 {
-	public:
-		Machine(int num, int type, struct lxc_container* c);
-		/*	getContainer
-		 *
-		 *	permet de recuperer le container associé a la machine
-		 *	
-		 *	RETURN VALUE
-		 *	adresse du container associé a la machine
-		 */
-		struct lxc_container* getContainer(void) const;
+  public:
+    Machine(int num, int type, struct lxc_container* c);
+    /*	getContainer
+     *
+     *	permet de recuperer le container associé a la machine
+     *	
+     *	RETURN VALUE
+     *	adresse du container associé a la machine
+     */
+    struct lxc_container* getContainer(void) const;
 
-		void addIpConfig(struct paramIp ip);
-		std::vector<struct paramIp> getIpConfig() const;
+    void addIpConfig(struct paramIp ip);
+    std::vector<struct paramIp> getIpConfig() const;
 
-		void addRouteConfig(struct paramRoutage route);
-		std::vector<struct paramRoutage> getRouteConfig() const;
-	private:
+    void addRouteConfig(struct paramRoutage route);
+    std::vector<struct paramRoutage> getRouteConfig() const;
 
-		/*	container associé a la machine, quand on
-		 *	fait tourner la machine, c'est ce container
-		 *	que l'on lance
-		 */
-		struct lxc_container *m_container;
+    int lancerContainer();
+    int stopperContainer();
+    void force_stopperContainer();
 
-		std::vector<struct paramIp> m_paramIp;
+    void lierABridge();
 
-		std::vector<struct paramRoutage> m_paramRoutage;
+    void appliquerParamIp();
+    void appliquerParamRoutage();
+
+    int lancerCommandeDansContainer(const char** commande);
+
+    void lancerXterm();
+  private:
+
+    /*	container associé a la machine, quand on
+     *	fait tourner la machine, c'est ce container
+     *	que l'on lance
+     */
+    struct lxc_container *m_container;
+
+    std::vector<struct paramIp> m_paramIp;
+
+    std::vector<struct paramRoutage> m_paramRoutage;
 };
 
 #endif
