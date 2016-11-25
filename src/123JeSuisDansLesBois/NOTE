@@ -1,5 +1,15 @@
 A FAIRE:
 
+
+cables: boucle for = au debut: desalloc cable
+                     remplacer cables par null dans machines adjacentes
+
+Entitee & Machine = classes abstraites
+
+methodes utilisees que dqns Machine = definir dans Entitee & override dans Machine
+
+
+
 allumage de la machine = bridgeActuel pas pris en compte
 
 	-> on regarde les environs 	-> si personne = on sort, pas de connexions a bridge

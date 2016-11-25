@@ -221,17 +221,11 @@ void Entitee::launchEntitee()
 	if(this->getEtatEntitee()==MACHINE_LANCEE)
 		return;
 
-	if(this->getType()==TYPE_ORDINATEUR)
+	if(this->getType()!=TYPE_HUB)
 	{
-		((Ordinateur*)this)->lancerContainer();
-		((Ordinateur*)this)->appliquerParamIp();
-		((Ordinateur*)this)->appliquerParamRoutage();
-	}
-	if(this->getType()==TYPE_PASSERELLE)
-	{
-		((Passerelle*)this)->lancerContainer();
-		((Passerelle*)this)->appliquerParamIp();
-		((Passerelle*)this)->appliquerParamRoutage();
+		((Machine*)this)->lancerContainer();
+		((Machine*)this)->appliquerParamIp();
+		((Machine*)this)->appliquerParamRoutage();
 	}
 
 	this->setEtatEntitee(MACHINE_LANCEE);	/* modifie flag dans entitee */
