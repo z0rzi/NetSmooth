@@ -99,7 +99,36 @@ void Entitee::appliquerBridgeEntiteeSuivante(string bridge)
 			autre->appliquerBridgeEntiteeSuivante(bridge);
 	}
 }
-void Entitee::modifBridgesSousReseau()
+
+void Entitee::modifBridgesSousReseau_entiteeStoppee()
+{
+	vector<Cable*> listCable=this->getCables();
+	vector<Cable*> listCableValables;	/* represente tous les cables dont les deux extrémitées sont allumées */
+	int i;
+	
+	if(this->getType()!=TYPE_HUB)
+		Bridge::detruireBridge((Machine*)this->getBridgeActuel());
+
+	this->setConnexion(false);
+
+	for(i=0 ; i<listCable.size() ; i++)
+	{
+		Entitee* ext[2];
+		Entitee* autre;
+		listCable[i]->getExtremites(ext);
+		if(this == ext[0])
+			autre=ext[1];
+		else
+			autre=ext[0];
+		if(autre->getEtatEntitee()==MACHINE_LANCEE)
+		{
+			Bridge::creerBridge(autre->getBridgeInit());
+			autre->appliquerBridgeEntiteeSuivante(autre->getBridgeInit());
+		}
+	}
+}
+
+void Entitee::modifBridgesSousReseau_entiteeLancee()
 {
 	vector<Cable*> listCable=this->getCables();
 	vector<Cable*> listCableValables;	/* represente tous les cables dont les deux extrémitées sont allumées */
@@ -164,7 +193,7 @@ void Entitee::modifBridgesSousReseau()
 			Entitee* autre;
 			listCableValables[i]->getExtremites(ext);
 
-			if(this == ext[0])			/* ATTENTION PAS SUR QUE CA MARCHE MAIS Y A PAS DE RAISONS POUR QUE CA MARCHE PAS, LES ADRESSES DEVRAIENT ETRE LES MEMES */
+			if(this == ext[0])
 				autre=ext[1];
 			else
 				autre=ext[0];
@@ -189,7 +218,7 @@ void Entitee::modifBridgesSousReseau()
 void Entitee::launchEntitee()
 {
 	cout << "lancement de " << this->getBridgeInit() << endl;
-	if(this->getEtatEntitee()==MACHINE_LANCEE)//avant, c'était ==1, mais je suppose que c'était pour dire machine_lancee (vincent)
+	if(this->getEtatEntitee()==MACHINE_LANCEE)
 		return;
 
 	if(this->getType()==TYPE_ORDINATEUR)
@@ -206,6 +235,24 @@ void Entitee::launchEntitee()
 	}
 
 	this->setEtatEntitee(MACHINE_LANCEE);	/* modifie flag dans entitee */
-	this->modifBridgesSousReseau();
+	this->modifBridgesSousReseau_entiteeLancee();
 
+}
+
+void Entitee::stopEntitee()
+{
+	cout << "arret de " << this->getBridgeInit() << endl;
+
+	if(this->getEtatEntitee()==MACHINE_STOPEE)
+		return;
+
+
+	if(this->getType()==TYPE_ORDINATEUR)
+		((Ordinateur*)this)->stopperContainer();
+
+	if(this->getType()==TYPE_PASSERELLE)
+		((Passerelle*)this)->stopperContainer();
+
+	this->setEtatEntitee(MACHINE_STOPEE);	/* modifie flag dans entitee */
+	this->modifBridgesSousReseau_entiteeStoppee();
 }
