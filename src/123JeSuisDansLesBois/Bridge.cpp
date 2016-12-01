@@ -17,7 +17,7 @@ void Bridge::creerBridge(const char* nomPont)
 		exit(0);
 	}
 	int useless;
-	while(waitpid(0, &useless, WUNTRACED)<0);
+	while(wait(&useless)<0);
 }
 
 void Bridge::detruireBridge(const char* nomPont)
@@ -35,5 +35,5 @@ void Bridge::detruireBridge(const char* nomPont)
 		exit(0);
 	}
 	int useless;
-	while(waitpid(0, &useless, WUNTRACED)<0);
+	while(wait(&useless)<0);
 }

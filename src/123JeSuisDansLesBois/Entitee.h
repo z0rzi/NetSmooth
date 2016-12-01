@@ -17,7 +17,8 @@ class Entitee
 		/*	Entitee
 		 *	
 		 *	Constructeur de la classe, il initialise le 
-		 *	nom de bridge par defaut pour hub et passerelles
+		 *	nom de bridge par defaut (ou bridge Initial) pour hub 
+		 *	et passerelles
 		 *	
 		 *	ARGS
 		 *	-numtype :	numero de la machine créée, il doit
@@ -29,9 +30,47 @@ class Entitee
 		 *			Constantes.h -> TYPE_****
 		 */
 		Entitee(int numType, int type);
-
+		
+		/*	getBridgeInit
+		 *	
+		 *	permet de recupérer le bridge Initial de la machine
+		 *
+		 *	RETURN VALUE
+		 *	nom du bridge initial
+		 *	
+		 *	NOTE
+		 *	Mais dis moi Jammie, c'est quoi un bridge initial?
+		 *		-> vas voir dans la description des 
+		 *		   attributs de la classe plus bas
+		 */
 		std::string getBridgeInit(void) const;
+
+		/*	getBridgeActuel
+		 *	
+		 *	permet de recupérer le bridge Actuel de la machine
+		 *
+		 *	RETURN VALUE
+		 *	nom du bridge actuel
+		 *	
+		 *	NOTE
+		 *	Mais dis moi Jammie, c'est quoi un bridge Actuel?
+		 *		-> vas voir dans la description des 
+		 *		   attributs de la classe plus bas
+		 */
 		std::string getBridgeActuel(void) const;
+
+		/*	setBridgeActuel
+		 *	
+		 *	permet de définir le bridge Actuel de la machine
+		 *
+		 *	ARGS
+		 *	-bridge		nom du bridge actuel a associer a l'entitee
+		 *	
+		 *	NOTE
+		 *	Mais dis moi Jammie, c'est quoi un bridge Actuel?
+		 *		-> vas voir dans la description des 
+		 *		   attributs de la classe plus bas
+		 */
 		void setBridgeActuel(std::string bridge);
 
 		/*	getEtatEntitee
@@ -100,32 +139,172 @@ class Entitee
 		 *
 		 */
 		void addCable(Cable *cable);
-
+		
+		/*	setConnexion
+		 *
+		 *	permet de dire si la machine est connectée a un bridge
+		 *	ou non
+		 *
+		 *	ARGS
+		 *	-con		true si la machine a été connecté a un
+		 *			bridge, false elle en a été déconnectée
+		 */
 		void setConnexion(bool con);
+
+		/*	getConnexion
+		 *
+		 *	permet de savoir si la machine est connectée a un bridge
+		 *
+		 *	RETURN VALUE
+		 *	true si la machine est connectée, false sinon
+		 */
 		bool getConnexion(void) const;
 
+		/*	appliquerBridgeEntiteeSuivante
+		 *
+		 *	permet de "contaminer" tous les bridges d'un meme
+		 *	sous réseau en leur appliquant a tous le meme bridgeActuel,
+		 *	en partant de "this"
+		 *
+		 *	ex: Soit R un reseau dans lequel, pour chaque machine, 
+		 *	    bridgeActuel = "brP1".
+		 *	    Soit M0 un Ordinateur qui appartient a R.
+		 *	    si on lance <M0.appliquerBridgeEntiteeSuivante("brM0")>,
+		 *	    alors, tout le réseau va avoir brM0 en bridgeActuel
+		 *
+		 *	ARGS
+		 *	-bridge		nom du bridge que tout le monde doit adopter
+		 */
 		void appliquerBridgeEntiteeSuivante(std::string bridge);
-
+		
+		/*	modifBridgesSousReseau_entiteeLancee
+		 *
+		 *	permet de modifier les connexions des machines avec les
+		 *	bridges lorsqu'on lance une nouvelle Entitee
+		 *	Les bridges s'attribuent comme suit:
+		 *	
+		 *	je regarde les environs (=entitees avec qui je suis connecté)
+		 *
+		 *	si personne dans les environs
+		 *	{
+		 *	    je sort, pas de connexions aux bridges necessaires
+		 *	}
+		 *	si quelqu'un dans les environs
+		 *	{
+		 *	    je regarde son type
+		 *
+		 *	    si il est superieur a nous
+		 *	    {
+		 *	        si il est deja connecté a un bridge
+		 *	        {
+		 *	            je prend son bridge actuel
+		 *	        }
+		 *	        si il n'est pas connecté a un bridge
+		 *	        {
+		 *	            je prend son bridgeInit, je le 
+		 *	            fait prendre son bridgeInit
+		 *	            je le dis au'il est connecté
+		 *	        }
+		 *	        je dis que je suis connecté
+		 *	    }
+		 *	    si il est inferieur a nous
+		 *	    {
+		 *	        je le fait prendre lui et tout son 
+		 *	        sous-reseau mon bridgeInit
+		 *	        je prend mon bridgeInit, et je dit que je suis connecté
+		 *	    }
+		 *
+		 *	    je fait prendre a toutes mes connexions mon nouveau bridge
+		 *	}
+		 *
+		 */
 		void modifBridgesSousReseau_entiteeLancee();
 
+		/*	modifBridgesSousReseau_entiteeStoppee
+		 *
+		 *	permet de modifier les connexions des machines avec les
+		 *	bridges lorsqu'on stoppe une Entitee
+		 */
 		void modifBridgesSousReseau_entiteeStoppee();
+
+		/*	launchEntitee
+		 *
+		 *	permet de lancer une Entitee, et d'executer toutes les
+		 *	opérations annexes a ce lancement
+		 */
 		void launchEntitee();
 
+		/*	stopEntitee
+		 *
+		 *	permet de stopper une Entitee, et d'executer toutes les
+		 *	opérations annexes a cet arret
+		 */
 		void stopEntitee();
+
+		/*	Methodes virtuelles pures
+		 *
+		 *	ces methodes sont décrites dans la classe Machine. Les declarer
+		 *	ici en tant que methodes virtuelles pures evite les transtypages
+		 *	du type < ((Machine*)this)->lancerContainer() >
+		 */
+		virtual void appliquerParamIp() = 0;
+		virtual void appliquerParamRoutage() = 0;
+		virtual int lancerContainer() = 0;
+		virtual int stopperContainer() = 0;
+		virtual void lierABridge() = 0;
+
+		~Entitee();
 	protected:
+		/*	m_bridgeInit
+		 *
+		 *	chaine de caractere representant le bridge Initial de l'entitee
+		 *	c'est le bridge que son reseau va adopter si elle est de 
+		 *	priorité superieur a son entourage. Il est initialisé lors de
+		 *	la création de l'entitee, et ne peut pas etre changé. il est
+		 *	unique a chaque entitee, les Ordinateurs n'ont pas de bridge
+		 *	Initial (il est a "\0"), car il est inutil de créer un bridge
+		 *	si une machine n'est connecté a personnem et, si elle est
+		 *	connectée a quelqu'un, alors, elle prend le bridgeInit de 
+		 *	cette Entitee.
+		 *
+		 *	NOTE
+		 *	voir la methode modifBridgesSousReseau_entiteeLancee, et 
+		 *	les parametre m_bridgeInit et m_bridgeActuel pour mieux
+		 *	comprendre le mecanisme
+		 */
 		std::string m_bridgeInit;
+
+		/*	m_bridgeActuel
+		 *
+		 *	chaine de caractere representant le bridge auquel l'entitee
+		 *	est connécté, si elle est allumée (le dernier bridge auquel
+		 *	elle s'est connectée sinon). lors de l'allumage de la machine,
+		 *	soit l'entitee est l'entitee de plus grande prioritée parmis
+		 *	son entourage, et donc, elle et tout les sous réseaux qu'elle
+		 *	touche adoptent son bridge Initial, ou, il y a une Entitee
+		 *	de prioritée superieur dans son entourage, auquel cas,
+		 *	elle et tous les sous reseaux qu'elle touche prennent le
+		 *	bridge actuel de l'entitee de plus haute prioritée.
+		 *
+		 *	NOTE
+		 *	voir la methode modifBridgesSousReseau_entiteeLancee, et 
+		 *	les parametre m_bridgeInit et m_bridgeActuel pour mieux
+		 *	comprendre le mecanisme
+		 */
 		std::string m_bridgeActuel;
 
 		bool m_estConnecteAuBridge;
 
-		/*	variable representant l'etat de l'entitée
+		/*	m_running
+		 *
+		 *	variable representant l'etat de l'entitée
 		 *	elle vaut true si la machine est allumée et
 		 *	false sinon
-		 *
 		 */
 		bool m_running;
 
-		/*
+		/*	m_cableList
+		 *
 		 *	liste de Cables auquel l'entitee est reliée
 		 *	ATTENTION, rien au niveau du code n'empeche
 		 *	de mettre 2 cables sur une machine,
