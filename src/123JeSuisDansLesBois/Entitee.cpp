@@ -215,6 +215,8 @@ void Entitee::modifBridgesSousReseau_entiteeLancee()
 		}
 	}
 }
+
+
 void Entitee::launchEntitee()
 {
 	cout << "lancement de " << this->getBridgeInit() << endl;
