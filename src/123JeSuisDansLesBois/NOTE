@@ -5,8 +5,16 @@ cables: boucle for = au debut: desalloc cable
                      remplacer cables par null dans machines adjacentes
 
 Entitee & Machine = classes abstraites
+	pour faire ca -> il faut creer des methodes virtuelles pures dans ces classe, et c'est tout
+		fonction virtuelle pure: "virtual void jeSuisVirtuellePure(int arg) = 0;"
+		une fonction virtuelle pure DOIT se faire Override, c'est sa raison d'etre
 
 methodes utilisees que dqns Machine = definir dans Entitee & override dans Machine
+
+
+
+
+
 
 
 

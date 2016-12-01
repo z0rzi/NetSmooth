@@ -80,10 +80,7 @@ void Entitee::appliquerBridgeEntiteeSuivante(string bridge)
 	int i;
 	vector<Cable*> listCable=this->m_cableList;
 	this->setBridgeActuel(bridge);
-	if(this->getType()==TYPE_ORDINATEUR)
-		((Ordinateur*)this)->lierABridge();
-	if(this->getType()==TYPE_PASSERELLE)
-		((Passerelle*)this)->lierABridge();
+	this->lierABridge();
 	for(i=0 ; i<listCable.size() ; i++)
 	{
 		Entitee* ext[2];
@@ -107,7 +104,7 @@ void Entitee::modifBridgesSousReseau_entiteeStoppee()
 	int i;
 	
 	if(this->getType()!=TYPE_HUB)
-		Bridge::detruireBridge((Machine*)this->getBridgeActuel());
+		Bridge::detruireBridge(this->getBridgeActuel().c_str());
 
 	this->setConnexion(false);
 
@@ -122,7 +119,7 @@ void Entitee::modifBridgesSousReseau_entiteeStoppee()
 			autre=ext[0];
 		if(autre->getEtatEntitee()==MACHINE_LANCEE)
 		{
-			Bridge::creerBridge(autre->getBridgeInit());
+			Bridge::creerBridge(autre->getBridgeInit().c_str());
 			autre->appliquerBridgeEntiteeSuivante(autre->getBridgeInit());
 		}
 	}
@@ -182,10 +179,7 @@ void Entitee::modifBridgesSousReseau_entiteeLancee()
 		this->setBridgeActuel(this->getBridgeInit());
 		Bridge::creerBridge(this->getBridgeActuel().c_str());
 
-		if(this->getType()==TYPE_ORDINATEUR)	/* ne devrais pas passer par la car si il a pas de superieur et que c'est une machine, ca veut dire pas de connexions */
-			((Ordinateur*)this)->lierABridge();
-		if(this->getType()==TYPE_PASSERELLE)
-			((Passerelle*)this)->lierABridge();
+		this->lierABridge();
 
 		for(i=0 ; i<listCableValables.size() ; i++)
 		{
@@ -201,10 +195,7 @@ void Entitee::modifBridgesSousReseau_entiteeLancee()
 			{
 				autre->setConnexion(true);
 				autre->setBridgeActuel(this->getBridgeActuel());
-				if(autre->getType()==TYPE_ORDINATEUR)
-					((Ordinateur*)autre)->lierABridge();
-				if(autre->getType()==TYPE_PASSERELLE)
-					((Passerelle*)autre)->lierABridge();
+				autre->lierABridge();
 			}
 			else
 			{
@@ -223,12 +214,9 @@ void Entitee::launchEntitee()
 	if(this->getEtatEntitee()==MACHINE_LANCEE)
 		return;
 
-	if(this->getType()!=TYPE_HUB)
-	{
-		((Machine*)this)->lancerContainer();
-		((Machine*)this)->appliquerParamIp();
-		((Machine*)this)->appliquerParamRoutage();
-	}
+	this->lancerContainer();	/*ces 3 lignes ne font rien si c'est un Hub*/
+	this->appliquerParamIp();
+	this->appliquerParamRoutage();
 
 	this->setEtatEntitee(MACHINE_LANCEE);	/* modifie flag dans entitee */
 	this->modifBridgesSousReseau_entiteeLancee();
@@ -243,12 +231,10 @@ void Entitee::stopEntitee()
 		return;
 
 
-	if(this->getType()==TYPE_ORDINATEUR)
-		((Ordinateur*)this)->stopperContainer();
-
-	if(this->getType()==TYPE_PASSERELLE)
-		((Passerelle*)this)->stopperContainer();
+	this->stopperContainer();
 
 	this->setEtatEntitee(MACHINE_STOPEE);	/* modifie flag dans entitee */
 	this->modifBridgesSousReseau_entiteeStoppee();
+
+	/*reste a supprimer les cables*/
 }

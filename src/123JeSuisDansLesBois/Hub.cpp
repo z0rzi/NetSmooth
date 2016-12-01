@@ -9,3 +9,9 @@ Hub::Hub()
 {
 	numHub++;
 }
+
+void Hub::appliquerParamIp(){}
+void Hub::appliquerParamRoutage(){}
+int Hub::lancerContainer(){}
+int Hub::stopperContainer(){}
+void Hub::lierABridge(){}

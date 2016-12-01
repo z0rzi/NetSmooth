@@ -86,7 +86,7 @@ void Machine::force_stopperContainer()
 		exit(0);
 	}
 	int useless;
-	while(waitpid(0, &useless, WUNTRACED)<0);
+	while(wait(&useless)<0);
 }
 void Machine::lierABridge()
 {
@@ -105,7 +105,7 @@ void Machine::lierABridge()
 		exit(0);
 	}
 	int useless;
-	while(waitpid(0, &useless, WUNTRACED)<0);
+	while(wait(&useless)<0);
 }
 
 int Machine::lancerCommandeDansContainer(const char** commande)
@@ -164,5 +164,4 @@ void Machine::lancerXterm()
 		exit(0);
 	}
 }
-
 

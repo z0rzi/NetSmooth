@@ -15,6 +15,20 @@ class Hub : public Entitee
 		 *	de son parent
 		 */
 		Hub();
+		
+		/*	Methodes inutiles
+		 *
+		 *	ces methodes ne sont redéfinies ici que pour respecter
+		 *	les methodes virtuelles pures du parent, mais elles 
+		 *	ne sont pas utiles ici (elles le sont dans l'autre
+		 *	enfant en revanche: Machine)
+		 * 
+		 */
+		void appliquerParamIp();
+		void appliquerParamRoutage();
+		int lancerContainer();
+		void lierABridge();
+		int stopperContainer();
 
 	private:
 		/* numero de Hub, s'incremente a chaque hub créé
