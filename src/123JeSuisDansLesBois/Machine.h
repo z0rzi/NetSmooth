@@ -60,8 +60,9 @@ class Machine : public Entitee
 		 *	permet d'ajouter une configuration IP a une machine
 		 *
 		 *	ARGS
-		 *	-ip		structure contenant les parametres IP
-		 *			a ajouter
+		 *	-ip
+		 *		structure contenant les parametres IP
+		 *		a ajouter
 		 */
 		void addIpConfig(struct paramIp ip);
 
@@ -80,8 +81,9 @@ class Machine : public Entitee
 		 *	permet d'ajouter une configuration de routage a une machine
 		 *
 		 *	ARGS
-		 *	-route		structure contenant les parametres de routage
-		 *			a ajouter
+		 *	-route
+		 *		structure contenant les parametres de routage
+		 *		a ajouter
 		 */
 		void addRouteConfig(struct paramRoutage route);
 
@@ -158,9 +160,10 @@ class Machine : public Entitee
 		 *	permet de lancer une commande dans le container
 		 *
 		 *	ARGS
-		 *	-commande:	chaine de caracteres a deux dimensions
-		 *			representant la commande
-		 *			exemple:char** cmd={"echo", "HelloWord", NULL};
+		 *	-commande:
+		 *		chaine de caracteres a deux dimensions
+		 *		representant la commande
+		 *		exemple:char** cmd={"echo", "HelloWord", NULL};
 		 *
 		 *	NOTE
 		 *	Le dernier element de la chaine doit etre NULL, comme dans
