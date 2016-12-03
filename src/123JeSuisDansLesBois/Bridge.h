@@ -11,21 +11,23 @@
 class Bridge
 {
 	public:
-		/*	creerBridge
+		/*	static void creerBridge(char* nomPont)
 		 *
 		 *	permet de créer un bridge sur la machine hote
 		 *
 		 *	ARGS
-		 *	-nomPont:	nom du bridge a créer
+		 *	-nomPont:
+		 *		nom du bridge a créer
 		 */
 		static void creerBridge(const char* nomPont);
 
-		/*	detruireBridge
+		/*	static void detruireBridge(char* nomPont)
 		 *
 		 *	permet de détruire un bridge sur la machine hote
 		 *
 		 *	ARGS
-		 *	-nomPont:	nom du bridge a détruire
+		 *	-nomPont:
+		 *		nom du bridge a détruire
 		 */
 		static void detruireBridge(const char* nomPont);
 

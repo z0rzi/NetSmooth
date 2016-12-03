@@ -1,12 +1,4 @@
 #include "Machine.h"
-#include <string>
-#include <cstdlib>
-#include <signal.h>
-#include <lxc/lxccontainer.h>
-#include <unistd.h>
-#include <strings.h>
-#include <sys/wait.h>
-#include <sys/types.h>
 
 using namespace std;
 
@@ -55,7 +47,7 @@ int Machine::lancerContainer()
 	return 0;
 }
 
-int Machine::stopperContainer()
+void Machine::stopperContainer()
 {
 	int tst;
 
@@ -66,7 +58,6 @@ int Machine::stopperContainer()
 		force_stopperContainer();	/*plus violent que shutdown*/
 	}
 	cout << "container succesfully stopped" << endl;
-	return 0;
 }
 
 void Machine::force_stopperContainer()
@@ -108,7 +99,7 @@ void Machine::lierABridge()
 	while(wait(&useless)<0);
 }
 
-int Machine::lancerCommandeDansContainer(const char** commande)
+void Machine::lancerCommandeDansContainer(const char** commande)
 {
 	lxc_attach_options_t options = LXC_ATTACH_OPTIONS_DEFAULT;
 	lxc_attach_command_t cmd={(char*)commande[0], (char**)commande};		/* rien de compliqué par ici, juste */
