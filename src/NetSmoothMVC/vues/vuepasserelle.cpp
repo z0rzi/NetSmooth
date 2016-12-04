@@ -5,7 +5,7 @@ VuePasserelle::VuePasserelle(VueEntitee *parent) : VueEntitee(parent)
     etat = false;
     zoneImg = new ClickLabel();
     QPixmap* img = new QPixmap();
-    img->load("images/passerelleoff.png");
+    img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleoff.png");
     *img = img->scaled(130,100);
     zoneImg->setPixmap(*img);
 }

@@ -8,16 +8,16 @@ using namespace std;
 
 class VuePrincipale;
 
-#include "vueprincipale.h"
-#include "vuemachine.h"
-#include "vuepasserelle.h"
-#include "vuehub.h"
-#include "vueentitee.h"
-#include "selection.h"
-#include "vueentiteecontroleur.h"
-#include "vuemachinecontroleur.h"
-#include "vuehubcontroleur.h"
-#include "vuepasserellecontroleur.h"
+#include "vues/vueprincipale.h"
+#include "vues/vuemachine.h"
+#include "vues/vuepasserelle.h"
+#include "vues/vuehub.h"
+#include "vues/vueentitee.h"
+#include "vues/selection.h"
+#include "controleurs/vueentiteecontroleur.h"
+#include "controleurs/vuemachinecontroleur.h"
+#include "controleurs/vuehubcontroleur.h"
+#include "controleurs/vuepasserellecontroleur.h"
 
 class VuePrincipaleControleur : public QObject
 {

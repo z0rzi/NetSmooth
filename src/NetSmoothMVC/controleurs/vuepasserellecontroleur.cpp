@@ -13,12 +13,12 @@ void VuePasserelleControleur::allumer()
     if (vue->etat == false)
     {
         vue->etat = true;
-        img->load("images/passerelleon");
+        img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleon");
     }
     else
     {
         vue->etat = false;
-        img->load("images/passerelleoff");
+        img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleoff");
     }
     *img = img->scaled(130,100);
     vue->zoneImg->setPixmap(*img);

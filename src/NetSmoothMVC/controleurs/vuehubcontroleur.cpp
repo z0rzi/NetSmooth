@@ -13,12 +13,12 @@ void VueHubControleur::allumer()
     if (vue->etat == false)
     {
         vue->etat = true;
-        img->load("images/Hubon");
+        img->load("../build-NetSmoothMVC-Desktop-Debug/images/Hubon");
     }
     else
     {
         vue->etat = false;
-        img->load("images/Huboff");
+        img->load("../build-NetSmoothMVC-Desktop-Debug/images/Huboff");
     }
     *img = img->scaled(130,100);
     vue->zoneImg->setPixmap(*img);

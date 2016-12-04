@@ -7,7 +7,7 @@ VueMachine::VueMachine(VueEntitee *parent) : VueEntitee(parent)
     etat = false;
     zoneImg = new ClickLabel();
     QPixmap* img = new QPixmap();
-    img->load("./images/ordinateuroff.png");
+    img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuroff.png");
     *img = img->scaled(130,100);
     zoneImg->setPixmap(*img);
 }

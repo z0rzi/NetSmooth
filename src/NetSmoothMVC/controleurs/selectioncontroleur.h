@@ -8,7 +8,7 @@ using namespace std;
 
 class Selection;
 
-#include "selection.h"
+#include "vues/selection.h"
 
 class SelectionControleur : public QObject
 {
