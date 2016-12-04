@@ -7,7 +7,7 @@
 
 class SelectionControleur;
 
-#include "selectioncontroleur.h"
+#include "controleurs/selectioncontroleur.h"
 
 #define SOURIS 0
 #define MACHINE 1

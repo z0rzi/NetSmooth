@@ -2,8 +2,8 @@
 #define VUEMACHINECONTROLEUR_H
 
 #include <QObject>
-#include "vueentiteecontroleur.h"
-#include "vuemachine.h"
+#include "controleurs/vueentiteecontroleur.h"
+#include "vues/vuemachine.h"
 #include <iostream>
 
 using namespace std;

@@ -2,8 +2,8 @@
 #define VUEPASSERELLECONTROLEUR_H
 
 #include <QObject>
-#include "vueentiteecontroleur.h"
-#include "vuepasserelle.h"
+#include "controleurs/vueentiteecontroleur.h"
+#include "vues/vuepasserelle.h"
 
 class VuePasserelleControleur : public VueEntiteeControleur
 {

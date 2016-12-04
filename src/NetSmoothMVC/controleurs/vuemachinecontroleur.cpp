@@ -13,12 +13,12 @@ void VueMachineControleur::allumer()
     if (vue->etat == false)
     {
         vue->etat = true;
-        img->load("images/ordinateuron.png");
+        img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuron.png");
     }
     else
     {
         vue->etat = false;
-        img->load("images/ordinateuroff.png");
+        img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuroff.png");
     }
     *img = img->scaled(130,100);
     vue->zoneImg->setPixmap(*img);

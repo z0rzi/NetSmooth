@@ -2,8 +2,8 @@
 #define VUEHUBCONTROLEUR_H
 
 #include <QObject>
-#include "vueentiteecontroleur.h"
-#include "vuehub.h"
+#include "controleurs/vueentiteecontroleur.h"
+#include "vues/vuehub.h"
 
 class VueHubControleur : public VueEntiteeControleur
 {

@@ -5,7 +5,7 @@
 
 class VueEntitee;
 
-#include "vueentitee.h"
+#include "vues/vueentitee.h"
 
 class VueEntiteeControleur : public QObject
 {

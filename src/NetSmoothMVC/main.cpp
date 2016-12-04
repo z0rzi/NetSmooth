@@ -2,8 +2,8 @@
 #include <QWidget>
 #include <QGridLayout>
 
-#include "selection.h"
-#include "vueprincipale.h"
+#include "vues/selection.h"
+#include "vues/vueprincipale.h"
 
 int Selection::enSelection = 0;
 

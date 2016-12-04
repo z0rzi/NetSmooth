@@ -15,7 +15,7 @@ using namespace std;
 
 class VuePrincipaleControleur;
 
-#include "vueprincipalecontroleur.h"
+#include "controleurs/vueprincipalecontroleur.h"
 
 class VuePrincipale : public QWidget
 {
