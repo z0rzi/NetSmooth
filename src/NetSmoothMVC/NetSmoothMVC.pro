@@ -14,7 +14,15 @@ HEADERS += \
     vuemachinecontroleur.h \
     clicklabel.h \
     vuehubcontroleur.h \
-    vuepasserellecontroleur.h
+    vuepasserellecontroleur.h\
+Machine.h\
+Entitee.h\
+Ordinateur.h\
+Passerelle.h\
+Hub.h\
+DataBase.h\
+Cable.h\
+Bridge.h
 
 SOURCES += \
     selection.cpp \
@@ -31,4 +39,14 @@ SOURCES += \
     vuemachinecontroleur.cpp \
     clicklabel.cpp \
     vuehubcontroleur.cpp \
-    vuepasserellecontroleur.cpp
+    vuepasserellecontroleur.cpp\
+Machine.cpp\
+Entitee.cpp\
+Ordinateur.cpp\
+Passerelle.cpp\
+Hub.cpp\
+DataBase.cpp\
+Cable.cpp\
+Bridge.cpp
+
+QMAKE_LIBS += -llxc
