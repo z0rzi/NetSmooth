@@ -8,30 +8,19 @@
 #include "Passerelle.h"
 #include "Hub.h"
 #include "Entitee.h"
+#include "ElementListeChainee.h"
 
 class DataBase
 {
 
 	public:
 
-		static DataBase getDataBase();
-
-		static void addMachine(Machine* m);
-		static void rmMachine(Machine* m);
-		static std::vector<Machine*> getMachines();
-
-		/** faire la même chose pour tous les types**/
+    static void addMachine(Machine* m);
+    static void retirerMachine(Machine* m);
 
 	private:
-		/* 	les adresses des deux extrémitées du
-		 *	cable (ext comme extrémitée) 
-		 */
-		DataBase();
-		std::vector<Machine*> machines;
-		std::vector<Hub*> hubs;
-		std::vector<Passerelle*> passerelles;
-		//std::vector<Bridge*> bridges;
-		//on a pas de types Bridge
+    static int m_nbreMachine;
+    static ElementListeChainee* m_premierElement;
 };
 
 #endif
