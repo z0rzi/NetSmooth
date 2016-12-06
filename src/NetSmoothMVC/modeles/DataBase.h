@@ -1,9 +1,6 @@
 #ifndef CABLE_DEF
 #define CABLE_DEF
 
-#include <iostream>
-#include <vector>
-
 #include "Machine.h"
 #include "Passerelle.h"
 #include "Hub.h"
@@ -15,12 +12,16 @@ class DataBase
 
 	public:
 
-    static void addMachine(Machine* m);
-    static void retirerMachine(Machine* m);
+    static Ordinateur* getNewOrdinateur(void);
+    static Passerelle* getNewPasserelle(void);
+    static void detruireOrdinateur(Ordinateur* ordi);
+    static void detruirePasserelle(Passerelle* passerelle);
 
 	private:
-    static int m_nbreMachine;
-    static ElementListeChainee* m_premierElement;
+    static int m_nbreOrdinateur;
+    static int m_nbrePasserelle;
+    static ElementListeChainee* m_premierOrdinateur;
+    static ElementListeChainee* m_premierePasserelle;
 };
 
 #endif

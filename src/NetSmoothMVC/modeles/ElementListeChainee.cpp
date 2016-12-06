@@ -4,10 +4,10 @@
 
 using namespace std;
 
-ElementListeChainee::ElementListeChainee(Machine* m_machine0)
+ElementListeChainee::ElementListeChainee(Machine* m_machine0,ElementListeChainee* m_nextElement0)
 {
 	this->m_machine = m_machine0;
-  this->m_nextElement=NULL;
+  this->m_nextElement=m_nextElement0;
 }
 
 ElementListeChainee::~ElementListeChainee()
