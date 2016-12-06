@@ -12,6 +12,9 @@
 #include <sys/types.h>
 #include <lxc/lxccontainer.h>
 
+
+//!\\ A faire : int id, setId(), getId()
+
 class Entitee;
 
 #include "Entitee.h"

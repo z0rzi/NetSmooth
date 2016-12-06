@@ -12,7 +12,7 @@ class ElementListeChainee
 
   public:
 
-    ElementListeChainee(Machine* m_machine0);
+    ElementListeChainee(Machine* m_machine0,ElementListeChainee* m_nextElement0);
     ~ElementListeChainee();
     
     void setMachine(Machine* m_machine0);
