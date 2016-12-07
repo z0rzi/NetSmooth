@@ -31,7 +31,7 @@ class Entitee
 		 *		réferer au fichier 
 		 *		Constantes.h -> TYPE_****
 		 */
-		Entitee(int numType, int type);
+		Entitee(int id, int type);
 		
 		/*	string getBridgeInit() const
 		 *	
@@ -165,6 +165,10 @@ class Entitee
 		 *	true si la machine est connectée, false sinon
 		 */
 		bool getConnexion(void) const;
+
+    void setID(int id);
+
+    int getID(void);
 
 		/*	void appliquerBridgeEntiteeSuivante(string bridge)
 		 *
@@ -321,6 +325,7 @@ class Entitee
 		std::vector<Cable*> m_cableList;
 
 		int m_type;
+    int m_id;
 };
 
 #endif

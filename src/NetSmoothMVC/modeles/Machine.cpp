@@ -2,9 +2,12 @@
 
 using namespace std;
 
-Machine::Machine(int num, int type, struct lxc_container* c)
-	:Entitee(num, type), m_container(c)
+
+
+Machine::Machine(int id,int type,struct lxc_container* c)
+	:Entitee(id, type), m_container(c)
 {
+  //Ajouter config par défaut paramRoutage
 }
 
 void Machine::addIpConfig(struct paramIp ip)
