@@ -22,14 +22,6 @@ class Passerelle : public Machine
 		 */
 		Passerelle(int id);
 
-	private:
-		/*	numPass
-		 *
-		 *	numero de la passerelle, il est unique a chaque
-		 *	passerelle; il s'incrémente a la création de
-		 *	passerelle
-		 *	(donc pour la 5eme passerelle créée, il vaudra 4)
-		 */
 };
 
 #endif

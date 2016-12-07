@@ -20,9 +20,8 @@ class Ordinateur : public Machine
 		 *		container a associer a la machine
 		 */
 		Ordinateur(int id);
-~Ordinateur(void);
+		~Ordinateur(void);
 
-	private:
 };
 
 #endif
