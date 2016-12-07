@@ -4,7 +4,8 @@
 
 using namespace std;
 
-Entitee::Entitee(int numType, int type)
+Entitee::Entitee(int id, int type) :m_id(id)
+
 {
 	char nomBridge[10];
 	char caratype='\0';
@@ -16,7 +17,7 @@ Entitee::Entitee(int numType, int type)
 			caratype='P';
 		if(type==TYPE_HUB)
 			caratype='H';
-		sprintf(nomBridge, "br%c%d", caratype, numType);
+		sprintf(nomBridge, "br%c%d", caratype, id);
 		m_bridgeInit=nomBridge;
 	}
 	m_type=type;
@@ -75,6 +76,15 @@ bool Entitee::getConnexion(void) const
 	return m_estConnecteAuBridge;
 }
 
+void Entitee::setID(int id)
+{
+  this->m_id = id;
+}
+
+int Entitee::getID(void)
+{
+  return this->m_id;
+}
 void Entitee::appliquerBridgeEntiteeSuivante(string bridge)
 {
 	int i;

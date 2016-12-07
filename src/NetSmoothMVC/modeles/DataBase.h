@@ -6,6 +6,7 @@
 #include "Hub.h"
 #include "Entitee.h"
 #include "ElementListeChainee.h"
+#include "Ordinateur.h"
 
 class DataBase
 {
