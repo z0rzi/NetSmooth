@@ -10,17 +10,17 @@ using namespace std;
 
 class VueMachineControleur : public VueEntiteeControleur
 {
-    Q_OBJECT
-public:
-    explicit VueMachineControleur(VueMachine* vue, VueEntiteeControleur *parent = 0);
+	Q_OBJECT
+	public:
+		explicit VueMachineControleur(VueMachine* vue, VueEntiteeControleur *parent = 0);
 
-private:
-    VueMachine* vue;
+	private:
+		VueMachine* vue;
 
 signals:
 
-public slots:
-    void allumer();
+	public slots:
+		void allumer();
 };
 
 #endif // VUEMACHINECONTROLEUR_H
