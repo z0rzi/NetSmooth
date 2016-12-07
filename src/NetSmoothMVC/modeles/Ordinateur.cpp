@@ -2,11 +2,9 @@
 
 using namespace std;
 
-int Ordinateur::numOrdi=0;
-
-Ordinateur::Ordinateur(struct lxc_container *container)
-		:Machine(numOrdi, TYPE_ORDINATEUR, container)
+Ordinateur::Ordinateur(id)
+		:Machine(id, TYPE_ORDINATEUR, lxc_container_new("ordinateur"+id))
 {
-	numOrdi++;
+
 }
 

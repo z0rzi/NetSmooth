@@ -49,20 +49,20 @@ struct paramIp
 class Machine : public Entitee
 {
 	public:
-		/*	Machine(int num, int type, struct lxc_container* c)
+		/*	Machine(int id, int type, struct lxc_container* c)
 		 *
 		 *	Constructeur de la classe, il appelle le constructeur
 		 *	de Entitee et initialise l'argument container
 		 *
 		 *	ARGS
-		 *	-num
-		 *		numero de la machine
+		 *	-id
+		 *		id de la machine
 		 *	-type
 		 *		type de la machine (TYPE_ORDINATEUR ou TYPE_PASSERELLE)
 		 *	-c
 		 *		container associé a la machine
 		 */
-		Machine(int num, int type, struct lxc_container* c);
+		Machine(int d, int type, struct lxc_container* c);
 
 		/*	struct lxc_container* getContainer() const
 		 *
