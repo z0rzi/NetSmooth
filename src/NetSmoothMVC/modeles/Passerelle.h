@@ -20,7 +20,7 @@ class Passerelle : public Machine
 		 *		adresse du container associé a la
 		 *		Passerelle
 		 */
-		Passerelle(struct lxc_container* container);
+		Passerelle(int id);
 
 	private:
 		/*	numPass
@@ -30,7 +30,6 @@ class Passerelle : public Machine
 		 *	passerelle
 		 *	(donc pour la 5eme passerelle créée, il vaudra 4)
 		 */
-		static int numPass;
 };
 
 #endif

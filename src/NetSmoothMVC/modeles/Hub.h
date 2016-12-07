@@ -14,7 +14,7 @@ class Hub : public Entitee
 		 *	constructeur de la classe, il appelle le constructeur
 		 *	de son parent
 		 */
-		Hub();
+		Hub(int id);
 		
 		/*	Methodes inutiles
 		 *
@@ -36,7 +36,6 @@ class Hub : public Entitee
 		 * 	numero de Hub, s'incremente a chaque hub créé
 		 * 	il sert nottament a nommer les bridge
 		 */
-		static int numHub;
 };
 
 #endif

@@ -19,7 +19,8 @@ class Ordinateur : public Machine
 		 *	-container:
 		 *		container a associer a la machine
 		 */
-		Ordinateur(struct lxc_container* container);
+		Ordinateur(int id);
+~Ordinateur(void);
 
 	private:
 };

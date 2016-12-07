@@ -4,20 +4,20 @@
 
 using namespace std;
 
-ElementListeChainee::ElementListeChainee(Machine* m_machine0,ElementListeChainee* m_nextElement0)
+ElementListeChainee::ElementListeChainee(Entitee* m_entitee0,ElementListeChainee* m_nextElement0)
 {
-	this->m_machine = m_machine0;
+	this->m_entitee = m_entitee0;
   this->m_nextElement=m_nextElement0;
 }
 
 ElementListeChainee::~ElementListeChainee()
 {
-  delete this->m_machine;
+  delete this->m_entitee;
 }
 
-void ElementListeChainee::setMachine(Machine* m_machine0)
+void ElementListeChainee::setEntitee(Entitee* m_entitee0)
 {
-  this->m_machine = m_machine0;
+  this->m_entitee = m_entitee0;
 }
 
 void ElementListeChainee::setNextElement(ElementListeChainee* m_nextElement0)
@@ -25,9 +25,9 @@ void ElementListeChainee::setNextElement(ElementListeChainee* m_nextElement0)
   this->m_nextElement=m_nextElement0;
 }
 
-Machine* ElementListeChainee::getMachine(void)
+Entitee* ElementListeChainee::getEntitee(void)
 {
-  return this->m_machine;
+  return this->m_entitee;
 }
 
 ElementListeChainee* ElementListeChainee::getNextElement(void)
