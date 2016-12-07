@@ -31,7 +31,7 @@ Ordinateur* DataBase::getNewOrdinateur(void)
 	if(id==0)//Cas où aucun ordinateur n'existe
 		DataBase::m_premierOrdinateur = new ElementListeChainee(new Ordinateur(id),NULL);//On remplace le premier maillon de la liste par le nouvel ordinateur.
 	else
-		DataBase::m_premierOrdinateur = new ElementListeChainee(new Ordinateur(id-1),DataBase::m_premierOrdinateur);//On remplace le premier maillon de la liste par le nouvel ordinateur.
+		DataBase::m_premierOrdinateur = new ElementListeChainee(new Ordinateur(id),DataBase::m_premierOrdinateur);//On remplace le premier maillon de la liste par le nouvel ordinateur.
 
 	DataBase::m_nbreOrdinateur+=1;
 	return (Ordinateur*) DataBase::m_premierOrdinateur->getEntitee();
@@ -59,7 +59,7 @@ Passerelle* DataBase::getNewPasserelle(void)
 	if(id==0)//Cas où aucune passerelle n'existe
 		DataBase::m_premierePasserelle = new ElementListeChainee(new Passerelle(id),NULL);
 	else
-		DataBase::m_premierePasserelle = new ElementListeChainee(new Passerelle(id-1),DataBase::m_premierePasserelle);
+		DataBase::m_premierePasserelle = new ElementListeChainee(new Passerelle(id),DataBase::m_premierePasserelle);
 
 	DataBase::m_nbrePasserelle+=1;
 	return (Passerelle*) DataBase::m_premierePasserelle->getEntitee();
@@ -85,7 +85,7 @@ Hub* DataBase::getNewHub(void)
 	if(id==0)//Cas où aucun hub n'existe
 		DataBase::m_premierHub = new ElementListeChainee(new Hub(id),NULL);
 	else
-		DataBase::m_premierHub = new ElementListeChainee(new Hub(id-1),DataBase::m_premierHub);
+		DataBase::m_premierHub = new ElementListeChainee(new Hub(id),DataBase::m_premierHub);
 
 	DataBase::m_nbreHub+=1;
 	return (Hub*) DataBase::m_premierHub->getEntitee();
