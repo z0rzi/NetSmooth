@@ -7,7 +7,7 @@ using namespace std;
 Machine::Machine(int id, int type, struct lxc_container* c)
 	:Entitee(id, type), m_container(c)
 {
-  //Ajouter config par défaut paramRoutage
+	//Ajouter config par défaut paramRoutage
 }
 
 void Machine::addIpConfig(struct paramIp ip)
@@ -43,7 +43,9 @@ int Machine::lancerContainer()
 	tst = this->m_container->start(this->m_container, 0, NULL);
 	if(!tst)
 	{
-		cout << "Failed to start the container" << endl;
+		char cntName[20];
+		this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
+		cout << "Failed to start the container '" << cntName << "'" << endl;
 		return -1;
 	}
 	cout << "container succefully started" << endl;
@@ -77,7 +79,7 @@ void Machine::force_stopperContainer()
 		char cntName[20];
 		this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
 		execl("./stopperContainer.sh", "stopContainer", cntName, NULL);
-		exit(0);
+		return;
 	}
 	int useless;
 	while(wait(&useless)<0);
@@ -107,7 +109,7 @@ void Machine::lancerCommandeDansContainer(const char** commande)
 	lxc_attach_options_t options = LXC_ATTACH_OPTIONS_DEFAULT;
 	lxc_attach_command_t cmd={(char*)commande[0], (char**)commande};		/* rien de compliqué par ici, juste */
 	pid_t pid=(this->m_container)->init_pid(this->m_container);					/* transférer les arguments la ou il faut
-									 * pour lancer une commande dans le container*/
+													 * pour lancer une commande dans le container*/
 
 	this->m_container->attach(this->m_container, lxc_attach_run_command, &cmd, &options, &pid);
 }
@@ -139,8 +141,8 @@ void Machine::appliquerParamRoutage()
 	}
 }
 /* 
-*	lance un xterm qui représente le terminal d'une Machine (donc d'un container)
-*/
+ *	lance un xterm qui représente le terminal d'une Machine (donc d'un container)
+ */
 void Machine::lancerXterm()
 {
 	int x=fork();
