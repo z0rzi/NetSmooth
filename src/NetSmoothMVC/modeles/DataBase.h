@@ -15,7 +15,7 @@ class DataBase
 
     static Ordinateur* getNewOrdinateur(void);
     static Passerelle* getNewPasserelle(void);
-static Hub* DataBase::getNewHub(void);
+    static Hub* getNewHub(void);
     static void detruireOrdinateur(Ordinateur* ordi);
     static void detruirePasserelle(Passerelle* passerelle);
     static void detruireHub(Hub* hub);
