@@ -28,32 +28,32 @@ Entitee::Entitee(int id, int type) :m_id(id)
 
 string Entitee::getBridgeInit(void) const
 {
-	return m_bridgeInit;
+	return this->m_bridgeInit;
 }
 
 string Entitee::getBridgeActuel(void) const
 {
-	return m_bridgeActuel;
+	return this->m_bridgeActuel;
 }
 
 void Entitee::setBridgeActuel(string bridge)
 {
-	m_bridgeActuel=bridge;
+	this->m_bridgeActuel=bridge;
 }
 
 void Entitee::setEtatEntitee(bool etat)
 {
-	m_running=etat;
+	this->m_running=etat;
 }
 
 bool Entitee::getEtatEntitee()
 {
-	return m_running;
+	return this->m_running;
 }
 
 int Entitee::getType()
 {
-	return m_type;
+	return this->m_type;
 }
 
 void Entitee::addCable(Cable *cable)
@@ -63,17 +63,17 @@ void Entitee::addCable(Cable *cable)
 
 vector<Cable*> Entitee::getCables(void)
 {
-	return m_cableList;
+	return this->m_cableList;
 }
 
 void Entitee::setConnexion(bool con)
 {
-	m_estConnecteAuBridge=con;
+	this->m_estConnecteAuBridge=con;
 }
 
 bool Entitee::getConnexion(void) const
 {
-	return m_estConnecteAuBridge;
+	return this->m_estConnecteAuBridge;
 }
 
 void Entitee::setID(int id)

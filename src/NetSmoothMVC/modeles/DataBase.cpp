@@ -13,8 +13,11 @@ using namespace std;
 
 int DataBase::m_nbreOrdinateur = 0;
 int DataBase::m_nbrePasserelle = 0;
+int DataBase::m_nbreHub = 0;
+
 ElementListeChainee* DataBase::m_premierOrdinateur=NULL;
 ElementListeChainee* DataBase::m_premierePasserelle=NULL;
+ElementListeChainee* DataBase::m_premierHub=NULL;
 
 Ordinateur* DataBase::getNewOrdinateur(void)
 {
@@ -26,7 +29,7 @@ Ordinateur* DataBase::getNewOrdinateur(void)
     idAvailable=true;
 
     while(elemActuel!=NULL && idAvailable){
-      if(elemActuel->getMachine()->getID()==id)
+      if(elemActuel->getEntitee()->getID()==id)
         idAvailable=false;
 
       elemActuel=elemActuel->getNextElement();
@@ -39,8 +42,10 @@ Ordinateur* DataBase::getNewOrdinateur(void)
     DataBase::m_premierOrdinateur = new ElementListeChainee(new Ordinateur(id-1),DataBase::m_premierOrdinateur);//On remplace le premier maillon de la liste par le nouvel ordinateur.
 
   DataBase::m_nbreOrdinateur+=1;
-  return (Ordinateur*) DataBase::m_premierOrdinateur->getMachine();
+  return (Ordinateur*) DataBase::m_premierOrdinateur->getEntitee();
 }
+
+
 
 
 Passerelle* DataBase::getNewPasserelle(void)
@@ -53,7 +58,7 @@ Passerelle* DataBase::getNewPasserelle(void)
     idAvailable=true;
 
     while(elemActuel!=NULL && idAvailable){
-      if(elemActuel->getMachine()->getID()==id)
+      if(elemActuel->getEntitee()->getID()==id)
         idAvailable=false;
 
       elemActuel=elemActuel->getNextElement();
@@ -65,18 +70,46 @@ Passerelle* DataBase::getNewPasserelle(void)
     DataBase::m_premierePasserelle = new ElementListeChainee(new Passerelle(id-1),DataBase::m_premierePasserelle);
 
   DataBase::m_nbrePasserelle+=1;
-  return (Passerelle*) DataBase::m_premierePasserelle->getMachine();
+  return (Passerelle*) DataBase::m_premierePasserelle->getEntitee();
 }
 
-void detruireOrdinateur(Ordinateur* ordi)
+
+Hub* DataBase::getNewHub(void)
+{
+  int id;
+  bool idAvailable=false;//ID de nouvelle machine trouvé
+  for(id=0 ; id < DataBase::m_nbreHub && !idAvailable; id++)
+  {
+    ElementListeChainee* elemActuel = DataBase::m_premierePasserelle;
+    idAvailable=true;
+
+    while(elemActuel!=NULL && idAvailable){
+      if(elemActuel->getEntitee()->getID()==id)
+        idAvailable=false;
+
+      elemActuel=elemActuel->getNextElement();
+    } 
+  }
+  if(id==0)//Cas où aucun hub n'existe
+    DataBase::m_premierHub = new ElementListeChainee(new Hub(id),NULL);
+  else
+    DataBase::m_premierHub = new ElementListeChainee(new Hub(id-1),DataBase::m_premierHub);
+
+  DataBase::m_nbreHub+=1;
+  return (Hub*) DataBase::m_premierHub->getEntitee();
+}
+
+
+
+void DataBase::detruireOrdinateur(Ordinateur* ordi)
 {
   int id = ordi->getID();//A coder
   ElementListeChainee* elemActuel = DataBase::m_premierOrdinateur;
   if(elemActuel==NULL)
     return;
-  else if(elemActuel->getMachine->getID()==id)//Cas où c'est le premier élément à supprimer
+  else if(elemActuel->getEntitee()->getID()==id)//Cas où c'est le premier élément à supprimer
   {
-    DataBase::m_premierOrdinateur = m_premierOrdinateur->getNextElement();
+    DataBase::m_premierOrdinateur = elemActuel->getNextElement();
     delete elemActuel;
 
     DataBase::m_nbreOrdinateur-=1;
@@ -85,10 +118,10 @@ void detruireOrdinateur(Ordinateur* ordi)
   else
     while(elemActuel->getNextElement()!=NULL)
     {
-      if(elemActuel->getNextElement()->getMachine()->getID()==id)//ID Machine de Element suivant est le bon
+      if(elemActuel->getNextElement()->getEntitee()->getID()==id)//ID Machine de Element suivant est le bon
       {
         elemActuel->setNextElement(elemActuel->getNextElement()->getNextElement());//Element actuel prend comme suivant le suivant de l'élément détruit
-        delete elemActuel.getNextElement();
+        delete elemActuel->getNextElement();
 
         DataBase::m_nbreOrdinateur-=1;
         return;
@@ -100,15 +133,15 @@ void detruireOrdinateur(Ordinateur* ordi)
     }
 }
 
-void detruirePasserelle(Passerelle* passerelle)
+void DataBase::detruirePasserelle(Passerelle* passerelle)
 {
   int id = passerelle->getID();//A coder
   ElementListeChainee* elemActuel = DataBase::m_premierePasserelle;
   if(elemActuel==NULL)
     return;
-  else if(elemActuel->getMachine->getID()==id)//Cas où c'est le premier élément à supprimer
+  else if(elemActuel->getEntitee()->getID()==id)//Cas où c'est le premier élément à supprimer
   {
-    DataBase::m_premierePasserelle = m_premierePasserelle->getNextElement();
+    DataBase::m_premierePasserelle = elemActuel->getNextElement();
     delete elemActuel;
 
     DataBase::m_nbrePasserelle-=1;
@@ -117,10 +150,10 @@ void detruirePasserelle(Passerelle* passerelle)
   else
     while(elemActuel->getNextElement()!=NULL)
     {
-      if(elemActuel->getNextElement()->getMachine()->getID()==id)//ID Machine de Element suivant est le bon
+      if(elemActuel->getNextElement()->getEntitee()->getID()==id)//ID Machine de Element suivant est le bon
       {
         elemActuel->setNextElement(elemActuel->getNextElement()->getNextElement());//Element actuel prend comme suivant le suivant de l'élément détruit
-        delete elemActuel.getNextElement();
+        delete elemActuel->getNextElement();
 
         DataBase::m_nbrePasserelle-=1;
         return;
@@ -131,3 +164,37 @@ void detruirePasserelle(Passerelle* passerelle)
       }
     }
 }
+
+void DataBase::detruireHub(Hub* hub)
+{
+  int id = hub->getID();//A coder
+  ElementListeChainee* elemActuel = DataBase::m_premierHub;
+  if(elemActuel==NULL)
+    return;
+  else if(elemActuel->getEntitee()->getID()==id)//Cas où c'est le premier élément à supprimer
+  {
+    DataBase::m_premierHub = elemActuel->getNextElement();
+    delete elemActuel;
+
+    DataBase::m_nbreHub-=1;
+    return;
+  }
+  else
+    while(elemActuel->getNextElement()!=NULL)
+    {
+      if(elemActuel->getNextElement()->getEntitee()->getID()==id)//ID Machine de Element suivant est le bon
+      {
+        elemActuel->setNextElement(elemActuel->getNextElement()->getNextElement());//Element actuel prend comme suivant le suivant de l'élément détruit
+        delete elemActuel->getNextElement();
+
+        DataBase::m_nbreHub-=1;
+        return;
+      }
+      else
+      {
+        elemActuel = elemActuel->getNextElement();
+      }
+    }
+}
+
+

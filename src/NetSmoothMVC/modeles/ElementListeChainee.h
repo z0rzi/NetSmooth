@@ -12,20 +12,20 @@ class ElementListeChainee
 
   public:
 
-    ElementListeChainee(Machine* m_machine0,ElementListeChainee* m_nextElement0);
+    ElementListeChainee(Entitee* m_entitee0,ElementListeChainee* m_nextElement0);
     ~ElementListeChainee();
     
-    void setMachine(Machine* m_machine0);
+    void setEntitee(Entitee* m_entitee0);
     void setNextElement(ElementListeChainee* m_nextElement0);
 
-    Machine* getMachine();
+    Entitee* getEntitee();
     ElementListeChainee* getNextElement();
 
   private:
     /* 	les adresses des deux extrémitées du
      *	cable (ext comme extrémitée) 
      */
-    Machine* m_machine;
+    Entitee* m_entitee;
     ElementListeChainee* m_nextElement;
 };
 

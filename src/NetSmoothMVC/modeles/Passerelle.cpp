@@ -2,10 +2,7 @@
 
 using namespace std;
 
-int Passerelle::numPass=0;
-
-Passerelle::Passerelle(struct lxc_container *container)
-		:Machine(numPass, TYPE_PASSERELLE, container)
+Passerelle::Passerelle(int id)
+		:Machine(id, TYPE_PASSERELLE, lxc_container_new("passerelle"+id,NULL))
 {
-	numPass++;
 }
