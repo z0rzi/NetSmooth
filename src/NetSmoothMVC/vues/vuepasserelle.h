@@ -5,9 +5,11 @@
 
 class VuePasserelle : public VueEntitee
 {
-    Q_OBJECT
-public:
-    explicit VuePasserelle(VueEntitee *parent = 0);
+	Q_OBJECT
+	public:
+		explicit VuePasserelle(VueEntitee *parent = 0);
+	private:
+		Passerelle* passerelle;
 };
 
 #endif // VUEPASSERELLE_H
