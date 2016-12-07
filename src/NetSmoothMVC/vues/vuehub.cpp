@@ -1,4 +1,5 @@
 #include "vuehub.h"
+#include "modeles/DataBase.h"
 
 VueHub::VueHub(VueEntitee *parent) : VueEntitee(parent)
 {
@@ -9,4 +10,14 @@ VueHub::VueHub(VueEntitee *parent) : VueEntitee(parent)
 	img->load("../build-NetSmoothMVC-Desktop-Debug/images/Huboff.png");
 	*img = img->scaled(130,100);
 	zoneImg->setPixmap(*img);
+}
+
+Hub* VueHub::getHub()
+{
+    return this->hub;
+}
+
+void VueHub::setHub(Hub* hub0)
+{
+  this->hub=hub0;
 }

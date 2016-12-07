@@ -4,6 +4,7 @@
 #include <QObject>
 #include "controleurs/vueentiteecontroleur.h"
 #include "vues/vuemachine.h"
+#include "modeles/Ordinateur.h"
 #include <iostream>
 
 using namespace std;

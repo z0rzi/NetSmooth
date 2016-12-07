@@ -13,13 +13,13 @@ void VuePasserelleControleur::allumer()
 	if (vue->etat == false)
 	{
 		vue->etat = true;
-		this->vue->passerelle->launchEntitee();
+        this->vue->getPasserelle()->launchEntitee();
 		img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleon");
 	}
 	else
 	{
 		vue->etat = false;
-		this->vue->passerelle->stopEntitee();
+        this->vue->getPasserelle()->stopEntitee();
 		img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleoff");
 	}
 	*img = img->scaled(130,100);
