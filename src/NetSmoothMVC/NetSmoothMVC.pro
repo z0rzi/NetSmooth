@@ -22,7 +22,8 @@ HEADERS += \
     modeles/Hub.h\
     modeles/DataBase.h\
     modeles/Cable.h\
-    modeles/Bridge.h
+    modeles/Bridge.h\
+    modeles/ElementListeChainee.h\
 
 SOURCES += \
     main.cpp\
@@ -47,6 +48,7 @@ SOURCES += \
     modeles/Hub.cpp\
     modeles/DataBase.cpp\
     modeles/Cable.cpp\
-    modeles/Bridge.cpp
+    modeles/Bridge.cpp\
+    modeles/ElementListeChainee.cpp\
 
 QMAKE_LIBS += -llxc
