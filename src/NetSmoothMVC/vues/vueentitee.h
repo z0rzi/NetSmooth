@@ -18,13 +18,13 @@
 
 class VueEntitee : public QObject
 {
-    Q_OBJECT
-public:
-    explicit VueEntitee(QObject *parent = 0);
-    ClickLabel* zoneImg;
-    bool etat;
+	Q_OBJECT
+	public:
+		explicit VueEntitee(QObject *parent = 0);
+		ClickLabel* zoneImg;
+		bool etat;
 
-protected:
+	protected:
 
 signals:
 

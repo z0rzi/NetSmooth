@@ -8,11 +8,11 @@ using namespace std;
 
 class VueMachine : public VueEntitee
 {
-    Q_OBJECT
-public:
-    explicit VueMachine(VueEntitee *parent = 0);
-private:
-   Ordinateur* ordi=NULL;
+	Q_OBJECT
+	public:
+		explicit VueMachine(VueEntitee *parent = 0);
+	private:
+		Ordinateur* ordi=NULL;
 
 };
 

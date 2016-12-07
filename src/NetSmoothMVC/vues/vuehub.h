@@ -5,9 +5,11 @@
 
 class VueHub : public VueEntitee
 {
-    Q_OBJECT
-public:
-    explicit VueHub(VueEntitee *parent = 0);
+	Q_OBJECT
+	public:
+		explicit VueHub(VueEntitee *parent = 0);
+	private:
+		Hub* hub=NULL;;
 };
 
 #endif // VUEHUB_H
