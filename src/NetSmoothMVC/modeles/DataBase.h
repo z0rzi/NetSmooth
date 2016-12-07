@@ -1,5 +1,5 @@
-#ifndef CABLE_DEF
-#define CABLE_DEF
+#ifndef DATABASE_DEF
+#define DATABASE_DEF
 
 #include "Machine.h"
 #include "Passerelle.h"

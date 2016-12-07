@@ -13,7 +13,6 @@ using namespace std;
 
 int DataBase::m_nbreOrdinateur = 0;
 int DataBase::m_premierePasserelle = 0;
-ElementListeChainee* DataBase::m_premierElement = NULL;
 
 Ordinateur* DataBase::getNewOrdinateur(void)
 {
