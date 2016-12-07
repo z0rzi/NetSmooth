@@ -12,7 +12,9 @@
 using namespace std;
 
 int DataBase::m_nbreOrdinateur = 0;
-int DataBase::m_premierePasserelle = 0;
+int DataBase::m_nbrePasserelle = 0;
+ElementListeChainee* DataBase::m_premierOrdinateur=NULL;
+ElementListeChainee* DataBase::m_premierePasserelle=NULL;
 
 Ordinateur* DataBase::getNewOrdinateur(void)
 {
@@ -70,7 +72,9 @@ void detruireOrdinateur(Ordinateur* ordi)
 {
   int id = ordi->getID();//A coder
   ElementListeChainee* elemActuel = DataBase::m_premierOrdinateur;
-  if(elemActuel->getMachine->getID()==id)//Cas où c'est le premier élément à supprimer
+  if(elemActuel==NULL)
+    return;
+  else if(elemActuel->getMachine->getID()==id)//Cas où c'est le premier élément à supprimer
   {
     DataBase::m_premierOrdinateur = m_premierOrdinateur->getNextElement();
     delete elemActuel;
@@ -100,7 +104,9 @@ void detruirePasserelle(Passerelle* passerelle)
 {
   int id = passerelle->getID();//A coder
   ElementListeChainee* elemActuel = DataBase::m_premierePasserelle;
-  if(elemActuel->getMachine->getID()==id)//Cas où c'est le premier élément à supprimer
+  if(elemActuel==NULL)
+    return;
+  else if(elemActuel->getMachine->getID()==id)//Cas où c'est le premier élément à supprimer
   {
     DataBase::m_premierePasserelle = m_premierePasserelle->getNextElement();
     delete elemActuel;
