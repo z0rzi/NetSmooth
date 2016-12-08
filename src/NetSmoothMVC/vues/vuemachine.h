@@ -10,10 +10,10 @@ class VueMachine : public VueEntitee
 {
 	Q_OBJECT
 	public:
-        explicit VueMachine(VueEntitee *parent = 0);
-        Ordinateur* getOrdinateur(void);
+		explicit VueMachine(VueEntitee *parent = 0);
+		Ordinateur* getOrdinateur(void);
 	private:
-        Ordinateur* ordinateur=NULL;
+		Ordinateur* ordinateur=NULL;
 
 };
 

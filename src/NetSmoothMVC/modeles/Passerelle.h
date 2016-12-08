@@ -22,6 +22,8 @@ class Passerelle : public Machine
 		 */
 		Passerelle(int id);
 
+		~Passerelle();
+
 };
 
 #endif

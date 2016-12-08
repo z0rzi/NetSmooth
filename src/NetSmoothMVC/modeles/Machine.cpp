@@ -4,9 +4,15 @@ using namespace std;
 
 
 
-Machine::Machine(int id, int type, struct lxc_container* c)
-	:Entitee(id, type), m_container(c)
+Machine::Machine(int id, int type, const char* cntName)
+	:Entitee(id, type)
 {
+	char buff[20];
+	sprintf(buff, "%s%d\0", cntName, id);
+	cout << "buff = '" << buff << "'" << endl;
+	cout << "cntName = '" << cntName << "'" << endl;
+	m_container=lxc_container_new(buff, NULL);
+	m_container->set_config_item(m_container, "lxc.utsname", buff);
 	//Ajouter config par défaut paramRoutage
 }
 
@@ -44,6 +50,7 @@ int Machine::lancerContainer()
 	if(!tst)
 	{
 		char cntName[20];
+		bzero(cntName, 20);
 		this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
 		cout << "Failed to start the container '" << cntName << "'" << endl;
 		return -1;
@@ -56,7 +63,7 @@ void Machine::stopperContainer()
 {
 	int tst;
 
-	tst = this->m_container->shutdown(this->m_container, 3);
+	tst = this->m_container->shutdown(this->m_container, 1);
 	if(!tst)
 	{
 		printf("Failed to cleanly stop the container, forcing.\n");

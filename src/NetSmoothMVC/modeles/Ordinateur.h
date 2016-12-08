@@ -21,7 +21,6 @@ class Ordinateur : public Machine
 		 */
 		Ordinateur(int id);
 		~Ordinateur(void);
-
 };
 
 #endif
