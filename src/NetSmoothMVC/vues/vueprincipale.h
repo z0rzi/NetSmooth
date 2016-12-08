@@ -27,11 +27,10 @@ public:
     QGraphicsView *view;
     QPoint pos;
     VuePrincipaleControleur *vpc;
-    static VuePrincipale* getwidget();
-    static QPoint* getPosition();
+    static QWidget* getwidget();
 
 private:
-    static VuePrincipale* ca;
+    static QWidget* ca;
 
 signals:
     void clickSouris(QPoint pos);

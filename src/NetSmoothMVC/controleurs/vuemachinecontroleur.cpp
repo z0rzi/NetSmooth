@@ -5,7 +5,7 @@ VueMachineControleur::VueMachineControleur(VueMachine* vue0, VueEntiteeControleu
 {
     vue = vue0;
 
-//	connect(vue->zoneImg,SIGNAL(doubleClick()),this,SLOT(allumer()));
+    //connect(vue->zoneImg,SIGNAL(doubleClick()),this,SLOT(allumer()));
 }
 
 void VueMachineControleur::allumer()

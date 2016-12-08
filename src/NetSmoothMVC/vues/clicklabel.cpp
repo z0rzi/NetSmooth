@@ -21,17 +21,17 @@ void ClickLabel::mousePressEvent(QMouseEvent *e)
 
 void ClickLabel::mouseMoveEvent(QMouseEvent *e)
 {
-    VuePrincipale* parent = VuePrincipale::getwidget();
-    int x = e->globalPos().x();
-    int y = e->globalPos().y();
-    cout << "x:" << parent->pos.x() << " ; y:" << parent->pos.y() << endl;
+    QWidget* vp=VuePrincipale::getwidget();
+    QWidget* vq=vp->parentWidget();
 
     if (e->buttons() == Qt::LeftButton)
     {
-        int x = e->globalPos().x();
-        int y = e->globalPos().y();
-        this->move(*(VuePrincipale::getPosition()));
-        //cout << "x:" << x << "y:" << y << endl;
+        int x = e->globalPos().x()-vp->pos().x()-vq->pos().x();
+        int y = e->globalPos().y()-vp->pos().y()-vq->pos().y();
+        y-=this->height()/2+35;	/*35 = hauteur bandeau en haut fenetre*/
+        x-=this->width()/2;
+        this->move(x, y);
+        cout << "x:" << x << "y:" << y << endl;
     }
 
 }
