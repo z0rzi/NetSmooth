@@ -1,6 +1,6 @@
 #include "vueprincipale.h"
 
-VuePrincipale* VuePrincipale::ca = NULL;
+QWidget* VuePrincipale::ca = NULL;
 
 VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
 {
@@ -15,8 +15,7 @@ VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
 
     view->setGeometry(0,0,750,550);
     view->show();
-
-    ca = this;
+    ca=this;
 }
 
 void VuePrincipale::mouseDoubleClickEvent(QMouseEvent *e)
@@ -29,12 +28,8 @@ void VuePrincipale::mouseDoubleClickEvent(QMouseEvent *e)
     }
 }
 
-VuePrincipale* VuePrincipale::getwidget()
+
+QWidget* VuePrincipale::getwidget()
 {
     return ca;
-}
-
-QPoint* VuePrincipale::getPosition()
-{
-    return new QPoint(QWidget::mapToGlobal(getwidget()->pos).x(), QWidget::mapToGlobal(ca->pos).y());
 }
