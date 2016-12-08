@@ -1,4 +1,4 @@
-#include "vueprincipalecontroleur.h";
+#include "vueprincipalecontroleur.h"
 
 VuePrincipaleControleur::VuePrincipaleControleur(VuePrincipale *vue0,QObject *parent) : QObject(parent)
 {

@@ -1,10 +1,11 @@
 #include "clicklabel.h"
+#include "vueprincipale.h"
 
 ClickLabel* ClickLabel::LabelEnSelection = NULL;
 
 ClickLabel::ClickLabel(QLabel *parent) : QLabel(parent)
 {
-    this->setMouseTracking(true);
+
 }
 
 void ClickLabel::mousePressEvent(QMouseEvent *e)
@@ -20,12 +21,17 @@ void ClickLabel::mousePressEvent(QMouseEvent *e)
 
 void ClickLabel::mouseMoveEvent(QMouseEvent *e)
 {
+    VuePrincipale* parent = VuePrincipale::getwidget();
+    int x = e->globalPos().x();
+    int y = e->globalPos().y();
+    cout << "x:" << parent->pos.x() << " ; y:" << parent->pos.y() << endl;
+
     if (e->buttons() == Qt::LeftButton)
     {
-        this->move(e->pos());
-        int x = e->pos().x();
-        int y = e->pos().y();
-        cout << "x:" << e->pos().x() << "y:" << e->pos().y() << endl;
+        int x = e->globalPos().x();
+        int y = e->globalPos().y();
+        this->move(*(VuePrincipale::getPosition()));
+        //cout << "x:" << x << "y:" << y << endl;
     }
 
 }
@@ -33,7 +39,7 @@ void ClickLabel::mouseMoveEvent(QMouseEvent *e)
 void ClickLabel::mouseReleaseEvent(QMouseEvent *e)
 {
     if (e->buttons() == Qt::LeftButton)
-        this->move(QWidget::mapFromGlobal(QCursor::pos()));
+        this->move(e->globalPos());
     ClickLabel::setLabelEnSelection(NULL);
     QPalette* palette = new QPalette();
     palette->setColor(QPalette::Background,Qt::white);

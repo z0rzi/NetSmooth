@@ -4,7 +4,7 @@ VuePasserelleControleur::VuePasserelleControleur(VuePasserelle* vue0, VueEntitee
 {
 	vue = vue0;
 
-	connect(vue->zoneImg,SIGNAL(doubleClick()),this,SLOT(allumer()));
+//	connect(vue->zoneImg,SIGNAL(doubleClick()),this,SLOT(allumer()));
 }
 
 void VuePasserelleControleur::allumer()

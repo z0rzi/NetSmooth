@@ -1,5 +1,7 @@
 #include "vueprincipale.h"
 
+VuePrincipale* VuePrincipale::ca = NULL;
+
 VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
 {
     setFixedSize(800,600);
@@ -14,14 +16,25 @@ VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
     view->setGeometry(0,0,750,550);
     view->show();
 
+    ca = this;
 }
 
-void VuePrincipale::mousePressEvent(QMouseEvent *e)
+void VuePrincipale::mouseDoubleClickEvent(QMouseEvent *e)
 {
-    if (e->button() == Qt::LeftButton)
+    if (e->buttons() == Qt::LeftButton)
     {
         this->pos = QWidget::mapFromGlobal(QCursor::pos());
         //cout << "x:" << pos.x() << endl << "y:" << pos.y() << endl << endl;
         emit clickSouris(pos);
     }
+}
+
+VuePrincipale* VuePrincipale::getwidget()
+{
+    return ca;
+}
+
+QPoint* VuePrincipale::getPosition()
+{
+    return new QPoint(QWidget::mapToGlobal(getwidget()->pos).x(), QWidget::mapToGlobal(ca->pos).y());
 }
