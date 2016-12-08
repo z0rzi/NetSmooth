@@ -62,7 +62,7 @@ class Machine : public Entitee
 		 *	-c
 		 *		container associé a la machine
 		 */
-		Machine(int d, int type, struct lxc_container* c);
+		Machine(int d, int type, const char* cntName);
 
 		/*	struct lxc_container* getContainer() const
 		 *

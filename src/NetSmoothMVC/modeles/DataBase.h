@@ -25,9 +25,9 @@ class DataBase
 		static int m_nbreOrdinateur;
 		static int m_nbrePasserelle;
 		static int m_nbreHub;
+		static ElementListeChainee* m_premierePasserelle;
 		static ElementListeChainee* m_premierHub;
 		static ElementListeChainee* m_premierOrdinateur;
-		static ElementListeChainee* m_premierePasserelle;
 };
 
 /* struct elementListeEntitee */
