@@ -11,7 +11,7 @@ class VueMachine : public VueEntitee
 	Q_OBJECT
 	public:
 		explicit VueMachine(VueEntitee *parent = 0);
-		Ordinateur* getOrdinateur(void);
+        Ordinateur* getModele(void);
 	private:
 		Ordinateur* ordinateur=NULL;
 

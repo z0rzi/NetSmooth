@@ -11,7 +11,7 @@ VuePasserelle::VuePasserelle(VueEntitee *parent) : VueEntitee(parent)
     this->setPixmap(*img);
 }
 
-Passerelle* VuePasserelle::getPasserelle()
+Passerelle* VuePasserelle::getModele()
 {
     return this->passerelle;
 }

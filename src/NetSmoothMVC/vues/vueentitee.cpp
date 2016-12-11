@@ -1,10 +1,14 @@
 #include "vueentitee.h"
 #include "vueprincipale.h"
 
-VueEntitee* VueEntitee::LabelEnSelection = NULL;
+VueEntitee* VueEntitee::LabelEnSelection = NULL;// A quoi LabelEnSelection sert? Vincent
 
 VueEntitee::VueEntitee(QLabel *parent) : QLabel(parent)
 {
+
+}
+
+Entitee* VueEntitee::getModele(){
 
 }
 
@@ -16,6 +20,10 @@ void VueEntitee::mousePressEvent(QMouseEvent *e)
         QPalette* palette = new QPalette();
         palette->setColor(QPalette::Background,Qt::red);
         this->setPalette(*palette);
+        if(Selection::getEnSelection()==CABLE)
+        {
+            VueCable::creerVueCable(this);
+        }
     }
     if (e->button() == Qt::RightButton)
       {
@@ -35,7 +43,6 @@ void VueEntitee::mouseMoveEvent(QMouseEvent *e)
         y-=this->height()/2+35;	/*35 = hauteur bandeau en haut fenetre*/
         x-=this->width()/2;
         this->move(x, y);
-        cout << "x:" << x << "y:" << y << endl;
     }
 }
 void VueEntitee::mouseDoubleClickEvent(QMouseEvent *e)
@@ -60,5 +67,5 @@ void VueEntitee::setLabelEnSelection(VueEntitee* label)
 
 VueEntitee* VueEntitee::getLabelEnSelection()
 {
-    return LabelEnSelection;
+    return VueEntitee::LabelEnSelection;
 }

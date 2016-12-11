@@ -30,13 +30,6 @@ void VuePrincipaleControleur::paintMachine(QPoint pos)
         e->setGeometry(pos.x(),pos.y(),130,130);
         QGraphicsProxyWidget* proxy = vue->scene->addWidget(e);
     }
-    if(Selection::getEnSelection() == CABLE)
-    {
-        VueCable* e = new VueCable();
-        //VueCableControleur* c = new VueCableControleur(e);
-        e->setGeometry(pos.x(),pos.y(),e->width(),e->height());
-        QGraphicsProxyWidget* proxy = vue->scene->addWidget(e);
-    }
 
     vue->view->setScene(vue->scene);
     vue->view->show();

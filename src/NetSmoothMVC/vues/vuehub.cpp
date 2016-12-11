@@ -11,7 +11,7 @@ VueHub::VueHub(VueEntitee *parent) : VueEntitee(parent)
     this->setPixmap(*img);
 }
 
-Hub* VueHub::getHub()
+Hub* VueHub::getModele()
 {
     return this->hub;
 }

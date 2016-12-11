@@ -22,6 +22,7 @@ class VuePrincipale : public QWidget
     Q_OBJECT
 public:
     explicit VuePrincipale(QWidget *parent = 0);
+    void mousePressEvent(QMouseEvent *e);
     void mouseDoubleClickEvent(QMouseEvent *e);
     QGraphicsScene *scene;
     QGraphicsView *view;
