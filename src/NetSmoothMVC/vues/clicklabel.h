@@ -16,6 +16,7 @@ public:
     void mousePressEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);
     void mouseReleaseEvent(QMouseEvent *e);
+    void mouseDoubleClickEvent(QMouseEvent *e);
     static ClickLabel* getLabelEnSelection();
     static void setLabelEnSelection(ClickLabel* label);
 
@@ -23,6 +24,8 @@ private:
     static ClickLabel* LabelEnSelection;
 
 signals:
+    void rightClick();
+    void doubleClick();
 
 };
 
