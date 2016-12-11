@@ -6,6 +6,8 @@ VueMachineControleur::VueMachineControleur(VueMachine* vue0, VueEntiteeControleu
     vue = vue0;
 
     //connect(vue->zoneImg,SIGNAL(doubleClick()),this,SLOT(allumer()));
+    connect(vue->zoneImg,SIGNAL(rightClick()),this,SLOT(allumer()));
+    connect(vue->zoneImg,SIGNAL(doubleClick()),this,SLOT(terminal()));
 }
 
 void VueMachineControleur::allumer()
@@ -27,3 +29,8 @@ void VueMachineControleur::allumer()
 	vue->zoneImg->setPixmap(*img);
 }
 
+void VueMachineControleur::terminal()
+{
+        if (vue->etat == true)
+                this->vue->getOrdinateur()->lancerXterm();
+}

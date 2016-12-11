@@ -17,6 +17,10 @@ void ClickLabel::mousePressEvent(QMouseEvent *e)
         palette->setColor(QPalette::Background,Qt::red);
         this->setPalette(*palette);
     }
+    if (e->button() == Qt::RightButton)
+    {
+        emit rightClick();
+    }
 }
 
 void ClickLabel::mouseMoveEvent(QMouseEvent *e)
@@ -34,6 +38,11 @@ void ClickLabel::mouseMoveEvent(QMouseEvent *e)
         cout << "x:" << x << "y:" << y << endl;
     }
 
+}
+
+void ClickLabel::mouseDoubleClickEvent(QMouseEvent *e)
+{
+    emit doubleClick();
 }
 
 void ClickLabel::mouseReleaseEvent(QMouseEvent *e)

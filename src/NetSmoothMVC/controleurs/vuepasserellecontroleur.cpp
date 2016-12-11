@@ -5,6 +5,8 @@ VuePasserelleControleur::VuePasserelleControleur(VuePasserelle* vue0, VueEntitee
 	vue = vue0;
 
 //	connect(vue->zoneImg,SIGNAL(doubleClick()),this,SLOT(allumer()));
+    connect(vue->zoneImg,SIGNAL(rightClick()),this,SLOT(allumer()));
+    connect(vue->zoneImg,SIGNAL(doubleClick()),this,SLOT(terminal()));
 }
 
 void VuePasserelleControleur::allumer()
@@ -24,4 +26,10 @@ void VuePasserelleControleur::allumer()
 	}
 	*img = img->scaled(130,100);
 	vue->zoneImg->setPixmap(*img);
+}
+
+void VuePasserelleControleur::terminal()
+{
+        if (vue->etat == true)
+                this->vue->getPasserelle()->lancerXterm();
 }

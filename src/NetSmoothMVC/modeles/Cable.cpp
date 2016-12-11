@@ -12,3 +12,10 @@ void Cable::getExtremites(Entitee** arr) const
 	arr[0]=m_ext1;
 	arr[1]=m_ext2;
 }
+
+void Cable::creerCable(Entitee* ext1, Entitee* ext2)
+{
+    Cable* c = new Cable(ext1, ext2);
+    ext1->addCable(c);
+    ext2->addCable(c);
+}
