@@ -4,7 +4,9 @@ VuePasserelleControleur::VuePasserelleControleur(VuePasserelle* vue0, VueEntitee
 {
 	vue = vue0;
 
-//	connect(vue->zoneImg,SIGNAL(doubleClick()),this,SLOT(allumer()));
+    connect(vue,SIGNAL(rightClick()),this,SLOT(allumer()));
+    connect(vue,SIGNAL(doubleClick()),this,SLOT(terminal()));
+
 }
 
 void VuePasserelleControleur::allumer()
@@ -23,5 +25,11 @@ void VuePasserelleControleur::allumer()
 		img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleoff");
 	}
 	*img = img->scaled(130,100);
-	vue->zoneImg->setPixmap(*img);
+    vue->setPixmap(*img);
+}
+
+void VuePasserelleControleur::terminal()
+{
+        if (vue->etat == true)
+                this->vue->getPasserelle()->lancerXterm();
 }

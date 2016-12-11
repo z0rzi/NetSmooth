@@ -22,6 +22,7 @@ signals:
 
 	public slots:
 		void allumer();
+        void terminal();
 };
 
 #endif // VUEMACHINECONTROLEUR_H

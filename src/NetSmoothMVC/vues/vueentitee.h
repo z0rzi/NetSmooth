@@ -4,30 +4,37 @@
 #include <QObject>
 #include <QWidget>
 #include <QMouseEvent>
-#include "clicklabel.h"
-#include "../123JeSuisDansLesBois/Machine.h"
-#include "../123JeSuisDansLesBois/Bridge.h"
-#include "../123JeSuisDansLesBois/Cable.h"
-#include "../123JeSuisDansLesBois/Constantes.h"
-#include "../123JeSuisDansLesBois/DataBase.h"
-#include "../123JeSuisDansLesBois/Hub.h"
-#include "../123JeSuisDansLesBois/Ordinateur.h"
-#include "../123JeSuisDansLesBois/Passerelle.h"
-#include "../123JeSuisDansLesBois/Entitee.h"
+#include <QLabel>
+#include "modeles/Machine.h"
+#include "modeles/Bridge.h"
+#include "modeles/Cable.h"
+#include "modeles/Constantes.h"
+#include "modeles/DataBase.h"
+#include "modeles/Hub.h"
+#include "modeles/Ordinateur.h"
+#include "modeles/Passerelle.h"
+#include "modeles/Entitee.h"
 #include <lxc/lxccontainer.h>
 
-class VueEntitee : public QObject
+class VueEntitee : public QLabel
 {
-	Q_OBJECT
-	public:
-		explicit VueEntitee(QObject *parent = 0);
-		ClickLabel* zoneImg;
-		bool etat;
+    Q_OBJECT
+public:
+    explicit VueEntitee(QLabel *parent = 0);
+    bool etat;
+    void mousePressEvent(QMouseEvent *e);
+    void mouseMoveEvent(QMouseEvent *e);
+    void mouseReleaseEvent(QMouseEvent *e);
+    void mouseDoubleClickEvent(QMouseEvent *e);
+    static VueEntitee* getLabelEnSelection();
+    static void setLabelEnSelection(VueEntitee* label);
 
-	protected:
+private:
+    static VueEntitee* LabelEnSelection;
 
 signals:
-
+    void rightClick();
+    void doubleClick();
 };
 
 #endif // VUEENTITEE_H

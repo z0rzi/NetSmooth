@@ -5,7 +5,8 @@ VueMachineControleur::VueMachineControleur(VueMachine* vue0, VueEntiteeControleu
 {
     vue = vue0;
 
-    //connect(vue->zoneImg,SIGNAL(doubleClick()),this,SLOT(allumer()));
+    connect(vue,SIGNAL(rightClick()),this,SLOT(allumer()));
+    connect(vue,SIGNAL(doubleClick()),this,SLOT(terminal()));
 }
 
 void VueMachineControleur::allumer()
@@ -24,6 +25,11 @@ void VueMachineControleur::allumer()
 		img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuroff.png");
 	}
 	*img = img->scaled(130,100);
-	vue->zoneImg->setPixmap(*img);
+    vue->setPixmap(*img);
 }
 
+void VueMachineControleur::terminal()
+{
+        if (vue->etat == true)
+                this->vue->getOrdinateur()->lancerXterm();
+}
