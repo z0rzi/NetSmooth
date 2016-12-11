@@ -20,13 +20,8 @@ private:
 
 signals:
 
-<<<<<<< HEAD
-	public slots:
-		void allumer();
-=======
 public slots:
         void allumer();
->>>>>>> 3b66ffdd4b9fbc559aec8a45e3829e53313da281
         void terminal();
 };
 

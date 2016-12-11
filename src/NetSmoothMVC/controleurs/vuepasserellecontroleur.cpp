@@ -28,11 +28,6 @@ void VuePasserelleControleur::allumer()
     vue->setPixmap(*img);
 }
 
-void VuePasserelleControleur::terminal()
-{
-        if (vue->etat == true)
-                this->vue->getPasserelle()->lancerXterm();
-}
 
 void VuePasserelleControleur::terminal()
 {
