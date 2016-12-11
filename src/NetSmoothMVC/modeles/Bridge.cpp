@@ -13,7 +13,7 @@ void Bridge::creerBridge(const char* nomPont)
 	}
 	if(x==0)
 	{
-		execl("./creerBridge.sh", "createBridge", nomPont, NULL);
+        execl("../NetSmoothMVC/scripts/creerBridge.sh", "createBridge", nomPont, NULL);
 		exit(0);
 	}
 	int useless;
@@ -31,7 +31,7 @@ void Bridge::detruireBridge(const char* nomPont)
 	}
 	if(x==0)
 	{
-		execl("./detruireBridge.sh", "destroyBridge", nomPont, NULL);
+        execl("../NetSmoothMVC/scripts/detruireBridge.sh", "destroyBridge", nomPont, NULL);
 		exit(0);
 	}
 	int useless;

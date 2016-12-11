@@ -5,6 +5,7 @@ VueHubControleur::VueHubControleur(VueHub* vue0, VueEntiteeControleur *parent) :
 	vue = vue0;
 
     //connect(vue->zoneImg,SIGNAL(doubleClick()),this,SLOT(allumer()));
+    connect(vue->zoneImg,SIGNAL(rightClick()),this,SLOT(allumer()));
 }
 
 void VueHubControleur::allumer()
