@@ -8,12 +8,8 @@
 class SelectionControleur;
 
 #include "controleurs/selectioncontroleur.h"
+#include "vues/constantes.h"
 
-#define SOURIS 0
-#define MACHINE 1
-#define PASSERELLE 2
-#define CABLE 3
-#define HUB 4
 
 class Selection : public QWidget
 {

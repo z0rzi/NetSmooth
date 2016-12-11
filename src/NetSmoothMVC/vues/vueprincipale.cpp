@@ -31,5 +31,6 @@ void VuePrincipale::mouseDoubleClickEvent(QMouseEvent *e)
 
 QWidget* VuePrincipale::getwidget()
 {
+
     return ca;
 }

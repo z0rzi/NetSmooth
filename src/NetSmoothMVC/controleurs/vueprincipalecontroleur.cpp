@@ -9,26 +9,33 @@ VuePrincipaleControleur::VuePrincipaleControleur(VuePrincipale *vue0,QObject *pa
 
 void VuePrincipaleControleur::paintMachine(QPoint pos)
 {
-    if(Selection::getEnSelection() == 1)
+    if(Selection::getEnSelection() == MACHINE)
     {
         VueMachine* e = new VueMachine();
         VueMachineControleur* c = new VueMachineControleur(e);
-        e->zoneImg->setGeometry(pos.x(),pos.y(),130,100);
-        QGraphicsProxyWidget* proxy = vue->scene->addWidget(e->zoneImg);
+        e->setGeometry(pos.x(),pos.y(),130,100);
+        QGraphicsProxyWidget* proxy = vue->scene->addWidget(e);
     }
-    if(Selection::getEnSelection() == 2)
+    if(Selection::getEnSelection() == PASSERELLE)
     {
         VuePasserelle* e = new VuePasserelle();
         VuePasserelleControleur* c = new VuePasserelleControleur(e);
-        e->zoneImg->setGeometry(pos.x(),pos.y(),130,100);
-        QGraphicsProxyWidget* proxy = vue->scene->addWidget(e->zoneImg);
+        e->setGeometry(pos.x(),pos.y(),130,100);
+        QGraphicsProxyWidget* proxy = vue->scene->addWidget(e);
     }
-    if(Selection::getEnSelection() == 4)
+    if(Selection::getEnSelection() == HUB)
     {
         VueHub* e = new VueHub();
         VueHubControleur* c = new VueHubControleur(e);
-        e->zoneImg->setGeometry(pos.x(),pos.y(),130,100);
-        QGraphicsProxyWidget* proxy = vue->scene->addWidget(e->zoneImg);
+        e->setGeometry(pos.x(),pos.y(),130,130);
+        QGraphicsProxyWidget* proxy = vue->scene->addWidget(e);
+    }
+    if(Selection::getEnSelection() == CABLE)
+    {
+        VueCable* e = new VueCable();
+        //VueCableControleur* c = new VueCableControleur(e);
+        e->setGeometry(pos.x(),pos.y(),e->width(),e->height());
+        QGraphicsProxyWidget* proxy = vue->scene->addWidget(e);
     }
 
     vue->view->setScene(vue->scene);

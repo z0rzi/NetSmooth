@@ -4,7 +4,7 @@ VueHubControleur::VueHubControleur(VueHub* vue0, VueEntiteeControleur *parent) :
 {
 	vue = vue0;
 
-    //connect(vue->zoneImg,SIGNAL(doubleClick()),this,SLOT(allumer()));
+    connect(vue,SIGNAL(rightClick()),this,SLOT(allumer()));
 }
 
 void VueHubControleur::allumer()
@@ -23,6 +23,6 @@ void VueHubControleur::allumer()
 		img->load("../build-NetSmoothMVC-Desktop-Debug/images/Huboff");
 	}
 	*img = img->scaled(130,100);
-	vue->zoneImg->setPixmap(*img);
+    vue->setPixmap(*img);
 }
 
