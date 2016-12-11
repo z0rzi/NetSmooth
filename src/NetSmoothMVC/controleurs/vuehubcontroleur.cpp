@@ -13,13 +13,13 @@ void VueHubControleur::allumer()
 	if (vue->etat == false)
 	{
 		vue->etat = true;
-        this->vue->getHub()->launchEntitee();
+        this->vue->getModele()->launchEntitee();
 		img->load("../build-NetSmoothMVC-Desktop-Debug/images/Hubon");
 	}
 	else
 	{
 		vue->etat = false;
-        this->vue->getHub()->stopEntitee();
+        this->vue->getModele()->stopEntitee();
 		img->load("../build-NetSmoothMVC-Desktop-Debug/images/Huboff");
 	}
 	*img = img->scaled(130,100);

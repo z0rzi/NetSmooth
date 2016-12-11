@@ -15,13 +15,13 @@ void VuePasserelleControleur::allumer()
 	if (vue->etat == false)
 	{
 		vue->etat = true;
-        this->vue->getPasserelle()->launchEntitee();
+        this->vue->getModele()->launchEntitee();
 		img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleon");
 	}
 	else
 	{
 		vue->etat = false;
-        this->vue->getPasserelle()->stopEntitee();
+        this->vue->getModele()->stopEntitee();
 		img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleoff");
 	}
 	*img = img->scaled(130,100);
@@ -32,5 +32,5 @@ void VuePasserelleControleur::allumer()
 void VuePasserelleControleur::terminal()
 {
         if (vue->etat == true)
-                this->vue->getPasserelle()->lancerXterm();
+                this->vue->getModele()->lancerXterm();
 }

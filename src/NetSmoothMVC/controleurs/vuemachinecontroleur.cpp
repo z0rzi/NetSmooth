@@ -15,13 +15,13 @@ void VueMachineControleur::allumer()
 	if (vue->etat == false)
 	{
 		this->vue->etat = true;
-        this->vue->getOrdinateur()->launchEntitee();
+        this->vue->getModele()->launchEntitee();
 		img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuron.png");
 	}
 	else
 	{
 		vue->etat = false;
-        this->vue->getOrdinateur()->stopEntitee();
+        this->vue->getModele()->stopEntitee();
 		img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuroff.png");
 	}
 	*img = img->scaled(130,100);
@@ -31,5 +31,5 @@ void VueMachineControleur::allumer()
 void VueMachineControleur::terminal()
 {
         if (vue->etat == true)
-                this->vue->getOrdinateur()->lancerXterm();
+                this->vue->getModele()->lancerXterm();
 }

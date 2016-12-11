@@ -12,7 +12,7 @@ VueMachine::VueMachine(VueEntitee *parent) : VueEntitee(parent)
     this->setPixmap(*img);
 }
 
-Ordinateur* VueMachine::getOrdinateur()
+Ordinateur* VueMachine::getModele()
 {
   return this->ordinateur;
 }

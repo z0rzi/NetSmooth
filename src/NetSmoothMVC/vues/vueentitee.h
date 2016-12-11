@@ -22,10 +22,13 @@ class VueEntitee : public QLabel
 public:
     explicit VueEntitee(QLabel *parent = 0);
     bool etat;
+
+    virtual Entitee* getModele();
     void mousePressEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);
     void mouseReleaseEvent(QMouseEvent *e);
     void mouseDoubleClickEvent(QMouseEvent *e);
+
     static VueEntitee* getLabelEnSelection();
     static void setLabelEnSelection(VueEntitee* label);
 

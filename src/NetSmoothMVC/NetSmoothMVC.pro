@@ -24,6 +24,7 @@ HEADERS += \
     modeles/DataBase.h\
     modeles/Cable.h\
     modeles/Bridge.h\
+    modeles/Cable.h\
     modeles/ElementListeChainee.h\
     vues/vuecable.h\
     vues/constantes.h
