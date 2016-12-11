@@ -9,6 +9,7 @@ int Selection::enSelection = 0;
 
 int main(int argc, char** argv)
 {
+    cout << "click droit pour demarer une machine, double click pour xterm" << endl;
     QApplication app(argc, argv);
     QWidget *w = new QWidget();
     Selection *s = new Selection();

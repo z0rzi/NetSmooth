@@ -12,8 +12,8 @@ Machine::Machine(int id, int type, const char* cntName)
 	cout << "buff = '" << buff << "'" << endl;
 	cout << "cntName = '" << cntName << "'" << endl;
 	m_container=lxc_container_new(buff, NULL);
-	m_container->set_config_item(m_container, "lxc.utsname", buff);
-	//Ajouter config par défaut paramRoutage
+    m_container->set_config_item(m_container, "lxc.utsname", buff);
+    //Ajouter config par défaut paramRoutage
 }
 
 void Machine::addIpConfig(struct paramIp ip)
@@ -44,15 +44,15 @@ struct lxc_container* Machine::getContainer(void) const
 
 int Machine::lancerContainer()
 {
-	int tst;
+    int tst;
 
 	tst = this->m_container->start(this->m_container, 0, NULL);
-	if(!tst)
+    if(!tst)
 	{
-		char cntName[20];
-		bzero(cntName, 20);
-		this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
-		cout << "Failed to start the container '" << cntName << "'" << endl;
+        char cntName[20];
+        bzero(cntName, 20);
+        this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
+        cout << "Failed to start the container '" << cntName << "'" << endl;
 		return -1;
 	}
 	cout << "container succefully started" << endl;
@@ -85,7 +85,7 @@ void Machine::force_stopperContainer()
 	{
 		char cntName[20];
 		this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
-		execl("./stopperContainer.sh", "stopContainer", cntName, NULL);
+        execl("../NetSmoothMVC/scripts/stopperContainer.sh", "stopContainer", cntName, NULL);
 		return;
 	}
 	int useless;
@@ -96,7 +96,7 @@ void Machine::lierABridge()
 	int x=fork();
 
 	if(x==-1)
-	{
+    {
 		perror("fork");
 		exit(1);
 	}
@@ -104,7 +104,7 @@ void Machine::lierABridge()
 	{
 		char cntName[20];
 		this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
-		execl("./joinCntAndBridge.sh", "joinCntBridge", cntName,this->m_bridgeActuel.c_str(), NULL);
+        execl("../NetSmoothMVC/scripts/joinCntAndBridge.sh", "joinCntBridge", cntName,this->m_bridgeActuel.c_str(), NULL);
 		exit(0);
 	}
 	int useless;
@@ -152,7 +152,7 @@ void Machine::appliquerParamRoutage()
  */
 void Machine::lancerXterm()
 {
-	int x=fork();
+    int x=fork();
 
 	if(x==-1)
 	{
@@ -163,8 +163,8 @@ void Machine::lancerXterm()
 	{
 		char cntName[20];
 		this->getContainer()->get_config_item(this->getContainer(), "lxc.utsname", cntName, 20);
-		execl("./launchXtermRoot.sh", "launchCnt", cntName, NULL);
-		exit(0);
+        execl("../NetSmoothMVC/scripts/launchXtermRoot.sh", "launchCnt", cntName, NULL);
+        exit(0);
 	}
 }
 

@@ -8,6 +8,7 @@ class Entitee;
 
 #include "Entitee.h"
 
+
 class Cable
 {
 
@@ -24,6 +25,8 @@ class Cable
 		 *	    	adresses des extremitées du cable
 		 */
 		void getExtremites(Entitee** arr) const;
+
+        static void creerCable(Entitee* ext1, Entitee* ext2);
 
 	private:
 		/* 	m_ext1 & m_ext2
