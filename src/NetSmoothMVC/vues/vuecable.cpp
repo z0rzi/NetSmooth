@@ -12,9 +12,9 @@ VueCable::VueCable(VueEntitee* v1, VueEntitee* v2,QWidget *parent)
     this->cable = Cable::creerCable(v1->getModele(),v2->getModele());//à faire
 
     /**********TRANSPARENCE****************/
-    this->setAttribute( Qt::WA_TranslucentBackground);
-    this->setWindowFlags (Qt::FramelessWindowHint);
-    this->setAutoFillBackground(false);
+    //this->setAttribute( Qt::WA_TranslucentBackground);
+    //this->setWindowFlags (Qt::FramelessWindowHint);
+    //this->setAutoFillBackground(false);
     /**************************************/
 }
 
@@ -25,7 +25,7 @@ void VueCable::paintEvent(QPaintEvent *event)
     QPen myPen(Qt::black, 2, Qt::SolidLine);
     painter.setPen(myPen);
     painter.drawLine(this->m_v1->pos(),this->m_v2->pos());
-    this->setGeometry(this->m_v1->pos().x(),this->m_v1->pos().y(),this->m_v2->pos().x(),this->m_v2->pos().y());
+    this->setGeometry(this->m_v1->pos().x(),this->m_v1->pos().y(),this->m_v2->pos().x()-this->m_v1->pos().x(),this->m_v2->pos().y()-this->m_v1->pos().y());
 }
 
 Cable* VueCable::getModele()
