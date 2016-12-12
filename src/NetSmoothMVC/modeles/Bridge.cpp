@@ -14,6 +14,7 @@ void Bridge::creerBridge(const char* nomPont)
 	if(x==0)
 	{
         execl("../NetSmoothMVC/scripts/creerBridge.sh", "createBridge", nomPont, NULL);
+
 		exit(0);
 	}
 	int useless;
