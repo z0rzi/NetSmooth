@@ -19,11 +19,15 @@ HEADERS += \
     modeles/Entitee.h\
     modeles/Ordinateur.h\
     modeles/Passerelle.h\
+    modeles/Constantes.h\
     modeles/Hub.h\
     modeles/DataBase.h\
     modeles/Cable.h\
     modeles/Bridge.h\
+    modeles/Cable.h\
     modeles/ElementListeChainee.h\
+    vues/vuecable.h\
+    vues/constantes.h
 
 SOURCES += \
     main.cpp\
@@ -50,5 +54,6 @@ SOURCES += \
     modeles/Cable.cpp\
     modeles/Bridge.cpp\
     modeles/ElementListeChainee.cpp\
+    vues/vuecable.cpp\
 
 QMAKE_LIBS += -llxc

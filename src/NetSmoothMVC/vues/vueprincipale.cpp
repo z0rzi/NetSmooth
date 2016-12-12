@@ -18,12 +18,21 @@ VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
     ca=this;
 }
 
+void VuePrincipale::mousePressEvent(QMouseEvent *e)
+{
+    if(Selection::getEnSelection()==CABLE){
+        Selection::setEnSelection(SOURIS);
+        VueCable::setPremiereSelection(NULL);
+        VueCable::setSecondeSelection(NULL);
+    }
+
+}
+
 void VuePrincipale::mouseDoubleClickEvent(QMouseEvent *e)
 {
     if (e->buttons() == Qt::LeftButton)
     {
         this->pos = QWidget::mapFromGlobal(QCursor::pos());
-        //cout << "x:" << pos.x() << endl << "y:" << pos.y() << endl << endl;
         emit clickSouris(pos);
     }
 }

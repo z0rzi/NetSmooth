@@ -4,8 +4,7 @@ VueHubControleur::VueHubControleur(VueHub* vue0, VueEntiteeControleur *parent) :
 {
 	vue = vue0;
 
-    //connect(vue->zoneImg,SIGNAL(doubleClick()),this,SLOT(allumer()));
-    connect(vue->zoneImg,SIGNAL(rightClick()),this,SLOT(allumer()));
+    connect(vue,SIGNAL(rightClick()),this,SLOT(allumer()));
 }
 
 void VueHubControleur::allumer()
@@ -14,16 +13,16 @@ void VueHubControleur::allumer()
 	if (vue->etat == false)
 	{
 		vue->etat = true;
-        this->vue->getHub()->launchEntitee();
+        this->vue->getModele()->launchEntitee();
 		img->load("../build-NetSmoothMVC-Desktop-Debug/images/Hubon");
 	}
 	else
 	{
 		vue->etat = false;
-        this->vue->getHub()->stopEntitee();
+        this->vue->getModele()->stopEntitee();
 		img->load("../build-NetSmoothMVC-Desktop-Debug/images/Huboff");
 	}
 	*img = img->scaled(130,100);
-	vue->zoneImg->setPixmap(*img);
+    vue->setPixmap(*img);
 }
 
