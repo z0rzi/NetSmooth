@@ -8,7 +8,7 @@ class VueHub : public VueEntitee
 	Q_OBJECT
 	public:
 		explicit VueHub(VueEntitee *parent = 0);
-        Hub* getHub();
+        Hub* getModele();
         void setHub(Hub* hub0);
 	private:
         Hub* hub;

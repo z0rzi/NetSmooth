@@ -4,15 +4,14 @@
 VuePasserelle::VuePasserelle(VueEntitee *parent) : VueEntitee(parent)
 {
 	this->passerelle=DataBase::getNewPasserelle();
-	etat = false;
-	zoneImg = new ClickLabel();
+    this->etat = false;
 	QPixmap* img = new QPixmap();
 	img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleoff.png");
 	*img = img->scaled(130,100);
-	zoneImg->setPixmap(*img);
+    this->setPixmap(*img);
 }
 
-Passerelle* VuePasserelle::getPasserelle()
+Passerelle* VuePasserelle::getModele()
 {
     return this->passerelle;
 }
