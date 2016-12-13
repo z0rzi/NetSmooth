@@ -24,6 +24,7 @@ signals:
 public slots:
     void ajoutLigne4();
     void ajoutLigne6();
+    void refreshVue();
 };
 
 #endif // VUEINFORMATIONCONTROLEUR_H

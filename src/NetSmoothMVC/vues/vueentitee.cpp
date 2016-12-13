@@ -1,4 +1,5 @@
 #include "vueentitee.h"
+#include "vueinformation.h"
 #include "vueprincipale.h"
 
 VueEntitee* VueEntitee::LabelEnSelection = NULL;// A quoi LabelEnSelection sert? Vincent
@@ -17,6 +18,7 @@ void VueEntitee::mousePressEvent(QMouseEvent *e)
     if (e->button() == Qt::LeftButton)
     {
         VueEntitee::setLabelEnSelection(this);
+        VueInformation::getInstanceOf()->refresh(this);
         QPalette* palette = new QPalette();
         palette->setColor(QPalette::Background,Qt::red);
         this->setPalette(*palette);

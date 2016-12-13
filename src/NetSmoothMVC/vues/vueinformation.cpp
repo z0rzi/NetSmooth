@@ -1,8 +1,16 @@
 #include "vueinformation.h"
 
+VueInformation* VueInformation::instance = NULL;
+
+VueInformation* VueInformation::getInstanceOf()
+{
+    if(VueInformation::instance==NULL)
+        VueInformation::instance=new VueInformation();
+    return VueInformation::instance;
+}
+
 VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
 {
-    this->source = NULL;
 
     this->setFixedSize(400,500);
 
@@ -76,6 +84,21 @@ VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
     layoutGlobal->addWidget(allumer,7,0,Qt::AlignHCenter);
 
     this->setLayout(layoutGlobal);
+}
+
+void VueInformation::refresh(QWidget *s)
+{
+    this->setSource(s);
+    emit refresh();
+}
+
+void VueInformation::setSource(QWidget *s)
+{
+    this->source = s;
+}
+QWidget* VueInformation::getSource()
+{
+    return this->source;
 }
 
 
