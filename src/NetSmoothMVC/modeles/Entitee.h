@@ -263,6 +263,7 @@ class Entitee
 		virtual int lancerContainer() = 0;
 		virtual void stopperContainer() = 0;
 		virtual void lierABridge() = 0;
+        virtual void separerDeBridge() = 0;
 
 		~Entitee();
 	protected:

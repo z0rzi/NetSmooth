@@ -8,8 +8,9 @@ Hub::Hub(int id)
 {
 }
 
+int Hub::lancerContainer(){return 0;}
 void Hub::appliquerParamIp(){}
 void Hub::appliquerParamRoutage(){}
-int Hub::lancerContainer(){}
 void Hub::stopperContainer(){}
 void Hub::lierABridge(){}
+void Hub::separerDeBridge(){}
