@@ -27,7 +27,10 @@ HEADERS += \
     modeles/Cable.h\
     modeles/ElementListeChainee.h\
     vues/vuecable.h\
-    vues/constantes.h
+    vues/constantes.h\
+    vues/vueinformation.h\
+    vues/ligneroute.h\
+    controleurs/vueinformationcontroleur.h
 
 SOURCES += \
     main.cpp\
@@ -55,5 +58,8 @@ SOURCES += \
     modeles/Bridge.cpp\
     modeles/ElementListeChainee.cpp\
     vues/vuecable.cpp\
+    vues/vueinformation.cpp\
+    vues/ligneroute.cpp\
+    controleurs/vueinformationcontroleur.cpp
 
 QMAKE_LIBS += -llxc
