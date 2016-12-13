@@ -12,10 +12,12 @@ class VueInformation : public QWidget
 {
     Q_OBJECT
 public:
-    explicit VueInformation(QWidget *parent = 0);
+    static VueInformation* getInstanceOf();
     void setlastV4(LigneRoute* lr);
     void setlastV6(LigneRoute* lr);
+    void refresh(QWidget* s);
     void setSource(QWidget* s);
+    QWidget* getSource();
     LigneRoute* getLastV4();
     LigneRoute* getLastV6();
     QGridLayout* getLayoutRoute4();
@@ -24,9 +26,10 @@ public:
     int getNbr6();
     void setNbr4(int n);
     void setNbr6(int n);
-    QWidget* getSource();
 
 private:
+    static VueInformation* instance;
+    explicit VueInformation(QWidget *parent = 0);
     QWidget* source;
     LigneRoute* lastV4;
     LigneRoute* lastV6;
@@ -36,6 +39,7 @@ private:
     int nbrLigne6;
 
 signals:
+    void refresh();
 
 public slots:
 };

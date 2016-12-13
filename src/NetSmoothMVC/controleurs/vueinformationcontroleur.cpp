@@ -5,6 +5,7 @@ VueInformationControleur::VueInformationControleur(VueInformation* vue0, QObject
     vue = vue0;
     connect(this->vue->getLastV4()->getValider(),SIGNAL(clicked(bool)),this,SLOT(ajoutLigne4()));
     connect(this->vue->getLastV6()->getValider(),SIGNAL(clicked(bool)),this,SLOT(ajoutLigne6()));
+    connect(this->vue,SIGNAL(refresh()),this,SLOT(refreshVue()));
 }
 
 void VueInformationControleur::ajoutLigne4()
@@ -53,4 +54,9 @@ void VueInformationControleur::ajoutLigne6()
         b->parentWidget()->deleteLater();
         vue->setNbr6(vue->getNbr6()-1);
     }
+}
+
+void VueInformationControleur::refreshVue()
+{
+
 }

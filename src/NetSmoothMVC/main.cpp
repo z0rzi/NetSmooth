@@ -17,7 +17,7 @@ int main(int argc, char** argv)
     Selection *s = new Selection();
     VuePrincipale *vp = new VuePrincipale();
     QGridLayout *g = new QGridLayout();
-    VueInformation *vi= new VueInformation();
+    VueInformation *vi= VueInformation::getInstanceOf();
     VueInformationControleur *vic = new VueInformationControleur(vi);
     g->addWidget(s,0,0,0);
     g->addWidget(vp,0,1,0);
