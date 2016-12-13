@@ -91,6 +91,25 @@ void Machine::force_stopperContainer()
 	int useless;
 	while(wait(&useless)<0);
 }
+void Machine::separerDeBridge()
+{
+    int x=fork();
+
+    if(x==-1)
+    {
+        perror("fork");
+        exit(1);
+    }
+    if(x==0)
+    {
+        char cntName[20];
+        this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
+        execl("../NetSmoothMVC/scripts/unjoinCntAndBridge.sh", "joinCntBridge", cntName,this->m_bridgeActuel.c_str(), NULL);
+        exit(0);
+    }
+    int useless;
+    while(wait(&useless)<0);
+}
 void Machine::lierABridge()
 {
 	int x=fork();

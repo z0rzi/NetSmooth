@@ -28,6 +28,7 @@ class Hub : public Entitee
 		void appliquerParamRoutage();
 		int lancerContainer();
 		void lierABridge();
+        void separerDeBridge();
 		void stopperContainer();
 
 	private:

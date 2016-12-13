@@ -153,7 +153,17 @@ class Machine : public Entitee
 		 *	donc la machine) est lancé
 		 */
 		void lierABridge();
-		
+
+        /*	void separerDeBridge()
+         *
+         *	permet de separer le container de son bridge actuel
+         *
+         *	NOTE
+         *	fonction a utiliser uniquement lorsque le container (et
+         *	donc la machine) est lancé
+         */
+        void separerDeBridge();
+
 		/*	void appliquerParamIp()
 		 *
 		 *	permet d'appliquer les parametres IP qui ont étés préalablement
