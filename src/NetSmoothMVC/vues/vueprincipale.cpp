@@ -10,7 +10,7 @@ VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
     view = new QGraphicsView(scene,this);
     vpc = new VuePrincipaleControleur(this);
 
-    scene->setSceneRect(0,0,750,550);
+    scene->setSceneRect(0,0,1500,1000);
     scene->setBackgroundBrush(Qt::white);
 
     view->setGeometry(0,0,750,550);

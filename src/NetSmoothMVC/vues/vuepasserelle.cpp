@@ -7,7 +7,7 @@ VuePasserelle::VuePasserelle(VueEntitee *parent) : VueEntitee(parent)
     this->etat = false;
 	QPixmap* img = new QPixmap();
 	img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleoff.png");
-	*img = img->scaled(130,100);
+    *img = img->scaled(130,130);
     this->setPixmap(*img);
 }
 
