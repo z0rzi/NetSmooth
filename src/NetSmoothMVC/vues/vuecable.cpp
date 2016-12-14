@@ -28,88 +28,88 @@ void VueCable::paintEvent(QPaintEvent *event)
     int x2,y2; //de la deuxième vue
     int width,height;
     int hautGaucheX, hautGaucheY;//Pour setGeometry (haut gauche du rectangle)
-    int widthV1,heightV1;
-    int widthV2,heightV2;
+    int widthV1=this->m_v1->width(),heightV1=this->m_v1->height();
+    int widthV2 = this->m_v2->width(),heightV2 = this->m_v2->height();
 
     if(this->m_v1->pos().x() > this->m_v2->pos().x())
     {
-        x1 =  this->m_v1->pos().x()-this->m_v2->pos().x();
-        x2 = 0 ;//+ widthV2/2;
+        x1 =  this->m_v1->pos().x()-this->m_v2->pos().x()+(widthV1/2);
+        x2 = 0 + widthV2/2;
         width = x1;
         hautGaucheX = this->m_v2->pos().x();
 
-        if(this->m_v1->pos().y() > this->m_v2->pos().y())      //   m_v2
-        {                                                      //     **
-            y1 = this->m_v1->pos().y()-this->m_v2->pos().y();  //      **
-            y2 = 0;// +heightV2/2 ;                            //       **
-            height = y1;							  		   //        **
-            hautGaucheY = this->m_v2->pos().y();			   //         m_v1
+        if(this->m_v1->pos().y() > this->m_v2->pos().y())                   //   m_v2
+        {                                                                   //     **
+            y1 = this->m_v1->pos().y()-this->m_v2->pos().y()+(heightV2/2);  //      **
+            y2 = 0 + (heightV2/2);                                          //       **
+            height = y1;				                      //        **
+            hautGaucheY = this->m_v2->pos().y();	                      //         m_v1
         }
-        else if(this->m_v1->pos().y() < this->m_v2->pos().y()) //         m_v1
-        {													   //        **
-            y1 = 0;											   //       **
-            y2 = this->m_v2->pos().y()-this->m_v1->pos().y();  //      **
-            height = y2;							 		   //     **
-            hautGaucheY = this->m_v1->pos().y();               //    m_v2
+        else if(this->m_v1->pos().y() < this->m_v2->pos().y())                 //         m_v1
+        {	     	                                                        //        **
+            y1 = 0 + heightV1/2;						 //       **
+            y2 = this->m_v2->pos().y()-this->m_v1->pos().y() + heightV2/2;    //      **
+            height = y2;					                //     **
+            hautGaucheY = this->m_v1->pos().y();                              //    m_v2
 
         }
-        else//m_v1y==m_v2y                      //
-        {										//
-            y1=0;                               // m_v2********m_v1
-            y2=0;                               //
-            height = 5; // epaisseur du trait   //
-            hautGaucheY = this->m_v2->pos().y();//
+        else                                              //
+        {					           //
+            y1=heightV1/2;                               // m_v2********m_v1
+            y2=heightV2/2;                               //
+            height = 5; // epaisseur du trait            //
+            hautGaucheY = this->m_v2->pos().y();         //
         }
     }
     else if(this->m_v1->pos().x() < this->m_v2->pos().x())
     {
-        x1 = 0;
-        x2 = this->m_v2->pos().x()-this->m_v1->pos().x();
+        x1 = widthV1/2;
+        x2 = this->m_v2->pos().x()-this->m_v1->pos().x() + widthV2/2;
         width = x2;
         hautGaucheX = this->m_v1->pos().x();
 
-        if(this->m_v1->pos().y() > this->m_v2->pos().y())    //     m_v2
-        {                                                    //     **
-            y1 = this->m_v1->pos().y()-this->m_v2->pos().y();//    **
-            y2 = 0;                                          //   **
-            height = y1;                                     //  **
-            hautGaucheY = this->m_v2->pos().y();             // m_v1
+        if(this->m_v1->pos().y() > this->m_v2->pos().y())                //     m_v2
+        {                                                                //     **
+            y1 = this->m_v1->pos().y()-this->m_v2->pos().y()+heightV1/2; //    **
+            y2 = heightV2/2;                                             //   **
+            height = y1;                                                 //  **
+            hautGaucheY = this->m_v2->pos().y();                         // m_v1
         }
-        else if(this->m_v1->pos().y() < this->m_v2->pos().y())//m_v1
-        {                                                     //  **
-            y1 = 0;                                           //   **
-            y2 = this->m_v2->pos().y()-this->m_v1->pos().y(); //    **
-            height = y2;                                      //     **
-            hautGaucheY = this->m_v1->pos().y();              //      m_v2
+        else if(this->m_v1->pos().y() < this->m_v2->pos().y())           //m_v1
+        {                                                                //  **
+            y1 = heightV1/2;                                             //   **
+            y2 = this->m_v2->pos().y()-this->m_v1->pos().y()+heightV2/2; //    **
+            height = y2;                                                 //     **
+            hautGaucheY = this->m_v1->pos().y();                         //      m_v2
         }
         else
-        {                                                     //
-            y1=0;                                             //
-            y2=0;                                             //m_v1******m_v2
-            height = 5; // epaisseur du trait                 //
-            hautGaucheY = this->m_v1->pos().y();              //
+        {                                                              //
+            y1=heightV1/2;                                             //
+            y2=heightV2/2;                                             //m_v1******m_v2
+            height = 5; // epaisseur du trait                          //
+            hautGaucheY = this->m_v1->pos().y();                       //
         }
     }
     else
     {
-        x1=0;
-        x2=0;
+        x1=widthV1/2;
+        x2=widthV2/2;
         width = 5; //epaisseur du trait
         hautGaucheX=this->m_v1->pos().x();
 
-        if(this->m_v1->pos().y() > this->m_v2->pos().y())    //   m_v2
-        {                                                    //    **
-            y1 = this->m_v1->pos().y()-this->m_v2->pos().y();//    **
-            y2 = 0;                                          //    **
-            height = y1;                                     //    **
-            hautGaucheY = this -> m_v2->pos().y();           //   m_v1
+        if(this->m_v1->pos().y() > this->m_v2->pos().y())                   //   m_v2
+        {                                                                   //    **
+            y1 = this->m_v1->pos().y()-this->m_v2->pos().y()+heightV1/2;    //    **
+            y2 = heightV2/2;                                                //    **
+            height = y1;                                                    //    **
+            hautGaucheY = this -> m_v2->pos().y();                          //   m_v1
         }
-        else if(this->m_v1->pos().y() < this->m_v2->pos().y())//  m_v1
-        {                                                     //   **
-            y1 = 0;                                           //   **
-            y2 = this->m_v2->pos().y()-this->m_v1->pos().y(); //   **
-            height = y2;                                      //   **
-            hautGaucheY = this -> m_v1->pos().y();            //  m_v2
+        else if(this->m_v1->pos().y() < this->m_v2->pos().y())              //  m_v1
+        {                                                                   //   **
+            y1 = heightV1/2;                                                //   **
+            y2 = this->m_v2->pos().y()-this->m_v1->pos().y()+heightV2/2;    //   **
+            height = y2;                                                    //   **
+            hautGaucheY = this -> m_v1->pos().y();                          //  m_v2
         }
         else //si les deux vues sont confondues
         {

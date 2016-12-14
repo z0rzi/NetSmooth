@@ -6,6 +6,11 @@ VueEntitee* VueEntitee::LabelEnSelection = NULL;// A quoi LabelEnSelection sert?
 
 VueEntitee::VueEntitee(QLabel *parent) : QLabel(parent)
 {
+    /**********TRANSPARENCE****************/
+    this->setAttribute( Qt::WA_TranslucentBackground);
+    this->setWindowFlags (Qt::FramelessWindowHint);
+    this->setAutoFillBackground(false);
+    /*************************************/
 
 }
 
@@ -18,7 +23,9 @@ void VueEntitee::mousePressEvent(QMouseEvent *e)
     if (e->button() == Qt::LeftButton)
     {
         VueEntitee::setLabelEnSelection(this);
+
         VueInformation::getInstanceOf()->refresh(this);
+
         QPalette* palette = new QPalette();
         palette->setColor(QPalette::Background,Qt::red);
         this->setPalette(*palette);
