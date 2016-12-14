@@ -13,14 +13,14 @@ void VuePrincipaleControleur::paintMachine(QPoint pos)
     {
         VueMachine* e = new VueMachine();
         VueMachineControleur* c = new VueMachineControleur(e);
-        e->setGeometry(pos.x(),pos.y(),130,100);
+        e->setGeometry(pos.x(),pos.y(),130,130);
         QGraphicsProxyWidget* proxy = vue->scene->addWidget(e);
     }
     if(Selection::getEnSelection() == PASSERELLE)
     {
         VuePasserelle* e = new VuePasserelle();
         VuePasserelleControleur* c = new VuePasserelleControleur(e);
-        e->setGeometry(pos.x(),pos.y(),130,100);
+        e->setGeometry(pos.x(),pos.y(),130,130);
         QGraphicsProxyWidget* proxy = vue->scene->addWidget(e);
     }
     if(Selection::getEnSelection() == HUB)

@@ -24,7 +24,7 @@ void VuePasserelleControleur::allumer()
         this->vue->getModele()->stopEntitee();
 		img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleoff");
 	}
-	*img = img->scaled(130,100);
+    *img = img->scaled(130,130);
     vue->setPixmap(*img);
 }
 

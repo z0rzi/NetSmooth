@@ -89,6 +89,8 @@ void Entitee::appliquerBridgeEntiteeSuivante(string bridge)
 {
         int i;
         vector<Cable*> listCable=this->m_cableList;
+        if(this->getConnexion()==true)
+                this->separerDeBridge();
         this->setBridgeActuel(bridge);
         this->lierABridge();
         for(i=0 ; i<listCable.size() ; i++)
@@ -187,10 +189,30 @@ void Entitee::modifBridgesSousReseau_entiteeLancee()
                         }
                 }
                 if(supAlone)
-                        superieur->appliquerBridgeEntiteeSuivante(superieur->getBridgeInit());
+                        this->appliquerBridgeEntiteeSuivante(superieur->getBridgeInit());
                 else
                         this->appliquerBridgeEntiteeSuivante(superieur->getBridgeActuel());
         }
+}
+
+bool Entitee::verifAlone(Entitee* source)
+{
+        int i;
+        bool alone=true;
+        vector<Cable*> listCable=this->getCables();
+        for(i=0 ; i<listCable.size() && alone ; i++)
+        {
+                Entitee* ext[2];
+                Entitee* autre;
+                listCable[i]->getExtremites(ext);
+                autre=(this==ext[0])?ext[1]:ext[0];
+                if(autre->getEtatEntitee()==MACHINE_LANCEE && autre!=source)
+                {
+                        alone=false;
+                        cout << "po tout seul" << endl;
+                }
+        }
+        return alone;
 }
 
 void Entitee::modifBridgesSousReseau_entiteeStoppee()
@@ -205,14 +227,19 @@ void Entitee::modifBridgesSousReseau_entiteeStoppee()
 
         this->setConnexion(false);
 
+        /* si son bridge actuel est un bridge init de son entourage, on le
+         * supprime pas
+         */
         for(i=0 ; i<listCable.size() ; i++)
         {
                 Entitee* ext[2];
                 Entitee* autre;
                 listCable[i]->getExtremites(ext);
                 autre=(this==ext[0])?ext[1]:ext[0];
-                if(autre->getEtatEntitee()==true && this->getBridgeActuel().compare(autre->getBridgeInit())==0)    /* ce sont les memes */
+                if(autre->getEtatEntitee()==true && this->getBridgeActuel().compare(autre->getBridgeInit())==0 && autre->verifAlone(this)==false)    /* ce sont les memes */
+                {
                         supprBridge=false;
+                }
         }
         if(supprBridge)
         {
@@ -229,21 +256,7 @@ void Entitee::modifBridgesSousReseau_entiteeStoppee()
                 autre=(this==ext[0])?ext[1]:ext[0];
                 if(autre->getEtatEntitee()==MACHINE_LANCEE)
                 {
-                        bool alone=true;
-                        vector<Cable*> a_listCable=autre->getCables();
-                        for(j=0 ; j<a_listCable.size() && alone ; j++)
-                        {
-                                Entitee* a_ext[2];
-                                Entitee* a_autre;
-                                a_listCable[j]->getExtremites(a_ext);
-                                a_autre=(autre==a_ext[0])?a_ext[1]:a_ext[0];
-                                if(a_autre->getEtatEntitee()==MACHINE_LANCEE && a_autre!=this)
-                                {
-                                        alone=false;
-                                        cout << "po tout seul" << endl;
-                                }
-                        }
-                        if(alone)
+                        if(autre->verifAlone(this)==true)
                         {
                                 cout << "autre tout seul" << endl;
                                 if(supprBridge)
@@ -269,6 +282,7 @@ void Entitee::modifBridgesSousReseau_entiteeStoppee()
                 }
         }
 }
+
 void Entitee::launchEntitee()
 {
         cout << "lancement de " << this->getBridgeInit() << endl;
