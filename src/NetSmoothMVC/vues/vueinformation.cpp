@@ -22,9 +22,9 @@ VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
     QLabel* mipv4 = new QLabel("masque ipv4 :");
     QLabel* ipv6 = new QLabel("ipv6 :");
 
-    QTextEdit* eipv4 = new QTextEdit();
-    QTextEdit* emipv4 = new QTextEdit();
-    QTextEdit* eipv6 = new QTextEdit();
+    eipv4 = new QTextEdit();
+    emipv4 = new QTextEdit();
+    eipv6 = new QTextEdit();
 
     eipv4->setFixedHeight(25);
     emipv4->setFixedHeight(25);
@@ -150,4 +150,26 @@ LigneRoute* VueInformation::getLastV4()
 LigneRoute* VueInformation::getLastV6()
 {
     return this->lastV6;
+}
+
+QTextEdit* VueInformation::getEipv4()
+{
+    return this->eipv4;
+}
+
+QTextEdit* VueInformation::getEmipv4()
+{
+    return this->emipv4;
+}
+
+QTextEdit* VueInformation::getEipv6()
+{
+    return this->eipv6;
+}
+
+void VueInformation::vider()
+{
+    this->eipv4->setText("");
+    this->emipv4->setText("");
+    this->eipv6->setText("");
 }

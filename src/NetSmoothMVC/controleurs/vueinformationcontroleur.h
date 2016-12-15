@@ -3,6 +3,9 @@
 
 #include <QObject>
 #include <iostream>
+#include "vues/vueentitee.h"
+#include "modeles/Entitee.h"
+#include "modeles/Machine.h"
 
 using namespace std;
 

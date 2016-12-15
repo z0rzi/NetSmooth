@@ -26,6 +26,10 @@ public:
     int getNbr6();
     void setNbr4(int n);
     void setNbr6(int n);
+    QTextEdit* getEipv4();
+    QTextEdit* getEmipv4();
+    QTextEdit* getEipv6();
+    void vider();
 
 private:
     static VueInformation* instance;
@@ -37,6 +41,9 @@ private:
     QGridLayout* layoutRoute6;
     int nbrLigne4;
     int nbrLigne6;
+    QTextEdit* eipv4;
+    QTextEdit* emipv4;
+    QTextEdit* eipv6;
 
 signals:
     void refresh();
