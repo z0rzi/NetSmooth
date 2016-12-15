@@ -13,7 +13,7 @@ containers:
 
 
 ## Compilation
-Executez le fichier **make.sh** dans *./src/build-NetSmoothMVC-Desktop-Debug/* afin de compiler le programme.
+Executez le fichier **make.sh** dans "*./src/build-NetSmoothMVC-Desktop-Debug/*" afin de compiler le programme.
 Puis, lancez l'executable créé (**NetSmoothMVC**)
 
 
