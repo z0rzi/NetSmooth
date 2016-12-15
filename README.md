@@ -1,6 +1,8 @@
 # NetSmooth
 
 ## Prérequis
+Votre système d'exploitation ne doit **pas** etre Ububtu ou Similaire (Kbuntu ect..).
+
 logiciels:
 * Qt version 5.5.3
 * LXC & lxc-devel
