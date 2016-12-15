@@ -66,8 +66,6 @@ void VueCable::paintEvent(QPaintEvent *event)
         }
         height = bas->pos().y()-haut->pos().y()+tailleEntitee;
         width = droite->pos().x()-gauche->pos().x()+tailleEntitee;
-        if(height==0) height++;
-        if(width==0) width++;
 
         painter.drawLine(x1,y1,x2,y2);
         this->setGeometry(gauche->pos().x(),haut->pos().y(),width,height);

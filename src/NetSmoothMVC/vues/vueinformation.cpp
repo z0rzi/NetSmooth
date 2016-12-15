@@ -101,7 +101,6 @@ QWidget* VueInformation::getSource()
     return this->source;
 }
 
-
 QGridLayout* VueInformation::getLayoutRoute4()
 {
     return this->layoutRoute4;
@@ -172,4 +171,9 @@ void VueInformation::vider()
     this->eipv4->setText("");
     this->emipv4->setText("");
     this->eipv6->setText("");
+}
+
+void VueInformation::setLayout4(QGridLayout *l4)
+{
+    this->layoutRoute4 = l4;
 }
