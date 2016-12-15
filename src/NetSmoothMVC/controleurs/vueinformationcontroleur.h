@@ -18,6 +18,10 @@ class VueInformationControleur : public QObject
     Q_OBJECT
 public:
     explicit VueInformationControleur(VueInformation* vue, QObject *parent = 0);
+    void ajoutLigne4(const char* interface, const char* destination, const char* passerelle);
+    void ajoutLigne6(const char* interface, const char* destination, const char* passerelle);
+    void viderLigne4();
+    void ajoutLigneVide4();
 
 private:
     VueInformation* vue;

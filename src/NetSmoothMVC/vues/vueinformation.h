@@ -30,6 +30,7 @@ public:
     QTextEdit* getEmipv4();
     QTextEdit* getEipv6();
     void vider();
+    void setLayout4(QGridLayout* l4);
 
 private:
     static VueInformation* instance;

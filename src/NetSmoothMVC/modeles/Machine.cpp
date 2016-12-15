@@ -13,12 +13,18 @@ Machine::Machine(int id, int type, const char* cntName)
 	cout << "cntName = '" << cntName << "'" << endl;
 	m_container=lxc_container_new(buff, NULL);
     m_container->set_config_item(m_container, "lxc.utsname", buff);
-    //Ajouter config par défaut paramRoutage
+    //struct paramIp baseIp = {"eth0","172.16.1.154","255.255.255.0","0::0",""};
+    //this->addIpConfig(baseIp);
+  /*  struct paramRoutage baseRoute1 = {"eth0","148.26.64.0/24","172.168.1.1"};
+    struct paramRoutage baseRoute2 = {"eth0","156.41.85.0/24","172.168.1.1"};
+    this->addRouteConfig(baseRoute1);
+    this->addRouteConfig(baseRoute2);
+*/
 }
 
 void Machine::addIpConfig(struct paramIp ip)
 {
-	m_paramIp.push_back(ip);
+    m_paramIp.push_back(ip);
 }
 
 vector<struct paramIp> Machine::getIpConfig() const
