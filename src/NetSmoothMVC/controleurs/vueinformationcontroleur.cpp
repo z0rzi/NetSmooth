@@ -58,5 +58,24 @@ void VueInformationControleur::ajoutLigne6()
 
 void VueInformationControleur::refreshVue()
 {
+    VueEntitee* s = (VueEntitee*)vue->getSource();
+    if(s->getModele()->getType()==TYPE_HUB)
+    {
+       vue->vider();
+    }
+    else if(s->getModele()->getType()==TYPE_ORDINATEUR)
+    {
+        Ordinateur* o = (Ordinateur*)s->getModele();
+        vector<struct paramIp> ipConf = o->getIpConfig();
+        const char* c = ipConf[0].ipv4.c_str();
+        vue->getEipv4()->setText(c);
+        c = ipConf[0].maskv4.c_str();
+        vue->getEmipv4()->setText(c);
+        c = ipConf[0].ipv6.c_str();
+        vue->getEipv6()->setText(c);
+    }
+    else if(s->getModele()->getType()==TYPE_PASSERELLE)
+    {
 
+    }
 }
