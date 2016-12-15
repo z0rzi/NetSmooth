@@ -12,6 +12,7 @@ containers:
 
 ## Note
 Fichier de configuration d'un container de type "machine" :
+
 	lxc.include = /usr/share/lxc/config/debian.common.conf
 	lxc.arch = x86
 	lxc.network.type = veth
@@ -21,6 +22,7 @@ Fichier de configuration d'un container de type "machine" :
 	lxc.utsname = <nom du container>
 
 Fichier de configuration d'un container de type "machine" :
+
 	lxc.include = /usr/share/lxc/config/debian.common.conf
 	lxc.arch = x86
 	lxc.network.type = veth
