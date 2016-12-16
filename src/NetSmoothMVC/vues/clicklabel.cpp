@@ -13,13 +13,6 @@ void ClickLabel::mousePressEvent(QMouseEvent *e)
     if (e->button() == Qt::LeftButton)
     {
         ClickLabel::setLabelEnSelection(this);
-        QPalette* palette = new QPalette();
-        palette->setColor(QPalette::Background,Qt::red);
-        this->setPalette(*palette);
-    }
-    if (e->button() == Qt::RightButton)
-    {
-        emit rightClick();
     }
 }
 

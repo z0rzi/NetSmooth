@@ -19,8 +19,11 @@ public:
     QTextEdit* getEinter();
     void bloquer();
     void debloquer();
+    void setId(int id);
+    int getId() const;
 
 private:
+    int m_id;
     QPushButton* valider;
     QGridLayout* layout;
     QTextEdit* edest;

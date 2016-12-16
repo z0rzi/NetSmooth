@@ -79,7 +79,8 @@ VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
     layoutGlobal->addWidget(v6,5,0);
     layoutGlobal->addLayout(layoutRoute6,6,0);
 
-    QLabel* allumer = new QLabel("Allumer");
+    this->allumer = new QPushButton();
+    allumer->setText("Allumer");
 
     layoutGlobal->addWidget(allumer,7,0,Qt::AlignHCenter);
 
@@ -176,4 +177,14 @@ void VueInformation::vider()
 void VueInformation::setLayout4(QGridLayout *l4)
 {
     this->layoutRoute4 = l4;
+}
+
+void VueInformation::setAllumer(QPushButton * p)
+{
+    this->allumer = p;
+}
+
+QPushButton* VueInformation::getAllumer()
+{
+    return this->allumer;
 }

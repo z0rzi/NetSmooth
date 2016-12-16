@@ -6,6 +6,91 @@ VueInformationControleur::VueInformationControleur(VueInformation* vue0, QObject
     connect(this->vue->getLastV4()->getValider(),SIGNAL(clicked(bool)),this,SLOT(ajoutLigne4()));
     connect(this->vue->getLastV6()->getValider(),SIGNAL(clicked(bool)),this,SLOT(ajoutLigne6()));
     connect(this->vue,SIGNAL(refresh()),this,SLOT(refreshVue()));
+    connect(this->vue->getAllumer(),SIGNAL(clicked(bool)),this,SLOT(allumer()));
+}
+
+void VueInformationControleur::allumer()
+{
+    QPixmap* img = new QPixmap();
+    VueEntitee* vueE = VueEntitee::getLabelEnSelection();
+    if (vueE == NULL)
+    {
+        cout << "erreur selection" << endl;
+        return;
+    }
+    if(vueE->getModele()->getType()==TYPE_ORDINATEUR)
+    {
+        if (vueE->etat == false)
+        {
+            vueE->etat = true;
+            struct paramIp ip;
+            ip.ipv4=vue->getEipv4()->toPlainText().toStdString();
+            ip.maskv4=vue->getEmipv4()->toPlainText().toStdString();
+            ip.ipv6=vue->getEipv6()->toPlainText().toStdString();
+            ip.interface="eth0";
+            Machine* m = (Machine*)vueE->getModele();
+            m->addIpConfig(ip);
+            vueE->getModele()->launchEntitee();
+            img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuron.png");
+            *img = img->scaled(130,130);
+            vueE->setPixmap(*img);
+        }
+        else
+        {
+            vueE->etat = false;
+            vueE->getModele()->stopEntitee();
+            img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuroff.png");
+            *img = img->scaled(130,130);
+            vueE->setPixmap(*img);
+        }
+    }
+    else if(vueE->getModele()->getType()==TYPE_PASSERELLE)
+    {
+        if (vueE->etat == false)
+        {
+            vueE->etat = true;
+            struct paramIp ip;
+            ip.ipv4=vue->getEipv4()->toPlainText().toStdString();
+            ip.maskv4=vue->getEmipv4()->toPlainText().toStdString();
+            ip.ipv6=vue->getEipv6()->toPlainText().toStdString();
+            ip.interface="eth0";
+            Passerelle* p = (Passerelle*)vueE->getModele();
+            p->addIpConfig(ip);
+            cout << "bite0" << endl;
+            vueE->getModele()->launchEntitee();
+            img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleon.png");
+            *img = img->scaled(130,130);
+            vueE->setPixmap(*img);
+        }
+        else
+        {
+            vueE->etat = false;
+            vueE->getModele()->stopEntitee();
+            img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleoff.png");
+            *img = img->scaled(130,130);
+            vueE->setPixmap(*img);
+        }
+    }
+    else if(vueE->getModele()->getType()==TYPE_HUB)
+    {
+        if (vueE->etat == false)
+        {
+            vueE->etat = true;
+            Hub* p = (Hub*)vueE->getModele();
+            vueE->getModele()->launchEntitee();
+            img->load("../build-NetSmoothMVC-Desktop-Debug/images/Hubon.png");
+            *img = img->scaled(130,130);
+            vueE->setPixmap(*img);
+        }
+        else
+        {
+            vueE->etat = false;
+            vueE->getModele()->stopEntitee();
+            img->load("../build-NetSmoothMVC-Desktop-Debug/images/Huboff.png");
+            *img = img->scaled(130,130);
+            vueE->setPixmap(*img);
+        }
+    }
 }
 
 void VueInformationControleur::ajoutLigne4()
@@ -14,34 +99,44 @@ void VueInformationControleur::ajoutLigne4()
     if (vueSource != NULL)
     {
         if(vueSource->getModele()->getType() != TYPE_HUB)
+    {
+        Machine* source = (Machine*)vueSource->getModele();
+        QPushButton* b = qobject_cast<QPushButton*>(sender());
+        LigneRoute* parent = (LigneRoute*)b->parentWidget();
+        if(b->text() == "OK")
         {
-            QPushButton* b = qobject_cast<QPushButton*>(sender());
-            if(b->text() == "OK")
-            {
-                int n;
-                vue->getLastV4()->bloquer();
-                Machine* source = (Machine*)vueSource->getModele();
-                struct paramRoutage route = {vue->getLastV4()->getEinter()->toPlainText().toStdString(),
-                                    vue->getLastV4()->getEdest()->toPlainText().toStdString(),
-                                    vue->getLastV4()->getEpass()->toPlainText().toStdString()};
-                source->addRouteConfig(route);
-                source->appliquerParamRoutage();
-                LigneRoute* newLigne = new LigneRoute();
-                QGridLayout* layout = new QGridLayout();
-                layout = vue->getLayoutRoute4();
-                n = vue->getNbr4()+1;
-                vue->getLastV4()->getValider()->setText("X");
-                layout->addWidget(newLigne,n,0,1,3);
-                vue->setNbr4(vue->getNbr4()+1);
-                connect(newLigne->getValider(),SIGNAL(clicked(bool)),this,SLOT(ajoutLigne4()));
-                vue->setlastV4(newLigne);
-            }
-            else if(b->text() == "X")
-            {
-                b->parentWidget()->deleteLater();
-                vue->setNbr4(vue->getNbr4()-1);
-            }
+            int n, id;
+            vue->getLastV4()->bloquer();
+            cout <<"bite" << endl;
+            id=source->getNewIdRoute();
+            cout << "id1 : " << id << endl;
+            parent->setId(id);
+            struct paramRoutage route = {id,vue->getLastV4()->getEinter()->toPlainText().toStdString(),
+                                vue->getLastV4()->getEdest()->toPlainText().toStdString(),
+                                vue->getLastV4()->getEpass()->toPlainText().toStdString()};
+            source->addRouteConfig(route);
+            source->appliquerParamRoutage();
+            LigneRoute* newLigne = new LigneRoute();
+            QGridLayout* layout = new QGridLayout();
+            layout = vue->getLayoutRoute4();
+            n = vue->getNbr4()+1;
+            vue->getLastV4()->getValider()->setText("X");
+            layout->addWidget(newLigne,n,0,1,3);
+            vue->setNbr4(vue->getNbr4()+1);
+            connect(newLigne->getValider(),SIGNAL(clicked(bool)),this,SLOT(ajoutLigne4()));
+            vue->setlastV4(newLigne);
         }
+        else if(b->text() == "X")
+        {
+            cout << "patent = " << parent->getId() << endl;
+            cout << "nb40 = " << vue->getNbr4() << endl;
+            source->removeParamRoute(parent->getId());
+            b->parentWidget()->deleteLater();
+            vue->setNbr4(vue->getNbr4()-1);
+            cout << "nb41 = " << vue->getNbr4() << endl;
+
+        }
+    }
     }
 }
 

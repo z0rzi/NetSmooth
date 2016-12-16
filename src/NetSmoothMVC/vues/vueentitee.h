@@ -33,7 +33,7 @@ public:
     static void setLabelEnSelection(VueEntitee* label);
 
 private:
-    static VueEntitee* LabelEnSelection;
+    static VueEntitee* labelEnSelection;
 
 signals:
     void rightClick();

@@ -15,7 +15,6 @@ private:
     VueHub* vue;
 
 public slots:
-    void allumer();
 };
 
 #endif // VUEHUBCONTROLEUR_H

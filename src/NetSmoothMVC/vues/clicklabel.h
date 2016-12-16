@@ -24,7 +24,6 @@ private:
     static ClickLabel* LabelEnSelection;
 
 signals:
-    void rightClick();
     void doubleClick();
 
 };

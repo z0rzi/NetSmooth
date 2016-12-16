@@ -5,27 +5,7 @@ VueMachineControleur::VueMachineControleur(VueMachine* vue0, VueEntiteeControleu
 {
     vue = vue0;
 
-    connect(vue,SIGNAL(rightClick()),this,SLOT(allumer()));
     connect(vue,SIGNAL(doubleClick()),this,SLOT(terminal()));
-}
-
-void VueMachineControleur::allumer()
-{
-	QPixmap* img = new QPixmap();
-	if (vue->etat == false)
-	{
-		this->vue->etat = true;
-        this->vue->getModele()->launchEntitee();
-		img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuron.png");
-	}
-	else
-	{
-		vue->etat = false;
-        this->vue->getModele()->stopEntitee();
-		img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuroff.png");
-	}
-    *img = img->scaled(130,130);
-    vue->setPixmap(*img);
 }
 
 void VueMachineControleur::terminal()

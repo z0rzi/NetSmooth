@@ -2,7 +2,7 @@
 #include "vueinformation.h"
 #include "vueprincipale.h"
 
-VueEntitee* VueEntitee::LabelEnSelection = NULL;// A quoi LabelEnSelection sert? Vincent
+VueEntitee* VueEntitee::labelEnSelection = NULL;// A quoi LabelEnSelection sert? Vincent
 
 VueEntitee::VueEntitee(QLabel *parent) : QLabel(parent)
 {
@@ -23,7 +23,6 @@ void VueEntitee::mousePressEvent(QMouseEvent *e)
     if (e->button() == Qt::LeftButton)
     {
         VueEntitee::setLabelEnSelection(this);
-
         VueInformation::getInstanceOf()->refresh(this);
 
         QPalette* palette = new QPalette();
@@ -63,7 +62,6 @@ void VueEntitee::mouseReleaseEvent(QMouseEvent *e)
 {
     if (e->buttons() == Qt::LeftButton)
         this->move(e->globalPos());
-    VueEntitee::setLabelEnSelection(NULL);
     QPalette* palette = new QPalette();
     palette->setColor(QPalette::Background,Qt::white);
     this->setPalette(*palette);
@@ -71,10 +69,12 @@ void VueEntitee::mouseReleaseEvent(QMouseEvent *e)
 
 void VueEntitee::setLabelEnSelection(VueEntitee* label)
 {
-    VueEntitee::LabelEnSelection = label;
+    VueEntitee::labelEnSelection = label;
+    cout << "adresse lbel :" <<label << endl;
+
 }
 
 VueEntitee* VueEntitee::getLabelEnSelection()
 {
-    return VueEntitee::LabelEnSelection;
+    return VueEntitee::labelEnSelection;
 }
