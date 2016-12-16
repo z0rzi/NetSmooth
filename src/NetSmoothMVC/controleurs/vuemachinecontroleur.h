@@ -21,7 +21,6 @@ private:
 signals:
 
 public slots:
-        void allumer();
         void terminal();
 };
 

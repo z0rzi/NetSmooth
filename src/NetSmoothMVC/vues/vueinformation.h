@@ -31,6 +31,8 @@ public:
     QTextEdit* getEipv6();
     void vider();
     void setLayout4(QGridLayout* l4);
+    void setAllumer(QPushButton*);
+    QPushButton* getAllumer();
 
 private:
     static VueInformation* instance;
@@ -45,6 +47,7 @@ private:
     QTextEdit* eipv4;
     QTextEdit* emipv4;
     QTextEdit* eipv6;
+    QPushButton* allumer;
 
 signals:
     void refresh();

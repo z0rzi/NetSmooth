@@ -15,7 +15,6 @@ private:
     VuePasserelle* vue;
 
 public slots:
-    void allumer();
     void terminal();
 
 };

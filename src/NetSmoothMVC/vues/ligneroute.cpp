@@ -58,3 +58,13 @@ void LigneRoute::debloquer()
     this->einter->setReadOnly(false);
     this->valider->setText("OK");
 }
+
+void LigneRoute::setId(int id)
+{
+    this->m_id=id;
+}
+
+int LigneRoute::getId() const
+{
+    return this->m_id;
+}

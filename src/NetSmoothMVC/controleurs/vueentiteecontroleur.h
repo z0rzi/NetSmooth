@@ -19,7 +19,5 @@ private:
 signals:
 
 public slots:
-    virtual void allumer() = 0;
 };
-
 #endif // VUEENTITEECONTROLEUR_H

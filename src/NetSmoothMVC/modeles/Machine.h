@@ -26,6 +26,7 @@ class Entitee;
  */
 struct paramRoutage
 {
+    int id;
 	std::string interface;
 	std::string destination;
 	std::string passerelle;
@@ -38,11 +39,11 @@ struct paramRoutage
  */
 struct paramIp
 {
+    int id;
 	std::string interface;
 	std::string ipv4;
 	std::string maskv4;
 	std::string ipv6;
-	std::string maskv6;
 };
 
 
@@ -210,8 +211,19 @@ class Machine : public Entitee
 		 *	permet de lancer une fenetre Xterm representant le 
 		 *	terminal de la machine
 		 */
-		void lancerXterm();
-	private:
+        void lancerXterm();
+
+        int getNewIdIp();
+
+        int getNewIdRoute();
+
+        void removeParamIp(int id);
+
+        void removeParamRoute(int id);
+
+    void supprimerParamRoutage(int id);
+
+    private:
 
 		/*	container associé a la machine, quand on
 		 *	fait tourner la machine, c'est ce container
