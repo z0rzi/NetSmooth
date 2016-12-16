@@ -1,0 +1,6 @@
+Contrôler les entrées routes 4-6
+Contrôler les entrées ipv4-6 
+Pouvoir supprimer routes
+Pouvoir supprimer config ip
+changer nom de VueEntitee::getLabelEnSelection car ça ne renvoit pas un label
+
