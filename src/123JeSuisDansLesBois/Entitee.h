@@ -14,24 +14,26 @@ class Cable;
 class Entitee
 {
 	public:
-		/*	Entitee
+		/*	Entitee(int numType, int type)
 		 *	
 		 *	Constructeur de la classe, il initialise le 
 		 *	nom de bridge par defaut (ou bridge Initial) pour hub 
 		 *	et passerelles
 		 *	
 		 *	ARGS
-		 *	-numtype :	numero de la machine créée, il doit
-		 *			etre unique pour chaque ma de meme
-		 *			type
+		 *	-numtype :
+		 *		numero de la machine créée, il doit
+		 *		etre unique pour chaque ma de meme
+		 *		type
 		 *	
-		 *	-type :		numero correspondant au type, se 
-		 *			réferer au fichier 
-		 *			Constantes.h -> TYPE_****
+		 *	-type :	
+		 *		numero correspondant au type, se 
+		 *		réferer au fichier 
+		 *		Constantes.h -> TYPE_****
 		 */
 		Entitee(int numType, int type);
 		
-		/*	getBridgeInit
+		/*	string getBridgeInit() const
 		 *	
 		 *	permet de recupérer le bridge Initial de la machine
 		 *
@@ -40,12 +42,12 @@ class Entitee
 		 *	
 		 *	NOTE
 		 *	Mais dis moi Jammie, c'est quoi un bridge initial?
-		 *		-> vas voir dans la description des 
+		 *		   vas voir dans la description des 
 		 *		   attributs de la classe plus bas
 		 */
 		std::string getBridgeInit(void) const;
 
-		/*	getBridgeActuel
+		/*	string getBridgeActuel() const
 		 *	
 		 *	permet de recupérer le bridge Actuel de la machine
 		 *
@@ -54,26 +56,27 @@ class Entitee
 		 *	
 		 *	NOTE
 		 *	Mais dis moi Jammie, c'est quoi un bridge Actuel?
-		 *		-> vas voir dans la description des 
+		 *		   vas voir dans la description des 
 		 *		   attributs de la classe plus bas
 		 */
 		std::string getBridgeActuel(void) const;
 
-		/*	setBridgeActuel
+		/*	void setBridgeActuel(string bridge)
 		 *	
 		 *	permet de définir le bridge Actuel de la machine
 		 *
 		 *	ARGS
-		 *	-bridge		nom du bridge actuel a associer a l'entitee
+		 *	-bridge		
+		 *		nom du bridge actuel a associer a l'entitee
 		 *	
 		 *	NOTE
 		 *	Mais dis moi Jammie, c'est quoi un bridge Actuel?
-		 *		-> vas voir dans la description des 
+		 *		   vas voir dans la description des 
 		 *		   attributs de la classe plus bas
 		 */
 		void setBridgeActuel(std::string bridge);
 
-		/*	getEtatEntitee
+		/*	bool getEtatEntitee()
 		 *
 		 *	permet d'obtenir l'etat de la machine
 		 *	
@@ -87,14 +90,15 @@ class Entitee
 		 */
 		bool getEtatEntitee(void);
 
-		/*	setEtatEntitee
+		/*	void setEtatEntitee(bool etat)
 		 *
 		 *	permet de modifier l'etat de la machine
 		 *	
 		 *	ARGS
-		 *	-etat:		booleen: true si vous avez
-		 *			allumé la machine, false si
-		 *			vous l'avez eteinte
+		 *	-etat:	
+		 *		booleen: true si vous avez
+		 *		allumé la machine, false si
+		 *		vous l'avez eteinte
 		 *
 		 *	NOTE
 		 *	cette methode est applicable sur n'importe
@@ -102,7 +106,7 @@ class Entitee
 		 */
 		void setEtatEntitee(bool etat);
 
-		/*	getType
+		/*	int getType()
 		 *
 		 *	permet de connaitre le type de l'entitee
 		 *	
@@ -112,7 +116,7 @@ class Entitee
 		 */
 		int getType(void);
 
-		/*	getCables
+		/*	vector<Cable*> getCables()
 		 *
 		 *	permet de recuperer les cables auxquels est
 		 *	connecté l'entitée
@@ -124,13 +128,14 @@ class Entitee
 		 */
 		std::vector<Cable*> getCables(void);
 
-		/*	addCable
+		/*	void addCable(Cable* cable)
 		 *	
 		 *	permet d'ajouter un cable a la liste des cables 
 		 *	de l'entitée
 		 *	
 		 *	ARGS
-		 *	-cable:		adresse du cable a ajouter
+		 *	-cable:	
+		 *		adresse du cable a ajouter
 		 *	
 		 *	NOTE
 		 *	ne pas créer le cable a ajouter dans un une 
@@ -140,18 +145,19 @@ class Entitee
 		 */
 		void addCable(Cable *cable);
 		
-		/*	setConnexion
+		/*	void setConnexion(bool con)
 		 *
 		 *	permet de dire si la machine est connectée a un bridge
 		 *	ou non
 		 *
 		 *	ARGS
-		 *	-con		true si la machine a été connecté a un
-		 *			bridge, false elle en a été déconnectée
+		 *	-con	
+		 *		true si la machine a été connecté a un
+		 *		bridge, false elle en a été déconnectée
 		 */
 		void setConnexion(bool con);
 
-		/*	getConnexion
+		/*	bool getConnexion() const
 		 *
 		 *	permet de savoir si la machine est connectée a un bridge
 		 *
@@ -160,7 +166,7 @@ class Entitee
 		 */
 		bool getConnexion(void) const;
 
-		/*	appliquerBridgeEntiteeSuivante
+		/*	void appliquerBridgeEntiteeSuivante(string bridge)
 		 *
 		 *	permet de "contaminer" tous les bridges d'un meme
 		 *	sous réseau en leur appliquant a tous le meme bridgeActuel,
@@ -173,11 +179,12 @@ class Entitee
 		 *	    alors, tout le réseau va avoir brM0 en bridgeActuel
 		 *
 		 *	ARGS
-		 *	-bridge		nom du bridge que tout le monde doit adopter
+		 *	-bridge
+		 *		nom du bridge que tout le monde doit adopter
 		 */
 		void appliquerBridgeEntiteeSuivante(std::string bridge);
 		
-		/*	modifBridgesSousReseau_entiteeLancee
+		/*	void modifBridgesSousReseau_entiteeLancee()
 		 *
 		 *	permet de modifier les connexions des machines avec les
 		 *	bridges lorsqu'on lance une nouvelle Entitee
@@ -220,21 +227,21 @@ class Entitee
 		 */
 		void modifBridgesSousReseau_entiteeLancee();
 
-		/*	modifBridgesSousReseau_entiteeStoppee
+		/*	void modifBridgesSousReseau_entiteeStoppee()
 		 *
 		 *	permet de modifier les connexions des machines avec les
 		 *	bridges lorsqu'on stoppe une Entitee
 		 */
 		void modifBridgesSousReseau_entiteeStoppee();
 
-		/*	launchEntitee
+		/*	void launchEntitee()
 		 *
 		 *	permet de lancer une Entitee, et d'executer toutes les
 		 *	opérations annexes a ce lancement
 		 */
 		void launchEntitee();
 
-		/*	stopEntitee
+		/*	void stopEntitee()
 		 *
 		 *	permet de stopper une Entitee, et d'executer toutes les
 		 *	opérations annexes a cet arret
@@ -250,7 +257,7 @@ class Entitee
 		virtual void appliquerParamIp() = 0;
 		virtual void appliquerParamRoutage() = 0;
 		virtual int lancerContainer() = 0;
-		virtual int stopperContainer() = 0;
+		virtual void stopperContainer() = 0;
 		virtual void lierABridge() = 0;
 
 		~Entitee();

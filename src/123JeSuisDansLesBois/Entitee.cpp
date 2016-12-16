@@ -238,3 +238,7 @@ void Entitee::stopEntitee()
 
 	/*reste a supprimer les cables*/
 }
+
+Entitee::~Entitee()
+{
+}
