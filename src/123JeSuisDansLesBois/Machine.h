@@ -3,6 +3,13 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
+#include <cstdlib>
+#include <signal.h>
+#include <unistd.h>
+#include <strings.h>
+#include <sys/wait.h>
+#include <sys/types.h>
 #include <lxc/lxccontainer.h>
 
 class Entitee;
@@ -11,7 +18,7 @@ class Entitee;
 
 /*	paramRoutage
  *
- *	permet de stocker les parametres de routage d'une machine pour les
+ *	structure qui permet de stocker les parametres de routage d'une machine pour les
  *	lui appliquer lors de son démarage
  */
 struct paramRoutage
@@ -23,7 +30,7 @@ struct paramRoutage
 
 /*	paramIp
  *
- *	permet de stocker les parametres IP d'une machine pour les
+ *	structure qui permet de stocker les parametres IP d'une machine pour les
  *	lui appliquer lors de son démarage
  */
 struct paramIp
@@ -39,14 +46,22 @@ struct paramIp
 class Machine : public Entitee
 {
 	public:
-		/*	Machine
+		/*	Machine(int num, int type, struct lxc_container* c)
 		 *
 		 *	Constructeur de la classe, il appelle le constructeur
 		 *	de Entitee et initialise l'argument container
+		 *
+		 *	ARGS
+		 *	-num
+		 *		numero de la machine
+		 *	-type
+		 *		type de la machine (TYPE_ORDINATEUR ou TYPE_PASSERELLE)
+		 *	-c
+		 *		container associé a la machine
 		 */
 		Machine(int num, int type, struct lxc_container* c);
 
-		/*	getContainer
+		/*	struct lxc_container* getContainer() const
 		 *
 		 *	permet de recuperer le container associé a la machine
 		 *	
@@ -55,17 +70,18 @@ class Machine : public Entitee
 		 */
 		struct lxc_container* getContainer(void) const;
 		
-		/*	addIpConfig
+		/*	void addIpConfig(struct paramIp ip)
 		 *
 		 *	permet d'ajouter une configuration IP a une machine
 		 *
 		 *	ARGS
-		 *	-ip		structure contenant les parametres IP
-		 *			a ajouter
+		 *	-ip
+		 *		structure contenant les parametres IP
+		 *		a ajouter
 		 */
 		void addIpConfig(struct paramIp ip);
 
-		/*	getIpConfig
+		/*	vector<struct paramIp> getIpConfig() const
 		 *
 		 *	permet de recuperer les configurations IP d'une machine
 		 *
@@ -75,17 +91,18 @@ class Machine : public Entitee
 		 */
 		std::vector<struct paramIp> getIpConfig() const;
 
-		/*	addRouteConfig
+		/*	void addRouteConfig(struct paramRoutage route)
 		 *
 		 *	permet d'ajouter une configuration de routage a une machine
 		 *
 		 *	ARGS
-		 *	-route		structure contenant les parametres de routage
-		 *			a ajouter
+		 *	-route
+		 *		structure contenant les parametres de routage
+		 *		a ajouter
 		 */
 		void addRouteConfig(struct paramRoutage route);
 
-		/*	getRouteConfig
+		/*	vector<struct paramRoutage> getRouteConfig() const
 		 *
 		 *	permet de recuperer les configurations de routage d'une machine
 		 *
@@ -95,7 +112,7 @@ class Machine : public Entitee
 		 */
 		std::vector<struct paramRoutage> getRouteConfig() const;
 		
-		/*	lancerContainer
+		/*	int lancerContainer()
 		 *
 		 *	permet de lancer le container associé a la machine
 		 *
@@ -107,13 +124,16 @@ class Machine : public Entitee
 		 */
 		int lancerContainer();
 
-		/*	stopperContainer
+		/*	int stopperContainer()
 		 *
 		 *	permet de stopper le container associé a la machine
+		 *
+		 *	RETURN VALUE
+		 *	0 en cas de succes, -1 sinon
 		 */
-		int stopperContainer();
+		void stopperContainer();
 
-		/*	force_stopperContainer
+		/*	void force_stopperContainer()
 		 *
 		 *	permet de stopper le container associé a la machine, de
 		 *	maniere plus violente que stopperContainer (il tue le PID
@@ -121,7 +141,7 @@ class Machine : public Entitee
 		 */
 		void force_stopperContainer();
 
-		/*	lierABridge
+		/*	void lierABridge()
 		 *
 		 *	permet de lier le container au bridge actuel
 		 *
@@ -131,7 +151,7 @@ class Machine : public Entitee
 		 */
 		void lierABridge();
 		
-		/*	appliquerParamIp
+		/*	void appliquerParamIp()
 		 *
 		 *	permet d'appliquer les parametres IP qui ont étés préalablement
 		 *	ajoutés avec addIpConfig()
@@ -142,7 +162,7 @@ class Machine : public Entitee
 		 */
 		void appliquerParamIp();
 
-		/*	appliquerParamRoutage
+		/*	void appliquerParamRoutage()
 		 *
 		 *	permet d'appliquer les parametres de routage qui ont étés 
 		 *	préalablementi ajoutés avec addRouteConfig()
@@ -153,14 +173,15 @@ class Machine : public Entitee
 		 */
 		void appliquerParamRoutage();
 		
-		/*	lancerCommandeDansContainer
+		/*	void lancerCommandeDansContainer(char** commande)
 		 *
 		 *	permet de lancer une commande dans le container
 		 *
 		 *	ARGS
-		 *	-commande:	chaine de caracteres a deux dimensions
-		 *			representant la commande
-		 *			exemple:char** cmd={"echo", "HelloWord", NULL};
+		 *	-commande:
+		 *		chaine de caracteres a deux dimensions
+		 *		representant la commande
+		 *		exemple:char** cmd={"echo", "HelloWord", NULL};
 		 *
 		 *	NOTE
 		 *	Le dernier element de la chaine doit etre NULL, comme dans
@@ -169,9 +190,9 @@ class Machine : public Entitee
 		 *	fonction a utiliser uniquement lorsque le container (et
 		 *	donc la machine) est lancé
 		 */
-		int lancerCommandeDansContainer(const char** commande);
+		void lancerCommandeDansContainer(const char** commande);
 		
-		/*	lancerXterm
+		/*	void lancerXterm()
 		 *
 		 *	permet de lancer une fenetre Xterm representant le 
 		 *	terminal de la machine

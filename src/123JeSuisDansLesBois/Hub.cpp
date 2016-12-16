@@ -13,5 +13,5 @@ Hub::Hub()
 void Hub::appliquerParamIp(){}
 void Hub::appliquerParamRoutage(){}
 int Hub::lancerContainer(){}
-int Hub::stopperContainer(){}
+void Hub::stopperContainer(){}
 void Hub::lierABridge(){}

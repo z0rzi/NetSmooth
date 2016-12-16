@@ -9,7 +9,7 @@
 class Hub : public Entitee
 {
 	public:
-		/*	Hub
+		/*	Hub()
 		 *
 		 *	constructeur de la classe, il appelle le constructeur
 		 *	de son parent
@@ -28,13 +28,13 @@ class Hub : public Entitee
 		void appliquerParamRoutage();
 		int lancerContainer();
 		void lierABridge();
-		int stopperContainer();
+		void stopperContainer();
 
 	private:
-		/* numero de Hub, s'incremente a chaque hub créé
-		 * il sert nottament a nommer les bridge:
-		 *     brH0   brM3
-		 *        ^      ^  
+		/* 	numHub
+		 *
+		 * 	numero de Hub, s'incremente a chaque hub créé
+		 * 	il sert nottament a nommer les bridge
 		 */
 		static int numHub;
 };
