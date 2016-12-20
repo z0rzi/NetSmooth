@@ -35,6 +35,15 @@ vector<struct paramRoutage> Machine::getRouteConfig4() const
     return this->m_paramRoutage4;
 }
 
+vector<struct paramRoutage> Machine::getRouteConfig6() const
+{
+    return this->m_paramRoutage6;
+}
+
+void Machine::addRouteConfig6(struct paramRoutage route)
+{
+    this->m_paramRoutage6.push_back(route);
+}
 
 struct lxc_container* Machine::getContainer(void) const
 {
@@ -174,6 +183,27 @@ void Machine::supprimerContainerRoutage4(int id)
     this->lancerCommandeDansContainer(cmd);
 }
 
+void Machine::supprimerContainerRoutage6(int id)
+{
+    bool found = false;
+    vector<struct paramRoutage> tab=this->getRouteConfig6();
+    int indice;
+
+    for(indice=0 ; indice<this->m_paramRoutage6.size() && !found ; indice++)
+    {
+        found = false;
+        {
+            if(this->m_paramRoutage6[indice].id == id)
+            {
+                found = true;
+            }
+        }
+    }
+    const char* cmd[]={"route", "del", "-inet6", tab[indice-1].destination.c_str(), "gw", tab[indice-1].passerelle.c_str(), "dev", tab[indice-1].interface.c_str(), NULL};
+
+    this->lancerCommandeDansContainer(cmd);
+}
+
 void Machine::appliquerParamRoutage4()
 {
 
@@ -262,6 +292,23 @@ void Machine::removeParamRoute4(int id)
     }
 }
 
+void Machine::removeParamRoute6(int id)
+{
+    bool found = false;
+
+    for(int i = 0 ; i < this->m_paramRoutage6.size() && !found ; i++)
+    {
+
+        if(this->m_paramRoutage6[i].id == id)
+        {
+            found = true;
+            this->supprimerContainerRoutage6(id);
+            this->m_paramRoutage6.erase(this->m_paramRoutage6.begin() + i);
+        }
+
+    }
+}
+
 void Machine::removeParamIp(int id)
 {
     bool found = false;
@@ -278,8 +325,16 @@ void Machine::removeParamIp(int id)
         }
     }
 }
-// A FAIRE //
+
 void Machine::appliquerParamRoutage6()
 {
+    int i;
 
+    vector<struct paramRoutage> tab = this->getRouteConfig6();
+    for(i=0 ; i<tab.size() ; i++)
+    {
+        const char* cmd[]={"route", "add", "-inet6", tab[i].destination.c_str(), "gw", tab[i].passerelle.c_str(), "dev", tab[i].interface.c_str(), NULL};
+
+        this->lancerCommandeDansContainer(cmd);
+    }
 }

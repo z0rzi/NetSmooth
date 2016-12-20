@@ -53,7 +53,7 @@ private:
     QTextEdit* emipv4;
     QTextEdit* eipv6;
     QPushButton* allumer;
-    VueRoutes* routes4;
+    VueRoutes* routes;
 
 signals:
     void refresh();
