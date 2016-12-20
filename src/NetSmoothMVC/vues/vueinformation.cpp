@@ -56,6 +56,7 @@ void VueInformation::refresh(QWidget *s)
     this->setSource(s);
     this->getRoutes()->setSource(VueEntitee::getLabelEnSelection()->getModele());
     emit refresh();
+    routes->refresh();
 }
 
 void VueInformation::setSource(QWidget *s)
