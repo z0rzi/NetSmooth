@@ -29,6 +29,8 @@ signals:
 public slots:
     void deleteRoute4();
     void addRoute4();
+    void deleteRoute6();
+    void addRoute6();
 };
 
 #endif

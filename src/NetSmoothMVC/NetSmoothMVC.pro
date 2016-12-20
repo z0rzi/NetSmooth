@@ -12,7 +12,6 @@ HEADERS += \
     controleurs/vueentiteecontroleur.h \
     vues/vuepasserelle.h \
     controleurs/vuemachinecontroleur.h \
-    vues/clicklabel.h \
     controleurs/vuehubcontroleur.h \
     controleurs/vuepasserellecontroleur.h\
     modeles/Machine.h\
@@ -47,7 +46,6 @@ SOURCES += \
     controleurs/vueentiteecontroleur.cpp \
     vues/vuepasserelle.cpp \
     controleurs/vuemachinecontroleur.cpp \
-    vues/clicklabel.cpp \
     controleurs/vuehubcontroleur.cpp \
     controleurs/vuepasserellecontroleur.cpp\
     modeles/Machine.cpp\

@@ -1,7 +1,7 @@
 #include "vueRoutes.h"
 
 VueRoutes::VueRoutes(QWidget *parent) :
-        QGridLayout(parent)
+    QGridLayout(parent)
 {
     this->m_source = NULL;
     this->routesVersion4 = new QWidget();
@@ -11,7 +11,10 @@ VueRoutes::VueRoutes(QWidget *parent) :
     this->routesVersion6->setLayout(new QGridLayout());
 
     this->controleur = new VueRoutesControleur(this);
-    QLabel* ParamRoute = new QLabel("Paramètres routage : ");
+
+    QLabel* paramRoute = new QLabel("Paramètres routage : ");
+
+    /*** ROUTES VERSION 4 ***/
     QLabel* v4 = new QLabel("V4 :");
     QLabel* dest4 = new QLabel("destination");
     QLabel* pass4 = new QLabel("passerelle");
@@ -23,12 +26,32 @@ VueRoutes::VueRoutes(QWidget *parent) :
 
     this->controleur->connect(newLine->getValider(),SIGNAL(clicked(bool)),this->controleur,SLOT(addRoute4()));
 
-    this->addWidget(v4,0,0);
-    this->addWidget(dest4,1,0);
-    this->addWidget(pass4,1,1);
-    this->addWidget(inter4,1,2);
+    this->addWidget(paramRoute,0,0); //!\\ mettre dans vue information pour centrer
+    this->addWidget(v4,1,0);
+    this->addWidget(dest4,2,0);
+    this->addWidget(pass4,2,1);
+    this->addWidget(inter4,2,2);
 
-    this->addWidget(this->routesVersion4,2,0,1,4);
+    this->addWidget(this->routesVersion4,3,0,1,4);
+
+    /*** ROUTES VERSION 6 ***/
+    QLabel* v6 = new QLabel("V4 :");
+    QLabel* dest6 = new QLabel("destination");
+    QLabel* pass6 = new QLabel("passerelle");
+    QLabel* inter6 = new QLabel("interface");
+
+    newLine = new LigneRoute();
+    l = (QGridLayout*)this->routesVersion6->layout();
+    l->addWidget(newLine,0,0);
+
+    this->controleur->connect(newLine->getValider(),SIGNAL(clicked(bool)),this->controleur,SLOT(addRoute6()));
+
+    this->addWidget(v6,4,0);
+    this->addWidget(dest6,5,0);
+    this->addWidget(pass6,5,1);
+    this->addWidget(inter6,5,2);
+
+    this->addWidget(this->routesVersion6,6,0,1,4);
 }
 
 void VueRoutes::refresh()
@@ -37,11 +60,22 @@ void VueRoutes::refresh()
     this->addRoutes();
 }
 
+
+//delete view of routes version 4 and 6
 void VueRoutes::deleteRoutes()
 {
+    /*** ROUTE VERSION 4 ***/
     QLayoutItem * child;
     QGridLayout* l = (QGridLayout*)this->routesVersion4->layout();
-    int a;
+    while((child = l->takeAt(0)) != 0)
+    {
+        std::cout <<" deleteRoutes" << std::endl;
+        child->widget()->deleteLater();
+        delete child;
+    }
+
+    /*** ROUTE VERSION 6 ***/
+    l = (QGridLayout*)this->routesVersion6->layout();
     while((child = l->takeAt(0)) != 0)
     {
         std::cout <<" deleteRoutes" << std::endl;
@@ -50,6 +84,8 @@ void VueRoutes::deleteRoutes()
     }
 }
 
+
+//add view of routes version 4 and 6
 void VueRoutes::addRoutes()
 {
     if(this->m_source->getType()==TYPE_HUB)
@@ -58,11 +94,16 @@ void VueRoutes::addRoutes()
     }
     else
     {
-    QGridLayout* l = (QGridLayout*)this->routesVersion4->layout();
-        int numLine;
+        QGridLayout* l = NULL;
+        int numLine = 0;
+        std::vector<struct paramRoutage> routeConf;
         LigneRoute* newLine;
         Machine* m = (Machine*)this->m_source;
-        std::vector<struct paramRoutage> routeConf = m->getRouteConfig4();
+
+        /*** ROUTE VERSION 4 ***/
+        routeConf = m->getRouteConfig4();
+        l = (QGridLayout*)this->routesVersion4->layout();
+
         for(numLine=0;numLine<routeConf.size();numLine++)
         {
             newLine = new LigneRoute();
@@ -84,6 +125,30 @@ void VueRoutes::addRoutes()
         this->controleur->connect(newLine->getValider(),SIGNAL(clicked(bool)),this->controleur,SLOT(addRoute4()));
 
 
+        /*** ROUTE VERSION 6 ***/
+        routeConf = m->getRouteConfig6();
+        l = (QGridLayout*)this->routesVersion6->layout();
+
+        for(numLine=0;numLine<routeConf.size();numLine++)
+        {
+            newLine = new LigneRoute();
+            const char* interface = routeConf[numLine].interface.c_str();
+            const char* destination = routeConf[numLine].destination.c_str();
+            const char* passerelle = routeConf[numLine].passerelle.c_str();
+            newLine->getEdest()->setText(destination);
+            newLine->getEpass()->setText(passerelle);
+            newLine->getEinter()->setText(interface);
+            newLine->setId(routeConf[numLine].id);
+            newLine->bloquer();
+
+            l->addWidget(newLine,numLine,0);
+            this->controleur->connect(newLine->getValider(),SIGNAL(clicked(bool)),this->controleur,SLOT(deleteRoute6()));
+        }
+
+        newLine = new LigneRoute();
+        l->addWidget(newLine,numLine,0);
+        this->controleur->connect(newLine->getValider(),SIGNAL(clicked(bool)),this->controleur,SLOT(addRoute6()));
+
     }
 }
 void VueRoutes::setSource(Entitee* e)
@@ -94,11 +159,4 @@ void VueRoutes::setSource(Entitee* e)
 Entitee* VueRoutes::getSource()
 {
     return this->m_source;
-}
-
-bool VueRoutes::isRouteVersion4(struct paramRoutage* p)
-{
-    if(p->passerelle.find('.') != std::string::npos)
-        return true;
-    return false;
 }

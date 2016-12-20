@@ -26,7 +26,6 @@ public:
 private:
     Entitee* m_source;
     VueRoutesControleur* controleur = NULL;
-    bool isRouteVersion4(struct paramRoutage* p);
     QWidget* routesVersion4;
     QWidget* routesVersion6;
 
