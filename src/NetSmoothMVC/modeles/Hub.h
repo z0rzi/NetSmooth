@@ -25,8 +25,9 @@ class Hub : public Entitee
 		 * 
 		 */
 		void appliquerParamIp();
-		void appliquerParamRoutage();
-		int lancerContainer();
+        void appliquerParamRoutage4();
+        void appliquerParamRoutage6();
+        int lancerContainer();
 		void lierABridge();
         void separerDeBridge();
 		void stopperContainer();

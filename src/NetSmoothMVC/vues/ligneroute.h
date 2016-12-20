@@ -1,6 +1,7 @@
 #ifndef LIGNEROUTE_H
 #define LIGNEROUTE_H
 
+#include <iostream>
 #include <QWidget>
 #include <QLabel>
 #include <QMouseEvent>

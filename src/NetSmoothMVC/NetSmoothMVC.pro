@@ -30,7 +30,9 @@ HEADERS += \
     vues/constantes.h\
     vues/vueinformation.h\
     vues/ligneroute.h\
-    controleurs/vueinformationcontroleur.h
+    controleurs/vueinformationcontroleur.h\
+    vues/vueRoutes.h\
+    controleurs/vueRoutesControleur.h
 
 SOURCES += \
     main.cpp\
@@ -60,6 +62,8 @@ SOURCES += \
     vues/vuecable.cpp\
     vues/vueinformation.cpp\
     vues/ligneroute.cpp\
-    controleurs/vueinformationcontroleur.cpp
+    controleurs/vueinformationcontroleur.cpp\
+    vues/vueRoutes.cpp\
+    controleurs/vueRoutesControleur.cpp
 
 QMAKE_LIBS += -llxc

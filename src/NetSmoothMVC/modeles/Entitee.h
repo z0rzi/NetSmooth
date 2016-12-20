@@ -261,7 +261,8 @@ public:
                  *	du type < ((Machine*)this)->lancerContainer() >
                  */
         virtual void appliquerParamIp() = 0;
-        virtual void appliquerParamRoutage() = 0;
+        virtual void appliquerParamRoutage4() = 0;
+        virtual void appliquerParamRoutage6() = 0;
         virtual int lancerContainer() = 0;
         virtual void stopperContainer() = 0;
         virtual void lierABridge() = 0;
