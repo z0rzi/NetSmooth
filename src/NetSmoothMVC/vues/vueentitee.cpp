@@ -22,21 +22,20 @@ void VueEntitee::mousePressEvent(QMouseEvent *e)
 {
     if (e->button() == Qt::LeftButton)
     {
-        VueEntitee::setLabelEnSelection(this);
-        VueInformation::getInstanceOf()->refresh(this);
-
-        QPalette* palette = new QPalette();
-        palette->setColor(QPalette::Background,Qt::red);
-        this->setPalette(*palette);
-        if(Selection::getEnSelection()==CABLE)
+        if(VueEntitee::getLabelEnSelection()!=this)
         {
-            VueCable::creerVueCable(this);
+                VueEntitee::setLabelEnSelection(this);
+                VueInformation::getInstanceOf()->refresh(this);
         }
+
+        //QPalette* palette = new QPalette();
+        //palette->setColor(QPalette::Background,Qt::red);
+        //this->setPalette(*palette);
+        if(Selection::getEnSelection()==CABLE)
+            VueCable::creerVueCable(this);
     }
     if (e->button() == Qt::RightButton)
-      {
           emit rightClick();
-      }
 }
 
 void VueEntitee::mouseMoveEvent(QMouseEvent *e)
