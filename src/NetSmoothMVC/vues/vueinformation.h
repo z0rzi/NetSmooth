@@ -6,8 +6,10 @@
 #include <QGridLayout>
 #include <QTextEdit>
 #include <QLabel>
+#include "vues/vueRoutes.h"
 #include "vues/ligneroute.h"
-
+#include "controleurs/vueRoutesControleur.h"
+#include "selection.h"
 class VueInformation : public QWidget
 {
     Q_OBJECT
@@ -34,6 +36,9 @@ public:
     void setAllumer(QPushButton*);
     QPushButton* getAllumer();
 
+    VueRoutes* getRoutes();
+    void setRoutes(VueRoutes* v);
+
 private:
     static VueInformation* instance;
     explicit VueInformation(QWidget *parent = 0);
@@ -48,6 +53,7 @@ private:
     QTextEdit* emipv4;
     QTextEdit* eipv6;
     QPushButton* allumer;
+    VueRoutes* routes4;
 
 signals:
     void refresh();

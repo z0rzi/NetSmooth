@@ -10,7 +10,8 @@ Hub::Hub(int id)
 
 int Hub::lancerContainer(){return 0;}
 void Hub::appliquerParamIp(){}
-void Hub::appliquerParamRoutage(){}
+void Hub::appliquerParamRoutage4(){}
+void Hub::appliquerParamRoutage6(){}
 void Hub::stopperContainer(){}
 void Hub::lierABridge(){}
 void Hub::separerDeBridge(){}

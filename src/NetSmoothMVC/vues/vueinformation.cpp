@@ -37,24 +37,7 @@ VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
     layoutIP->addWidget(ipv6,2,0);
     layoutIP->addWidget(eipv6,2,1);
 
-
-    layoutRoute4 = new QGridLayout();
-
-    QLabel* ParamRoute = new QLabel("Paramètres routage : ");
-    QLabel* v4 = new QLabel("V4 :");
-    QLabel* dest4 = new QLabel("destination");
-    QLabel* pass4 = new QLabel("passerelle");
-    QLabel* inter4 = new QLabel("interface");
-    LigneRoute* route4 = new LigneRoute();
-
-    this->setlastV4(route4);
-
-    layoutRoute4->addWidget(dest4,0,0);
-    layoutRoute4->addWidget(pass4,0,1);
-    layoutRoute4->addWidget(inter4,0,2);
-    layoutRoute4->addWidget(route4,1,0,1,3);
-    nbrLigne4 = 1;
-
+    this->routes4 = new VueRoutes();
     layoutRoute6 = new QGridLayout();
 
     QLabel* v6 = new QLabel("V6 :");
@@ -73,11 +56,9 @@ VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
 
     layoutGlobal->addWidget(ParamIP,0,0);
     layoutGlobal->addLayout(layoutIP,1,0);
-    layoutGlobal->addWidget(ParamRoute,2,0);
-    layoutGlobal->addWidget(v4,3,0);
-    layoutGlobal->addLayout(layoutRoute4,4,0);
-    layoutGlobal->addWidget(v6,5,0);
-    layoutGlobal->addLayout(layoutRoute6,6,0);
+    layoutGlobal->addLayout(routes4,2,0);
+    layoutGlobal->addWidget(v6,3,0);
+    layoutGlobal->addLayout(layoutRoute6,4,0);
 
     this->allumer = new QPushButton();
     allumer->setText("Allumer");
@@ -90,6 +71,7 @@ VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
 void VueInformation::refresh(QWidget *s)
 {
     this->setSource(s);
+    this->getRoutes()->setSource(VueEntitee::getLabelEnSelection()->getModele());
     emit refresh();
 }
 
@@ -187,4 +169,14 @@ void VueInformation::setAllumer(QPushButton * p)
 QPushButton* VueInformation::getAllumer()
 {
     return this->allumer;
+}
+
+VueRoutes* VueInformation::getRoutes()
+{
+    return this->routes4;
+}
+
+void VueInformation::setRoutes(VueRoutes *v)
+{
+    this->routes4 = v;
 }

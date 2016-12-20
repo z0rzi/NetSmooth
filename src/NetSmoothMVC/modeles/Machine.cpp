@@ -13,13 +13,6 @@ Machine::Machine(int id, int type, const char* cntName)
     cout << "cntName = '" << cntName << "'" << endl;
     m_container=lxc_container_new(buff, NULL);
     m_container->set_config_item(m_container, "lxc.utsname", buff);
-    //struct paramIp baseIp = {"eth0","172.16.1.154","255.255.255.0","0::0",""};
-    //this->addIpConfig(baseIp);
-    /*  struct paramRoutage baseRoute1 = {"eth0","148.26.64.0/24","172.168.1.1"};
-    struct paramRoutage baseRoute2 = {"eth0","156.41.85.0/24","172.168.1.1"};
-    this->addRouteConfig(baseRoute1);
-    this->addRouteConfig(baseRoute2);
-*/
 }
 
 void Machine::addIpConfig(struct paramIp ip)
@@ -32,14 +25,14 @@ vector<struct paramIp> Machine::getIpConfig() const
     return m_paramIp;
 }
 
-void Machine::addRouteConfig(struct paramRoutage route)
+void Machine::addRouteConfig4(struct paramRoutage route)
 {
-    m_paramRoutage.push_back(route);
+    this->m_paramRoutage4.push_back(route);
 }
 
-vector<struct paramRoutage> Machine::getRouteConfig() const
+vector<struct paramRoutage> Machine::getRouteConfig4() const
 {
-    return m_paramRoutage;
+    return this->m_paramRoutage4;
 }
 
 
@@ -141,7 +134,7 @@ void Machine::lancerCommandeDansContainer(const char** commande)
     lxc_attach_options_t options = LXC_ATTACH_OPTIONS_DEFAULT;
     lxc_attach_command_t cmd={(char*)commande[0], (char**)commande};		/* rien de compliqué par ici, juste */
     pid_t pid=(this->m_container)->init_pid(this->m_container);					/* transférer les arguments la ou il faut
-                                                     * pour lancer une commande dans le container*/
+                             * pour lancer une commande dans le container*/
 
     this->m_container->attach(this->m_container, lxc_attach_run_command, &cmd, &options, &pid);
 }
@@ -159,34 +152,34 @@ void Machine::appliquerParamIp()
     }
 }
 
-void Machine::supprimerParamRoutage(int id)
+void Machine::supprimerContainerRoutage4(int id)
 {
     bool found = false;
-    vector<struct paramRoutage> tab=this->getRouteConfig();
+    vector<struct paramRoutage> tab=this->getRouteConfig4();
     int indice;
 
-    for(indice=0 ; indice<this->m_paramRoutage.size() && !found ; indice++)
+    for(indice=0 ; indice<this->m_paramRoutage4.size() && !found ; indice++)
     {
-        found = true;
+        found = false;
         {
-            if(this->m_paramRoutage[indice].id == id)
+            if(this->m_paramRoutage4[indice].id == id)
             {
-                found = false;
+                found = true;
             }
         }
     }
-
-    const char* cmd[]={"route", "del", "-net", tab[indice].destination.c_str(), "gw", tab[indice].passerelle.c_str(), "dev", tab[indice].interface.c_str(), NULL};
+    cout << "indice " << indice << endl;
+    const char* cmd[]={"route", "del", "-net", tab[indice-1].destination.c_str(), "gw", tab[indice-1].passerelle.c_str(), "dev", tab[indice-1].interface.c_str(), NULL};
 
     this->lancerCommandeDansContainer(cmd);
 }
 
-void Machine::appliquerParamRoutage()
+void Machine::appliquerParamRoutage4()
 {
 
     int i;
 
-    vector<struct paramRoutage> tab=this->getRouteConfig();
+    vector<struct paramRoutage> tab = this->getRouteConfig4();
     for(i=0 ; i<tab.size() ; i++)
     {
         const char* cmd[]={"route", "add", "-net", tab[i].destination.c_str(), "gw", tab[i].passerelle.c_str(), "dev", tab[i].interface.c_str(), NULL};
@@ -233,7 +226,7 @@ int Machine::getNewIdIp()
     return id;
 }
 
-int Machine::getNewIdRoute()
+int Machine::getNewIdRoute4()
 {
     bool found = false;
     int id;
@@ -241,32 +234,31 @@ int Machine::getNewIdRoute()
     for(id = 0 ; !found ; id++)
     {
         found = true;
-        for(int i=0;i<this->m_paramRoutage.size();i++)
+        for(int i=0;i<this->m_paramRoutage4.size();i++)
         {
-            cout << "id" << this->m_paramRoutage.size() << endl;
-            if(this->m_paramIp[i].id == id)
+            if(this->m_paramRoutage4[i].id == id)
                 found = false;
         }
     }
 
-    return id;
+    cout << "id == >" << id << endl;
+    return id-1;
 }
 
-void Machine::removeParamRoute(int id)
+void Machine::removeParamRoute4(int id)
 {
     bool found = false;
 
-    for(int i = 0 ; i < this->m_paramRoutage.size() && !found ; i++)
+    for(int i = 0 ; i < this->m_paramRoutage4.size() && !found ; i++)
     {
-        found = true;
+
+        if(this->m_paramRoutage4[i].id == id)
         {
-            if(this->m_paramRoutage[i].id == id)
-            {
-                found = false;
-                this->supprimerParamRoutage(id);
-                this->m_paramRoutage.erase(m_paramRoutage.begin() + i);
-            }
+            found = true;
+            this->supprimerContainerRoutage4(id);
+            this->m_paramRoutage4.erase(this->m_paramRoutage4.begin() + i);
         }
+
     }
 }
 
@@ -285,4 +277,9 @@ void Machine::removeParamIp(int id)
             }
         }
     }
+}
+// A FAIRE //
+void Machine::appliquerParamRoutage6()
+{
+
 }

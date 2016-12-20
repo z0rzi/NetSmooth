@@ -291,7 +291,8 @@ void Entitee::launchEntitee()
 
         this->lancerContainer();	/*ces 3 lignes ne font rien si c'est un Hub*/
         this->appliquerParamIp();
-        this->appliquerParamRoutage();
+        this->appliquerParamRoutage4();
+        this->appliquerParamRoutage6();
 
         this->setEtatEntitee(MACHINE_LANCEE);	/* modifie flag dans entitee */
         this->modifBridgesSousReseau_entiteeLancee();

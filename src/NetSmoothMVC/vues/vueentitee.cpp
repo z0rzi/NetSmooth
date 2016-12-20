@@ -70,7 +70,6 @@ void VueEntitee::mouseReleaseEvent(QMouseEvent *e)
 void VueEntitee::setLabelEnSelection(VueEntitee* label)
 {
     VueEntitee::labelEnSelection = label;
-    cout << "adresse lbel :" <<label << endl;
 
 }
 
