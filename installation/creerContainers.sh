@@ -9,7 +9,7 @@ echo "vos containers sont en cours de création, veuillez patienter..."
 
 lxc-create -n ordinateur0 -t download -- -d debian -r jessie -a i386 > /dev/null 2> /dev/null
 
-echo "lxc.include = /usr/share/lxc/config/debian.common.conf" >> /var/lib/lxc/ordinateur0/config
+echo "lxc.include = /usr/share/lxc/config/debian.common.conf" > /var/lib/lxc/ordinateur0/config
 echo "lxc.arch = x86" >> /var/lib/lxc/ordinateur0/config
 echo "" >> /var/lib/lxc/ordinateur0/config
 echo "lxc.rootfs = /var/lib/lxc/ordinateur0/rootfs" >> /var/lib/lxc/ordinateur0/config
@@ -22,7 +22,7 @@ echo "lxc.network.flags = up" >> /var/lib/lxc/ordinateur0/config
 
 lxc-create -n passerelle0 -t download -- -d debian -r jessie -a i386 > /dev/null 2> /dev/null
 
-echo "lxc.include = /usr/share/lxc/config/debian.common.conf" >> /var/lib/lxc/passerelle0/config
+echo "lxc.include = /usr/share/lxc/config/debian.common.conf" > /var/lib/lxc/passerelle0/config
 echo "lxc.arch = x86" >> /var/lib/lxc/passerelle0/config
 echo "" >> /var/lib/lxc/passerelle0/config
 echo "lxc.rootfs = /var/lib/lxc/passerelle0/rootfs" >> /var/lib/lxc/passerelle0/config
