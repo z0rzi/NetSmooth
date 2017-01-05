@@ -12,4 +12,10 @@
 #define TYPE_HUB 1
 #define TYPE_PASSERELLE 2
 
+
+/* nombre interfaces
+ */
+#define NOMBRE_INTERFACES_ORDINATEUR 1
+#define NOMBRE_INTERFACES_PASSERELLE 4
+
 #endif

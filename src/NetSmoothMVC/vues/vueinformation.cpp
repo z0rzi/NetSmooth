@@ -22,25 +22,9 @@ VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
     QLabel* mipv4 = new QLabel("masque ipv4 :");
     QLabel* ipv6 = new QLabel("ipv6 :");
 
-    eipv4 = new QTextEdit();
-    emipv4 = new QTextEdit();
-    eipv6 = new QTextEdit();
-
-    eipv4->setFixedHeight(25);
-    emipv4->setFixedHeight(25);
-    eipv6->setFixedHeight(25);
-
-    layoutIP->addWidget(ipv4,0,0);
-    layoutIP->addWidget(eipv4,0,1);
-    layoutIP->addWidget(mipv4,1,0);
-    layoutIP->addWidget(emipv4,1,1);
-    layoutIP->addWidget(ipv6,2,0);
-    layoutIP->addWidget(eipv6,2,1);
-
     this->routes = new VueRoutes();
 
-    layoutGlobal->addWidget(paramIP,0,0,Qt::AlignHCenter);
-    layoutGlobal->addLayout(layoutIP,1,0);
+    layoutGlobal->addLayout(new VueIP(),1,0);
     layoutGlobal->addLayout(routes,2,0);
 
     this->allumer = new QPushButton();

@@ -35,7 +35,7 @@ VueRoutes::VueRoutes(QWidget *parent) :
     this->addWidget(this->routesVersion4,3,0,1,4);
 
     /*** ROUTES VERSION 6 ***/
-    QLabel* v6 = new QLabel("V4 :");
+    QLabel* v6 = new QLabel("V6 :");
     QLabel* dest6 = new QLabel("destination");
     QLabel* pass6 = new QLabel("passerelle");
     QLabel* inter6 = new QLabel("interface");
