@@ -10,6 +10,9 @@
 #include "vues/ligneroute.h"
 #include "controleurs/vueRoutesControleur.h"
 #include "selection.h"
+#include "vues/VueIP.h"
+
+
 class VueInformation : public QWidget
 {
     Q_OBJECT
