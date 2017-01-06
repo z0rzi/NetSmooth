@@ -20,9 +20,10 @@ public:
     QString getIpv6(void);
     QString getMask(void);
 
-    QString setIpv4(void);
-    QString setIpv6(void);
-    QString setMask(void);
+    void setIpv4(QString t);
+    void setIpv6(QString t);
+    void setMask(QString t);
+
 private:
     QTextEdit* ipv4;
     QTextEdit* ipv6;

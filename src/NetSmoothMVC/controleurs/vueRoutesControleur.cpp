@@ -10,9 +10,9 @@ void VueRoutesControleur::deleteRoute4()
     QPushButton* b = qobject_cast<QPushButton*>(sender());
     LigneRoute* parent = (LigneRoute*)b->parentWidget();
 
-    if(this->vue->getSource()->getType()!=TYPE_HUB)
+    if(VueEntitee::getLabelEnSelection()->getModele()->getType()!=TYPE_HUB)
     {
-        Machine* m = (Machine*)this->vue->getSource();
+        Machine* m = (Machine*)VueEntitee::getLabelEnSelection()->getModele();
         std::cout << "id : " << parent->getId() << std::endl;
         m->removeParamRoute4(parent->getId());
     }
@@ -26,9 +26,9 @@ void VueRoutesControleur::addRoute4()
     QPushButton* b = qobject_cast<QPushButton*>(sender());
     LigneRoute* parent = (LigneRoute*)b->parentWidget();
 
-    if(this->vue->getSource()->getType()!=TYPE_HUB)
+    if(VueEntitee::getLabelEnSelection()->getModele()->getType()!=TYPE_HUB)
     {
-        Machine* m = (Machine*)this->vue->getSource();
+        Machine* m = (Machine*)VueEntitee::getLabelEnSelection()->getModele();
         struct paramRoutage route = {m->getNewIdRoute4(),
                             parent->getEinter()->toPlainText().toStdString(),
                             parent->getEdest()->toPlainText().toStdString(),
@@ -45,9 +45,9 @@ void VueRoutesControleur::deleteRoute6()
     QPushButton* b = qobject_cast<QPushButton*>(sender());
     LigneRoute* parent = (LigneRoute*)b->parentWidget();
 
-    if(this->vue->getSource()->getType()!=TYPE_HUB)
+    if(VueEntitee::getLabelEnSelection()->getModele()->getType()!=TYPE_HUB)
     {
-        Machine* m = (Machine*)this->vue->getSource();
+        Machine* m = (Machine*)VueEntitee::getLabelEnSelection()->getModele();
         m->removeParamRoute6(parent->getId());
     }
 
@@ -59,9 +59,9 @@ void VueRoutesControleur::addRoute6()
     QPushButton* b = qobject_cast<QPushButton*>(sender());
     LigneRoute* parent = (LigneRoute*)b->parentWidget();
 
-    if(this->vue->getSource()->getType()!=TYPE_HUB)
+    if(VueEntitee::getLabelEnSelection()->getModele()->getType()!=TYPE_HUB)
     {
-        Machine* m = (Machine*)this->vue->getSource();
+        Machine* m = (Machine*)VueEntitee::getLabelEnSelection()->getModele();
         struct paramRoutage route = {m->getNewIdRoute4(),
                             parent->getEinter()->toPlainText().toStdString(),
                             parent->getEdest()->toPlainText().toStdString(),

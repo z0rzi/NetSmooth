@@ -88,7 +88,7 @@ void VueRoutes::deleteRoutes()
 //add view of routes version 4 and 6
 void VueRoutes::addRoutes()
 {
-    if(this->m_source->getType()==TYPE_HUB)
+    if(VueEntitee::getLabelEnSelection()->getModele()->getType() == TYPE_HUB)
     {
 
     }
@@ -98,7 +98,7 @@ void VueRoutes::addRoutes()
         int numLine = 0;
         std::vector<struct paramRoutage> routeConf;
         LigneRoute* newLine;
-        Machine* m = (Machine*)this->m_source;
+        Machine* m = (Machine*)VueEntitee::getLabelEnSelection()->getModele();
 
         /*** ROUTE VERSION 4 ***/
         routeConf = m->getRouteConfig4();
@@ -151,7 +151,7 @@ void VueRoutes::addRoutes()
 
     }
 }
-void VueRoutes::setSource(Entitee* e)
+/*void VueRoutes::setSource(Entitee* e)
 {
     this->m_source = e;
 }
@@ -160,3 +160,4 @@ Entitee* VueRoutes::getSource()
 {
     return this->m_source;
 }
+*/

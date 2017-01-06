@@ -34,7 +34,8 @@ HEADERS += \
     controleurs/vueRoutesControleur.h\
     controleurs/VueIPControleur.h\
     vues/VueIP.h\
-    vues/VueFormulaireIP.h
+    vues/VueFormulaireIP.h\
+    controleurs/VueFormulaireIPControleur.h
 
 SOURCES += \
     main.cpp\
@@ -68,6 +69,7 @@ SOURCES += \
     controleurs/vueRoutesControleur.cpp\
     controleurs/VueIPControleur.cpp\
     vues/VueIP.cpp\
-    vues/VueFormulaireIP.cpp
+    vues/VueFormulaireIP.cpp\
+    controleurs/VueFormulaireIPControleur.cpp
 
 QMAKE_LIBS += -llxc

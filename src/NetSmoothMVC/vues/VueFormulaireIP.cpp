@@ -5,7 +5,7 @@ VueFormulaireIP::VueFormulaireIP(QWidget *parent)
 {
 
     QLabel* labelIpv4 = new QLabel("ipv4 :");
-    QLabel* labelIpv6 = new QLabel("ipv4 :");
+    QLabel* labelIpv6 = new QLabel("ipv6 :");
     QLabel* labelMask = new QLabel("Masque ipv4 :");
 
     this->ipv4 = new QTextEdit();
