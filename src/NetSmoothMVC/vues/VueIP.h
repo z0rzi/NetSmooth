@@ -6,6 +6,7 @@
 #include <QGridLayout>
 #include <QTextEdit>
 #include <QLabel>
+#include <QLayout>
 
 #include "modeles/Entitee.h"
 #include "vues/vueentitee.h"
@@ -21,6 +22,7 @@ public:
     void refresh();
     void setSource(Entitee* e);
     std::vector<VueFormulaireIP*> getFormulairesIP();
+void clearLayout(QLayout *layout);
 
 private:
     std::vector<VueFormulaireIP*> m_formulairesIP;
@@ -28,6 +30,7 @@ private:
 
 
 signals:
+
 
 public slots:
 };
