@@ -4,13 +4,12 @@ VuePasserelleControleur::VuePasserelleControleur(VuePasserelle* vue0, VueEntitee
 {
 	vue = vue0;
 
-    connect(vue,SIGNAL(doubleClick()),this,SLOT(terminal()));
+    connect(vue,SIGNAL(doubleClick()),this,SLOT(actionDoubleClick()));
 
 }
 
 
-void VuePasserelleControleur::terminal()
+void VuePasserelleControleur::actionDoubleClick()
 {
-        if (vue->etat == true)
-                this->vue->getModele()->lancerXterm();
+    vue->terminal();
 }

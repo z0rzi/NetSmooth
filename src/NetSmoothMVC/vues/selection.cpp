@@ -6,12 +6,12 @@ Selection::Selection(QWidget *parent) : QWidget(parent)
 
     setEnSelection(SOURIS);
 
-    souris = new QPushButton(tr("Souris"),this);
-    machine = new QPushButton(tr("Machine"), this);
-    passerelle = new QPushButton(tr("Passerelle"), this);
-    hub = new QPushButton(tr("Hub"), this);
-    cable = new QPushButton(tr("Cable"), this);
-    sc = new SelectionControleur(this);
+    this->souris = new QPushButton(tr("Souris"),this);
+    this->machine = new QPushButton(tr("Machine"), this);
+    this->passerelle = new QPushButton(tr("Passerelle"), this);
+    this->hub = new QPushButton(tr("Hub"), this);
+    this->cable = new QPushButton(tr("Cable"), this);
+    this->sc = new SelectionControleur(this);
 
     QGridLayout *layout = new QGridLayout;
     layout->addWidget(souris,0,0);
@@ -31,4 +31,29 @@ int Selection::getEnSelection()
 void Selection::setEnSelection(int es)
 {
     enSelection = es;
+}
+
+QPushButton* Selection::getSouris()
+{
+    return this->souris;
+}
+
+QPushButton* Selection::getMachine()
+{
+    return this->machine;
+}
+
+QPushButton* Selection::getPasserelle()
+{
+    return this->passerelle;
+}
+
+QPushButton* Selection::getHub()
+{
+    return this->hub;
+}
+
+QPushButton* Selection::getCable()
+{
+    return this->cable;
 }

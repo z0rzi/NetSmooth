@@ -21,7 +21,7 @@ private:
 signals:
 
 public slots:
-        void terminal();
+        void actionDoubleClick();
 };
 
 #endif // VUEMACHINECONTROLEUR_H

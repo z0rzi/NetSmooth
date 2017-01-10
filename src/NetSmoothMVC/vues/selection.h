@@ -18,15 +18,20 @@ public:
     explicit Selection(QWidget *parent = 0);
     static int getEnSelection();
     static void setEnSelection(int es);
+    QPushButton* getSouris();
+    QPushButton* getMachine();
+    QPushButton* getPasserelle();
+    QPushButton* getHub();
+    QPushButton* getCable();
+
+private:
+    static int enSelection;
     QPushButton *souris;
     QPushButton *machine;
     QPushButton *passerelle;
     QPushButton *hub;
     QPushButton *cable;
     SelectionControleur *sc;
-
-private:
-    static int enSelection;
 };
 
 #endif // SELECTION_H
