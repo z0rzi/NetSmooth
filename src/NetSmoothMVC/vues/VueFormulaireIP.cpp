@@ -17,12 +17,13 @@ VueFormulaireIP::VueFormulaireIP(int numInterface, Entitee* modele, QWidget *par
     this->m_mask->setFixedHeight(25);
     this->m_ipv6->setFixedHeight(25);
 
-    this->addWidget(labelIpv4,0,0);
-    this->addWidget(this->m_ipv4,0,1);
-    this->addWidget(labelMask,1,0);
-    this->addWidget(this->m_mask,1,1);
-    this->addWidget(labelIpv6,2,0);
-    this->addWidget(this->m_ipv6,2,1);
+    this->addWidget(this->m_nomInterface,0,0);
+    this->addWidget(labelIpv4,1,0);
+    this->addWidget(this->m_ipv4,1,1);
+    this->addWidget(labelMask,2,0);
+    this->addWidget(this->m_mask,2,1);
+    this->addWidget(labelIpv6,3,0);
+    this->addWidget(this->m_ipv6,3,1);
 
     this->appliquerModification();
     this->refresh();
@@ -55,7 +56,9 @@ void VueFormulaireIP::appliquerModification()
     else
     {
         struct paramIp* ip = this->m_modele->getIpConfig()[this->m_numInterface];
-        ip->ipv4  = "salut!";
+        ip->ipv4 = this->m_ipv4->toPlainText().toStdString();
+        ip->maskv4 = this->m_mask->toPlainText().toStdString();
+        ip->ipv6 = this->m_ipv6->toPlainText().toStdString();
     }
 
 }

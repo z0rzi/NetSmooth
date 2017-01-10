@@ -22,4 +22,5 @@ Passerelle::Passerelle(int id)
 
 Passerelle::~Passerelle()
 {
+
 }
