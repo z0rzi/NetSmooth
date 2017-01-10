@@ -15,14 +15,14 @@ Machine::Machine(int id, int type, const char* cntName)
     m_container->set_config_item(m_container, "lxc.utsname", buff);
 }
 
-void Machine::addIpConfig(struct paramIp ip)
+void Machine::addIpConfig(struct paramIp* ip)
 {
     m_paramIp.push_back(ip);
 }
 
-vector<struct paramIp> Machine::getIpConfig()
+vector<struct paramIp*> Machine::getIpConfig()
 {
-    return m_paramIp;
+    return this->m_paramIp;
 }
 
 void Machine::addRouteConfig4(struct paramRoutage route)
@@ -152,10 +152,10 @@ void Machine::appliquerParamIp()
 {
     int i;
 
-    vector<struct paramIp> tab=this->getIpConfig();
+    vector<struct paramIp*> tab=this->getIpConfig();
     for(i=0 ; i<tab.size() ; i++)
     {
-        const char* cmd[]={"ifconfig", tab[i].interface.c_str(), tab[i].ipv4.c_str(), "netmask", tab[i].maskv4.c_str(), "up", NULL};
+        const char* cmd[]={"ifconfig", tab[i]->interface.c_str(), tab[i]->ipv4.c_str(), "netmask", tab[i]->maskv4.c_str(), "up", NULL};
 
         this->lancerCommandeDansContainer(cmd);
     }

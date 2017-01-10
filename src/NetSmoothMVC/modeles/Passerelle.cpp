@@ -9,7 +9,8 @@ Passerelle::Passerelle(int id)
     {
         ostringstream convert;
         convert << numInterface;
-        struct paramIp ip = {"eth"+convert.str(),"","",""};
+        struct paramIp* ip;
+        *ip = {"eth"+convert.str(),"","",""};
         this->addIpConfig(ip);
     }
 }
