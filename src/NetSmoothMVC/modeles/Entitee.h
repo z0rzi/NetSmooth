@@ -18,7 +18,6 @@ class Cable;
  */
 struct paramIp
 {
-    int id;
     std::string interface;
     std::string ipv4;
     std::string maskv4;
@@ -274,7 +273,7 @@ public:
                  *	ici en tant que methodes virtuelles pures evite les transtypages
                  *	du type < ((Machine*)this)->lancerContainer() >
                  */
-        virtual std::vector<struct paramIp> getIpConfig() const = 0 ;
+        virtual std::vector<struct paramIp> getIpConfig() = 0 ;
         virtual void appliquerParamIp() = 0;
         virtual void appliquerParamRoutage4() = 0;
         virtual void appliquerParamRoutage6() = 0;

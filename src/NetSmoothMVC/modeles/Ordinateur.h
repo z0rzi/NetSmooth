@@ -2,9 +2,11 @@
 #define MACHINE_DEF
 
 #include <iostream>
+#include <sstream>
 #include <lxc/lxccontainer.h>
 
 #include "Machine.h"
+
 
 class Ordinateur : public Machine
 {

@@ -2,6 +2,7 @@
 #define PASSERELLE_DEF
 
 #include <iostream>
+#include <sstream>
 #include <lxc/lxccontainer.h>
 
 #include "Machine.h"
