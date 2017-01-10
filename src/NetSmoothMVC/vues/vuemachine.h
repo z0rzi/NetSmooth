@@ -12,6 +12,7 @@ class VueMachine : public VueEntitee
 	public:
 		explicit VueMachine(VueEntitee *parent = 0);
         Ordinateur* getModele(void);
+        void terminal();
 	private:
 		Ordinateur* ordinateur=NULL;
 
