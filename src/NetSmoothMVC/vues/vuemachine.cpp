@@ -17,3 +17,8 @@ Ordinateur* VueMachine::getModele()
   return this->ordinateur;
 }
 
+void VueMachine::terminal()
+{
+    if (this->etat == true)
+            this->getModele()->lancerXterm();
+}

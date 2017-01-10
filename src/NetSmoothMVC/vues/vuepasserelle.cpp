@@ -20,3 +20,9 @@ void VuePasserelle::setPasserelle(Passerelle *passerelle0)
 {
     this->passerelle = passerelle0;
 }
+
+void VuePasserelle::terminal()
+{
+    if (this->etat == true)
+            this->getModele()->lancerXterm();
+}

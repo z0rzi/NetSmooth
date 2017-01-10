@@ -15,7 +15,7 @@ private:
     VuePasserelle* vue;
 
 public slots:
-    void terminal();
+    void actionDoubleClick();
 
 };
 

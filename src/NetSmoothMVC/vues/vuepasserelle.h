@@ -10,6 +10,7 @@ public:
     explicit VuePasserelle(VueEntitee *parent = 0);
     Passerelle* getModele(void);
     void setPasserelle(Passerelle* passerelle0);
+    void terminal();
 
 private:
     Passerelle* passerelle;
