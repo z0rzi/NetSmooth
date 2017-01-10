@@ -33,7 +33,7 @@ private:
 signals:
 
 public slots:
-    void paintMachine(QPoint pos);
+    void actionClickSouris(QPoint pos);
 };
 
 #endif // VUEPRINCIPALECONTROLEUR_H

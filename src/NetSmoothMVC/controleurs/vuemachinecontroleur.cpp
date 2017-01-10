@@ -5,11 +5,10 @@ VueMachineControleur::VueMachineControleur(VueMachine* vue0, VueEntiteeControleu
 {
     vue = vue0;
 
-    connect(vue,SIGNAL(doubleClick()),this,SLOT(terminal()));
+    connect(vue,SIGNAL(doubleClick()),this,SLOT(actionDoubleClick()));
 }
 
-void VueMachineControleur::terminal()
+void VueMachineControleur::actionDoubleClick()
 {
-        if (vue->etat == true)
-                this->vue->getModele()->lancerXterm();
+    vue->terminal();
 }

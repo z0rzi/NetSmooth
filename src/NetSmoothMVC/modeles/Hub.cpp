@@ -9,6 +9,7 @@ Hub::Hub(int id)
 }
 
 int Hub::lancerContainer(){return 0;}
+std::vector<struct paramIp> Hub::getIpConfig() const{}
 void Hub::appliquerParamIp(){}
 void Hub::appliquerParamRoutage4(){}
 void Hub::appliquerParamRoutage6(){}

@@ -24,6 +24,7 @@ class Hub : public Entitee
 		 *	enfant en revanche: Machine)
 		 * 
 		 */
+        std::vector<struct paramIp> getIpConfig() const;
 		void appliquerParamIp();
         void appliquerParamRoutage4();
         void appliquerParamRoutage6();

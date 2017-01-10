@@ -29,6 +29,7 @@ public:
     QPoint pos;
     VuePrincipaleControleur *vpc;
     static QWidget* getwidget();
+    void paintEntitee(QPoint posSouris);
 
 private:
     static QWidget* ca;

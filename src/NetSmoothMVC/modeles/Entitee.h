@@ -11,6 +11,20 @@ class Cable;
 #include "Constantes.h"
 #include "Bridge.h"
 
+/*	paramIp
+ *
+ *	structure qui permet de stocker les parametres IP d'une machine pour les
+ *	lui appliquer lors de son démarage
+ */
+struct paramIp
+{
+    int id;
+    std::string interface;
+    std::string ipv4;
+    std::string maskv4;
+    std::string ipv6;
+};
+
 class Entitee
 {
 public:
@@ -260,6 +274,7 @@ public:
                  *	ici en tant que methodes virtuelles pures evite les transtypages
                  *	du type < ((Machine*)this)->lancerContainer() >
                  */
+        virtual std::vector<struct paramIp> getIpConfig() const = 0 ;
         virtual void appliquerParamIp() = 0;
         virtual void appliquerParamRoutage4() = 0;
         virtual void appliquerParamRoutage6() = 0;

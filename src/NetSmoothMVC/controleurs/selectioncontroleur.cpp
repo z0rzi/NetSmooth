@@ -4,11 +4,11 @@ SelectionControleur::SelectionControleur(Selection *vue0, QObject *parent) : QOb
 {
       vue = vue0;
 
-      connect(vue->souris,SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
-      connect(vue->machine,SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
-      connect(vue->passerelle,SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
-      connect(vue->hub,SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
-      connect(vue->cable,SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
+      connect(vue->getSouris(),SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
+      connect(vue->getMachine(),SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
+      connect(vue->getPasserelle(),SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
+      connect(vue->getHub(),SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
+      connect(vue->getCable(),SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
 }
 
 void SelectionControleur::changeEnSelection()
@@ -18,27 +18,22 @@ void SelectionControleur::changeEnSelection()
    if(b->text() == "Souris")
    {
        Selection::setEnSelection(SOURIS);
-       cout << "Souris !" << endl << endl;
    }
    if(b->text() == "Machine")
    {
        Selection::setEnSelection(MACHINE);
-       cout << "Machine !" << endl << endl;
    }
    if(b->text() == "Passerelle")
    {
        Selection::setEnSelection(PASSERELLE);
-       cout << "Passerelle !" << endl << endl;
    }
    if(b->text() == "Hub")
    {
        Selection::setEnSelection(HUB);
-       cout << "Hub !" << endl << endl;
    }
    if(b->text() == "Cable")
    {
        Selection::setEnSelection(CABLE);
-       cout << "Cable !" << endl << endl;
    }
 }
 

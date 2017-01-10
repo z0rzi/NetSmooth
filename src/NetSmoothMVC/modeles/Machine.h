@@ -32,19 +32,6 @@ struct paramRoutage
     std::string passerelle;
 };
 
-/*	paramIp
- *
- *	structure qui permet de stocker les parametres IP d'une machine pour les
- *	lui appliquer lors de son démarage
- */
-struct paramIp
-{
-    int id;
-    std::string interface;
-    std::string ipv4;
-    std::string maskv4;
-    std::string ipv6;
-};
 
 
 class Machine : public Entitee

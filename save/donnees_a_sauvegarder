@@ -1,0 +1,40 @@
+#entitee:
+{
+	(
+		id
+		type
+		nom
+		position x
+		position y
+		#ipv4
+		\4
+			interface
+			ip
+			mask
+		/
+		#ipv6
+		\6
+			interface
+			ip
+			prefix
+		/
+		#route4
+		[4
+			interface
+			destination
+			passerelle
+		]
+		#route6
+		[6
+			interface
+			destination
+			passerelle
+		]
+
+	)
+}
+#cables:
+<
+	id1
+	id2
+>
