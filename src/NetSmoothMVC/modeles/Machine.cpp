@@ -20,7 +20,7 @@ void Machine::addIpConfig(struct paramIp ip)
     m_paramIp.push_back(ip);
 }
 
-vector<struct paramIp> Machine::getIpConfig() const
+vector<struct paramIp> Machine::getIpConfig()
 {
     return m_paramIp;
 }
@@ -238,7 +238,7 @@ void Machine::lancerXterm()
     }
 }
 
-int Machine::getNewIdIp()
+/*int Machine::getNewIdIp()
 {
     bool found = false;
     int id;
@@ -255,7 +255,7 @@ int Machine::getNewIdIp()
 
     return id;
 }
-
+*/
 int Machine::getNewIdRoute4()
 {
     bool found = false;
@@ -308,7 +308,7 @@ void Machine::removeParamRoute6(int id)
 
     }
 }
-
+/*
 void Machine::removeParamIp(int id)
 {
     bool found = false;
@@ -325,7 +325,7 @@ void Machine::removeParamIp(int id)
         }
     }
 }
-
+*/
 void Machine::appliquerParamRoutage6()
 {
     int i;

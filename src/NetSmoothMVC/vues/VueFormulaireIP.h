@@ -9,25 +9,28 @@
 #include <QGridLayout>
 #include <QString>
 #include <QLabel>
+#include "modeles/Entitee.h"
 
 class VueFormulaireIP : public QGridLayout
 {
 
     Q_OBJECT
 public:
-    explicit VueFormulaireIP(QWidget *parent = 0);
-    QString getIpv4(void);
-    QString getIpv6(void);
-    QString getMask(void);
+    explicit VueFormulaireIP(int numInterface, Entitee* modele,QWidget *parent = 0);
 
-    void setIpv4(QString t);
-    void setIpv6(QString t);
-    void setMask(QString t);
+    void setModele(Entitee* e);
+
+    void refresh();
+    void appliquerModification();
 
 private:
-    QTextEdit* ipv4;
-    QTextEdit* ipv6;
-    QTextEdit* mask;
+
+    int m_numInterface;
+    Entitee* m_modele;
+    QLabel* m_nomInterface;
+    QTextEdit* m_ipv4;
+    QTextEdit* m_ipv6;
+    QTextEdit* m_mask;
 
 signals:
 

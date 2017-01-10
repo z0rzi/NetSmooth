@@ -80,7 +80,7 @@ public:
      *	tableau (sous forme de vector) contenant toutes les
      *	configurations IP
      */
-    std::vector<struct paramIp> getIpConfig() const;
+    std::vector<struct paramIp> getIpConfig();
 
     /*	void addRouteConfig(struct paramRoutage route)
      *
