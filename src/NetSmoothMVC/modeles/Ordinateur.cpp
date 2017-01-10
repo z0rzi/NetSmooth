@@ -11,11 +11,15 @@ Ordinateur::Ordinateur(int id)
         cout << "ok x " << endl;
         ostringstream convert;
         convert << numInterface;
-        struct paramIp* ip = (struct paramIp*) malloc(sizeof(struct paramIp));
-        ip->interface = "eth"+convert.str();
+
+        //POURQUOI MALLOC NE FONCTIONNE PAS?? VINCENT
+        //struct paramIp* ip = (struct paramIp*) malloc(sizeof(struct paramIp));
+        struct paramIp* ip = new paramIp();
+        ip->interface="eth"+convert.str();
         ip->ipv4="";
         ip->ipv6="";
         ip->maskv4="";
+
         this->addIpConfig(ip);
         cout << "ok deux " << endl;
     }

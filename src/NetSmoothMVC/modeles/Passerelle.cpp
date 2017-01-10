@@ -9,8 +9,13 @@ Passerelle::Passerelle(int id)
     {
         ostringstream convert;
         convert << numInterface;
-        struct paramIp* ip;
-        *ip = {"eth"+convert.str(),"","",""};
+
+        struct paramIp* ip = new paramIp();
+        ip->interface="eth"+convert.str();
+        ip->ipv4="";
+        ip->ipv6="";
+        ip->maskv4="";
+
         this->addIpConfig(ip);
     }
 }
