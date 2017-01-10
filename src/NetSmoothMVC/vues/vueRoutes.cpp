@@ -151,13 +151,3 @@ void VueRoutes::addRoutes()
 
     }
 }
-/*void VueRoutes::setSource(Entitee* e)
-{
-    this->m_source = e;
-}
-
-Entitee* VueRoutes::getSource()
-{
-    return this->m_source;
-}
-*/

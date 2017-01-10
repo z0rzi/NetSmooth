@@ -70,7 +70,7 @@ public:
      *		structure contenant les parametres IP
      *		a ajouter
      */
-    void addIpConfig(struct paramIp ip);
+    void addIpConfig(struct paramIp* ip);
 
     /*	vector<struct paramIp> getIpConfig() const
      *
@@ -80,7 +80,7 @@ public:
      *	tableau (sous forme de vector) contenant toutes les
      *	configurations IP
      */
-    std::vector<struct paramIp> getIpConfig();
+    std::vector<struct paramIp*> getIpConfig();
 
     /*	void addRouteConfig(struct paramRoutage route)
      *
@@ -229,7 +229,7 @@ private:
      */
     struct lxc_container *m_container;
 
-    std::vector<struct paramIp> m_paramIp;
+    std::vector<struct paramIp*> m_paramIp;
 
     std::vector<struct paramRoutage> m_paramRoutage4;
 
