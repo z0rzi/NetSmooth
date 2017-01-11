@@ -2,7 +2,22 @@
 
 using namespace std;
 
-void Save::save_profile(string fileName)
+
+void Save::load_session(string fileName)
+{
+        ifstream fichier(fileName.c_str(), ios::in);
+        if(!fichier)
+                return;
+
+        string line;
+
+        while(getline(fichier, line))
+        {
+            cout << line;
+        }
+}
+
+void Save::save_session(string fileName)
 {
         ElementListeChainee* ent;
         int i, j, k;
@@ -102,24 +117,3 @@ void Save::save_profile(string fileName)
         }
         fichier.close();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

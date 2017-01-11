@@ -2,6 +2,7 @@
 #define ENTITEE_DEF
 
 class Cable;
+class VueEntitee;
 
 #include <iostream>
 #include <stdio.h>
@@ -10,6 +11,7 @@ class Cable;
 #include "Cable.h"
 #include "Constantes.h"
 #include "Bridge.h"
+#include "vues/vueentitee.h"
 
 /*	paramIp
  *
@@ -282,6 +284,8 @@ public:
         virtual void stopperContainer() = 0;
         virtual void lierABridge() = 0;
         virtual void separerDeBridge() = 0;
+        void setVue(VueEntitee* v);
+        VueEntitee* getVue();
 
         ~Entitee();
 protected:
@@ -345,6 +349,8 @@ protected:
 
         int m_type;
         int m_id;
+
+        VueEntitee* m_vue;
 };
 
 #endif

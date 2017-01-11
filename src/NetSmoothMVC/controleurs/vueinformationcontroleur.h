@@ -8,6 +8,7 @@
 #include "modeles/Entitee.h"
 #include "modeles/Machine.h"
 #include "vues/selection.h"
+#include "modeles/Save.h"
 
 using namespace std;
 
@@ -34,6 +35,7 @@ public slots:
   /*  void ajoutLigne4();
     void ajoutLigne6();
     void refreshVue();*/
+    void sauvegarder();
     void allumer();
 };
 
