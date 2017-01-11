@@ -26,7 +26,10 @@ VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
     this->allumer = new QPushButton();
     allumer->setText("Allumer");
 
+    QPushButton* sauvegarder = new QPushButton("sauvegarder");
+
     layoutGlobal->addWidget(allumer,2,0,Qt::AlignHCenter);
+    layoutGlobal->addWidget(sauvegarder,2,1);
 
     this->setLayout(layoutGlobal);
 }

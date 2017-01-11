@@ -71,6 +71,7 @@ SOURCES       = ../NetSmoothMVC/main.cpp \
 		../NetSmoothMVC/modeles/Cable.cpp \
 		../NetSmoothMVC/modeles/Bridge.cpp \
 		../NetSmoothMVC/modeles/ElementListeChainee.cpp \
+		../NetSmoothMVC/modeles/Save.cpp \
 		../NetSmoothMVC/vues/vuecable.cpp \
 		../NetSmoothMVC/vues/vueinformation.cpp \
 		../NetSmoothMVC/vues/ligneroute.cpp \
@@ -125,6 +126,7 @@ OBJECTS       = main.o \
 		Cable.o \
 		Bridge.o \
 		ElementListeChainee.o \
+		Save.o \
 		vuecable.o \
 		vueinformation.o \
 		ligneroute.o \
@@ -238,6 +240,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
 		../NetSmoothMVC/modeles/ElementListeChainee.h \
+		../NetSmoothMVC/modeles/Save.h \
 		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/vueinformation.h \
@@ -271,6 +274,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../NetSmoothMVC/modeles/Cable.cpp \
 		../NetSmoothMVC/modeles/Bridge.cpp \
 		../NetSmoothMVC/modeles/ElementListeChainee.cpp \
+		../NetSmoothMVC/modeles/Save.cpp \
 		../NetSmoothMVC/vues/vuecable.cpp \
 		../NetSmoothMVC/vues/vueinformation.cpp \
 		../NetSmoothMVC/vues/ligneroute.cpp \
@@ -448,8 +452,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../NetSmoothMVC/vues/selection.h ../NetSmoothMVC/vues/information.h ../NetSmoothMVC/vues/vueprincipale.h ../NetSmoothMVC/vues/vuemachine.h ../NetSmoothMVC/controleurs/selectioncontroleur.h ../NetSmoothMVC/controleurs/vueprincipalecontroleur.h ../NetSmoothMVC/vues/vueentitee.h ../NetSmoothMVC/vues/vuehub.h ../NetSmoothMVC/controleurs/vueentiteecontroleur.h ../NetSmoothMVC/vues/vuepasserelle.h ../NetSmoothMVC/controleurs/vuemachinecontroleur.h ../NetSmoothMVC/controleurs/vuehubcontroleur.h ../NetSmoothMVC/controleurs/vuepasserellecontroleur.h ../NetSmoothMVC/modeles/Machine.h ../NetSmoothMVC/modeles/Entitee.h ../NetSmoothMVC/modeles/Ordinateur.h ../NetSmoothMVC/modeles/Passerelle.h ../NetSmoothMVC/modeles/Constantes.h ../NetSmoothMVC/modeles/Hub.h ../NetSmoothMVC/modeles/DataBase.h ../NetSmoothMVC/modeles/Cable.h ../NetSmoothMVC/modeles/Bridge.h ../NetSmoothMVC/modeles/Cable.h ../NetSmoothMVC/modeles/ElementListeChainee.h ../NetSmoothMVC/vues/vuecable.h ../NetSmoothMVC/vues/constantes.h ../NetSmoothMVC/vues/vueinformation.h ../NetSmoothMVC/vues/ligneroute.h ../NetSmoothMVC/controleurs/vueinformationcontroleur.h ../NetSmoothMVC/vues/vueRoutes.h ../NetSmoothMVC/controleurs/vueRoutesControleur.h ../NetSmoothMVC/controleurs/VueIPControleur.h ../NetSmoothMVC/vues/VueIP.h ../NetSmoothMVC/vues/VueFormulaireIP.h ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../NetSmoothMVC/main.cpp ../NetSmoothMVC/vues/selection.cpp ../NetSmoothMVC/vues/information.cpp ../NetSmoothMVC/vues/vueprincipale.cpp ../NetSmoothMVC/vues/vuemachine.cpp ../NetSmoothMVC/controleurs/selectioncontroleur.cpp ../NetSmoothMVC/controleurs/vueprincipalecontroleur.cpp ../NetSmoothMVC/vues/vueentitee.cpp ../NetSmoothMVC/vues/vuehub.cpp ../NetSmoothMVC/controleurs/vueentiteecontroleur.cpp ../NetSmoothMVC/vues/vuepasserelle.cpp ../NetSmoothMVC/controleurs/vuemachinecontroleur.cpp ../NetSmoothMVC/controleurs/vuehubcontroleur.cpp ../NetSmoothMVC/controleurs/vuepasserellecontroleur.cpp ../NetSmoothMVC/modeles/Machine.cpp ../NetSmoothMVC/modeles/Entitee.cpp ../NetSmoothMVC/modeles/Ordinateur.cpp ../NetSmoothMVC/modeles/Passerelle.cpp ../NetSmoothMVC/modeles/Hub.cpp ../NetSmoothMVC/modeles/DataBase.cpp ../NetSmoothMVC/modeles/Cable.cpp ../NetSmoothMVC/modeles/Bridge.cpp ../NetSmoothMVC/modeles/ElementListeChainee.cpp ../NetSmoothMVC/vues/vuecable.cpp ../NetSmoothMVC/vues/vueinformation.cpp ../NetSmoothMVC/vues/ligneroute.cpp ../NetSmoothMVC/controleurs/vueinformationcontroleur.cpp ../NetSmoothMVC/vues/vueRoutes.cpp ../NetSmoothMVC/controleurs/vueRoutesControleur.cpp ../NetSmoothMVC/controleurs/VueIPControleur.cpp ../NetSmoothMVC/vues/VueIP.cpp ../NetSmoothMVC/vues/VueFormulaireIP.cpp ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../NetSmoothMVC/vues/selection.h ../NetSmoothMVC/vues/information.h ../NetSmoothMVC/vues/vueprincipale.h ../NetSmoothMVC/vues/vuemachine.h ../NetSmoothMVC/controleurs/selectioncontroleur.h ../NetSmoothMVC/controleurs/vueprincipalecontroleur.h ../NetSmoothMVC/vues/vueentitee.h ../NetSmoothMVC/vues/vuehub.h ../NetSmoothMVC/controleurs/vueentiteecontroleur.h ../NetSmoothMVC/vues/vuepasserelle.h ../NetSmoothMVC/controleurs/vuemachinecontroleur.h ../NetSmoothMVC/controleurs/vuehubcontroleur.h ../NetSmoothMVC/controleurs/vuepasserellecontroleur.h ../NetSmoothMVC/modeles/Machine.h ../NetSmoothMVC/modeles/Entitee.h ../NetSmoothMVC/modeles/Ordinateur.h ../NetSmoothMVC/modeles/Passerelle.h ../NetSmoothMVC/modeles/Constantes.h ../NetSmoothMVC/modeles/Hub.h ../NetSmoothMVC/modeles/DataBase.h ../NetSmoothMVC/modeles/Cable.h ../NetSmoothMVC/modeles/Bridge.h ../NetSmoothMVC/modeles/Cable.h ../NetSmoothMVC/modeles/ElementListeChainee.h ../NetSmoothMVC/modeles/Save.h ../NetSmoothMVC/vues/vuecable.h ../NetSmoothMVC/vues/constantes.h ../NetSmoothMVC/vues/vueinformation.h ../NetSmoothMVC/vues/ligneroute.h ../NetSmoothMVC/controleurs/vueinformationcontroleur.h ../NetSmoothMVC/vues/vueRoutes.h ../NetSmoothMVC/controleurs/vueRoutesControleur.h ../NetSmoothMVC/controleurs/VueIPControleur.h ../NetSmoothMVC/vues/VueIP.h ../NetSmoothMVC/vues/VueFormulaireIP.h ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../NetSmoothMVC/main.cpp ../NetSmoothMVC/vues/selection.cpp ../NetSmoothMVC/vues/information.cpp ../NetSmoothMVC/vues/vueprincipale.cpp ../NetSmoothMVC/vues/vuemachine.cpp ../NetSmoothMVC/controleurs/selectioncontroleur.cpp ../NetSmoothMVC/controleurs/vueprincipalecontroleur.cpp ../NetSmoothMVC/vues/vueentitee.cpp ../NetSmoothMVC/vues/vuehub.cpp ../NetSmoothMVC/controleurs/vueentiteecontroleur.cpp ../NetSmoothMVC/vues/vuepasserelle.cpp ../NetSmoothMVC/controleurs/vuemachinecontroleur.cpp ../NetSmoothMVC/controleurs/vuehubcontroleur.cpp ../NetSmoothMVC/controleurs/vuepasserellecontroleur.cpp ../NetSmoothMVC/modeles/Machine.cpp ../NetSmoothMVC/modeles/Entitee.cpp ../NetSmoothMVC/modeles/Ordinateur.cpp ../NetSmoothMVC/modeles/Passerelle.cpp ../NetSmoothMVC/modeles/Hub.cpp ../NetSmoothMVC/modeles/DataBase.cpp ../NetSmoothMVC/modeles/Cable.cpp ../NetSmoothMVC/modeles/Bridge.cpp ../NetSmoothMVC/modeles/ElementListeChainee.cpp ../NetSmoothMVC/modeles/Save.cpp ../NetSmoothMVC/vues/vuecable.cpp ../NetSmoothMVC/vues/vueinformation.cpp ../NetSmoothMVC/vues/ligneroute.cpp ../NetSmoothMVC/controleurs/vueinformationcontroleur.cpp ../NetSmoothMVC/vues/vueRoutes.cpp ../NetSmoothMVC/controleurs/vueRoutesControleur.cpp ../NetSmoothMVC/controleurs/VueIPControleur.cpp ../NetSmoothMVC/vues/VueIP.cpp ../NetSmoothMVC/vues/VueFormulaireIP.cpp ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -497,7 +501,6 @@ moc_vueprincipale.cpp: ../NetSmoothMVC/controleurs/vueprincipalecontroleur.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
@@ -521,7 +524,6 @@ moc_vuemachine.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vuemachine.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/jicquelv/github/bulto/src/NetSmoothMVC -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6.2.1 -I/usr/include/c++/6.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include-fixed -I/usr/include ../NetSmoothMVC/vues/vuemachine.h -o moc_vuemachine.cpp
@@ -544,7 +546,6 @@ moc_vueprincipalecontroleur.cpp: ../NetSmoothMVC/vues/vueprincipale.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
@@ -567,7 +568,6 @@ moc_vueentitee.cpp: ../NetSmoothMVC/modeles/Machine.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vueentitee.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/jicquelv/github/bulto/src/NetSmoothMVC -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6.2.1 -I/usr/include/c++/6.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include-fixed -I/usr/include ../NetSmoothMVC/vues/vueentitee.h -o moc_vueentitee.cpp
@@ -581,7 +581,6 @@ moc_vuehub.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vuehub.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/jicquelv/github/bulto/src/NetSmoothMVC -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6.2.1 -I/usr/include/c++/6.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include-fixed -I/usr/include ../NetSmoothMVC/vues/vuehub.h -o moc_vuehub.cpp
@@ -595,7 +594,6 @@ moc_vueentiteecontroleur.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/jicquelv/github/bulto/src/NetSmoothMVC -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6.2.1 -I/usr/include/c++/6.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include-fixed -I/usr/include ../NetSmoothMVC/controleurs/vueentiteecontroleur.h -o moc_vueentiteecontroleur.cpp
@@ -609,7 +607,6 @@ moc_vuepasserelle.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vuepasserelle.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/jicquelv/github/bulto/src/NetSmoothMVC -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6.2.1 -I/usr/include/c++/6.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include-fixed -I/usr/include ../NetSmoothMVC/vues/vuepasserelle.h -o moc_vuepasserelle.cpp
@@ -624,7 +621,6 @@ moc_vuemachinecontroleur.cpp: ../NetSmoothMVC/controleurs/vueentiteecontroleur.h
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/controleurs/vuemachinecontroleur.h
@@ -640,7 +636,6 @@ moc_vuehubcontroleur.cpp: ../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vuehub.h \
 		../NetSmoothMVC/controleurs/vuehubcontroleur.h
@@ -656,7 +651,6 @@ moc_vuepasserellecontroleur.cpp: ../NetSmoothMVC/controleurs/vueentiteecontroleu
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/controleurs/vuepasserellecontroleur.h
@@ -671,7 +665,6 @@ moc_vuecable.cpp: ../NetSmoothMVC/modeles/Cable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vuecable.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/jicquelv/github/bulto/src/NetSmoothMVC -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6.2.1 -I/usr/include/c++/6.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include-fixed -I/usr/include ../NetSmoothMVC/vues/vuecable.h -o moc_vuecable.cpp
@@ -688,13 +681,13 @@ moc_vueinformation.cpp: ../NetSmoothMVC/vues/vueRoutes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/selection.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		../NetSmoothMVC/vues/VueIP.h \
 		../NetSmoothMVC/vues/VueFormulaireIP.h \
+		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
 		../NetSmoothMVC/vues/vueinformation.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/jicquelv/github/bulto/src/NetSmoothMVC -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6.2.1 -I/usr/include/c++/6.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include-fixed -I/usr/include ../NetSmoothMVC/vues/vueinformation.h -o moc_vueinformation.cpp
 
@@ -710,7 +703,6 @@ moc_vueinformationcontroleur.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/selection.h \
@@ -721,6 +713,7 @@ moc_vueinformationcontroleur.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/controleurs/vueRoutesControleur.h \
 		../NetSmoothMVC/vues/VueIP.h \
 		../NetSmoothMVC/vues/VueFormulaireIP.h \
+		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
 		../NetSmoothMVC/controleurs/vueinformationcontroleur.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/jicquelv/github/bulto/src/NetSmoothMVC -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6.2.1 -I/usr/include/c++/6.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include-fixed -I/usr/include ../NetSmoothMVC/controleurs/vueinformationcontroleur.h -o moc_vueinformationcontroleur.cpp
 
@@ -735,7 +728,6 @@ moc_vueRoutes.cpp: ../NetSmoothMVC/vues/ligneroute.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/selection.h \
@@ -753,7 +745,6 @@ moc_vueRoutesControleur.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/selection.h \
@@ -773,9 +764,10 @@ moc_VueIP.cpp: ../NetSmoothMVC/modeles/Entitee.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/VueFormulaireIP.h \
+		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/VueIP.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/jicquelv/github/bulto/src/NetSmoothMVC -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6.2.1 -I/usr/include/c++/6.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include-fixed -I/usr/include ../NetSmoothMVC/vues/VueIP.h -o moc_VueIP.cpp
 
@@ -783,6 +775,15 @@ moc_VueFormulaireIP.cpp: ../NetSmoothMVC/modeles/Entitee.h \
 		../NetSmoothMVC/modeles/Cable.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
+		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
+		../NetSmoothMVC/vues/vueentitee.h \
+		../NetSmoothMVC/modeles/Machine.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Ordinateur.h \
+		../NetSmoothMVC/vues/constantes.h \
+		../NetSmoothMVC/vues/VueFormulaireIP.h \
 		../NetSmoothMVC/vues/VueFormulaireIP.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/jicquelv/github/bulto/src/NetSmoothMVC -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6.2.1 -I/usr/include/c++/6.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include-fixed -I/usr/include ../NetSmoothMVC/vues/VueFormulaireIP.h -o moc_VueFormulaireIP.cpp
 
@@ -795,15 +796,10 @@ moc_VueFormulaireIPControleur.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/VueFormulaireIP.h \
-		../NetSmoothMVC/vues/vueRoutes.h \
-		../NetSmoothMVC/vues/ligneroute.h \
-		../NetSmoothMVC/controleurs/vueRoutesControleur.h \
-		../NetSmoothMVC/vues/selection.h \
-		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
 		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/jicquelv/github/bulto/src/NetSmoothMVC -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6.2.1 -I/usr/include/c++/6.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include-fixed -I/usr/include ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h -o moc_VueFormulaireIPControleur.cpp
 
@@ -836,7 +832,6 @@ main.o: ../NetSmoothMVC/main.cpp ../NetSmoothMVC/vues/selection.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
@@ -851,6 +846,7 @@ main.o: ../NetSmoothMVC/main.cpp ../NetSmoothMVC/vues/selection.h \
 		../NetSmoothMVC/controleurs/vueRoutesControleur.h \
 		../NetSmoothMVC/vues/VueIP.h \
 		../NetSmoothMVC/vues/VueFormulaireIP.h \
+		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
 		../NetSmoothMVC/controleurs/vueinformationcontroleur.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../NetSmoothMVC/main.cpp
 
@@ -874,7 +870,6 @@ vueprincipale.o: ../NetSmoothMVC/vues/vueprincipale.cpp ../NetSmoothMVC/vues/vue
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
@@ -898,7 +893,6 @@ vuemachine.o: ../NetSmoothMVC/vues/vuemachine.cpp ../NetSmoothMVC/vues/vuemachin
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vuemachine.o ../NetSmoothMVC/vues/vuemachine.cpp
 
@@ -919,7 +913,6 @@ vueprincipalecontroleur.o: ../NetSmoothMVC/controleurs/vueprincipalecontroleur.c
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
@@ -942,7 +935,6 @@ vueentitee.o: ../NetSmoothMVC/vues/vueentitee.cpp ../NetSmoothMVC/vues/vueentite
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vueinformation.h \
 		../NetSmoothMVC/vues/vueRoutes.h \
@@ -953,6 +945,7 @@ vueentitee.o: ../NetSmoothMVC/vues/vueentitee.cpp ../NetSmoothMVC/vues/vueentite
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		../NetSmoothMVC/vues/VueIP.h \
 		../NetSmoothMVC/vues/VueFormulaireIP.h \
+		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
 		../NetSmoothMVC/vues/vueprincipale.h \
 		../NetSmoothMVC/controleurs/vueprincipalecontroleur.h \
 		../NetSmoothMVC/vues/vuemachine.h \
@@ -975,7 +968,6 @@ vuehub.o: ../NetSmoothMVC/vues/vuehub.cpp ../NetSmoothMVC/vues/vuehub.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vuehub.o ../NetSmoothMVC/vues/vuehub.cpp
 
@@ -989,7 +981,6 @@ vueentiteecontroleur.o: ../NetSmoothMVC/controleurs/vueentiteecontroleur.cpp ../
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vueentiteecontroleur.o ../NetSmoothMVC/controleurs/vueentiteecontroleur.cpp
 
@@ -1003,7 +994,6 @@ vuepasserelle.o: ../NetSmoothMVC/vues/vuepasserelle.cpp ../NetSmoothMVC/vues/vue
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vuepasserelle.o ../NetSmoothMVC/vues/vuepasserelle.cpp
 
@@ -1018,7 +1008,6 @@ vuemachinecontroleur.o: ../NetSmoothMVC/controleurs/vuemachinecontroleur.cpp ../
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vuemachine.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vuemachinecontroleur.o ../NetSmoothMVC/controleurs/vuemachinecontroleur.cpp
@@ -1034,7 +1023,6 @@ vuehubcontroleur.o: ../NetSmoothMVC/controleurs/vuehubcontroleur.cpp ../NetSmoot
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vuehub.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vuehubcontroleur.o ../NetSmoothMVC/controleurs/vuehubcontroleur.cpp
@@ -1050,7 +1038,6 @@ vuepasserellecontroleur.o: ../NetSmoothMVC/controleurs/vuepasserellecontroleur.c
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vuepasserelle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vuepasserellecontroleur.o ../NetSmoothMVC/controleurs/vuepasserellecontroleur.cpp
@@ -1102,7 +1089,6 @@ DataBase.o: ../NetSmoothMVC/modeles/DataBase.cpp ../NetSmoothMVC/modeles/DataBas
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DataBase.o ../NetSmoothMVC/modeles/DataBase.cpp
 
@@ -1123,6 +1109,18 @@ ElementListeChainee.o: ../NetSmoothMVC/modeles/ElementListeChainee.cpp ../NetSmo
 		../NetSmoothMVC/modeles/ElementListeChainee.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ElementListeChainee.o ../NetSmoothMVC/modeles/ElementListeChainee.cpp
 
+Save.o: ../NetSmoothMVC/modeles/Save.cpp ../NetSmoothMVC/modeles/Save.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Machine.h \
+		../NetSmoothMVC/modeles/Entitee.h \
+		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/modeles/Constantes.h \
+		../NetSmoothMVC/modeles/Bridge.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Ordinateur.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Save.o ../NetSmoothMVC/modeles/Save.cpp
+
 vuecable.o: ../NetSmoothMVC/vues/vuecable.cpp ../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/Cable.h \
 		../NetSmoothMVC/modeles/Entitee.h \
@@ -1133,7 +1131,6 @@ vuecable.o: ../NetSmoothMVC/vues/vuecable.cpp ../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vueprincipale.h \
 		../NetSmoothMVC/controleurs/vueprincipalecontroleur.h \
@@ -1162,13 +1159,13 @@ vueinformation.o: ../NetSmoothMVC/vues/vueinformation.cpp ../NetSmoothMVC/vues/v
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/selection.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		../NetSmoothMVC/vues/VueIP.h \
-		../NetSmoothMVC/vues/VueFormulaireIP.h
+		../NetSmoothMVC/vues/VueFormulaireIP.h \
+		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vueinformation.o ../NetSmoothMVC/vues/vueinformation.cpp
 
 ligneroute.o: ../NetSmoothMVC/vues/ligneroute.cpp ../NetSmoothMVC/vues/ligneroute.h
@@ -1184,7 +1181,6 @@ vueinformationcontroleur.o: ../NetSmoothMVC/controleurs/vueinformationcontroleur
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/selection.h \
@@ -1194,7 +1190,8 @@ vueinformationcontroleur.o: ../NetSmoothMVC/controleurs/vueinformationcontroleur
 		../NetSmoothMVC/vues/ligneroute.h \
 		../NetSmoothMVC/controleurs/vueRoutesControleur.h \
 		../NetSmoothMVC/vues/VueIP.h \
-		../NetSmoothMVC/vues/VueFormulaireIP.h
+		../NetSmoothMVC/vues/VueFormulaireIP.h \
+		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vueinformationcontroleur.o ../NetSmoothMVC/controleurs/vueinformationcontroleur.cpp
 
 vueRoutes.o: ../NetSmoothMVC/vues/vueRoutes.cpp ../NetSmoothMVC/vues/vueRoutes.h \
@@ -1209,7 +1206,6 @@ vueRoutes.o: ../NetSmoothMVC/vues/vueRoutes.cpp ../NetSmoothMVC/vues/vueRoutes.h
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/selection.h \
@@ -1226,7 +1222,6 @@ vueRoutesControleur.o: ../NetSmoothMVC/controleurs/vueRoutesControleur.cpp ../Ne
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/selection.h \
@@ -1248,16 +1243,25 @@ VueIP.o: ../NetSmoothMVC/vues/VueIP.cpp ../NetSmoothMVC/vues/VueIP.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/vues/VueFormulaireIP.h
+		../NetSmoothMVC/vues/VueFormulaireIP.h \
+		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
+		../NetSmoothMVC/vues/constantes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o VueIP.o ../NetSmoothMVC/vues/VueIP.cpp
 
 VueFormulaireIP.o: ../NetSmoothMVC/vues/VueFormulaireIP.cpp ../NetSmoothMVC/vues/VueFormulaireIP.h \
 		../NetSmoothMVC/modeles/Entitee.h \
 		../NetSmoothMVC/modeles/Cable.h \
 		../NetSmoothMVC/modeles/Constantes.h \
-		../NetSmoothMVC/modeles/Bridge.h
+		../NetSmoothMVC/modeles/Bridge.h \
+		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
+		../NetSmoothMVC/vues/vueentitee.h \
+		../NetSmoothMVC/modeles/Machine.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Ordinateur.h \
+		../NetSmoothMVC/vues/constantes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o VueFormulaireIP.o ../NetSmoothMVC/vues/VueFormulaireIP.cpp
 
 VueFormulaireIPControleur.o: ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.cpp ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
@@ -1270,15 +1274,9 @@ VueFormulaireIPControleur.o: ../NetSmoothMVC/controleurs/VueFormulaireIPControle
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/ElementListeChainee.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/constantes.h \
-		../NetSmoothMVC/vues/VueFormulaireIP.h \
-		../NetSmoothMVC/vues/vueRoutes.h \
-		../NetSmoothMVC/vues/ligneroute.h \
-		../NetSmoothMVC/controleurs/vueRoutesControleur.h \
-		../NetSmoothMVC/vues/selection.h \
-		../NetSmoothMVC/controleurs/selectioncontroleur.h
+		../NetSmoothMVC/vues/VueFormulaireIP.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o VueFormulaireIPControleur.o ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.cpp
 
 moc_selection.o: moc_selection.cpp 
