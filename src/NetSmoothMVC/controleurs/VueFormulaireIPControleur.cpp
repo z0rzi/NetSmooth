@@ -1,13 +1,12 @@
 #include "VueFormulaireIPControleur.h"
 
-VueFormulaireIPControleur::VueFormulaireIPControleur(VueFormulaireIP* vue0, QObject *parent) : QObject(parent)
+VueFormulaireIPControleur::VueFormulaireIPControleur(VueFormulaireIP* vue0, QPushButton* valider,QObject *parent) : QObject(parent)
 {
     this->vue = vue0;
-    connect(this->vue,SIGNAL(valider()),this,SLOT(refresh()));
+    connect(valider,SIGNAL(clicked()),this,SLOT(appliquerModif));
 }
-
 
 void VueFormulaireIPControleur::appliquerModif()
 {
-    //TODO
+    this->vue->appliquerModification();
 }

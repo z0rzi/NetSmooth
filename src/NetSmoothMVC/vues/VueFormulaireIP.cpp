@@ -7,6 +7,7 @@ VueFormulaireIP::VueFormulaireIP(int numInterface, Entitee* modele, QWidget *par
     QLabel* labelIpv4 = new QLabel("ipv4 :");
     QLabel* labelIpv6 = new QLabel("ipv6 :");
     QLabel* labelMask = new QLabel("Masque ipv4 :");
+    QPushButton* valider = new QPushButton("valider");
 
     this->m_nomInterface = new QLabel();
     this->m_ipv4 = new QTextEdit();
@@ -24,9 +25,12 @@ VueFormulaireIP::VueFormulaireIP(int numInterface, Entitee* modele, QWidget *par
     this->addWidget(this->m_mask,2,1);
     this->addWidget(labelIpv6,3,0);
     this->addWidget(this->m_ipv6,3,1);
+    this->addWidget(valider,4,2);
 
     this->appliquerModification();
     this->refresh();
+
+    VueFormulaireIPControleur* cntrl = new VueFormulaireIPControleur(this,valider);
 }
 
 void VueFormulaireIP::setModele(Entitee* e)
@@ -45,7 +49,6 @@ void VueFormulaireIP::refresh()
         this->m_ipv4->setText(QString::fromStdString(ip->ipv4));
         this->m_mask->setText(QString::fromStdString(ip->maskv4));
         this->m_ipv6->setText(QString::fromStdString(ip->ipv6));
-
     }
 }
 
