@@ -6,8 +6,15 @@ VueInformationControleur::VueInformationControleur(VueInformation* vue0, QObject
     connect(this->vue->getAllumer(),SIGNAL(clicked(bool)),this,SLOT(allumer()));
 }
 
+void sauvegarder()
+{
+    Save::save_session("bobo");
+}
+
 void VueInformationControleur::allumer()
 {
+    Save::load_session("bobo");
+    /*
     QPixmap* img = new QPixmap();
     VueEntitee* vueE = VueEntitee::getLabelEnSelection();
     if (vueE == NULL)
@@ -79,4 +86,5 @@ void VueInformationControleur::allumer()
             vueE->setPixmap(*img);
         }
     }
+    */
 }

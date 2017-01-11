@@ -3,6 +3,7 @@
 
 #include "vueentitee.h"
 
+
 class VueHub : public VueEntitee
 {
 	Q_OBJECT

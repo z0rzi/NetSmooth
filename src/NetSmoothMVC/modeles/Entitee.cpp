@@ -315,6 +315,17 @@ void Entitee::stopEntitee()
         /*reste a supprimer les cables*/
 }
 
+
+void Entitee::setVue(VueEntitee* v)
+{
+    this->m_vue=v;
+}
+
+VueEntitee* Entitee::getVue()
+{
+    return this->m_vue;
+}
+
 Entitee::~Entitee()
 {
 }

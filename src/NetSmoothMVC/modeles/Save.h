@@ -10,12 +10,10 @@
 class Save
 {
         public:
-                static void save_profile(std::string fileName);
+                static void save_session(std::string fileName);
+                static void load_session(std::string fileName);
 
         private:
-
-        public slots:
-                static void sauvegarder(std::string fn);
 };
 
 #endif
