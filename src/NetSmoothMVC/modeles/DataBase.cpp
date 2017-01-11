@@ -21,20 +21,29 @@ Ordinateur* DataBase::getNewOrdinateur(void)
         idAvailable=true;
 
         while(elemActuel!=NULL && idAvailable){
-            if(elemActuel->getEntitee()->getID()==id)
+            if(elemActuel->entitee->getID()==id)
                 idAvailable=false;
 
-            elemActuel=elemActuel->getNextElement();
+            elemActuel=elemActuel->nextElement;
         }
     }
 
     if(id==0)//Cas où aucun ordinateur n'existe
-        DataBase::m_premierOrdinateur = new ElementListeChainee(new Ordinateur(id),NULL);//On remplace le premier maillon de la liste par le nouvel ordinateur.
+    {
+        DataBase::m_premierOrdinateur = new ElementListeChainee;//On remplace le premier maillon de la liste par le nouvel ordinateur.
+        DataBase::m_premierOrdinateur->entitee=new Ordinateur(id);
+        DataBase::m_premierOrdinateur->nextElement=NULL;
+    }
     else
-        DataBase::m_premierOrdinateur = new ElementListeChainee(new Ordinateur(id),DataBase::m_premierOrdinateur);//On remplace le premier maillon de la liste par le nouvel ordinateur.
+    {
+        ElementListeChainee* tmp=DataBase::m_premierOrdinateur;
+        DataBase::m_premierOrdinateur = new ElementListeChainee;//On remplace le premier maillon de la liste par le nouvel ordinateur.
+        DataBase::m_premierOrdinateur->entitee=new Ordinateur(id);
+        DataBase::m_premierOrdinateur->nextElement=tmp;
+    }
 
     DataBase::m_nbreOrdinateur+=1;
-    return (Ordinateur*) DataBase::m_premierOrdinateur->getEntitee();
+    return (Ordinateur*) DataBase::m_premierOrdinateur->entitee;
 }
 
 
@@ -50,19 +59,28 @@ Passerelle* DataBase::getNewPasserelle(void)
         idAvailable=true;
 
         while(elemActuel!=NULL && idAvailable){
-            if(elemActuel->getEntitee()->getID()==id)
+            if(elemActuel->entitee->getID()==id)
                 idAvailable=false;
 
-            elemActuel=elemActuel->getNextElement();
+            elemActuel=elemActuel->nextElement;
         }
     }
     if(id==0)//Cas où aucune passerelle n'existe
-        DataBase::m_premierePasserelle = new ElementListeChainee(new Passerelle(id),NULL);
+    {
+        DataBase::m_premierePasserelle = new ElementListeChainee;//On remplace le premier maillon de la liste par le nouvel ordinateur.
+        DataBase::m_premierePasserelle->entitee=new Passerelle(id);
+        DataBase::m_premierePasserelle->nextElement=NULL;
+    }
     else
-        DataBase::m_premierePasserelle = new ElementListeChainee(new Passerelle(id),DataBase::m_premierePasserelle);
+    {
+        ElementListeChainee* tmp=DataBase::m_premierePasserelle;
+        DataBase::m_premierePasserelle = new ElementListeChainee;//On remplace le premier maillon de la liste par le nouvel ordinateur.
+        DataBase::m_premierePasserelle->entitee=new Passerelle(id);
+        DataBase::m_premierePasserelle->nextElement=tmp;
+    }
 
     DataBase::m_nbrePasserelle+=1;
-    return (Passerelle*) DataBase::m_premierePasserelle->getEntitee();
+    return (Passerelle*) DataBase::m_premierePasserelle->entitee;
 }
 
 
@@ -72,23 +90,32 @@ Hub* DataBase::getNewHub(void)
     bool idAvailable=false;//ID de nouvelle machine trouvé
     for(id=0 ; id < DataBase::m_nbreHub && !idAvailable; id++)
     {
-        ElementListeChainee* elemActuel = DataBase::m_premierePasserelle;
+        ElementListeChainee* elemActuel = DataBase::m_premierHub;
         idAvailable=true;
 
         while(elemActuel!=NULL && idAvailable){
-            if(elemActuel->getEntitee()->getID()==id)
+            if(elemActuel->entitee->getID()==id)
                 idAvailable=false;
 
-            elemActuel=elemActuel->getNextElement();
+            elemActuel=elemActuel->nextElement;
         }
     }
-    if(id==0)//Cas où aucun hub n'existe
-        DataBase::m_premierHub = new ElementListeChainee(new Hub(id),NULL);
+    if(id==0)//Cas où aucune passerelle n'existe
+    {
+        DataBase::m_premierHub = new ElementListeChainee;//On remplace le premier maillon de la liste par le nouvel ordinateur.
+        DataBase::m_premierHub->entitee=new Hub(id);
+        DataBase::m_premierHub->nextElement=NULL;
+    }
     else
-        DataBase::m_premierHub = new ElementListeChainee(new Hub(id),DataBase::m_premierHub);
+    {
+        ElementListeChainee* tmp=DataBase::m_premierHub;
+        DataBase::m_premierHub = new ElementListeChainee;//On remplace le premier maillon de la liste par le nouvel ordinateur.
+        DataBase::m_premierHub->entitee=new Hub(id);
+        DataBase::m_premierHub->nextElement=tmp;
+    }
 
     DataBase::m_nbreHub+=1;
-    return (Hub*) DataBase::m_premierHub->getEntitee();
+    return (Hub*) DataBase::m_premierHub->entitee;
 }
 
 
@@ -99,28 +126,28 @@ void DataBase::detruireOrdinateur(Ordinateur* ordi)
     ElementListeChainee* elemActuel = DataBase::m_premierOrdinateur;
     if(elemActuel==NULL)
         return;
-    else if(elemActuel->getEntitee()->getID()==id)//Cas où c'est le premier élément à supprimer
+    else if(elemActuel->entitee->getID()==id)//Cas où c'est le premier élément à supprimer
     {
-        DataBase::m_premierOrdinateur = elemActuel->getNextElement();
+        DataBase::m_premierOrdinateur = elemActuel->nextElement;
         delete elemActuel;
 
         DataBase::m_nbreOrdinateur-=1;
         return;
     }
     else
-        while(elemActuel->getNextElement()!=NULL)
+        while(elemActuel->nextElement!=NULL)
         {
-            if(elemActuel->getNextElement()->getEntitee()->getID()==id)//ID Machine de Element suivant est le bon
+            if(elemActuel->nextElement->entitee->getID()==id)//ID Machine de Element suivant est le bon
             {
-                elemActuel->setNextElement(elemActuel->getNextElement()->getNextElement());//Element actuel prend comme suivant le suivant de l'élément détruit
-                delete elemActuel->getNextElement();
+                elemActuel->nextElement=elemActuel->nextElement->nextElement;//Element actuel prend comme suivant le suivant de l'élément détruit
+                delete elemActuel->nextElement;
 
                 DataBase::m_nbreOrdinateur-=1;
                 return;
             }
             else
             {
-                elemActuel = elemActuel->getNextElement();
+                elemActuel = elemActuel->nextElement;
             }
         }
 }
@@ -131,28 +158,28 @@ void DataBase::detruirePasserelle(Passerelle* passerelle)
     ElementListeChainee* elemActuel = DataBase::m_premierePasserelle;
     if(elemActuel==NULL)
         return;
-    else if(elemActuel->getEntitee()->getID()==id)//Cas où c'est le premier élément à supprimer
+    else if(elemActuel->entitee->getID()==id)//Cas où c'est le premier élément à supprimer
     {
-        DataBase::m_premierePasserelle = elemActuel->getNextElement();
+        DataBase::m_premierePasserelle = elemActuel->nextElement;
         delete elemActuel;
 
         DataBase::m_nbrePasserelle-=1;
         return;
     }
     else
-        while(elemActuel->getNextElement()!=NULL)
+        while(elemActuel->nextElement!=NULL)
         {
-            if(elemActuel->getNextElement()->getEntitee()->getID()==id)//ID Machine de Element suivant est le bon
+            if(elemActuel->nextElement->entitee->getID()==id)//ID Machine de Element suivant est le bon
             {
-                elemActuel->setNextElement(elemActuel->getNextElement()->getNextElement());//Element actuel prend comme suivant le suivant de l'élément détruit
-                delete elemActuel->getNextElement();
+                elemActuel->nextElement=elemActuel->nextElement->nextElement;//Element actuel prend comme suivant le suivant de l'élément détruit
+                delete elemActuel->nextElement;
 
                 DataBase::m_nbrePasserelle-=1;
                 return;
             }
             else
             {
-                elemActuel = elemActuel->getNextElement();
+                elemActuel = elemActuel->nextElement;
             }
         }
 }
@@ -163,30 +190,43 @@ void DataBase::detruireHub(Hub* hub)
     ElementListeChainee* elemActuel = DataBase::m_premierHub;
     if(elemActuel==NULL)
         return;
-    else if(elemActuel->getEntitee()->getID()==id)//Cas où c'est le premier élément à supprimer
+    else if(elemActuel->entitee->getID()==id)//Cas où c'est le premier élément à supprimer
     {
-        DataBase::m_premierHub = elemActuel->getNextElement();
+        DataBase::m_premierHub = elemActuel->nextElement;
         delete elemActuel;
 
         DataBase::m_nbreHub-=1;
         return;
     }
     else
-        while(elemActuel->getNextElement()!=NULL)
+        while(elemActuel->nextElement!=NULL)
         {
-            if(elemActuel->getNextElement()->getEntitee()->getID()==id)//ID Machine de Element suivant est le bon
+            if(elemActuel->nextElement->entitee->getID()==id)//ID Machine de Element suivant est le bon
             {
-                elemActuel->setNextElement(elemActuel->getNextElement()->getNextElement());//Element actuel prend comme suivant le suivant de l'élément détruit
-                delete elemActuel->getNextElement();
+                elemActuel->nextElement=elemActuel->nextElement->nextElement;//Element actuel prend comme suivant le suivant de l'élément détruit
+                delete elemActuel->nextElement;
 
                 DataBase::m_nbreHub-=1;
                 return;
             }
             else
             {
-                elemActuel = elemActuel->getNextElement();
+                elemActuel = elemActuel->nextElement;
             }
         }
 }
 
+
+ElementListeChainee* DataBase::getListOrdinateur()
+{
+        return DataBase::m_premierOrdinateur;
+}
+ElementListeChainee* DataBase::getListPasserelle()
+{
+        return DataBase::m_premierePasserelle;
+}
+ElementListeChainee* DataBase::getListHub()
+{
+        return DataBase::m_premierHub;
+}
 

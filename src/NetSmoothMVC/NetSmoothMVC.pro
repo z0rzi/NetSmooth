@@ -25,6 +25,7 @@ HEADERS += \
     modeles/Bridge.h\
     modeles/Cable.h\
     modeles/ElementListeChainee.h\
+    modeles/Save.h\
     vues/vuecable.h\
     vues/constantes.h\
     vues/vueinformation.h\
@@ -61,6 +62,7 @@ SOURCES += \
     modeles/Cable.cpp\
     modeles/Bridge.cpp\
     modeles/ElementListeChainee.cpp\
+    modeles/Save.cpp\
     vues/vuecable.cpp\
     vues/vueinformation.cpp\
     vues/ligneroute.cpp\
