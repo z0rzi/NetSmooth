@@ -1,18 +1,18 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'vueprincipalecontroleur.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.7.0)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../../projetBis/NetSmooth/src/NetSmoothMVC/controleurs/vueprincipalecontroleur.h"
+#include "../NetSmoothMVC/controleurs/vueprincipalecontroleur.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'vueprincipalecontroleur.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.7.0. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_VuePrincipaleControleur_t {
     QByteArrayData data[4];
-    char stringdata0[42];
+    char stringdata0[47];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,12 +30,12 @@ struct qt_meta_stringdata_VuePrincipaleControleur_t {
 static const qt_meta_stringdata_VuePrincipaleControleur_t qt_meta_stringdata_VuePrincipaleControleur = {
     {
 QT_MOC_LITERAL(0, 0, 23), // "VuePrincipaleControleur"
-QT_MOC_LITERAL(1, 24, 12), // "paintMachine"
-QT_MOC_LITERAL(2, 37, 0), // ""
-QT_MOC_LITERAL(3, 38, 3) // "pos"
+QT_MOC_LITERAL(1, 24, 17), // "actionClickSouris"
+QT_MOC_LITERAL(2, 42, 0), // ""
+QT_MOC_LITERAL(3, 43, 3) // "pos"
 
     },
-    "VuePrincipaleControleur\0paintMachine\0"
+    "VuePrincipaleControleur\0actionClickSouris\0"
     "\0pos"
 };
 #undef QT_MOC_LITERAL
@@ -68,7 +68,7 @@ void VuePrincipaleControleur::qt_static_metacall(QObject *_o, QMetaObject::Call 
         VuePrincipaleControleur *_t = static_cast<VuePrincipaleControleur *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->paintMachine((*reinterpret_cast< QPoint(*)>(_a[1]))); break;
+        case 0: _t->actionClickSouris((*reinterpret_cast< QPoint(*)>(_a[1]))); break;
         default: ;
         }
     }

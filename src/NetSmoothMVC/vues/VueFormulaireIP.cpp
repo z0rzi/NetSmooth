@@ -27,8 +27,6 @@ VueFormulaireIP::VueFormulaireIP(int numInterface, Entitee* modele, QWidget *par
     this->addWidget(this->m_ipv6,3,1);
     this->addWidget(valider,4,2);
 
-    this->appliquerModification();
-    this->refresh();
 
     VueFormulaireIPControleur* cntrl = new VueFormulaireIPControleur(this,valider);
 }
@@ -45,6 +43,7 @@ void VueFormulaireIP::refresh()
     else
     {
         struct paramIp* ip = this->m_modele->getIpConfig()[this->m_numInterface];
+
         this->m_nomInterface->setText(QString::fromStdString(ip->interface));
         this->m_ipv4->setText(QString::fromStdString(ip->ipv4));
         this->m_mask->setText(QString::fromStdString(ip->maskv4));
@@ -54,14 +53,19 @@ void VueFormulaireIP::refresh()
 
 void VueFormulaireIP::appliquerModification()
 {
+
     if(this->m_modele == NULL || this->m_numInterface > this->m_modele->getIpConfig().size())
         perror("VueFormulaireIP appliquerModification");
     else
     {
         struct paramIp* ip = this->m_modele->getIpConfig()[this->m_numInterface];
+
         ip->ipv4 = this->m_ipv4->toPlainText().toStdString();
         ip->maskv4 = this->m_mask->toPlainText().toStdString();
         ip->ipv6 = this->m_ipv6->toPlainText().toStdString();
+
+        this->m_modele->appliquerParamIp();
+
     }
 
 }

@@ -25,16 +25,16 @@ void VuePrincipale::mousePressEvent(QMouseEvent *e)
         VueCable::setPremiereSelection(NULL);
         VueCable::setSecondeSelection(NULL);
     }
-
-}
-
-void VuePrincipale::mouseDoubleClickEvent(QMouseEvent *e)
-{
     if (e->buttons() == Qt::LeftButton)
     {
         this->pos = QWidget::mapFromGlobal(QCursor::pos());
         emit clickSouris(pos);
     }
+
+}
+
+void VuePrincipale::mouseDoubleClickEvent(QMouseEvent *e)
+{
 }
 
 QWidget* VuePrincipale::getwidget()
@@ -47,7 +47,6 @@ void VuePrincipale::paintEntitee(QPoint posSouris)
     if(Selection::getEnSelection() == MACHINE)
     {
         VueMachine* e = new VueMachine();
-        cout << e->getModele()->getContainer() << endl;
         VueMachineControleur* c = new VueMachineControleur(e);
         e->setGeometry(posSouris.x(),posSouris.y(),130,130);
         QGraphicsProxyWidget* proxy = this->scene->addWidget(e);

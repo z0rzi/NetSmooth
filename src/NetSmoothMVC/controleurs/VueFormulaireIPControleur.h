@@ -7,18 +7,13 @@
 #include "vues/constantes.h"
 #include "modeles/Entitee.h"
 #include "vues/VueFormulaireIP.h"
-
-using namespace std;
-
-class VueFormulaireIPControleur;
-
-#include "vues/vueRoutes.h"
+class VueFormulaireIP;
 
 class VueFormulaireIPControleur : public QObject
 {
     Q_OBJECT
 public:
-    explicit VueFormulaireIPControleur(VueFormulaireIP* vue, QObject *parent = 0);
+    explicit VueFormulaireIPControleur(VueFormulaireIP* vue, QPushButton* valider, QObject *parent = 0);
 
 private:
     VueFormulaireIP* vue;

@@ -69,7 +69,6 @@ void VueRoutes::deleteRoutes()
     QGridLayout* l = (QGridLayout*)this->routesVersion4->layout();
     while((child = l->takeAt(0)) != 0)
     {
-        std::cout <<" deleteRoutes" << std::endl;
         child->widget()->deleteLater();
         delete child;
     }
@@ -78,7 +77,6 @@ void VueRoutes::deleteRoutes()
     l = (QGridLayout*)this->routesVersion6->layout();
     while((child = l->takeAt(0)) != 0)
     {
-        std::cout <<" deleteRoutes" << std::endl;
         child->widget()->deleteLater();
         delete child;
     }

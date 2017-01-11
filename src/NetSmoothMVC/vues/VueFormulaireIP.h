@@ -9,7 +9,9 @@
 #include <QGridLayout>
 #include <QString>
 #include <QLabel>
+#include <QPushButton>
 #include "modeles/Entitee.h"
+#include "controleurs/VueFormulaireIPControleur.h"
 
 class VueFormulaireIP : public QGridLayout
 {

@@ -13,7 +13,6 @@ void VueRoutesControleur::deleteRoute4()
     if(VueEntitee::getLabelEnSelection()->getModele()->getType()!=TYPE_HUB)
     {
         Machine* m = (Machine*)VueEntitee::getLabelEnSelection()->getModele();
-        std::cout << "id : " << parent->getId() << std::endl;
         m->removeParamRoute4(parent->getId());
     }
 
@@ -22,7 +21,6 @@ void VueRoutesControleur::deleteRoute4()
 
 void VueRoutesControleur::addRoute4()
 {
-    std::cout << "addRoute" << std::endl;
     QPushButton* b = qobject_cast<QPushButton*>(sender());
     LigneRoute* parent = (LigneRoute*)b->parentWidget();
 
