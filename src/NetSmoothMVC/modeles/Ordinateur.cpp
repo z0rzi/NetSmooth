@@ -8,7 +8,6 @@ Ordinateur::Ordinateur(int id)
 
     for(int numInterface = 0; numInterface < NOMBRE_INTERFACES_ORDINATEUR ; numInterface++)
     {
-        cout << "ok x " << endl;
         ostringstream convert;
         convert << numInterface;
 
@@ -21,9 +20,7 @@ Ordinateur::Ordinateur(int id)
         ip->maskv4="";
 
         this->addIpConfig(ip);
-        cout << "ok deux " << endl;
     }
-
 }
 
 Ordinateur::~Ordinateur(void)

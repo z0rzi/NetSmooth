@@ -3,7 +3,7 @@
 VueFormulaireIPControleur::VueFormulaireIPControleur(VueFormulaireIP* vue0, QPushButton* valider,QObject *parent) : QObject(parent)
 {
     this->vue = vue0;
-    connect(valider,SIGNAL(clicked()),this,SLOT(appliquerModif));
+    connect(valider,SIGNAL(clicked()),this,SLOT(appliquerModif()));
 }
 
 void VueFormulaireIPControleur::appliquerModif()

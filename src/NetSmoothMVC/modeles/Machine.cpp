@@ -238,24 +238,6 @@ void Machine::lancerXterm()
     }
 }
 
-/*int Machine::getNewIdIp()
-{
-    bool found = false;
-    int id;
-
-    for(id = 0 ; !found ; id++)
-    {
-        found = true;
-        for(int i=0;i<this->m_paramIp.size();i++)
-        {
-            if(this->m_paramIp[i].id == id)
-                found = false;
-        }
-    }
-
-    return id;
-}
-*/
 int Machine::getNewIdRoute4()
 {
     bool found = false;
@@ -308,24 +290,7 @@ void Machine::removeParamRoute6(int id)
 
     }
 }
-/*
-void Machine::removeParamIp(int id)
-{
-    bool found = false;
 
-    for(int i = 0 ; i < this->m_paramIp.size() && !found ; i++)
-    {
-        found = true;
-        {
-            if(this->m_paramIp[i].id == id)
-            {
-                found = false;
-                this->m_paramIp.erase(m_paramIp.begin() + i);
-            }
-        }
-    }
-}
-*/
 void Machine::appliquerParamRoutage6()
 {
     int i;

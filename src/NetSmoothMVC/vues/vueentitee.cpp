@@ -15,7 +15,6 @@ VueEntitee::VueEntitee(QLabel *parent) : QLabel(parent)
 }
 
 Entitee* VueEntitee::getModele(){
-
 }
 
 void VueEntitee::mousePressEvent(QMouseEvent *e)
@@ -28,9 +27,6 @@ void VueEntitee::mousePressEvent(QMouseEvent *e)
                 VueInformation::getInstanceOf()->refresh(this);
         }
 
-        //QPalette* palette = new QPalette();
-        //palette->setColor(QPalette::Background,Qt::red);
-        //this->setPalette(*palette);
         if(Selection::getEnSelection()==CABLE)
             VueCable::creerVueCable(this);
     }
