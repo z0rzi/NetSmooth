@@ -4,10 +4,15 @@
 #include "Passerelle.h"
 #include "Hub.h"
 #include "Entitee.h"
-#include "ElementListeChainee.h"
 #include "Ordinateur.h"
 #include "Machine.h"
 #include "Cable.h"
+
+typedef struct elemList
+{
+    Entitee* entitee;
+    struct elemList* nextElement;
+} ElementListeChainee;
 
 class DataBase
 {
@@ -20,6 +25,9 @@ public:
         static void detruireOrdinateur(Ordinateur* ordi);
         static void detruirePasserelle(Passerelle* passerelle);
         static void detruireHub(Hub* hub);
+        static ElementListeChainee* getListOrdinateur(void);
+        static ElementListeChainee* getListPasserelle(void);
+        static ElementListeChainee* getListHub(void);
 
 private:
         static int m_nbreOrdinateur;
