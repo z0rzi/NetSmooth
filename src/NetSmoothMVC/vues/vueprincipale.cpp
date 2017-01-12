@@ -5,7 +5,6 @@ QWidget* VuePrincipale::ca = NULL;
 VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
 {
     this->setMinimumSize(600,600);
-    this->setMaximumSize(800,800);
 
     this->m_scene = new QGraphicsScene(this);
     this->m_view = new QGraphicsView(m_scene,this);
@@ -14,6 +13,7 @@ VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
     this->m_scene->setSceneRect(0,0,2000,2000);
     this->m_scene->setBackgroundBrush(Qt::white);
 
+    //this->m_view->setGeometry(0,0,600,600);
     this->m_view->show();
     this->ca=this;
 }
@@ -30,7 +30,6 @@ void VuePrincipale::mousePressEvent(QMouseEvent *e)
         this->m_pos = QWidget::mapFromGlobal(QCursor::pos());
         emit clickSouris(m_pos);
     }
-
 }
 
 void VuePrincipale::mouseDoubleClickEvent(QMouseEvent *e)
