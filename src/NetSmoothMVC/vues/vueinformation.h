@@ -26,7 +26,7 @@ public:
     void setAllumer(QPushButton*);
     QPushButton* getAllumer();
     void allumer();
-    QPushButton* getSauvegarder();
+//    QPushButton* getSauvegarder();
     void sauvegarder();
 
     VueRoutes* getRoutes();
