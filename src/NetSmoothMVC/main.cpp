@@ -7,13 +7,14 @@
 #include "vues/vueinformation.h"
 #include "controleurs/vueinformationcontroleur.h"
 
-int Selection::enSelection = 0;
+int Selection::m_enSelection = 0;
 
 int main(int argc, char** argv)
 {
     cout << "click droit pour demarer une machine, double click pour xterm" << endl;
     QApplication app(argc, argv);
     QWidget *w = new QWidget();
+    QMainWindow *mw = new QMainWindow();
     Selection *s = new Selection();
     VuePrincipale *vp = new VuePrincipale();
     QGridLayout *g = new QGridLayout();
@@ -23,7 +24,8 @@ int main(int argc, char** argv)
     g->addWidget(vp,0,1,0);
     g->addWidget(vi,0,2,0);
     w->setLayout(g);
-    w->show();
+    mw->setCentralWidget(w);
+    mw->showMaximized();
 
     return app.exec();
 }

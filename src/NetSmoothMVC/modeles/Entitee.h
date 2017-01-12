@@ -8,10 +8,9 @@ class VueEntitee;
 #include <stdio.h>
 #include <string>
 #include <strings.h>
-#include "Cable.h"
 #include "Constantes.h"
 #include "Bridge.h"
-#include "vues/vueentitee.h"
+#include <vector>
 
 /*	paramIp
  *

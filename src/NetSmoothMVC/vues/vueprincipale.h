@@ -24,15 +24,17 @@ public:
     explicit VuePrincipale(QWidget *parent = 0);
     void mousePressEvent(QMouseEvent *e);
     void mouseDoubleClickEvent(QMouseEvent *e);
-    QGraphicsScene *scene;
-    QGraphicsView *view;
-    QPoint pos;
-    VuePrincipaleControleur *vpc;
     static QWidget* getwidget();
     void paintEntitee(QPoint posSouris);
+    QGraphicsScene* getScene();
+    QGraphicsView* getView();
 
 private:
     static QWidget* ca;
+    QGraphicsScene *m_scene;
+    QGraphicsView *m_view;
+    QPoint m_pos;
+    VuePrincipaleControleur *m_vpc;
 
 signals:
     void clickSouris(QPoint pos);

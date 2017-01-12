@@ -10,6 +10,8 @@
 #include "modeles/Entitee.h"
 #include "modeles/Machine.h"
 #include "controleurs/vueRoutesControleur.h"
+#include <QScrollArea>
+
 class VueRoutesControleur;
 
 class VueRoutes : public QGridLayout
@@ -32,6 +34,10 @@ private:
 signals:
 
 public slots:
+    void deleteRoute4();
+    void addRoute4();
+    void deleteRoute6();
+    void addRoute6();
 };
 
 #endif

@@ -12,24 +12,25 @@ VueInformation* VueInformation::getInstanceOf()
 VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
 {
 
-    this->setFixedSize(400,500);
+    this->setBaseSize(400,500);
+    this->setMaximumWidth(500);
 
     QGridLayout* layoutGlobal = new QGridLayout();
 
-    this->routes = new VueRoutes();
+    this->m_routes = new VueRoutes();
 
-    this->vueIP = new VueIP();
+    this->m_vueIP = new VueIP();
 
-    layoutGlobal->addLayout(this->vueIP,0,0);
-    layoutGlobal->addLayout(routes,1,0);
+    layoutGlobal->addLayout(this->m_vueIP,0,0);
+    layoutGlobal->addLayout(m_routes,1,0);
 
-    this->allumer = new QPushButton();
-    allumer->setText("Allumer");
+    this->m_allumer = new QPushButton();
+    m_allumer->setText("Allumer");
 
-    QPushButton* sauvegarder = new QPushButton("sauvegarder");
+    m_sauvegarder = new QPushButton("sauvegarder");
 
-    layoutGlobal->addWidget(allumer,2,0,Qt::AlignHCenter);
-    layoutGlobal->addWidget(sauvegarder,2,1);
+    layoutGlobal->addWidget(m_allumer,2,0,Qt::AlignHCenter);
+    layoutGlobal->addWidget(m_sauvegarder,2,1);
 
     this->setLayout(layoutGlobal);
 }
@@ -37,45 +38,131 @@ VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
 void VueInformation::refresh(QWidget *s)
 {
     this->setSource(s);
-    this->routes->refresh();
-    this->vueIP->refresh();
+    this->m_routes->refresh();
+    this->m_vueIP->refresh();
+}
+
+void VueInformation::sauvegarder()
+{
+    Save::save_session("bobo");
+}
+
+void VueInformation::allumer()
+{
+    Save::load_session("bobo");
+    QPixmap* img = new QPixmap();
+    VueEntitee* vueE = VueEntitee::getLabelEnSelection();
+    if (vueE == NULL)
+    {
+        cout << "erreur selection" << endl;
+        return;
+    }
+    if(vueE->getModele()->getType()==TYPE_ORDINATEUR)
+    {
+        if (vueE->etat == false)
+        {
+            vueE->etat = true;
+
+            //TODO ajouter les nouvelles ip rentrées
+
+            vueE->getModele()->launchEntitee();
+            img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuron.png");
+            *img = img->scaled(130,130);
+            vueE->setPixmap(*img);
+        }
+        else
+        {
+            vueE->etat = false;
+            vueE->getModele()->stopEntitee();
+            img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuroff.png");
+            *img = img->scaled(130,130);
+            vueE->setPixmap(*img);
+        }
+    }
+    else if(vueE->getModele()->getType()==TYPE_PASSERELLE)
+    {
+        if (vueE->etat == false)
+        {
+            vueE->etat = true;
+
+            //TODO ajouter les nouvelles ip rentrées
+
+            vueE->getModele()->launchEntitee();
+            img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleon.png");
+            *img = img->scaled(130,130);
+            vueE->setPixmap(*img);
+        }
+        else
+        {
+            vueE->etat = false;
+            vueE->getModele()->stopEntitee();
+            img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleoff.png");
+            *img = img->scaled(130,130);
+            vueE->setPixmap(*img);
+        }
+    }
+    else if(vueE->getModele()->getType()==TYPE_HUB)
+    {
+        if (vueE->etat == false)
+        {
+            vueE->etat = true;
+            Hub* p = (Hub*)vueE->getModele();
+            vueE->getModele()->launchEntitee();
+            img->load("../build-NetSmoothMVC-Desktop-Debug/images/Hubon.png");
+            *img = img->scaled(130,130);
+            vueE->setPixmap(*img);
+        }
+        else
+        {
+            vueE->etat = false;
+            vueE->getModele()->stopEntitee();
+            img->load("../build-NetSmoothMVC-Desktop-Debug/images/Huboff.png");
+            *img = img->scaled(130,130);
+            vueE->setPixmap(*img);
+        }
+    }
 }
 
 void VueInformation::setSource(QWidget *s)
 {
-    this->source = s;
+    this->m_source = s;
 }
 QWidget* VueInformation::getSource()
 {
-    return this->source;
+    return this->m_source;
 }
 
 void VueInformation::setAllumer(QPushButton * p)
 {
-    this->allumer = p;
+    this->m_allumer = p;
 }
 
 QPushButton* VueInformation::getAllumer()
 {
-    return this->allumer;
+    return this->m_allumer;
+}
+
+QPushButton* VueInformation::getSauvegarder()
+{
+    return this->m_sauvegarder;
 }
 
 VueRoutes* VueInformation::getRoutes()
 {
-    return this->routes;
+    return this->m_routes;
 }
 
 void VueInformation::setRoutes(VueRoutes *v)
 {
-    this->routes = v;
+    this->m_routes = v;
 }
 
 VueIP* VueInformation::getVueIP()
 {
-    return this->vueIP;
+    return this->m_vueIP;
 }
 
 void VueInformation::setVueIP(VueIP *v)
 {
-    this->vueIP = v;
+    this->m_vueIP = v;
 }

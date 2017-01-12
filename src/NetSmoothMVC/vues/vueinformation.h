@@ -11,6 +11,7 @@
 #include "controleurs/vueRoutesControleur.h"
 #include "selection.h"
 #include "vues/VueIP.h"
+#include "modeles/Save.h"
 
 
 class VueInformation : public QWidget
@@ -24,6 +25,9 @@ public:
     void vider();
     void setAllumer(QPushButton*);
     QPushButton* getAllumer();
+    void allumer();
+    QPushButton* getSauvegarder();
+    void sauvegarder();
 
     VueRoutes* getRoutes();
     void setRoutes(VueRoutes* v);
@@ -34,10 +38,11 @@ public:
 private:
     static VueInformation* instance;
     explicit VueInformation(QWidget *parent = 0);
-    QWidget* source;
-    QPushButton* allumer;
-    VueRoutes* routes;
-    VueIP* vueIP;
+    QWidget* m_source;
+    QPushButton* m_allumer;
+    QPushButton* m_sauvegarder;
+    VueRoutes* m_routes;
+    VueIP* m_vueIP;
 
 signals:
     void refresh();

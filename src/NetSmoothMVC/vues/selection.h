@@ -25,13 +25,13 @@ public:
     QPushButton* getCable();
 
 private:
-    static int enSelection;
-    QPushButton *souris;
-    QPushButton *machine;
-    QPushButton *passerelle;
-    QPushButton *hub;
-    QPushButton *cable;
-    SelectionControleur *sc;
+    static int m_enSelection;
+    QPushButton *m_souris;
+    QPushButton *m_machine;
+    QPushButton *m_passerelle;
+    QPushButton *m_hub;
+    QPushButton *m_cable;
+    SelectionControleur *m_sc;
 };
 
 #endif // SELECTION_H

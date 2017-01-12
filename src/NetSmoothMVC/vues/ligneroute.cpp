@@ -2,24 +2,28 @@
 
 LigneRoute::LigneRoute(QLabel *parent) : QLabel(parent)
 {
-    valider = new QPushButton();
-    layout = new QGridLayout();
-    edest = new QTextEdit();
-    epass = new QTextEdit();
-    einter = new QTextEdit();
+    this->setMinimumSize(350,100);
+    this->setFixedHeight(35);
 
-    valider->setText("OK");
-    valider->setFixedWidth(25);
-    edest->setFixedHeight(25);
-    epass->setFixedHeight(25);
-    einter->setFixedHeight(25);
+    this->valider = new QPushButton();
+    this->layout = new QGridLayout();
+    this->edest = new QTextEdit();
+    this->epass = new QTextEdit();
+    this->einter = new QTextEdit();
 
-    layout->addWidget(edest,0,0);
-    layout->addWidget(epass,0,1);
-    layout->addWidget(einter,0,2);
-    layout->addWidget(valider,0,3);
+    this->valider->setText("OK");
+    this->valider->setFixedHeight(25);
+    this->valider->setFixedWidth(25);
+    this->edest->setFixedHeight(25);
+    this->epass->setFixedHeight(25);
+    this->einter->setFixedHeight(25);
 
-    setLayout(layout);
+    this->layout->addWidget(edest,0,0);
+    this->layout->addWidget(epass,0,1);
+    this->layout->addWidget(einter,0,2);
+    this->layout->addWidget(valider,0,3);
+
+    this->setLayout(layout);
 
 }
 
