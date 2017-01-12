@@ -24,7 +24,11 @@ void Save::save_session(string fileName)
         bool ok;
         ofstream fichier(fileName.c_str(), ios::out|ios::trunc);
         if(!fichier)
+        {
+            cout << "marche po" << endl;
             return;
+        }
+    cout << "marche" << endl;
         vector<Cable*> cables;
 
         fichier << "{" << endl;

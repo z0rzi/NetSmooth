@@ -2,6 +2,9 @@
 #include "Ordinateur.h"
 #include "Passerelle.h"
 
+#include "Cable.h"
+#include "vues/vueentitee.h"
+
 using namespace std;
 
 Entitee::Entitee(int id, int type) :m_id(id)
