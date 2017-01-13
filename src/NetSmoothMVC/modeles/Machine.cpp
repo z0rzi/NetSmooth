@@ -17,7 +17,24 @@ Machine::Machine(int id, int type, const char* cntName)
 
 void Machine::addIpConfig(struct paramIp* ip)
 {
-    m_paramIp.push_back(ip);
+    this->m_paramIp.push_back(ip);
+}
+
+void Machine::setIpConfig(struct paramIp* ip)
+{
+    std::cout <<this->m_paramIp.size()<< std::endl;
+    for(int i = 0; i<this->m_paramIp.size() ; i++)
+    {
+                std::cout << this->m_paramIp[i]->interface+";"+ip->interface << std::endl;
+        if(ip->interface.compare(this->m_paramIp[i]->interface.c_str()) == 0)
+        {
+            this->m_paramIp[i]->ipv4 = ip->ipv4;
+            this->m_paramIp[i]->maskv4 = ip->maskv4;
+            this->m_paramIp[i]->ipv6 = ip->ipv6;
+            std::cout << "okkkk" << std::endl;
+            break;
+        }
+    }
 }
 
 vector<struct paramIp*> Machine::getIpConfig()
@@ -143,7 +160,7 @@ void Machine::lancerCommandeDansContainer(const char** commande)
     lxc_attach_options_t options = LXC_ATTACH_OPTIONS_DEFAULT;
     lxc_attach_command_t cmd={(char*)commande[0], (char**)commande};		/* rien de compliqué par ici, juste */
     pid_t pid=(this->m_container)->init_pid(this->m_container);					/* transférer les arguments la ou il faut
-                             * pour lancer une commande dans le container*/
+                 * pour lancer une commande dans le container*/
 
     this->m_container->attach(this->m_container, lxc_attach_run_command, &cmd, &options, &pid);
 }
