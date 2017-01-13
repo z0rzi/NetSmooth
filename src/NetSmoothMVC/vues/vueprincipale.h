@@ -10,6 +10,10 @@
 #include <QPen>
 #include <iostream>
 #include <QMouseEvent>
+#include "constantes.h"
+#include "../vues/vueentitee.h"
+
+
 
 using namespace std;
 
@@ -26,8 +30,11 @@ public:
     void mouseDoubleClickEvent(QMouseEvent *e);
     static QWidget* getwidget();
     void paintEntitee(QPoint posSouris);
+    VueEntitee *ajoutEntitee(int x, int y, int type);
     QGraphicsScene* getScene();
     QGraphicsView* getView();
+    static VuePrincipale* getInstanceOf();
+
 
 private:
     static QWidget* ca;
@@ -38,6 +45,8 @@ private:
 
 signals:
     void clickSouris(QPoint pos);
+    static VuePrincipale* instance;
+
 
 };
 
