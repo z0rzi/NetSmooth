@@ -12,7 +12,7 @@ VueInformation* VueInformation::getInstanceOf()
 VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
 {
 
-    this->setBaseSize(400,400);
+    this->setBaseSize(400,500);
     this->setMaximumWidth(500);
 
     QGridLayout* layoutGlobal = new QGridLayout();
@@ -27,10 +27,8 @@ VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
     this->m_allumer = new QPushButton();
     m_allumer->setText("Allumer");
 
-    //m_sauvegarder = new QPushButton("sauvegarder");
 
     layoutGlobal->addWidget(m_allumer,2,0,Qt::AlignHCenter);
-    //layoutGlobal->addWidget(m_sauvegarder,2,1);
 
     this->setLayout(layoutGlobal);
 }
@@ -42,14 +40,8 @@ void VueInformation::refresh(QWidget *s)
     this->m_vueIP->refresh();
 }
 
-void VueInformation::sauvegarder()
-{
-    Save::save_session("bobo");
-}
-
 void VueInformation::allumer()
 {
-    Save::load_session("bobo");
     QPixmap* img = new QPixmap();
     VueEntitee* vueE = VueEntitee::getLabelEnSelection();
     if (vueE == NULL)
@@ -141,11 +133,6 @@ QPushButton* VueInformation::getAllumer()
 {
     return this->m_allumer;
 }
-
-/*QPushButton* VueInformation::getSauvegarder()
-{
-    return this->m_sauvegarder;
-}*/
 
 VueRoutes* VueInformation::getRoutes()
 {

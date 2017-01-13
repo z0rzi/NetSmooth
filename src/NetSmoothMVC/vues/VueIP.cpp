@@ -38,8 +38,10 @@ void VueIP::refresh()
     for(unsigned int i = 0 ; i < this->m_formulairesIP.size() ;i++)
         this->addLayout(this->m_formulairesIP[i],i+1,0);
 
+    /***RAFRAICHIR LES FORMULAIRES***/
+    for(unsigned int i = 0 ; i < this->m_formulairesIP.size() ;i++)
+        this->m_formulairesIP[i]->refresh();
 }
-
 
 void VueIP::clearLayout(QLayout *layout)
 {
