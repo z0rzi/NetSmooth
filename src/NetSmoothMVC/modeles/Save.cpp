@@ -72,7 +72,7 @@ void Save::load_session(string fileName)
                         ip->maskv4=line;
                         getline(fichier, line);     /*ipv6*/
                         ip->ipv6=line;
-                        ((Machine*)e)->addIpConfig(ip);
+                        ((Machine*)e)->setIpConfig(ip);
 
                         getline(fichier, line);     /*\*/
                         getline(fichier, line);
@@ -207,7 +207,7 @@ void Save::save_session(string fileName)
                                 vector<paramIp*> ips=e->getIpConfig();
                                 for(j=0 ; j<ips.size() ; j++)
                                 {
-                                        if(ips[j]->ipv4!="" && ips[j]->maskv4!="" && ips[j]->ipv6!="")
+                                        if(ips[j]->ipv4!="" || ips[j]->maskv4!="" || ips[j]->ipv6!="")
                                         {
                                                 fichier << "\\" << endl;
                                                 fichier << ips[j]->interface << endl;
