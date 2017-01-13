@@ -2,7 +2,6 @@
 #include <QGridLayout>
 #include <QToolBar>
 #include <QMenu>
-#include <QAction>
 
 #include "vues/selection.h"
 #include "vues/vueprincipale.h"
@@ -14,9 +13,9 @@ Fenetre::Fenetre(QWidget *parent) : QMainWindow(parent)
 {
     QWidget *w = new QWidget();
     QToolBar* tb = new QToolBar();
-    QAction* afichier = new QAction();
+    QAction* afichier = new QAction(NULL);
     QMenu* mfichier = new QMenu();
-    QAction* aopt = new QAction();
+    QAction* aopt = new QAction(NULL);
     QMenu* mopt = new QMenu();
     Selection *s = new Selection();
     VuePrincipale *vp = new VuePrincipale();

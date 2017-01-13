@@ -13,8 +13,6 @@
 #include "constantes.h"
 #include "../vues/vueentitee.h"
 
-
-
 using namespace std;
 
 class VuePrincipaleControleur;
@@ -35,18 +33,16 @@ public:
     QGraphicsView* getView();
     static VuePrincipale* getInstanceOf();
 
-
 private:
     static QWidget* ca;
     QGraphicsScene *m_scene;
     QGraphicsView *m_view;
     QPoint m_pos;
     VuePrincipaleControleur *m_vpc;
+    static VuePrincipale* instance;
 
 signals:
     void clickSouris(QPoint pos);
-    static VuePrincipale* instance;
-
 
 };
 
