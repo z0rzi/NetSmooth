@@ -2,6 +2,7 @@
 #include <QGridLayout>
 #include <QToolBar>
 #include <QMenu>
+#include <QAction>
 
 #include "vues/selection.h"
 #include "vues/vueprincipale.h"

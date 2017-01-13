@@ -1,5 +1,7 @@
 #include "vueprincipale.h"
 
+VuePrincipale* VuePrincipale::instance;
+
 QWidget* VuePrincipale::ca = NULL;
 
 VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
@@ -16,6 +18,7 @@ VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
     //this->m_view->setGeometry(0,0,600,600);
     this->m_view->show();
     this->ca=this;
+    VuePrincipale::instance=this;
 }
 
 void VuePrincipale::mousePressEvent(QMouseEvent *e)
@@ -71,6 +74,40 @@ void VuePrincipale::paintEntitee(QPoint m_posSouris)
     Selection::setEnSelection(SOURIS);
 }
 
+VueEntitee *VuePrincipale::ajoutEntitee(int x, int y, int type)
+{
+    VueEntitee* e;
+    if(type == TYPE_ORDINATEUR)
+    {
+        e = new VueMachine();
+        VueMachineControleur* c = new VueMachineControleur((VueMachine*)e);
+        e->setGeometry(x,y,130,130);
+        QGraphicsProxyWidget* proxy = this->m_scene->addWidget(e);
+    }
+    if(type == TYPE_PASSERELLE)
+    {
+        e = new VuePasserelle();
+        VuePasserelleControleur* c = new VuePasserelleControleur((VuePasserelle*)e);
+        e->setGeometry(x,y,130,130);
+        QGraphicsProxyWidget* proxy = this->m_scene->addWidget(e);
+    }
+    if(type == TYPE_HUB)
+    {
+        e = new VueHub();
+        VueHubControleur* c = new VueHubControleur((VueHub*)e);
+        e->setGeometry(x,y,130,130);
+        QGraphicsProxyWidget* proxy = this->m_scene->addWidget(e);
+    }
+
+    this->m_view->setScene(this->m_scene);
+    this->m_view->show();
+
+    Selection::setEnSelection(SOURIS);
+
+    return e;
+}
+
+
 QGraphicsScene* VuePrincipale::getScene()
 {
 
@@ -80,4 +117,9 @@ QGraphicsScene* VuePrincipale::getScene()
 QGraphicsView* VuePrincipale::getView()
 {
     return this->m_view;
+}
+
+VuePrincipale* VuePrincipale::getInstanceOf()
+{
+    return VuePrincipale::instance;
 }
