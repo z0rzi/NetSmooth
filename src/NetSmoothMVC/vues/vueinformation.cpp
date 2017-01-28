@@ -21,7 +21,7 @@ VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
 
     this->m_vueIP = new VueIP();
 
-    layoutGlobal->addLayout(this->m_vueIP,0,0);
+    layoutGlobal->addWidget(this->m_vueIP,0,0);
     layoutGlobal->addLayout(m_routes,1,0);
 
     this->m_allumer = new QPushButton();
