@@ -1,12 +1,14 @@
 #include "VueIP.h"
 
 VueIP::VueIP(QWidget *parent) :
-        QGridLayout(parent)
+        QWidget(parent)
 {
     /***TEST DONC AJOUT UN FORMULAIRE***/
     QLabel* paramIP = new QLabel("Paramètres IP :");
+    this->m_layout = new QGridLayout();
+    this->setLayout(this->m_layout);
 
-    this->addWidget(paramIP,0,0,Qt::AlignHCenter);
+    this->m_layout->addWidget(paramIP,0,0,Qt::AlignHCenter);
 }
 
 void VueIP::refresh()
@@ -29,14 +31,20 @@ void VueIP::refresh()
     }
 
     /***SUPPRIMER LES FORMULAIRES DÉJÀ AFFICHÉES***/
-    this->clearLayout(this);
+    this->clearLayout(this->m_layout);
 
 
     /***AFFICHER LES FORMULAIRES***/
-    this->addWidget(new QLabel("Paramètres IP :"),0,0,Qt::AlignHCenter);
+    QTabWidget* onglet = new QTabWidget(this);
+    this->m_layout->addWidget(new QLabel("Paramètres IP :"),0,0,Qt::AlignHCenter);
 
     for(unsigned int i = 0 ; i < this->m_formulairesIP.size() ;i++)
-        this->addLayout(this->m_formulairesIP[i],i+1,0);
+    {
+        //this->m_layout->addWidget(this->m_formulairesIP[i],i+1,0);
+        onglet->addTab(this->m_formulairesIP[i],"eth"+QString::number(i));
+    }
+    this->m_layout->addWidget(onglet,1,0);
+
 
     /***RAFRAICHIR LES FORMULAIRES***/
     for(unsigned int i = 0 ; i < this->m_formulairesIP.size() ;i++)

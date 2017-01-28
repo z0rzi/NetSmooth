@@ -1,7 +1,7 @@
 #include "VueFormulaireIP.h"
 
 VueFormulaireIP::VueFormulaireIP(int numInterface, Entitee* modele, QWidget *parent)
-        : m_modele(modele),m_numInterface(numInterface),QGridLayout(parent)
+        : m_modele(modele),m_numInterface(numInterface),QWidget(parent)
 {
 
     QLabel* labelIpv4 = new QLabel("ipv4 :");
@@ -13,20 +13,22 @@ VueFormulaireIP::VueFormulaireIP(int numInterface, Entitee* modele, QWidget *par
     this->m_ipv4 = new QTextEdit();
     this->m_mask = new QTextEdit();
     this->m_ipv6 = new QTextEdit();
+    this->m_layout = new QGridLayout();
 
     this->m_ipv4->setFixedHeight(25);
     this->m_mask->setFixedHeight(25);
     this->m_ipv6->setFixedHeight(25);
 
-    this->addWidget(this->m_nomInterface,0,0);
-    this->addWidget(labelIpv4,1,0);
-    this->addWidget(this->m_ipv4,1,1);
-    this->addWidget(labelMask,2,0);
-    this->addWidget(this->m_mask,2,1);
-    this->addWidget(labelIpv6,3,0);
-    this->addWidget(this->m_ipv6,3,1);
-    this->addWidget(valider,4,2);
+    this->m_layout->addWidget(this->m_nomInterface,0,0);
+    this->m_layout->addWidget(labelIpv4,1,0);
+    this->m_layout->addWidget(this->m_ipv4,1,1);
+    this->m_layout->addWidget(labelMask,2,0);
+    this->m_layout->addWidget(this->m_mask,2,1);
+    this->m_layout->addWidget(labelIpv6,3,0);
+    this->m_layout->addWidget(this->m_ipv6,3,1);
+    this->m_layout->addWidget(valider,4,2);
 
+    this->setLayout(this->m_layout);
 
     VueFormulaireIPControleur* cntrl = new VueFormulaireIPControleur(this,valider);
 }
