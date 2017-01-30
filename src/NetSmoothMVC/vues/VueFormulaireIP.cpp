@@ -19,14 +19,13 @@ VueFormulaireIP::VueFormulaireIP(int numInterface, Entitee* modele, QWidget *par
     this->m_mask->setFixedHeight(25);
     this->m_ipv6->setFixedHeight(25);
 
-    this->m_layout->addWidget(this->m_nomInterface,0,0);
-    this->m_layout->addWidget(labelIpv4,1,0);
-    this->m_layout->addWidget(this->m_ipv4,1,1);
-    this->m_layout->addWidget(labelMask,2,0);
-    this->m_layout->addWidget(this->m_mask,2,1);
-    this->m_layout->addWidget(labelIpv6,3,0);
-    this->m_layout->addWidget(this->m_ipv6,3,1);
-    this->m_layout->addWidget(valider,4,2);
+    this->m_layout->addWidget(labelIpv4,0,0);
+    this->m_layout->addWidget(this->m_ipv4,0,1);
+    this->m_layout->addWidget(labelMask,1,0);
+    this->m_layout->addWidget(this->m_mask,1,1);
+    this->m_layout->addWidget(labelIpv6,2,0);
+    this->m_layout->addWidget(this->m_ipv6,2,1);
+    this->m_layout->addWidget(valider,3,2);
 
     this->setLayout(this->m_layout);
 
