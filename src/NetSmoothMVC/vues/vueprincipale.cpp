@@ -1,10 +1,13 @@
 #include "vueprincipale.h"
 
+VuePrincipale* VuePrincipale::instance;
+
 QWidget* VuePrincipale::ca = NULL;
 
 VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
 {
     this->setMinimumSize(600,600);
+    this->setMaximumSize(2000,2000);
 
     this->m_scene = new QGraphicsScene(this);
     this->m_view = new QGraphicsView(m_scene,this);
@@ -13,9 +16,9 @@ VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
     this->m_scene->setSceneRect(0,0,2000,2000);
     this->m_scene->setBackgroundBrush(Qt::white);
 
-    //this->m_view->setGeometry(0,0,600,600);
     this->m_view->show();
     this->ca=this;
+    VuePrincipale::instance=this;
 }
 
 void VuePrincipale::mousePressEvent(QMouseEvent *e)
@@ -30,6 +33,7 @@ void VuePrincipale::mousePressEvent(QMouseEvent *e)
         this->m_pos = QWidget::mapFromGlobal(QCursor::pos());
         emit clickSouris(m_pos);
     }
+
 }
 
 void VuePrincipale::mouseDoubleClickEvent(QMouseEvent *e)
@@ -39,6 +43,40 @@ void VuePrincipale::mouseDoubleClickEvent(QMouseEvent *e)
 QWidget* VuePrincipale::getwidget()
 {
     return ca;
+}
+
+
+VueEntitee *VuePrincipale::ajoutEntitee(int x, int y, int type)
+{
+    VueEntitee* e;
+    if(type == TYPE_ORDINATEUR)
+    {
+        e = new VueMachine();
+        VueMachineControleur* c = new VueMachineControleur((VueMachine*)e);
+        e->setGeometry(x,y,130,130);
+        QGraphicsProxyWidget* proxy = this->m_scene->addWidget(e);
+    }
+    if(type == TYPE_PASSERELLE)
+    {
+        e = new VuePasserelle();
+        VuePasserelleControleur* c = new VuePasserelleControleur((VuePasserelle*)e);
+        e->setGeometry(x,y,130,130);
+        QGraphicsProxyWidget* proxy = this->m_scene->addWidget(e);
+    }
+    if(type == TYPE_HUB)
+    {
+        e = new VueHub();
+        VueHubControleur* c = new VueHubControleur((VueHub*)e);
+        e->setGeometry(x,y,130,130);
+        QGraphicsProxyWidget* proxy = this->m_scene->addWidget(e);
+    }
+
+    this->m_view->setScene(this->m_scene);
+    this->m_view->show();
+
+    Selection::setEnSelection(SOURIS);
+
+    return e;
 }
 
 void VuePrincipale::paintEntitee(QPoint m_posSouris)
@@ -80,4 +118,15 @@ QGraphicsScene* VuePrincipale::getScene()
 QGraphicsView* VuePrincipale::getView()
 {
     return this->m_view;
+}
+
+VuePrincipale* VuePrincipale::getInstanceOf()
+{
+    return VuePrincipale::instance;
+}
+
+void VuePrincipale::resizeEvent(QResizeEvent* e)
+{
+    this->m_view->setMinimumSize(this->width(),this->height());
+    this->m_view->setMaximumSize(this->width(),this->height());
 }

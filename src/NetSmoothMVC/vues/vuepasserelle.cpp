@@ -9,6 +9,7 @@ VuePasserelle::VuePasserelle(VueEntitee *parent) : VueEntitee(parent)
 	img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleoff.png");
     *img = img->scaled(130,130);
     this->setPixmap(*img);
+    this->passerelle->setVue(this);
 }
 
 Passerelle* VuePasserelle::getModele()

@@ -6,6 +6,7 @@
 #include <QObject>
 #include <fstream>
 #include "DataBase.h"
+#include "../vues/vueentitee.h"
 
 class Save
 {

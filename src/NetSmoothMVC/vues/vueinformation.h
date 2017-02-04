@@ -26,8 +26,6 @@ public:
     void setAllumer(QPushButton*);
     QPushButton* getAllumer();
     void allumer();
-//    QPushButton* getSauvegarder();
-    void sauvegarder();
 
     VueRoutes* getRoutes();
     void setRoutes(VueRoutes* v);
@@ -40,7 +38,6 @@ private:
     explicit VueInformation(QWidget *parent = 0);
     QWidget* m_source;
     QPushButton* m_allumer;
-    QPushButton* m_sauvegarder;
     VueRoutes* m_routes;
     VueIP* m_vueIP;
 
