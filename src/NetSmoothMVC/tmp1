@@ -1,0 +1,740 @@
+diff --git a/save/donnees_a_sauvegarder b/save/donnees_a_sauvegarder
+index 2ab3a6d..f0d513a 100644
+--- a/save/donnees_a_sauvegarder
++++ b/save/donnees_a_sauvegarder
+@@ -1,30 +1,21 @@
+-#entitee:
+ {
+ 	(
+-		id
+ 		type
++		id
+ 		nom
+ 		position x
+ 		position y
+-		#ipv4
+-		\4
+-			interface
+-			ip
+-			mask
+-		/
+-		#ipv6
+-		\6
++		\
+ 			interface
+-			ip
+-			prefix
++			ipv4
++			maskv4
++			ipv6
+ 		/
+-		#route4
+ 		[4
+ 			interface
+ 			destination
+ 			passerelle
+ 		]
+-		#route6
+ 		[6
+ 			interface
+ 			destination
+@@ -33,7 +24,6 @@
+ 
+ 	)
+ }
+-#cables:
+ <
+ 	id1
+ 	id2
+diff --git a/src/NetSmoothMVC/NetSmoothMVC.pro b/src/NetSmoothMVC/NetSmoothMVC.pro
+index 8f7f7d2..4cfcdda 100644
+--- a/src/NetSmoothMVC/NetSmoothMVC.pro
++++ b/src/NetSmoothMVC/NetSmoothMVC.pro
+@@ -36,8 +36,7 @@ HEADERS += \
+     controleurs/VueIPControleur.h\
+     vues/VueIP.h\
+     vues/VueFormulaireIP.h\
+-    controleurs/VueFormulaireIPControleur.h \
+-    vues/fenetre.h
++    controleurs/VueFormulaireIPControleur.h
+ 
+ SOURCES += \
+     main.cpp\
+@@ -73,7 +72,6 @@ SOURCES += \
+     controleurs/VueIPControleur.cpp\
+     vues/VueIP.cpp\
+     vues/VueFormulaireIP.cpp\
+-    controleurs/VueFormulaireIPControleur.cpp \
+-    vues/fenetre.cpp
++    controleurs/VueFormulaireIPControleur.cpp
+ 
+ QMAKE_LIBS += -llxc
+diff --git a/src/NetSmoothMVC/NetSmoothMVC.pro.user b/src/NetSmoothMVC/NetSmoothMVC.pro.user
+index a1ad5a6..b49ab98 100644
+--- a/src/NetSmoothMVC/NetSmoothMVC.pro.user
++++ b/src/NetSmoothMVC/NetSmoothMVC.pro.user
+@@ -1,10 +1,10 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE QtCreatorProject>
+-<!-- Written by QtCreator 4.1.0, 2017-01-12T16:45:49. -->
++<!-- Written by QtCreator 3.2.1, 2017-01-13T00:18:37. -->
+ <qtcreator>
+  <data>
+   <variable>EnvironmentId</variable>
+-  <value type="QByteArray">{5c35eb8f-fdb3-4b26-a32a-ea1b548ffefb}</value>
++  <value type="QByteArray">{b915466d-ebf0-45c8-9079-c95faacbae66}</value>
+  </data>
+  <data>
+   <variable>ProjectExplorer.Project.ActiveTarget</variable>
+@@ -40,7 +40,6 @@
+    <value type="bool" key="EditorConfiguration.ScrollWheelZooming">true</value>
+    <value type="bool" key="EditorConfiguration.ShowMargin">false</value>
+    <value type="int" key="EditorConfiguration.SmartBackspaceBehavior">0</value>
+-   <value type="bool" key="EditorConfiguration.SmartSelectionChanging">true</value>
+    <value type="bool" key="EditorConfiguration.SpacesForTabs">true</value>
+    <value type="int" key="EditorConfiguration.TabKeyBehavior">0</value>
+    <value type="int" key="EditorConfiguration.TabSize">8</value>
+@@ -54,32 +53,29 @@
+  </data>
+  <data>
+   <variable>ProjectExplorer.Project.PluginSettings</variable>
+-  <valuemap type="QVariantMap">
+-   <valuelist type="QVariantList" key="ClangStaticAnalyzer.SuppressedDiagnostics"/>
+-  </valuemap>
++  <valuemap type="QVariantMap"/>
+  </data>
+  <data>
+   <variable>ProjectExplorer.Project.Target.0</variable>
+   <valuemap type="QVariantMap">
+-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop</value>
+-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop</value>
+-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{58b54520-cca7-4c6f-932a-cfc96346c332}</value>
++   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Qt 5.5.1</value>
++   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Qt 5.5.1</value>
++   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{98d6dd6a-c8e3-47eb-a635-8773d7d72e77}</value>
+    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
+    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
+    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
+-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/user/GitHub/NetSmooth/src/build-NetSmoothMVC-Desktop-Debug</value>
++    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/root/projet/NetSmooth/src/build-NetSmoothMVC-Qt_5_5_1-Debug</value>
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">qmake</value>
+       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QtProjectManager.QMakeBuildStep</value>
+-      <value type="bool" key="QtProjectManager.QMakeBuildStep.LinkQmlDebuggingLibrary">true</value>
++      <value type="bool" key="QtProjectManager.QMakeBuildStep.LinkQmlDebuggingLibrary">false</value>
++      <value type="bool" key="QtProjectManager.QMakeBuildStep.LinkQmlDebuggingLibraryAuto">true</value>
+       <value type="QString" key="QtProjectManager.QMakeBuildStep.QMakeArguments"></value>
+       <value type="bool" key="QtProjectManager.QMakeBuildStep.QMakeForced">false</value>
+-      <value type="bool" key="QtProjectManager.QMakeBuildStep.SeparateDebugInfo">false</value>
+-      <value type="bool" key="QtProjectManager.QMakeBuildStep.UseQtQuickCompiler">false</value>
+      </valuemap>
+      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
+       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+@@ -95,7 +91,7 @@
+       <value type="QString" key="Qt4ProjectManager.MakeStep.MakeCommand"></value>
+      </valuemap>
+      <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">2</value>
+-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
++     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Compiler</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Build</value>
+     </valuemap>
+@@ -114,7 +110,7 @@
+       <value type="QString" key="Qt4ProjectManager.MakeStep.MakeCommand"></value>
+      </valuemap>
+      <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
++     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Nettoyer</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
+     </valuemap>
+@@ -128,7 +124,7 @@
+     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
+    </valuemap>
+    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
+-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/user/github/NetSmooth/src/build-NetSmoothMVC-Desktop-Release</value>
++    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/root/projet/NetSmooth/src/build-NetSmoothMVC-Qt_5_5_1-Release</value>
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+@@ -136,10 +132,9 @@
+       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QtProjectManager.QMakeBuildStep</value>
+       <value type="bool" key="QtProjectManager.QMakeBuildStep.LinkQmlDebuggingLibrary">false</value>
++      <value type="bool" key="QtProjectManager.QMakeBuildStep.LinkQmlDebuggingLibraryAuto">true</value>
+       <value type="QString" key="QtProjectManager.QMakeBuildStep.QMakeArguments"></value>
+       <value type="bool" key="QtProjectManager.QMakeBuildStep.QMakeForced">false</value>
+-      <value type="bool" key="QtProjectManager.QMakeBuildStep.SeparateDebugInfo">false</value>
+-      <value type="bool" key="QtProjectManager.QMakeBuildStep.UseQtQuickCompiler">false</value>
+      </valuemap>
+      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
+       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+@@ -155,7 +150,7 @@
+       <value type="QString" key="Qt4ProjectManager.MakeStep.MakeCommand"></value>
+      </valuemap>
+      <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">2</value>
+-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
++     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Compiler</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Build</value>
+     </valuemap>
+@@ -174,7 +169,7 @@
+       <value type="QString" key="Qt4ProjectManager.MakeStep.MakeCommand"></value>
+      </valuemap>
+      <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
++     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Nettoyer</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
+     </valuemap>
+@@ -187,87 +182,22 @@
+     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">0</value>
+     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
+    </valuemap>
+-   <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
+-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/user/github/NetSmooth/src/build-NetSmoothMVC-Desktop-Profile</value>
+-    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+-     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+-      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+-      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">qmake</value>
+-      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+-      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QtProjectManager.QMakeBuildStep</value>
+-      <value type="bool" key="QtProjectManager.QMakeBuildStep.LinkQmlDebuggingLibrary">true</value>
+-      <value type="QString" key="QtProjectManager.QMakeBuildStep.QMakeArguments"></value>
+-      <value type="bool" key="QtProjectManager.QMakeBuildStep.QMakeForced">false</value>
+-      <value type="bool" key="QtProjectManager.QMakeBuildStep.SeparateDebugInfo">true</value>
+-      <value type="bool" key="QtProjectManager.QMakeBuildStep.UseQtQuickCompiler">false</value>
+-     </valuemap>
+-     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
+-      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+-      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Make</value>
+-      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+-      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.MakeStep</value>
+-      <valuelist type="QVariantList" key="Qt4ProjectManager.MakeStep.AutomaticallyAddedMakeArguments">
+-       <value type="QString">-w</value>
+-       <value type="QString">-r</value>
+-      </valuelist>
+-      <value type="bool" key="Qt4ProjectManager.MakeStep.Clean">false</value>
+-      <value type="QString" key="Qt4ProjectManager.MakeStep.MakeArguments"></value>
+-      <value type="QString" key="Qt4ProjectManager.MakeStep.MakeCommand"></value>
+-     </valuemap>
+-     <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">2</value>
+-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
+-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Build</value>
+-    </valuemap>
+-    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.1">
+-     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+-      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+-      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Make</value>
+-      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+-      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.MakeStep</value>
+-      <valuelist type="QVariantList" key="Qt4ProjectManager.MakeStep.AutomaticallyAddedMakeArguments">
+-       <value type="QString">-w</value>
+-       <value type="QString">-r</value>
+-      </valuelist>
+-      <value type="bool" key="Qt4ProjectManager.MakeStep.Clean">true</value>
+-      <value type="QString" key="Qt4ProjectManager.MakeStep.MakeArguments">clean</value>
+-      <value type="QString" key="Qt4ProjectManager.MakeStep.MakeCommand"></value>
+-     </valuemap>
+-     <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
+-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
+-    </valuemap>
+-    <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
+-    <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
+-    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
+-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Profile</value>
+-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4BuildConfiguration</value>
+-    <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">0</value>
+-    <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
+-   </valuemap>
+-   <value type="int" key="ProjectExplorer.Target.BuildConfigurationCount">3</value>
++   <value type="int" key="ProjectExplorer.Target.BuildConfigurationCount">2</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.Target.DeployConfiguration.0">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+      <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">0</value>
+-     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Deploy</value>
++     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Déploiement</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Deploy</value>
+     </valuemap>
+     <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">1</value>
+-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Deploy locally</value>
++    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Déployer localement</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.DefaultDeployConfiguration</value>
+    </valuemap>
+    <value type="int" key="ProjectExplorer.Target.DeployConfigurationCount">1</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.Target.PluginSettings"/>
+    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.0">
+-    <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
+-    <value type="bool" key="Analyzer.QmlProfiler.FlushEnabled">false</value>
+-    <value type="uint" key="Analyzer.QmlProfiler.FlushInterval">1000</value>
+-    <value type="QString" key="Analyzer.QmlProfiler.LastTraceFile"></value>
+-    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
+     <valuelist type="QVariantList" key="Analyzer.Valgrind.AddedSuppressionFiles"/>
+     <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectBusEvents">false</value>
+     <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectSystime">false</value>
+@@ -305,14 +235,13 @@
+     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">NetSmoothMVC</value>
+-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">NetSmoothMVC2</value>
+-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/user/GitHub/NetSmooth/src/NetSmoothMVC/NetSmoothMVC.pro</value>
+-    <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
++    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
++    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/root/projet/NetSmooth/src/NetSmoothMVC/NetSmoothMVC.pro</value>
+     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
+     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">NetSmoothMVC.pro</value>
+     <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseDyldImageSuffix">false</value>
++    <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseTerminal">false</value>
+     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory"></value>
+-    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default">/home/user/GitHub/NetSmooth/src/build-NetSmoothMVC-Desktop-Debug</value>
+     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
+     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+@@ -329,10 +258,10 @@
+  </data>
+  <data>
+   <variable>ProjectExplorer.Project.Updater.FileVersion</variable>
+-  <value type="int">18</value>
++  <value type="int">16</value>
+  </data>
+  <data>
+   <variable>Version</variable>
+-  <value type="int">18</value>
++  <value type="int">16</value>
+  </data>
+ </qtcreator>
+diff --git a/src/NetSmoothMVC/modeles/Save.cpp b/src/NetSmoothMVC/modeles/Save.cpp
+index b84b307..35e4114 100644
+--- a/src/NetSmoothMVC/modeles/Save.cpp
++++ b/src/NetSmoothMVC/modeles/Save.cpp
+@@ -1,20 +1,152 @@
+ #include "Save.h"
++#include "../vues/vueentitee.h"
++#include "Entitee.h"
++#include "DataBase.h"
++#include "../vues/vueprincipale.h"
++#include <string>
++#include <iostream>
++#include <cstdio>
++#include <stdlib.h>
+ 
+ using namespace std;
+ 
+ 
+ void Save::load_session(string fileName)
+ {
+-        ifstream fichier(fileName.c_str(), ios::in);
+-        if(!fichier)
+-                return;
++    struct assoCable
++    {
++        string id;
++        VueEntitee* vue;
++    };
++
++    struct assoCable asso[100];
++
++    ifstream fichier(fileName.c_str(), ios::in);
++    if(!fichier)
++        return;
+ 
+-        string line;
++    VuePrincipale* vp=VuePrincipale::getInstanceOf();
+ 
+-        while(getline(fichier, line))
++    string line;
++        int i=0;
++    getline(fichier, line);
++    if(line=="{")
++        while(getline(fichier, line) && line!="}")
+         {
+-            cout << line;
++            int type, posx, posy, id;
++            string type_str;
++            Entitee* e;
++            if(line=="(")
++            {
++                getline(fichier, line); //type
++                type_str=line;
++                type=strtol(line.c_str(), NULL, 10);
++                getline(fichier, line); //posx
++                posx=strtol(line.c_str(), NULL, 10);
++                getline(fichier, line); //posy
++                posy=strtol(line.c_str(), NULL, 10);
++
++                VueEntitee* v=(vp->ajoutEntitee(posx, posy, type));
++                e=v->getModele();    /*renvoie le modele de l'objet cree*/
++
++                getline(fichier, line); //id
++                id=strtol(line.c_str(), NULL, 10);
++
++                asso[i].id=type_str+line;
++                asso[i].vue=v;
++
++                e->setID(id);
++
++                getline(fichier, line); //nom
++
++                getline(fichier, line);
++
++                while(line=="\\")   /*ips*/
++                {
++                        struct paramIp* ip = new paramIp;
++                        getline(fichier, line);     /*interface*/
++                        ip->interface=line;
++                        getline(fichier, line);     /*ipv4*/
++                        ip->ipv4=line;
++                        getline(fichier, line);     /*mask4*/
++                        ip->maskv4=line;
++                        getline(fichier, line);     /*ipv6*/
++                        ip->ipv6=line;
++                        ((Machine*)e)->addIpConfig(ip);
++
++                        getline(fichier, line);     /*\*/
++                        getline(fichier, line);
++                }
++                while(line=="[4") /*route4*/
++                {
++                        struct paramRoutage* r = new paramRoutage;
++                        getline(fichier, line);     /*interface*/
++                        r->interface=line;
++                        getline(fichier, line);     /*destination*/
++                        r->destination=line;
++                        getline(fichier, line);     /*passerelle*/
++                        r->passerelle=line;
++                        getline(fichier, line);     /*id*/
++                        id=strtol(line.c_str(), NULL, 10);
++                        r->id=id;
++                        ((Machine*)e)->addRouteConfig4(*r);
++
++                        getline(fichier, line);     /*]*/
++                        getline(fichier, line);
++                }
++                while(line=="[6")   /*route6*/
++                {
++                        struct paramRoutage* r = new paramRoutage;
++                        getline(fichier, line);     /*interface*/
++                        r->interface=line;
++                        getline(fichier, line);     /*destination*/
++                        r->destination=line;
++                        getline(fichier, line);     /*passerelle*/
++                        r->passerelle=line;
++                        getline(fichier, line);     /*id*/
++                        id=strtol(line.c_str(), NULL, 10);
++                        r->id=id;
++                        ((Machine*)e)->addRouteConfig6(*r);
++
++                        getline(fichier, line);     /*]*/
++                        getline(fichier, line);
++                }
++            }
++            i++;
++        }
++    getline(fichier, line);     /*}*/
++    while(line=="<")
++    {
++        string type_str, id1, id2;
++        getline(fichier, line);     /*type1*/
++        type_str=line;
++        getline(fichier, line);     /*ID1*/
++        id1=type_str+line;
++
++        getline(fichier, line);     /*type2*/
++        type_str=line;
++        getline(fichier, line);     /*ID2*/
++        id2=type_str+line;
++
++        int i;
++        bool first=true;
++        for(i=0 ; i<100 ;i++)
++        {
++            if(asso[i].id==id1 || asso[i].id==id2)
++            {
++                if(first)
++                {
++                    first=false;
++                    VueCable::setPremiereSelection(asso[i].vue);
++                }
++                else
++                    VueCable::creerVueCable(asso[i].vue);
++            }
+         }
++        getline(fichier, line);     /*>*/
++        getline(fichier, line);
++    }
++    fichier.close();
+ }
+ 
+ void Save::save_session(string fileName)
+@@ -25,10 +157,10 @@ void Save::save_session(string fileName)
+         ofstream fichier(fileName.c_str(), ios::out|ios::trunc);
+         if(!fichier)
+         {
+-            cout << "marche po" << endl;
+-            return;
++                cout << "marche po" << endl;
++                return;
+         }
+-    cout << "marche" << endl;
++        cout << "marche" << endl;
+         vector<Cable*> cables;
+ 
+         fichier << "{" << endl;
+@@ -54,33 +186,36 @@ void Save::save_session(string fileName)
+ 
+                         for(j=0 ; j<cab.size() ; j++)
+                         {
+-                            ok=true;
+-                            for(k=0 ; k<cables.size() ; k++)
+-                                if(cab[j]==cables[k])
+-                                    ok=false;
++                                ok=true;
++                                for(k=0 ; k<cables.size() ; k++)
++                                        if(cab[j]==cables[k])
++                                                ok=false;
+ 
+-                            if(ok==true)
+-                                cables.push_back(cab[j]);
++                                if(ok==true)
++                                        cables.push_back(cab[j]);
+                         }
+ 
+-                        fichier << e->getID() << endl;
+                         fichier << e->getType() << endl;
++                        fichier << e->getVue()->pos().x() << endl;
++                        fichier << e->getVue()->pos().y() << endl;
++                        fichier << e->getID() << endl;
+                         //fichier << e->getNom() << endl;
+                         fichier << e->getBridgeInit() << endl;
+-                        //fichier << e->getX() << endl;
+-                        //fichier << e->getY() << endl;
+                         if(e->getType()!=TYPE_HUB)
+                         {
+                                 Machine* m=(Machine*)e;
+                                 vector<paramIp*> ips=e->getIpConfig();
+                                 for(j=0 ; j<ips.size() ; j++)
+                                 {
+-                                        fichier << "\\" << endl;
+-                                        fichier << ips[j]->interface << endl;
+-                                        fichier << ips[j]->ipv4 << endl;
+-                                        fichier << ips[j]->maskv4 << endl;
+-                                        fichier << ips[j]->ipv6 << endl;
+-                                        fichier << "/" << endl;
++                                        if(ips[j]->ipv4!="" && ips[j]->maskv4!="" && ips[j]->ipv6!="")
++                                        {
++                                                fichier << "\\" << endl;
++                                                fichier << ips[j]->interface << endl;
++                                                fichier << ips[j]->ipv4 << endl;
++                                                fichier << ips[j]->maskv4 << endl;
++                                                fichier << ips[j]->ipv6 << endl;
++                                                fichier << "/" << endl;
++                                        }
+                                 }
+                                 vector<paramRoutage> r4=((Machine*)e)->getRouteConfig4();
+                                 for(j=0 ; j<r4.size() ; j++)
+@@ -89,6 +224,7 @@ void Save::save_session(string fileName)
+                                         fichier << r4[j].interface << endl;
+                                         fichier << r4[j].destination << endl;
+                                         fichier << r4[j].passerelle << endl;
++                                        fichier << r4[j].id << endl;
+                                         fichier << "]4" << endl;
+                                 }
+                                 vector<paramRoutage> r6=((Machine*)e)->getRouteConfig6();
+@@ -98,6 +234,7 @@ void Save::save_session(string fileName)
+                                         fichier << r6[j].interface << endl;
+                                         fichier << r6[j].destination << endl;
+                                         fichier << r6[j].passerelle << endl;
++                                        fichier << r6[j].id << endl;
+                                         fichier << "]6" << endl;
+                                 }
+                         }
+@@ -109,15 +246,15 @@ void Save::save_session(string fileName)
+ 
+         for(i=0 ; i<cables.size() ; i++)
+         {
+-            Cable* c=cables[i];
+-            Entitee* tab[2];
+-            c->getExtremites(tab);
+-            fichier << "<" << endl;
+-            fichier << tab[0]->getType() << endl;
+-            fichier << tab[0]->getID() << endl;
+-            fichier << tab[1]->getType() << endl;
+-            fichier << tab[1]->getID() << endl;
+-            fichier << ">" << endl;
++                Cable* c=cables[i];
++                Entitee* tab[2];
++                c->getExtremites(tab);
++                fichier << "<" << endl;
++                fichier << tab[0]->getType() << endl;
++                fichier << tab[0]->getID() << endl;
++                fichier << tab[1]->getType() << endl;
++                fichier << tab[1]->getID() << endl;
++                fichier << ">" << endl;
+         }
+         fichier.close();
+ }
+diff --git a/src/NetSmoothMVC/modeles/Save.h b/src/NetSmoothMVC/modeles/Save.h
+index 65f52d2..16a6a91 100644
+--- a/src/NetSmoothMVC/modeles/Save.h
++++ b/src/NetSmoothMVC/modeles/Save.h
+@@ -6,6 +6,7 @@
+ #include <QObject>
+ #include <fstream>
+ #include "DataBase.h"
++#include "../vues/vueentitee.h"
+ 
+ class Save
+ {
+diff --git a/src/NetSmoothMVC/vues/vuemachine.cpp b/src/NetSmoothMVC/vues/vuemachine.cpp
+index 5f66ded..de1018d 100644
+--- a/src/NetSmoothMVC/vues/vuemachine.cpp
++++ b/src/NetSmoothMVC/vues/vuemachine.cpp
+@@ -10,6 +10,7 @@ VueMachine::VueMachine(VueEntitee *parent) : VueEntitee(parent)
+ 	img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuroff.png");
+     *img = img->scaled(130,130);
+     this->setPixmap(*img);
++    this->ordinateur->setVue(this);
+ }
+ 
+ Ordinateur* VueMachine::getModele()
+diff --git a/src/NetSmoothMVC/vues/vuepasserelle.cpp b/src/NetSmoothMVC/vues/vuepasserelle.cpp
+index 3696393..6a102b8 100644
+--- a/src/NetSmoothMVC/vues/vuepasserelle.cpp
++++ b/src/NetSmoothMVC/vues/vuepasserelle.cpp
+@@ -9,6 +9,7 @@ VuePasserelle::VuePasserelle(VueEntitee *parent) : VueEntitee(parent)
+ 	img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleoff.png");
+     *img = img->scaled(130,130);
+     this->setPixmap(*img);
++    this->passerelle->setVue(this);
+ }
+ 
+ Passerelle* VuePasserelle::getModele()
+diff --git a/src/NetSmoothMVC/vues/vueprincipale.cpp b/src/NetSmoothMVC/vues/vueprincipale.cpp
+index 928d289..69889a3 100644
+--- a/src/NetSmoothMVC/vues/vueprincipale.cpp
++++ b/src/NetSmoothMVC/vues/vueprincipale.cpp
+@@ -1,10 +1,13 @@
+ #include "vueprincipale.h"
+ 
++VuePrincipale* VuePrincipale::instance;
++
+ QWidget* VuePrincipale::ca = NULL;
+ 
+ VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
+ {
+     this->setMinimumSize(600,600);
++    this->setMaximumSize(800,800);
+ 
+     this->m_scene = new QGraphicsScene(this);
+     this->m_view = new QGraphicsView(m_scene,this);
+@@ -13,9 +16,9 @@ VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
+     this->m_scene->setSceneRect(0,0,2000,2000);
+     this->m_scene->setBackgroundBrush(Qt::white);
+ 
+-    //this->m_view->setGeometry(0,0,600,600);
+     this->m_view->show();
+     this->ca=this;
++    VuePrincipale::instance=this;
+ }
+ 
+ void VuePrincipale::mousePressEvent(QMouseEvent *e)
+@@ -30,6 +33,7 @@ void VuePrincipale::mousePressEvent(QMouseEvent *e)
+         this->m_pos = QWidget::mapFromGlobal(QCursor::pos());
+         emit clickSouris(m_pos);
+     }
++
+ }
+ 
+ void VuePrincipale::mouseDoubleClickEvent(QMouseEvent *e)
+@@ -41,6 +45,40 @@ QWidget* VuePrincipale::getwidget()
+     return ca;
+ }
+ 
++
++VueEntitee *VuePrincipale::ajoutEntitee(int x, int y, int type)
++{
++    VueEntitee* e;
++    if(type == TYPE_ORDINATEUR)
++    {
++        e = new VueMachine();
++        VueMachineControleur* c = new VueMachineControleur((VueMachine*)e);
++        e->setGeometry(x,y,130,130);
++        QGraphicsProxyWidget* proxy = this->m_scene->addWidget(e);
++    }
++    if(type == TYPE_PASSERELLE)
++    {
++        e = new VuePasserelle();
++        VuePasserelleControleur* c = new VuePasserelleControleur((VuePasserelle*)e);
++        e->setGeometry(x,y,130,130);
++        QGraphicsProxyWidget* proxy = this->m_scene->addWidget(e);
++    }
++    if(type == TYPE_HUB)
++    {
++        e = new VueHub();
++        VueHubControleur* c = new VueHubControleur((VueHub*)e);
++        e->setGeometry(x,y,130,130);
++        QGraphicsProxyWidget* proxy = this->m_scene->addWidget(e);
++    }
++
++    this->m_view->setScene(this->m_scene);
++    this->m_view->show();
++
++    Selection::setEnSelection(SOURIS);
++
++    return e;
++}
++
+ void VuePrincipale::paintEntitee(QPoint m_posSouris)
+ {
+     if(Selection::getEnSelection() == MACHINE)
+@@ -81,3 +119,8 @@ QGraphicsView* VuePrincipale::getView()
+ {
+     return this->m_view;
+ }
++
++VuePrincipale* VuePrincipale::getInstanceOf()
++{
++    return VuePrincipale::instance;
++}
+diff --git a/src/NetSmoothMVC/vues/vueprincipale.h b/src/NetSmoothMVC/vues/vueprincipale.h
+index 6fc011b..7ea12e4 100644
+--- a/src/NetSmoothMVC/vues/vueprincipale.h
++++ b/src/NetSmoothMVC/vues/vueprincipale.h
+@@ -10,6 +10,8 @@
+ #include <QPen>
+ #include <iostream>
+ #include <QMouseEvent>
++#include "constantes.h"
++#include "../vues/vueentitee.h"
+ 
+ using namespace std;
+ 
+@@ -26,8 +28,10 @@ public:
+     void mouseDoubleClickEvent(QMouseEvent *e);
+     static QWidget* getwidget();
+     void paintEntitee(QPoint posSouris);
++    VueEntitee *ajoutEntitee(int x, int y, int type);
+     QGraphicsScene* getScene();
+     QGraphicsView* getView();
++    static VuePrincipale* getInstanceOf();
+ 
+ private:
+     static QWidget* ca;
+@@ -35,6 +39,7 @@ private:
+     QGraphicsView *m_view;
+     QPoint m_pos;
+     VuePrincipaleControleur *m_vpc;
++    static VuePrincipale* instance;
+ 
+ signals:
+     void clickSouris(QPoint pos);
