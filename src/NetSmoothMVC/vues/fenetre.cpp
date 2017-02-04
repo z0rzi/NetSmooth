@@ -22,6 +22,7 @@ Fenetre::Fenetre(QWidget *parent) : QMainWindow(parent)
     QGridLayout *g = new QGridLayout();
     VueInformation *vi= VueInformation::getInstanceOf();
     VueInformationControleur *vic = new VueInformationControleur(vi);
+
     g->addWidget(s,0,0,0);
     g->addWidget(vp,0,1,0);
     g->addWidget(vi,0,2,0);

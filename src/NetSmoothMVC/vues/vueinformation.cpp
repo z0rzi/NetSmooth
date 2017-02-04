@@ -12,8 +12,9 @@ VueInformation* VueInformation::getInstanceOf()
 VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
 {
 
-    this->setBaseSize(400,500);
+ this->setBaseSize(400,500);
     this->setMaximumWidth(500);
+
 
     QGridLayout* layoutGlobal = new QGridLayout();
 

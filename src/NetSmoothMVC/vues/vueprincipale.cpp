@@ -7,7 +7,7 @@ QWidget* VuePrincipale::ca = NULL;
 VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
 {
     this->setMinimumSize(600,600);
-    this->setMaximumSize(800,800);
+    this->setMaximumSize(2000,2000);
 
     this->m_scene = new QGraphicsScene(this);
     this->m_view = new QGraphicsView(m_scene,this);
@@ -123,4 +123,10 @@ QGraphicsView* VuePrincipale::getView()
 VuePrincipale* VuePrincipale::getInstanceOf()
 {
     return VuePrincipale::instance;
+}
+
+void VuePrincipale::resizeEvent(QResizeEvent* e)
+{
+    this->m_view->setMinimumSize(this->width(),this->height());
+    this->m_view->setMaximumSize(this->width(),this->height());
 }
