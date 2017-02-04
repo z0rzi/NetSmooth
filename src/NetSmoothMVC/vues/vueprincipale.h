@@ -33,6 +33,9 @@ public:
     QGraphicsView* getView();
     static VuePrincipale* getInstanceOf();
 
+protected:
+    void resizeEvent(QResizeEvent *);
+
 private:
     static QWidget* ca;
     QGraphicsScene *m_scene;
