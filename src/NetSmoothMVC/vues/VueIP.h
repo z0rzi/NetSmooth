@@ -7,6 +7,7 @@
 #include <QTextEdit>
 #include <QLabel>
 #include <QLayout>
+#include <QTabWidget>
 
 #include "modeles/Entitee.h"
 #include "vues/vueentitee.h"
@@ -14,7 +15,7 @@
 
 class VueIPControleur;
 
-class VueIP : public QGridLayout
+class VueIP : public QWidget
 {
     Q_OBJECT
 public:
@@ -26,6 +27,7 @@ void clearLayout(QLayout *layout);
 
 private:
     std::vector<VueFormulaireIP*> m_formulairesIP;
+    QGridLayout* m_layout;
     VueIPControleur* controleur = NULL;
 
 

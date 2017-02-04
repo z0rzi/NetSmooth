@@ -27,7 +27,6 @@ signals:
 
 public slots:
     void actionClickAllumer();
-    void actionClickSauvegarder();
 };
 
 #endif // VUEINFORMATIONCONTROLEUR_H

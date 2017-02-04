@@ -10,6 +10,7 @@ VueMachine::VueMachine(VueEntitee *parent) : VueEntitee(parent)
 	img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuroff.png");
     *img = img->scaled(130,130);
     this->setPixmap(*img);
+    this->ordinateur->setVue(this);
 }
 
 Ordinateur* VueMachine::getModele()

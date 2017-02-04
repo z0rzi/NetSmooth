@@ -38,16 +38,18 @@ void VueEntitee::mouseMoveEvent(QMouseEvent *e)
 {
     QWidget* vp=VuePrincipale::getwidget();
     QWidget* vq=vp->parentWidget();
+    QWidget *vFenetre = vq->parentWidget();
 
     if (e->buttons() == Qt::LeftButton)
     {
-        int x = e->globalPos().x()-vp->pos().x()-vq->pos().x();
-        int y = e->globalPos().y()-vp->pos().y()-vq->pos().y();
+        int x = e->globalPos().x()-vp->pos().x()-vq->pos().x()-vFenetre->pos().x();
+        int y = e->globalPos().y()-vp->pos().y()-vq->pos().y()-vFenetre->pos().y();
         y-=this->height()/2+35;	/*35 = hauteur bandeau en haut fenetre*/
         x-=this->width()/2;
         this->move(x, y);
     }
 }
+
 void VueEntitee::mouseDoubleClickEvent(QMouseEvent *e)
 {
     emit doubleClick();

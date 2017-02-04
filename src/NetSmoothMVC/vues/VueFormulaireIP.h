@@ -13,7 +13,7 @@
 #include "modeles/Entitee.h"
 #include "controleurs/VueFormulaireIPControleur.h"
 
-class VueFormulaireIP : public QGridLayout
+class VueFormulaireIP : public QWidget
 {
 
     Q_OBJECT
@@ -33,6 +33,7 @@ private:
     QTextEdit* m_ipv4;
     QTextEdit* m_ipv6;
     QTextEdit* m_mask;
+    QGridLayout* m_layout;
 
 signals:
 

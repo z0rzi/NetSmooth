@@ -13,15 +13,16 @@ Fenetre::Fenetre(QWidget *parent) : QMainWindow(parent)
 {
     QWidget *w = new QWidget();
     QToolBar* tb = new QToolBar();
-    QAction* afichier = new QAction();
+    QAction* afichier = new QAction(NULL);
     QMenu* mfichier = new QMenu();
-    QAction* aopt = new QAction();
+    QAction* aopt = new QAction(NULL);
     QMenu* mopt = new QMenu();
     Selection *s = new Selection();
     VuePrincipale *vp = new VuePrincipale();
     QGridLayout *g = new QGridLayout();
     VueInformation *vi= VueInformation::getInstanceOf();
     VueInformationControleur *vic = new VueInformationControleur(vi);
+
     g->addWidget(s,0,0,0);
     g->addWidget(vp,0,1,0);
     g->addWidget(vi,0,2,0);
