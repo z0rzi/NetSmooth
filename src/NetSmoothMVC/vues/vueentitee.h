@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QMouseEvent>
 #include <QLabel>
+#include <QCoreApplication>
 #include "modeles/Machine.h"
 #include "modeles/Bridge.h"
 #include "modeles/Cable.h"

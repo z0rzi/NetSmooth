@@ -19,7 +19,12 @@ Entitee* VueEntitee::getModele(){
 
 void VueEntitee::mousePressEvent(QMouseEvent *e)
 {
-    if (e->button() == Qt::LeftButton)
+    if(Selection::getEnSelection()==SUPPRIMER)
+    {
+        this->getModele()->~Entitee();
+        this->deleteLater();
+    }
+    else if (e->button() == Qt::LeftButton)
     {
         if(VueEntitee::getLabelEnSelection()!=this)
         {
@@ -30,7 +35,7 @@ void VueEntitee::mousePressEvent(QMouseEvent *e)
         if(Selection::getEnSelection()==CABLE)
             VueCable::creerVueCable(this);
     }
-    if (e->button() == Qt::RightButton)
+    else if (e->button() == Qt::RightButton)
           emit rightClick();
 }
 
