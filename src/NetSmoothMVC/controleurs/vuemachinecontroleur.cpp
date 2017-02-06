@@ -3,9 +3,10 @@
 
 VueMachineControleur::VueMachineControleur(VueMachine* vue0, VueEntiteeControleur *parent) : VueEntiteeControleur(parent)
 {
+
     vue = vue0;
 
-    connect(vue,SIGNAL(doubleClick()),this,SLOT(actionDoubleClick()));
+    this->connect(vue,SIGNAL(doubleClick()),this,SLOT(actionDoubleClick()));
 }
 
 void VueMachineControleur::actionDoubleClick()

@@ -27,7 +27,7 @@ void VueCable::paintEvent(QPaintEvent *event)
         int x1,y1;  //représente les coordonnées dans le widget de la première vue
         int x2,y2; //de la deuxième vue
         int width,height;
-        int tailleEntitee = this->m_v1->height();
+        int tailleEntitee = 250;//this->m_v1->height();
         VueEntitee *haut, *bas, *droite, *gauche;
 
         if(this->m_v1->pos().x() > this->m_v2->pos().x())

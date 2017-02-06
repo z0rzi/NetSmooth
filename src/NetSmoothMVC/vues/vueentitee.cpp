@@ -4,12 +4,12 @@
 
 VueEntitee* VueEntitee::labelEnSelection = NULL;// A quoi LabelEnSelection sert? Vincent
 
-VueEntitee::VueEntitee(QLabel *parent) : QLabel(parent)
+VueEntitee::VueEntitee(QGraphicsItem *parent) : QGraphicsPixmapItem(parent)
 {
     /**********TRANSPARENCE****************/
-    this->setAttribute( Qt::WA_TranslucentBackground);
-    this->setWindowFlags (Qt::FramelessWindowHint);
-    this->setAutoFillBackground(false);
+    //this->setAttribute( Qt::WA_TranslucentBackground);
+    //this->setWindowFlags (Qt::FramelessWindowHint);
+    //this->setAutoFillBackground(false);
     /*************************************/
 
 }
@@ -17,7 +17,7 @@ VueEntitee::VueEntitee(QLabel *parent) : QLabel(parent)
 Entitee* VueEntitee::getModele(){
 }
 
-void VueEntitee::mousePressEvent(QMouseEvent *e)
+void VueEntitee::mousePressEvent(QGraphicsSceneMouseEvent *e)
 {
     if (e->button() == Qt::LeftButton)
     {
@@ -32,9 +32,12 @@ void VueEntitee::mousePressEvent(QMouseEvent *e)
     }
     if (e->button() == Qt::RightButton)
           emit rightClick();
+
+    qDebug("pressItem");
+    QGraphicsItem::mousePressEvent(e);
 }
 
-void VueEntitee::mouseMoveEvent(QMouseEvent *e)
+void VueEntitee::mouseMoveEvent(QGraphicsSceneMouseEvent *e)
 {
     QWidget* vp=VuePrincipale::getwidget();
     QWidget* vq=vp->parentWidget();
@@ -42,32 +45,33 @@ void VueEntitee::mouseMoveEvent(QMouseEvent *e)
 
     if (e->buttons() == Qt::LeftButton)
     {
-        int x = e->globalPos().x()-vp->pos().x()-vq->pos().x()-vFenetre->pos().x();
-        int y = e->globalPos().y()-vp->pos().y()-vq->pos().y()-vFenetre->pos().y();
-        y-=this->height()/2+35;	/*35 = hauteur bandeau en haut fenetre*/
-        x-=this->width()/2;
-        this->move(x, y);
+        int x = QCursor::pos().x()-vp->pos().x()-vq->pos().x()-vFenetre->pos().x();
+        int y = QCursor::pos().y()-vp->pos().y()-vq->pos().y()-vFenetre->pos().y();
+        //y-=this->height()/2+35;	/*35 = hauteur bandeau en haut fenetre*/
+        //x-=this->width()/2;
+        VuePrincipale::getInstanceOf()->deplacerEntitee(this,new QPoint(x,y));
     }
+    qDebug("moveItem");
+    QGraphicsItem::mouseMoveEvent(e);
 }
 
-void VueEntitee::mouseDoubleClickEvent(QMouseEvent *e)
+void VueEntitee::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *e)
 {
     emit doubleClick();
 }
 
-void VueEntitee::mouseReleaseEvent(QMouseEvent *e)
+void VueEntitee::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
 {
-    if (e->buttons() == Qt::LeftButton)
-        this->move(e->globalPos());
-    QPalette* palette = new QPalette();
-    palette->setColor(QPalette::Background,Qt::white);
-    this->setPalette(*palette);
+   // if (e->buttons() == Qt::LeftButton)
+     //   this->setOffset(e->globalPos());
+  //  QPalette* palette = new QPalette();
+   // palette->setColor(QPalette::Background,Qt::white);
+    //this->setPalette(*palette);
 }
 
 void VueEntitee::setLabelEnSelection(VueEntitee* label)
 {
     VueEntitee::labelEnSelection = label;
-
 }
 
 VueEntitee* VueEntitee::getLabelEnSelection()

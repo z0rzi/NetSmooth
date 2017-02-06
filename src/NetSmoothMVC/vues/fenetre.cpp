@@ -18,7 +18,7 @@ Fenetre::Fenetre(QWidget *parent) : QMainWindow(parent)
     QAction* aopt = new QAction(NULL);
     QMenu* mopt = new QMenu();
     Selection *s = new Selection();
-    VuePrincipale *vp = new VuePrincipale();
+    VuePrincipale *vp = VuePrincipale::getInstanceOf();
     QGridLayout *g = new QGridLayout();
     VueInformation *vi= VueInformation::getInstanceOf();
     VueInformationControleur *vic = new VueInformationControleur(vi);

@@ -37,7 +37,9 @@ HEADERS += \
     vues/VueIP.h\
     vues/VueFormulaireIP.h\
     controleurs/VueFormulaireIPControleur.h \
-    vues/fenetre.h
+    vues/fenetre.h\
+    vues/Scene.h\
+    vues/MaGraphicsView.h
 
 SOURCES += \
     main.cpp\
@@ -74,6 +76,8 @@ SOURCES += \
     vues/VueIP.cpp\
     vues/VueFormulaireIP.cpp\
     controleurs/VueFormulaireIPControleur.cpp \
-    vues/fenetre.cpp
+    vues/fenetre.cpp\
+    vues/Scene.cpp\
+    vues/MaGraphicsView.cpp
 
 QMAKE_LIBS += -llxc

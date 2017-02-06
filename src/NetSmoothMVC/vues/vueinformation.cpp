@@ -12,7 +12,7 @@ VueInformation* VueInformation::getInstanceOf()
 VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
 {
 
- this->setBaseSize(400,500);
+    this->setBaseSize(400,500);
     this->setMaximumWidth(500);
 
 
@@ -34,7 +34,7 @@ VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
     this->setLayout(layoutGlobal);
 }
 
-void VueInformation::refresh(QWidget *s)
+void VueInformation::refresh(QGraphicsPixmapItem *s)
 {
     this->setSource(s);
     this->m_routes->refresh();
@@ -116,11 +116,11 @@ void VueInformation::allumer()
     }
 }
 
-void VueInformation::setSource(QWidget *s)
+void VueInformation::setSource(QGraphicsPixmapItem *s)
 {
     this->m_source = s;
 }
-QWidget* VueInformation::getSource()
+QGraphicsPixmapItem* VueInformation::getSource()
 {
     return this->m_source;
 }
