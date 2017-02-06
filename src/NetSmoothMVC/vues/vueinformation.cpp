@@ -59,7 +59,7 @@ void VueInformation::allumer()
             //TODO ajouter les nouvelles ip rentrées
 
             vueE->getModele()->launchEntitee();
-            img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuron.png");
+            img->load(QCoreApplication::applicationDirPath()+"/images/ordinateuron.png");
             *img = img->scaled(130,130);
             vueE->setPixmap(*img);
         }
@@ -67,7 +67,7 @@ void VueInformation::allumer()
         {
             vueE->etat = false;
             vueE->getModele()->stopEntitee();
-            img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuroff.png");
+            img->load(QCoreApplication::applicationDirPath()+"/images/ordinateuroff.png");
             *img = img->scaled(130,130);
             vueE->setPixmap(*img);
         }
@@ -81,7 +81,7 @@ void VueInformation::allumer()
             //TODO ajouter les nouvelles ip rentrées
 
             vueE->getModele()->launchEntitee();
-            img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleon.png");
+            img->load(QCoreApplication::applicationDirPath()+"/images/passerelleon.png");
             *img = img->scaled(130,130);
             vueE->setPixmap(*img);
         }
@@ -89,7 +89,7 @@ void VueInformation::allumer()
         {
             vueE->etat = false;
             vueE->getModele()->stopEntitee();
-            img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleoff.png");
+            img->load(QCoreApplication::applicationDirPath()+"/images/passerelleoff.png");
             *img = img->scaled(130,130);
             vueE->setPixmap(*img);
         }
@@ -101,7 +101,7 @@ void VueInformation::allumer()
             vueE->etat = true;
             Hub* p = (Hub*)vueE->getModele();
             vueE->getModele()->launchEntitee();
-            img->load("../build-NetSmoothMVC-Desktop-Debug/images/Hubon.png");
+            img->load(QCoreApplication::applicationDirPath()+"/images/Hubon.png");
             *img = img->scaled(130,130);
             vueE->setPixmap(*img);
         }
@@ -109,7 +109,7 @@ void VueInformation::allumer()
         {
             vueE->etat = false;
             vueE->getModele()->stopEntitee();
-            img->load("../build-NetSmoothMVC-Desktop-Debug/images/Huboff.png");
+            img->load(QCoreApplication::applicationDirPath()+"/images/Huboff.png");
             *img = img->scaled(130,130);
             vueE->setPixmap(*img);
         }

@@ -23,6 +23,7 @@ public:
     QPushButton* getPasserelle();
     QPushButton* getHub();
     QPushButton* getCable();
+    QPushButton* getSupprimer();
 
 private:
     static int m_enSelection;
@@ -31,6 +32,7 @@ private:
     QPushButton *m_passerelle;
     QPushButton *m_hub;
     QPushButton *m_cable;
+    QPushButton *m_supprimer;
     SelectionControleur *m_sc;
 };
 

@@ -6,6 +6,7 @@
 #define PASSERELLE 2
 #define CABLE 3
 #define HUB 4
+#define SUPPRIMER 5
 
 
 /***vuePrincipale***/

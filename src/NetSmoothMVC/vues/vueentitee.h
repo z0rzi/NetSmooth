@@ -1,13 +1,10 @@
 #ifndef VUEENTITEE_H
 #define VUEENTITEE_H
 
-#include <QObject>
-#include <QWidget>
-#include <QMouseEvent>
-#include <QLabel>
 #include <QGraphicsView>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsSceneMouseEvent>
+#include <QCoreApplication>
 #include "modeles/Machine.h"
 #include "modeles/Bridge.h"
 #include "modeles/Cable.h"

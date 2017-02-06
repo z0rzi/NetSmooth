@@ -37,7 +37,10 @@ void VuePrincipale::mousePressEvent(QMouseEvent *e)
         VueCable::setPremiereSelection(NULL);
         VueCable::setSecondeSelection(NULL);
     }
-    if (e->buttons() == Qt::LeftButton)
+    else if(Selection::getEnSelection()==SUPPRIMER)
+    {
+    }
+    else if (e->buttons() == Qt::LeftButton)
     {
         this->m_pos = QWidget::mapFromGlobal(QCursor::pos());
         emit clickSouris(m_pos);

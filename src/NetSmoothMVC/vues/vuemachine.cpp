@@ -7,7 +7,7 @@ VueMachine::VueMachine(VueEntitee *parent) : VueEntitee(parent)
 	etat = false;
 
 	QPixmap* img = new QPixmap();
-	img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuroff.png");
+    img->load(QCoreApplication::applicationDirPath()+"/images/ordinateuroff.png");
     *img = img->scaled(130,130);
     this->setPixmap(*img);
     this->ordinateur->setVue(this);

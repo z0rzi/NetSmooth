@@ -6,7 +6,7 @@ VueHub::VueHub(VueEntitee *parent) : VueEntitee(parent)
     this->hub=DataBase::getNewHub();
     this->etat = false;
     QPixmap* img = new QPixmap();
-    img->load("../build-NetSmoothMVC-Desktop-Debug/images/Huboff.png");
+    img->load(QCoreApplication::applicationDirPath()+"/images/Huboff.png");
     *img = img->scaled(130,130);
     this->setPixmap(*img);
     this->hub->setVue(this);

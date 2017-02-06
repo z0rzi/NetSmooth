@@ -6,6 +6,7 @@
 #include <QGridLayout>
 #include <QTextEdit>
 #include <QLabel>
+#include <QCoreApplication>
 #include "vues/vueRoutes.h"
 #include "vues/ligneroute.h"
 #include "controleurs/vueRoutesControleur.h"
