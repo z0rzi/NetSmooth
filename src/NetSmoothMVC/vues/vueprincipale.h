@@ -31,11 +31,14 @@ public:
     QGraphicsView* getView();
     static VuePrincipale* getInstanceOf();
     bool deplacerEntitee(VueEntitee* v,QPoint* posRelativeToparent);
+    int getHauteurCaseEntiere();
+    int getLargeurCaseEntiere();
 
 protected:
     void resizeEvent(QResizeEvent *);
     void mousePressEvent(QMouseEvent *e);
     void keyPressEvent(QKeyEvent* e);
+    bool eventFilter(QObject *obj, QEvent *event);
 
 private:
     static QWidget* ca;
@@ -47,9 +50,11 @@ private:
     explicit VuePrincipale(QWidget *parent = 0);
 
     int grille[NB_CASE_Y][NB_CASE_X];
-    int largeurCase;
-    int hauteurCase;
+    double largeurCase;
+    double hauteurCase;
     QPoint* getPosInGrille(QPoint pos);
+
+    QSet<int> pressedKeys;
 
 signals:
     void clickSouris(QPoint pos);

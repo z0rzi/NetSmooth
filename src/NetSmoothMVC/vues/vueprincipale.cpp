@@ -10,6 +10,7 @@ VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
     this->largeurCase = LARGEUR_CASE_INI;
     this->hauteurCase = HAUTEUR_CASE_INI;
 
+    this->installEventFilter(this);
     for(int ligne = 0 ; ligne < NB_CASE_Y ; ligne++)
         for(int col = 0 ; col < NB_CASE_X ; col++)
             this->grille[ligne][col] = VIDE;
@@ -50,12 +51,45 @@ void VuePrincipale::mousePressEvent(QMouseEvent *e)
 
 void VuePrincipale::keyPressEvent(QKeyEvent* e)
 {
+    bool ctrlPressed = false,
+                    plusPressed = false,
+                    moinsPressed = false;
 
     if(e->key() == Qt::Key_Escape)
-       {
-        this->m_view->scale(1.1,1.1);
-       }
+    {
+
+    }
 }
+
+bool VuePrincipale::eventFilter(QObject *obj, QEvent *event)
+{
+    if(event->type()==QEvent::KeyPress) {
+
+        this->pressedKeys += ((QKeyEvent*)event)->key();
+
+        if( this->pressedKeys.contains(Qt::Key_Control) && this->pressedKeys.contains(Qt::Key_Plus) )
+        {
+                this->m_view->scale(1.1,1.1);
+                this->largeurCase*=1.1;
+                this->hauteurCase*=1.1;
+        }
+        if( this->pressedKeys.contains(Qt::Key_Control) && this->pressedKeys.contains(Qt::Key_Minus) )
+        {
+                this->m_view->scale(0.9,0.9);
+                this->largeurCase*=0.9;
+                this->hauteurCase*=0.9;
+        }
+
+    }
+    else if(event->type()==QEvent::KeyRelease)
+    {
+
+        this->pressedKeys -= ((QKeyEvent*)event)->key();
+    }
+
+    return false;
+}
+
 
 
 QWidget* VuePrincipale::getwidget()
@@ -100,9 +134,9 @@ VueEntitee *VuePrincipale::ajoutEntitee(int x, int y, int type)
 void VuePrincipale::paintEntitee(QPoint m_posSouris)
 {
 
-     QPoint* newPos = this->getPosInGrille(m_posSouris);
-     newPos = new QPoint(m_posSouris.x()*this->largeurCase,
-                              m_posSouris.y()*this->hauteurCase);
+    QPoint* newPos = this->getPosInGrille(m_posSouris);
+    newPos = new QPoint(m_posSouris.x()*this->largeurCase,
+                        m_posSouris.y()*this->hauteurCase);
 
     if(Selection::getEnSelection() == MACHINE)
     {
@@ -153,11 +187,13 @@ VuePrincipale* VuePrincipale::getInstanceOf()
 bool VuePrincipale::deplacerEntitee(VueEntitee *v,QPoint* pos)
 {
     QPoint* grillePos = this->getPosInGrille(*pos);
+    int largeurCaseEntiere = this->getLargeurCaseEntiere();
+    int hauteurCaseEntiere = this->getHauteurCaseEntiere();
 
     if(this->grille[grillePos->y()][grillePos->x()] == VIDE)
     {
-        v->setOffset(grillePos->x()*this->largeurCase,
-                grillePos->y()*this->hauteurCase);
+        v->setOffset(grillePos->x()*largeurCaseEntiere,
+                     grillePos->y()*hauteurCaseEntiere);
         this->grille[v->getLigneGrille()][v->getColGrille()]= VIDE;
 
         v->setLigneGrille(grillePos->y());
@@ -166,6 +202,16 @@ bool VuePrincipale::deplacerEntitee(VueEntitee *v,QPoint* pos)
         return true;
     }
     return false;
+}
+
+int VuePrincipale::getHauteurCaseEntiere()
+{
+    return (int)trunc(this->hauteurCase);
+}
+
+int VuePrincipale::getLargeurCaseEntiere()
+{
+    return (int)trunc(this->largeurCase);
 }
 
 QPoint* VuePrincipale::getPosInGrille(QPoint pos)
