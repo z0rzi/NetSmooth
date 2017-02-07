@@ -7,8 +7,6 @@
 #include "modeles/Ordinateur.h"
 #include <iostream>
 
-using namespace std;
-
 class VueMachineControleur : public VueEntiteeControleur
 {
         Q_OBJECT

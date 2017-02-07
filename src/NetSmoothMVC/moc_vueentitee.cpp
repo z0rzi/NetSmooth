@@ -22,22 +22,24 @@ static const uint qt_meta_data_VueEntitee[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       2,       // signalCount
+       3,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
       12,   11,   11,   11, 0x05,
       25,   11,   11,   11, 0x05,
+      39,   11,   11,   11, 0x05,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_VueEntitee[] = {
     "VueEntitee\0\0rightClick()\0doubleClick()\0"
+    "moveLeftButton()\0"
 };
 
 void VueEntitee::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -48,6 +50,7 @@ void VueEntitee::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->rightClick(); break;
         case 1: _t->doubleClick(); break;
+        case 2: _t->moveLeftButton(); break;
         default: ;
         }
     }
@@ -88,9 +91,9 @@ int VueEntitee::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }
@@ -105,5 +108,11 @@ void VueEntitee::rightClick()
 void VueEntitee::doubleClick()
 {
     QMetaObject::activate(this, &staticMetaObject, 1, 0);
+}
+
+// SIGNAL 2
+void VueEntitee::moveLeftButton()
+{
+    QMetaObject::activate(this, &staticMetaObject, 2, 0);
 }
 QT_END_MOC_NAMESPACE

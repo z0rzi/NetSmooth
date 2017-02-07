@@ -9,10 +9,11 @@
 #include <QPen>
 #include <iostream>
 #include <QMouseEvent>
+#include <QKeyEvent>
+#include <math.h>
+
 #include "constantes.h"
 #include "../vues/vueentitee.h"
-#include "vues/Scene.h"
-#include "MaGraphicsView.h"
 
 
 class VuePrincipaleControleur;
@@ -23,8 +24,6 @@ class VuePrincipale : public QWidget
 {
     Q_OBJECT
 public:
-    void mousePressEvent(QMouseEvent *e);
-    void mouseDoubleClickEvent(QMouseEvent *e);
     static QWidget* getwidget();
     void paintEntitee(QPoint posSouris);
     VueEntitee *ajoutEntitee(int x, int y, int type);
@@ -35,12 +34,14 @@ public:
 
 protected:
     void resizeEvent(QResizeEvent *);
+    void mousePressEvent(QMouseEvent *e);
+    void keyPressEvent(QKeyEvent* e);
 
 private:
     static QWidget* ca;
     QGraphicsScene *m_scene;
     QGraphicsView *m_view;
-    QPoint m_pos;
+
     VuePrincipaleControleur *m_vpc;
     static VuePrincipale* instance;
     explicit VuePrincipale(QWidget *parent = 0);
@@ -48,7 +49,7 @@ private:
     int grille[NB_CASE_Y][NB_CASE_X];
     int largeurCase;
     int hauteurCase;
-    QPoint* localFromGlobal(QPoint* pos);
+    QPoint* getPosInGrille(QPoint pos);
 
 signals:
     void clickSouris(QPoint pos);

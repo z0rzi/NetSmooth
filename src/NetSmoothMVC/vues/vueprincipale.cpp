@@ -41,14 +41,22 @@ void VuePrincipale::mousePressEvent(QMouseEvent *e)
     }
     else if (e->buttons() == Qt::LeftButton)
     {
-        this->m_pos = QWidget::mapFromGlobal(QCursor::pos());
-        emit clickSouris(m_pos);
+        QPoint p = this->mapFromGlobal(QCursor::pos());
+        QPointF scenePoint = this->m_view->mapToScene(p);
+
+        emit clickSouris(*new QPoint(trunc(scenePoint.x()),trunc(scenePoint.y())));
     }
 }
 
-void VuePrincipale::mouseDoubleClickEvent(QMouseEvent *e)
+void VuePrincipale::keyPressEvent(QKeyEvent* e)
 {
+
+    if(e->key() == Qt::Key_Escape)
+       {
+        this->m_view->scale(1.1,1.1);
+       }
 }
+
 
 QWidget* VuePrincipale::getwidget()
 {
@@ -62,22 +70,22 @@ VueEntitee *VuePrincipale::ajoutEntitee(int x, int y, int type)
     if(type == TYPE_ORDINATEUR)
     {
         e = new VueMachine();
-        //VueMachineControleur* c = new VueMachineControleur((VueMachine*)e);
-        //e->setGeometry(x,y,130,130);
+        VueMachineControleur* c = new VueMachineControleur((VueMachine*)e);
+        e->setOffset(x,y);
         this->m_scene->addItem(e);
     }
     if(type == TYPE_PASSERELLE)
     {
         e = new VuePasserelle();
         VuePasserelleControleur* c = new VuePasserelleControleur((VuePasserelle*)e);
-        //e->setGeometry(x,y,130,130);
+        e->setOffset(x,y);
         this->m_scene->addItem(e);
     }
     if(type == TYPE_HUB)
     {
         e = new VueHub();
         VueHubControleur* c = new VueHubControleur((VueHub*)e);
-        //e->setGeometry(x,y,130,130);
+        e->setOffset(x,y);
         this->m_scene->addItem(e);
     }
 
@@ -91,6 +99,11 @@ VueEntitee *VuePrincipale::ajoutEntitee(int x, int y, int type)
 
 void VuePrincipale::paintEntitee(QPoint m_posSouris)
 {
+
+     QPoint* newPos = this->getPosInGrille(m_posSouris);
+     newPos = new QPoint(m_posSouris.x()*this->largeurCase,
+                              m_posSouris.y()*this->hauteurCase);
+
     if(Selection::getEnSelection() == MACHINE)
     {
         VueMachine* e = new VueMachine();
@@ -139,24 +152,26 @@ VuePrincipale* VuePrincipale::getInstanceOf()
 
 bool VuePrincipale::deplacerEntitee(VueEntitee *v,QPoint* pos)
 {
-    QPoint* grillePos = this->localFromGlobal(pos);
+    QPoint* grillePos = this->getPosInGrille(*pos);
 
     if(this->grille[grillePos->y()][grillePos->x()] == VIDE)
     {
         v->setOffset(grillePos->x()*this->largeurCase,
                 grillePos->y()*this->hauteurCase);
+        this->grille[v->getLigneGrille()][v->getColGrille()]= VIDE;
 
+        v->setLigneGrille(grillePos->y());
+        v->setColGrille(grillePos->x());
         this->grille[grillePos->y()][grillePos->x()] = OCCUPE;
         return true;
     }
     return false;
 }
 
-//CHANGER DE NOM CETTE PUTAIN DE FONCTION
-QPoint* VuePrincipale::localFromGlobal(QPoint* pos)
+QPoint* VuePrincipale::getPosInGrille(QPoint pos)
 {
-    return new QPoint(pos->x()/this->largeurCase,
-                      pos->y()/this->hauteurCase);
+    return new QPoint(pos.x()/this->largeurCase,
+                      pos.y()/this->hauteurCase);
 }
 
 void VuePrincipale::resizeEvent(QResizeEvent* e)

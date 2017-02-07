@@ -8,9 +8,49 @@ VueEntitee::VueEntitee(QGraphicsItem *parent) : QGraphicsPixmapItem(parent)
 {
     this->setFlag(QGraphicsItem::ItemIsFocusable,true);
     this->setFlag(QGraphicsItem::ItemIsSelectable,true);
+    this->ligne=0;
+    this->colonne=0;
 }
 
 Entitee* VueEntitee::getModele(){
+}
+
+int VueEntitee::getLigneGrille()
+{
+    return this->ligne;
+}
+
+void VueEntitee::setLigneGrille(int l)
+{
+    this->ligne = l;
+}
+
+int VueEntitee::getColGrille()
+{
+    return this->colonne;
+}
+
+void VueEntitee::setColGrille(int c)
+{
+    this->colonne=c;
+}
+
+void VueEntitee::setLabelEnSelection(VueEntitee* label)
+{
+    VueEntitee::labelEnSelection = label;
+}
+
+VueEntitee* VueEntitee::getLabelEnSelection()
+{
+    return VueEntitee::labelEnSelection;
+}
+
+void VueEntitee::moveOnCursor(){
+        QPoint viewPoint = VuePrincipale::getInstanceOf()->getView()->mapFromGlobal(QCursor::pos());
+        QPointF scenePoint = VuePrincipale::getInstanceOf()->getView()->mapToScene(viewPoint);
+
+        VuePrincipale::getInstanceOf()->deplacerEntitee(this,
+                                                        new QPoint(trunc(scenePoint.x()),trunc(scenePoint.y())));
 }
 
 void VueEntitee::mousePressEvent(QGraphicsSceneMouseEvent *e)
@@ -34,34 +74,22 @@ void VueEntitee::mousePressEvent(QGraphicsSceneMouseEvent *e)
     else if (e->button() == Qt::RightButton)
           emit rightClick();
 
-    qDebug("pressItem");
     QGraphicsItem::mousePressEvent(e);
 }
 
 void VueEntitee::mouseMoveEvent(QGraphicsSceneMouseEvent *e)
 {
-    QGraphicsItem::mouseMoveEvent(e);
-    QWidget* vp=VuePrincipale::getwidget();
-    QWidget* vq=vp->parentWidget();
-    QWidget *vFenetre = vq->parentWidget();
 
     if (e->buttons() == Qt::LeftButton)
     {
-        QPoint viewPoint = VuePrincipale::getInstanceOf()->getView()->mapFromGlobal(QCursor::pos());
-        QPointF scenePoint = VuePrincipale::getInstanceOf()->getView()->mapToScene(viewPoint);
-
-        VuePrincipale::getInstanceOf()->deplacerEntitee(this,
-                                                        new QPoint(trunc(scenePoint.x()),trunc(scenePoint.y())));
+        emit moveLeftButton();
 
     }
+    QGraphicsItem::mouseMoveEvent(e);
 }
 
-void VueEntitee::setLabelEnSelection(VueEntitee* label)
+void VueEntitee::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *e)
 {
-    VueEntitee::labelEnSelection = label;
+    emit doubleClick();
 }
 
-VueEntitee* VueEntitee::getLabelEnSelection()
-{
-    return VueEntitee::labelEnSelection;
-}
