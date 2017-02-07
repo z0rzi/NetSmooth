@@ -18,8 +18,7 @@ VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
     this->setMaximumSize(NB_CASE_X*LARGEUR_CASE_MAX,NB_CASE_Y*HAUTEUR_CASE_MAX);
 
     this->m_scene = new QGraphicsScene(this);
-    this->m_view = new MaGraphicsView(m_scene,this);
-    //this->m_view->setMouseTracking(true);
+    this->m_view = new QGraphicsView(m_scene,this);
     this->m_vpc = new VuePrincipaleControleur(this);
 
     this->m_scene->setSceneRect(0,0,NB_CASE_X*LARGEUR_CASE_INI,NB_CASE_Y*HAUTEUR_CASE_INI);
@@ -96,7 +95,6 @@ void VuePrincipale::paintEntitee(QPoint m_posSouris)
     {
         VueMachine* e = new VueMachine();
         VueMachineControleur* c = new VueMachineControleur(e);
-        //e->setGeometry(m_posSouris.x(),m_posSouris.y(),130,130);
         e->setOffset(m_posSouris.x(),m_posSouris.y());
         this->m_scene->addItem(e);
     }
@@ -104,7 +102,6 @@ void VuePrincipale::paintEntitee(QPoint m_posSouris)
     {
         VuePasserelle* e = new VuePasserelle();
         VuePasserelleControleur* c = new VuePasserelleControleur(e);
-        //e->setGeometry(m_posSouris.x(),m_posSouris.y(),130,130);
         e->setOffset(m_posSouris.x(),m_posSouris.y());
         this->m_scene->addItem(e);
     }
@@ -112,7 +109,6 @@ void VuePrincipale::paintEntitee(QPoint m_posSouris)
     {
         VueHub* e = new VueHub();
         VueHubControleur* c = new VueHubControleur(e);
-        //e->setGeometry(m_posSouris.x(),m_posSouris.y(),130,130);
         e->setOffset(m_posSouris.x(),m_posSouris.y());
         this->m_scene->addItem(e);
     }
@@ -129,7 +125,7 @@ QGraphicsScene* VuePrincipale::getScene()
     return this->m_scene;
 }
 
-MaGraphicsView* VuePrincipale::getView()
+QGraphicsView* VuePrincipale::getView()
 {
     return this->m_view;
 }
@@ -156,6 +152,7 @@ bool VuePrincipale::deplacerEntitee(VueEntitee *v,QPoint* pos)
     return false;
 }
 
+//CHANGER DE NOM CETTE PUTAIN DE FONCTION
 QPoint* VuePrincipale::localFromGlobal(QPoint* pos)
 {
     return new QPoint(pos->x()/this->largeurCase,

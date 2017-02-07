@@ -5,6 +5,7 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsSceneMouseEvent>
 #include <QCoreApplication>
+#include <math.h>
 #include "modeles/Machine.h"
 #include "modeles/Bridge.h"
 #include "modeles/Cable.h"
@@ -33,8 +34,6 @@ private:
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *e) override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *e) override;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *e) override;
-    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *e) override;
 
 signals:
     void rightClick();

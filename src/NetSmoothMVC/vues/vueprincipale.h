@@ -29,7 +29,7 @@ public:
     void paintEntitee(QPoint posSouris);
     VueEntitee *ajoutEntitee(int x, int y, int type);
     QGraphicsScene* getScene();
-    MaGraphicsView* getView();
+    QGraphicsView* getView();
     static VuePrincipale* getInstanceOf();
     bool deplacerEntitee(VueEntitee* v,QPoint* posRelativeToparent);
 
@@ -39,7 +39,7 @@ protected:
 private:
     static QWidget* ca;
     QGraphicsScene *m_scene;
-    MaGraphicsView *m_view;
+    QGraphicsView *m_view;
     QPoint m_pos;
     VuePrincipaleControleur *m_vpc;
     static VuePrincipale* instance;
