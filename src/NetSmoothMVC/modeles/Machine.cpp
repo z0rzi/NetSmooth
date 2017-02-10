@@ -86,7 +86,7 @@ int Machine::lancerContainer()
 
 void Machine::stopperContainer()
 {
-    int tst;
+    int tst;this->lancerContainer();
 
     tst = this->m_container->shutdown(this->m_container, 1);
     if(!tst)
@@ -111,7 +111,7 @@ void Machine::force_stopperContainer()
         char cntName[20];
         this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
         execl("../NetSmoothMVC/scripts/stopperContainer.sh", "stopContainer", cntName, NULL);
-        return;
+        exit(0);
     }
     int useless;
     while(wait(&useless)<0);
@@ -172,9 +172,12 @@ void Machine::appliquerParamIp()
     vector<struct paramIp*> tab=this->getIpConfig();
     for(i=0 ; i<tab.size() ; i++)
     {
-        const char* cmd[]={"ifconfig", tab[i]->interface.c_str(), tab[i]->ipv4.c_str(), "netmask", tab[i]->maskv4.c_str(), "up", NULL};
+        if(tab[i]->ipv4 != "")
+        {
+                const char* cmd[]={"ifconfig", tab[i]->interface.c_str(), tab[i]->ipv4.c_str(), "netmask", tab[i]->maskv4.c_str(), "up", NULL};
 
-        this->lancerCommandeDansContainer(cmd);
+                this->lancerCommandeDansContainer(cmd);
+        }
     }
 }
 
