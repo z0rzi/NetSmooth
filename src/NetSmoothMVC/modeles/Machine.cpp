@@ -157,12 +157,12 @@ void Machine::lierABridge()
 
 void Machine::lancerCommandeDansContainer(const char** commande)
 {
-    lxc_attach_options_t options = LXC_ATTACH_OPTIONS_DEFAULT;
-    lxc_attach_command_t cmd={(char*)commande[0], (char**)commande};		/* rien de compliqué par ici, juste */
-    pid_t pid=(this->m_container)->init_pid(this->m_container);					/* transférer les arguments la ou il faut
+        lxc_attach_options_t options = LXC_ATTACH_OPTIONS_DEFAULT;
+        lxc_attach_command_t cmd={(char*)commande[0], (char**)commande};		/* rien de compliqué par ici, juste */
+        pid_t pid=(this->m_container)->init_pid(this->m_container);					/* transférer les arguments la ou il faut
                  * pour lancer une commande dans le container*/
 
-    this->m_container->attach(this->m_container, lxc_attach_run_command, &cmd, &options, &pid);
+        this->m_container->attach(this->m_container, lxc_attach_run_command, &cmd, &options, &pid);
 }
 
 void Machine::appliquerParamIp()
