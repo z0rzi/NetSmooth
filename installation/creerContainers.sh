@@ -29,12 +29,11 @@ echo "lxc.rootfs = /var/lib/lxc/passerelle0/rootfs" >> /var/lib/lxc/passerelle0/
 echo "lxc.rootfs.backend = dir" >> /var/lib/lxc/passerelle0/config
 echo "lxc.utsname = passerelle0" >> /var/lib/lxc/passerelle0/config
 echo "" >> /var/lib/lxc/passerelle0/config
-echo "lxc.network.type = veth" >> /var/lib/lxc/passerelle0/config
-echo "lxc.network.name = eth0" >> /var/lib/lxc/passerelle0/config
-echo "lxc.network.flags = up" >> /var/lib/lxc/passerelle0/config
-echo "lxc.network.type = veth" >> /var/lib/lxc/passerelle0/config
-echo "lxc.network.name = eth1" >> /var/lib/lxc/passerelle0/config
-echo "lxc.network.flags = up" >> /var/lib/lxc/passerelle0/config
+for i in {0..4}; do
+	echo "lxc.network.type = veth" >> /var/lib/lxc/passerelle0/config
+	echo "lxc.network.name = eth$i" >> /var/lib/lxc/passerelle0/config
+	echo "lxc.network.flags = up" >> /var/lib/lxc/passerelle0/config
+done
 
 for i in {1..9}; do
 	lxc-copy -n ordinateur0 -N ordinateur$i > /dev/null 2> /dev/null &
