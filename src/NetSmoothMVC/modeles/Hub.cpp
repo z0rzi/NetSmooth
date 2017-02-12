@@ -16,3 +16,4 @@ void Hub::appliquerParamRoutage6(){}
 void Hub::stopperContainer(){}
 void Hub::lierABridge(){}
 void Hub::separerDeBridge(){}
+void Hub::lireModifContainer(){}

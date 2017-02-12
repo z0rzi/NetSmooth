@@ -21,6 +21,7 @@ public:
     explicit VueFormulaireIP(int numInterface, Entitee* modele,QWidget *parent = 0);
 
     void setModele(Entitee* e);
+    Entitee* getModele();
 
     void refresh();
     void appliquerModification();

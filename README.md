@@ -41,3 +41,9 @@ Fichier de configuration d'un container de type *"passerelle"* :
 	lxc.network.flags = up
 	lxc.rootfs = /var/lib/lxc/<nom du container>/rootfs
 	lxc.utsname = <nom du container>
+
+##astuce
+Pour connecter un container a internet:
+* mettez "none" a lxc.network.type
+* demarer le container (il aura les interfaces du host)
+* copier le fichier /etc/resolv.conf de votre host dans le meme fichier sur le container (en ecrasant celui du container)

@@ -276,6 +276,7 @@ public:
                  */
 
         virtual std::vector<struct paramIp*> getIpConfig() = 0 ;
+        virtual void lireModifContainer() = 0;
         virtual void appliquerParamIp() = 0;
         virtual void appliquerParamRoutage4() = 0;
         virtual void appliquerParamRoutage6() = 0;

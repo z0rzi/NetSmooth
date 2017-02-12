@@ -13,7 +13,7 @@ class VueFormulaireIPControleur : public QObject
 {
     Q_OBJECT
 public:
-    explicit VueFormulaireIPControleur(VueFormulaireIP* vue, QPushButton* valider, QObject *parent = 0);
+    explicit VueFormulaireIPControleur(VueFormulaireIP* vue, QPushButton *refresh, QPushButton* valider, QObject *parent = 0);
 
 private:
     VueFormulaireIP* vue;
@@ -22,6 +22,7 @@ signals:
 
 public slots:
     void appliquerModif();
+    void refresh();
 
 };
 

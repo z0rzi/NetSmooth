@@ -1,24 +1,27 @@
-* cables
+[ ] cables
 
-* zoom a finir
+[ ] zoom a finir
 
-* nom des machines
+[ ] nom des machines
 
-* ajouter  interfaces sur les containers passerelles
+[ ] ajouter  interfaces sur les containers passerelles
 
-* resoudre bug:
+[ ] resoudre bug:
 	on peut plus allumer 2 fois Xterm si on a mis des parametres IP
 	(ca lance des zombies, tout est lié?)
 	si, apres qu'on ai bloqué le container, on essaye de faire un lxc-attach, on a un message d'erreur
 
-* changer le bouton allumer 
+[ ] changer le bouton allumer 
 
-* bouton pour tout allumer/eteindre
+[ ] bouton pour tout allumer/eteindre
 
-* sauvegarde (nom de fichier + correction position machines)
+[ ] sauvegarde (nom de fichier + correction position machines)
 
-* modification des param routage & ip dans xterm container = modification sur onglet netsmooth
+[ ] modification des param routage & ip dans xterm container = modification sur onglet netsmooth
 
-* remix design (mettre du foncé!!!)
+[ ] remix design (mettre du foncé!!!)
 
-* gerer ipv6
+
+
+
+[X] gerer ipv6

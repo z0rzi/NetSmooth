@@ -8,37 +8,38 @@
 
 class Hub : public Entitee
 {
-	public:
-		/*	Hub()
-		 *
-		 *	constructeur de la classe, il appelle le constructeur
-		 *	de son parent
-		 */
-		Hub(int id);
-		
-		/*	Methodes inutiles
-		 *
-		 *	ces methodes ne sont redéfinies ici que pour respecter
-		 *	les methodes virtuelles pures du parent, mais elles 
-		 *	ne sont pas utiles ici (elles le sont dans l'autre
-		 *	enfant en revanche: Machine)
-		 * 
-		 */
+    public:
+        /*	Hub()
+         *
+         *	constructeur de la classe, il appelle le constructeur
+         *	de son parent
+         */
+        Hub(int id);
+
+        /*	Methodes inutiles
+         *
+         *	ces methodes ne sont redéfinies ici que pour respecter
+         *	les methodes virtuelles pures du parent, mais elles
+         *	ne sont pas utiles ici (elles le sont dans l'autre
+         *	enfant en revanche: Machine)
+         *
+         */
         std::vector<struct paramIp*> getIpConfig();
-		void appliquerParamIp();
+        void appliquerParamIp();
         void appliquerParamRoutage4();
         void appliquerParamRoutage6();
         int lancerContainer();
-		void lierABridge();
+        void lierABridge();
         void separerDeBridge();
-		void stopperContainer();
+        void stopperContainer();
+        void lireModifContainer();
 
-	private:
-		/* 	numHub
-		 *
-		 * 	numero de Hub, s'incremente a chaque hub créé
-		 * 	il sert nottament a nommer les bridge
-		 */
+    private:
+        /* 	numHub
+         *
+         * 	numero de Hub, s'incremente a chaque hub créé
+         * 	il sert nottament a nommer les bridge
+         */
 };
 
 #endif

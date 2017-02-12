@@ -205,6 +205,10 @@ public:
      */
     void lancerXterm();
 
+    void reinitNetworkConfig();
+
+    void lireModifContainer();
+
     int getNewIdIp();
 
     int getNewIdRoute4();

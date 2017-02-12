@@ -1,4 +1,5 @@
 #include "Machine.h"
+#include <fstream>
 
 using namespace std;
 
@@ -13,6 +14,7 @@ Machine::Machine(int id, int type, const char* cntName)
     cout << "cntName = '" << cntName << "'" << endl;
     m_container=lxc_container_new(buff, NULL);
     m_container->set_config_item(m_container, "lxc.utsname", buff);
+    this->reinitNetworkConfig();
 }
 
 void Machine::addIpConfig(struct paramIp* ip)
@@ -172,10 +174,19 @@ void Machine::appliquerParamIp()
     vector<struct paramIp*> tab=this->getIpConfig();
     for(i=0 ; i<tab.size() ; i++)
     {
-        if(tab[i]->ipv4 != "")
+        if(tab[i]->ipv4 != "" && tab[i]->maskv4 != "")
         {
                 const char* cmd[]={"ifconfig", tab[i]->interface.c_str(), tab[i]->ipv4.c_str(), "netmask", tab[i]->maskv4.c_str(), "up", NULL};
-
+                this->lancerCommandeDansContainer(cmd);
+        }
+        else
+        {
+                const char* cmd[]={"ifconfig", tab[i]->interface.c_str(), "default", NULL};
+                this->lancerCommandeDansContainer(cmd);
+        }
+        if(tab[i]->ipv6 != "")
+        {
+                const char* cmd[]={"ifconfig", tab[i]->interface.c_str(), "add", tab[i]->ipv6.c_str(), NULL};
                 this->lancerCommandeDansContainer(cmd);
         }
     }
@@ -258,6 +269,24 @@ void Machine::lancerXterm()
     }
 }
 
+void Machine::reinitNetworkConfig()
+{
+    int x=fork();
+
+    if(x==-1)
+    {
+        perror("fork");
+        exit(1);
+    }
+    if(x==0)
+    {
+        char cntName[20];
+        this->getContainer()->get_config_item(this->getContainer(), "lxc.utsname", cntName, 20);
+        execl("../NetSmoothMVC/scripts/reinitConfigContainer.sh", "reinit", cntName, NULL);
+        exit(0);
+    }
+}
+
 int Machine::getNewIdRoute4()
 {
     bool found = false;
@@ -276,6 +305,41 @@ int Machine::getNewIdRoute4()
     cout << "id == >" << id << endl;
     return id-1;
 }
+
+void Machine::lireModifContainer()
+{
+        char cntName[20];
+        bzero(cntName, 20);
+        this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
+        string name(cntName);
+        ifstream fichier(("/var/lib/lxc/"+name+"/rootfs/.networkInfo/ipConfig.info").c_str(), ios::in);
+        string line;
+        while(getline(fichier, line))
+        {
+            int i;
+            bool ok=false;
+            for(i=0 ; i<this->m_paramIp.size() && !ok ; i++)
+            {
+                if(line == this->m_paramIp[i]->interface)
+                    ok=true;
+            }
+            i--;
+            if(ok)
+            {
+                    this->m_paramIp[i]->interface=line;
+
+                    getline(fichier, line);
+                    this->m_paramIp[i]->ipv4=line;
+
+                    getline(fichier, line);
+                    this->m_paramIp[i]->maskv4=line;
+
+                    getline(fichier, line);
+                    this->m_paramIp[i]->ipv6=line;
+            }
+        }
+}
+
 
 void Machine::removeParamRoute4(int id)
 {
