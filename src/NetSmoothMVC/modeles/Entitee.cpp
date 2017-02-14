@@ -12,14 +12,25 @@ Entitee::Entitee(int id, int type) :m_id(id)
 {
         char nomBridge[10];
         char caratype='\0';
+        stringstream stid;
+        stid << id;
         if(type==TYPE_ORDINATEUR)
+        {
                 m_bridgeInit="\0";
+                m_nom="ordi"+stid.str();
+        }
         else
         {
                 if(type==TYPE_PASSERELLE)
+                {
                         caratype='P';
+                        m_nom="pass"+stid.str();
+                }
                 if(type==TYPE_HUB)
+                {
                         caratype='H';
+                        m_nom="hub"+stid.str();
+                }
                 sprintf(nomBridge, "br%c%d", caratype, id);
                 m_bridgeInit=nomBridge;
         }
@@ -28,6 +39,16 @@ Entitee::Entitee(int id, int type) :m_id(id)
         m_bridgeActuel=m_bridgeInit;
         m_running=false;
         m_estConnecteAuBridge=false;
+}
+
+string Entitee::getNom()
+{
+    return this->m_nom;
+}
+
+void Entitee::setNom(string nom)
+{
+    this->m_nom=nom;
 }
 
 string Entitee::getBridgeInit(void) const

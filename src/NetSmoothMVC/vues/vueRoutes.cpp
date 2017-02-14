@@ -174,6 +174,10 @@ void VueRoutes::deleteRoute4()
     }
 
     this->refresh();
+
+    VueEntitee* ve = VueEntitee::getLabelEnSelection();
+    ve->getModele()->majIpContainer();
+    ve->getModele()->majRouteContainer();
 }
 
 void VueRoutes::addRoute4()
@@ -197,6 +201,10 @@ void VueRoutes::addRoute4()
         }
         this->refresh();
     }
+
+    VueEntitee* ve = VueEntitee::getLabelEnSelection();
+    ve->getModele()->majIpContainer();
+    ve->getModele()->majRouteContainer();
 }
 
 void VueRoutes::deleteRoute6()
@@ -211,6 +219,10 @@ void VueRoutes::deleteRoute6()
     }
 
     this->refresh();
+
+    VueEntitee* ve = VueEntitee::getLabelEnSelection();
+    ve->getModele()->majIpContainer();
+    ve->getModele()->majRouteContainer();
 }
 
 void VueRoutes::addRoute6()
@@ -233,4 +245,8 @@ void VueRoutes::addRoute6()
         }
         this->refresh();
     }
+
+    VueEntitee* ve = VueEntitee::getLabelEnSelection();
+    ve->getModele()->majIpContainer();
+    ve->getModele()->majRouteContainer();
 }

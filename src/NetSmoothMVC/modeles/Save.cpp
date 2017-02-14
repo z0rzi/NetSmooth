@@ -194,10 +194,11 @@ void Save::save_session(string fileName)
                                 if(ok==true)
                                         cables.push_back(cab[j]);
                         }
+                        VuePrincipale* vp=VuePrincipale::getInstanceOf();
 
                         fichier << e->getType() << endl;
-                        fichier << e->getVue()->pos().x() << endl;
-                        fichier << e->getVue()->pos().y() << endl;
+                        fichier << e->getVue()->getColGrille()*vp->getHauteurCaseEntiere() << endl;
+                        fichier << e->getVue()->getLigneGrille()*vp->getLargeurCaseEntiere() << endl;
                         fichier << e->getID() << endl;
                         //fichier << e->getNom() << endl;
                         fichier << e->getBridgeInit() << endl;

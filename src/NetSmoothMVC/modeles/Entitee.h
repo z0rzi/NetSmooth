@@ -274,6 +274,8 @@ public:
                  *	ici en tant que methodes virtuelles pures evite les transtypages
                  *	du type < ((Machine*)this)->lancerContainer() >
                  */
+        std::string getNom();
+        void setNom(std::string nom);
 
         virtual std::vector<struct paramIp*> getIpConfig() = 0 ;
         virtual void lireModifContainer() = 0;
@@ -284,6 +286,8 @@ public:
         virtual void stopperContainer() = 0;
         virtual void lierABridge() = 0;
         virtual void separerDeBridge() = 0;
+        virtual void majIpContainer() = 0;
+        virtual void majRouteContainer() = 0;
         void setVue(VueEntitee* v);
         VueEntitee* getVue();
 
@@ -349,6 +353,8 @@ protected:
 
         int m_type;
         int m_id;
+
+        std::string m_nom;
 
         VueEntitee* m_vue;
 };

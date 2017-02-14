@@ -33,6 +33,8 @@ class Hub : public Entitee
         void separerDeBridge();
         void stopperContainer();
         void lireModifContainer();
+        void majIpContainer();
+        void majRouteContainer();
 
     private:
         /* 	numHub

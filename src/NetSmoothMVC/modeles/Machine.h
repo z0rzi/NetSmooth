@@ -223,6 +223,10 @@ public:
 
     void supprimerContainerRoutage6(int id);
 
+    void majIpContainer();
+
+    void majRouteContainer();
+
     void appliquerParamRoutage6();
 
     void addRouteConfig6(struct paramRoutage route);

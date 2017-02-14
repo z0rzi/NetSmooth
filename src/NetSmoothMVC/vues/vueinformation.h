@@ -33,6 +33,9 @@ public:
 
     VueIP* getVueIP(void);
     void setVueIP(VueIP* v);
+    void addNewInfos();
+    Entitee* getModele();
+    std::string getName();
 
 private:
     static VueInformation* instance;
@@ -41,6 +44,7 @@ private:
     QPushButton* m_allumer;
     VueRoutes* m_routes;
     VueIP* m_vueIP;
+    QTextEdit* m_name;
 
 signals:
     void refresh();

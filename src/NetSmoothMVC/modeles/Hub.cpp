@@ -17,3 +17,5 @@ void Hub::stopperContainer(){}
 void Hub::lierABridge(){}
 void Hub::separerDeBridge(){}
 void Hub::lireModifContainer(){}
+void Hub::majIpContainer(){}
+void Hub::majRouteContainer(){}

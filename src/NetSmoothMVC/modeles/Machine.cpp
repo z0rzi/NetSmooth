@@ -1,5 +1,8 @@
 #include "Machine.h"
 #include <fstream>
+#include <string>
+#include <bitset>
+#include <sstream>
 
 using namespace std;
 
@@ -33,7 +36,6 @@ void Machine::setIpConfig(struct paramIp* ip)
             this->m_paramIp[i]->ipv4 = ip->ipv4;
             this->m_paramIp[i]->maskv4 = ip->maskv4;
             this->m_paramIp[i]->ipv6 = ip->ipv6;
-            std::cout << "okkkk" << std::endl;
             break;
         }
     }
@@ -264,7 +266,7 @@ void Machine::lancerXterm()
     {
         char cntName[20];
         this->getContainer()->get_config_item(this->getContainer(), "lxc.utsname", cntName, 20);
-        execl("../NetSmoothMVC/scripts/launchXtermRoot.sh", "launchCnt", cntName, NULL);
+        execl("../NetSmoothMVC/scripts/launchXtermRoot.sh", "launchCnt", cntName, this->getNom().c_str(), NULL);
         exit(0);
     }
 }
@@ -287,103 +289,166 @@ void Machine::reinitNetworkConfig()
     }
 }
 
+void Machine::majIpContainer()
+{
+        const char* cmd[]={"/.scr/majIpconfig.sh", NULL};
+
+        this->lancerCommandeDansContainer(cmd);
+}
+
+void Machine::majRouteContainer()
+{
+        const char* cmd[]={"/.scr/majRouteconfig.sh", NULL};
+
+        this->lancerCommandeDansContainer(cmd);
+}
+
 int Machine::getNewIdRoute4()
 {
-    bool found = false;
-    int id;
+        bool found = false;
+        int id;
 
-    for(id = 0 ; !found ; id++)
-    {
-        found = true;
-        for(int i=0;i<this->m_paramRoutage4.size();i++)
+        for(id = 0 ; !found ; id++)
         {
-            if(this->m_paramRoutage4[i].id == id)
-                found = false;
+                found = true;
+                for(int i=0;i<this->m_paramRoutage4.size();i++)
+                {
+                        if(this->m_paramRoutage4[i].id == id)
+                                found = false;
+                }
         }
-    }
 
-    cout << "id == >" << id << endl;
-    return id-1;
+        cout << "id == >" << id << endl;
+        return id-1;
 }
 
 void Machine::lireModifContainer()
 {
+        int i, j;
         char cntName[20];
         bzero(cntName, 20);
         this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
         string name(cntName);
-        ifstream fichier(("/var/lib/lxc/"+name+"/rootfs/.networkInfo/ipConfig.info").c_str(), ios::in);
+        ifstream ipFile(("/var/lib/lxc/"+name+"/rootfs/.networkInfo/ipConfig.info").c_str(), ios::in);
         string line;
-        while(getline(fichier, line))
+        while(getline(ipFile, line))
         {
-            int i;
-            bool ok=false;
-            for(i=0 ; i<this->m_paramIp.size() && !ok ; i++)
-            {
-                if(line == this->m_paramIp[i]->interface)
-                    ok=true;
-            }
-            i--;
-            if(ok)
-            {
-                    this->m_paramIp[i]->interface=line;
+                bool ok=false;
+                for(i=0 ; i<this->m_paramIp.size() && !ok ; i++)
+                {
+                        if(line == this->m_paramIp[i]->interface)
+                                ok=true;
+                }
+                i--;
+                if(ok)
+                {
+                        this->m_paramIp[i]->interface=line;
 
-                    getline(fichier, line);
-                    this->m_paramIp[i]->ipv4=line;
+                        getline(ipFile, line);
+                        this->m_paramIp[i]->ipv4=line;
 
-                    getline(fichier, line);
-                    this->m_paramIp[i]->maskv4=line;
+                        getline(ipFile, line);
+                        this->m_paramIp[i]->maskv4=line;
 
-                    getline(fichier, line);
-                    this->m_paramIp[i]->ipv6=line;
-            }
+                        getline(ipFile, line);
+                        this->m_paramIp[i]->ipv6=line;
+                }
         }
+        ipFile.close();
+
+        vector<struct paramRoutage> *p = new vector<paramRoutage>;
+        ifstream routeFile(("/var/lib/lxc/"+name+"/rootfs/.networkInfo/routeConfig.info").c_str(), ios::in);
+        i=0;
+        while(getline(routeFile, line))
+        {
+                struct paramRoutage *tmp = new struct paramRoutage;
+                tmp->id=i;
+
+                tmp->interface=line;
+
+                getline(routeFile, line);
+                string dest=line;
+
+                int m=0;
+                string buff="";
+                getline(routeFile, line);
+                tmp->passerelle=line;
+
+                getline(routeFile, line);
+                for(j=0 ; j<line.size() ; j++)
+                        if(line[j]=='.')
+                        {
+                                if(buff=="255")
+                                        m+=8;
+                                else if(buff=="0")
+                                        j=line.size();
+                                else
+                                {
+                                        int nb=atoi(buff.c_str());
+                                        string binary = bitset<8>(nb).to_string();
+                                        int e=0;
+                                        while(binary[e]!='0')
+                                                e++;
+                                        m+=e;
+                                }
+                                buff="";
+                        }
+                        else
+                                buff+=line[j];
+                stringstream ss;
+                ss << m;
+                tmp->destination=dest+"/"+ss.str();
+                p->push_back(*tmp);
+                i++;
+        }
+        this->m_paramRoutage4 = *p;
+        routeFile.close();
 }
 
 
 void Machine::removeParamRoute4(int id)
 {
-    bool found = false;
+        bool found = false;
 
-    for(int i = 0 ; i < this->m_paramRoutage4.size() && !found ; i++)
-    {
-
-        if(this->m_paramRoutage4[i].id == id)
+        for(int i = 0 ; i < this->m_paramRoutage4.size() && !found ; i++)
         {
-            found = true;
-            this->supprimerContainerRoutage4(id);
-            this->m_paramRoutage4.erase(this->m_paramRoutage4.begin() + i);
-        }
 
-    }
+                if(this->m_paramRoutage4[i].id == id)
+                {
+                        found = true;
+                        this->supprimerContainerRoutage4(id);
+                        this->m_paramRoutage4.erase(this->m_paramRoutage4.begin() + i);
+                }
+
+        }
 }
 
 void Machine::removeParamRoute6(int id)
 {
-    bool found = false;
+        bool found = false;
 
-    for(int i = 0 ; i < this->m_paramRoutage6.size() && !found ; i++)
-    {
-
-        if(this->m_paramRoutage6[i].id == id)
+        for(int i = 0 ; i < this->m_paramRoutage6.size() && !found ; i++)
         {
-            found = true;
-            this->supprimerContainerRoutage6(id);
-            this->m_paramRoutage6.erase(this->m_paramRoutage6.begin() + i);
-        }
 
-    }
+                if(this->m_paramRoutage6[i].id == id)
+                {
+                        found = true;
+                        this->supprimerContainerRoutage6(id);
+                        this->m_paramRoutage6.erase(this->m_paramRoutage6.begin() + i);
+                }
+
+        }
 }
 
 void Machine::appliquerParamRoutage6()
 {
-    int i;
+        int i;
 
-    vector<struct paramRoutage> tab = this->getRouteConfig6();
-    for(i=0 ; i<tab.size() ; i++)
-    {
-        const char* cmd[]={"route", "add", "-inet6", tab[i].destination.c_str(), "gw", tab[i].passerelle.c_str(), "dev", tab[i].interface.c_str(), NULL};
+        vector<struct paramRoutage> tab = this->getRouteConfig6();
+        for(i=0 ; i<tab.size() ; i++)
+        {
+                const char* cmd[]={"route", "add", "-inet6", tab[i].destination.c_str(), "gw", tab[i].passerelle.c_str(), "dev", tab[i].interface.c_str(), NULL};
 
-        this->lancerCommandeDansContainer(cmd);
-    }
+                this->lancerCommandeDansContainer(cmd);
+        }
 }

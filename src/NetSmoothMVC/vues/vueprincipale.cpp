@@ -100,18 +100,23 @@ QWidget* VuePrincipale::getwidget()
 
 VueEntitee *VuePrincipale::ajoutEntitee(int x, int y, int type)
 {
+    QPoint* newPos = this->getPosInGrille(*(new QPoint(x, y)));
     VueEntitee* e;
     if(type == TYPE_ORDINATEUR)
     {
         e = new VueMachine();
         VueMachineControleur* c = new VueMachineControleur((VueMachine*)e);
         e->setOffset(x,y);
+        e->setColGrille(newPos->x());
+        e->setLigneGrille(newPos->y());
         this->m_scene->addItem(e);
     }
     if(type == TYPE_PASSERELLE)
     {
         e = new VuePasserelle();
         VuePasserelleControleur* c = new VuePasserelleControleur((VuePasserelle*)e);
+        e->setColGrille(newPos->x());
+        e->setLigneGrille(newPos->y());
         e->setOffset(x,y);
         this->m_scene->addItem(e);
     }
@@ -119,6 +124,8 @@ VueEntitee *VuePrincipale::ajoutEntitee(int x, int y, int type)
     {
         e = new VueHub();
         VueHubControleur* c = new VueHubControleur((VueHub*)e);
+        e->setColGrille(newPos->x());
+        e->setLigneGrille(newPos->y());
         e->setOffset(x,y);
         this->m_scene->addItem(e);
     }
@@ -135,29 +142,33 @@ void VuePrincipale::paintEntitee(QPoint m_posSouris)
 {
 
     QPoint* newPos = this->getPosInGrille(m_posSouris);
-    newPos = new QPoint(m_posSouris.x()*this->largeurCase,
-                        m_posSouris.y()*this->hauteurCase);
 
     if(Selection::getEnSelection() == MACHINE)
     {
         VueMachine* e = new VueMachine();
         VueMachineControleur* c = new VueMachineControleur(e);
-        e->setOffset(m_posSouris.x(),m_posSouris.y());
+        e->setOffset(newPos->x()*this->largeurCase,newPos->y()*this->hauteurCase);
         this->m_scene->addItem(e);
+        e->setColGrille(newPos->x());
+        e->setLigneGrille(newPos->y());
     }
     if(Selection::getEnSelection() == PASSERELLE)
     {
         VuePasserelle* e = new VuePasserelle();
         VuePasserelleControleur* c = new VuePasserelleControleur(e);
-        e->setOffset(m_posSouris.x(),m_posSouris.y());
+        e->setOffset(newPos->x()*this->largeurCase,newPos->y()*this->hauteurCase);
         this->m_scene->addItem(e);
+        e->setColGrille(newPos->x());
+        e->setLigneGrille(newPos->y());
     }
     if(Selection::getEnSelection() == HUB)
     {
         VueHub* e = new VueHub();
         VueHubControleur* c = new VueHubControleur(e);
-        e->setOffset(m_posSouris.x(),m_posSouris.y());
+        e->setOffset(newPos->x()*this->largeurCase,newPos->y()*this->hauteurCase);
         this->m_scene->addItem(e);
+        e->setColGrille(newPos->x());
+        e->setLigneGrille(newPos->y());
     }
 
     this->m_view->setScene(this->m_scene);

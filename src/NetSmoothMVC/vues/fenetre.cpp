@@ -2,6 +2,7 @@
 #include <QGridLayout>
 #include <QToolBar>
 #include <QMenu>
+#include <QFileDialog>
 
 #include "vues/selection.h"
 #include "vues/vueprincipale.h"
@@ -21,7 +22,6 @@ Fenetre::Fenetre(QWidget *parent) : QMainWindow(parent)
     VuePrincipale *vp = VuePrincipale::getInstanceOf();
     QGridLayout *g = new QGridLayout();
     VueInformation *vi= VueInformation::getInstanceOf();
-    VueInformationControleur *vic = new VueInformationControleur(vi);
 
     g->addWidget(s,0,0,0);
     g->addWidget(vp,0,1,0);
@@ -43,15 +43,26 @@ Fenetre::Fenetre(QWidget *parent) : QMainWindow(parent)
 
 void Fenetre::save()
 {
-   Save::save_session("bobo");
+        QFileDialog* fl = new QFileDialog();
+        fl->setDefaultSuffix(*(new QString("ns")));
+        fl->setDirectory(*(new QString("../saves")));
+        fl->setViewMode(QFileDialog::List);
+        fl->setAcceptMode(QFileDialog::AcceptSave);
+        QString bob = fl->getSaveFileName();
+        Save::save_session(bob.toStdString());
 }
 
 void Fenetre::load()
 {
-   Save::load_session("bobo");
+        QFileDialog* fl = new QFileDialog();
+        fl->setDirectory(*(new QString("../saves")));
+        fl->setViewMode(QFileDialog::List);
+        fl->setAcceptMode(QFileDialog::AcceptOpen);
+        QString bob = fl->getOpenFileName();
+        Save::load_session(bob.toStdString());
 }
 
 void Fenetre::quit()
 {
-   exit(0);
+        exit(0);
 }
