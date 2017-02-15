@@ -3,7 +3,7 @@
 using namespace std;
 
 Ordinateur::Ordinateur(int id)
-	:Machine(id, TYPE_ORDINATEUR, "ordinateur")
+    :Machine(id, TYPE_ORDINATEUR, "ordinateur")
 {
 
     for(int numInterface = 0; numInterface < NOMBRE_INTERFACES_ORDINATEUR ; numInterface++)

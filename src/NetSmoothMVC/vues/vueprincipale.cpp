@@ -214,12 +214,12 @@ bool VuePrincipale::deplacerEntitee(VueEntitee *v,QPoint* pos)
 
 int VuePrincipale::getHauteurCaseEntiere()
 {
-    return (int)round(this->hauteurCase);
+    return (int)trunc(this->hauteurCase);
 }
 
 int VuePrincipale::getLargeurCaseEntiere()
 {
-    return (int)round(this->largeurCase);
+    return (int)trunc(this->largeurCase);
 }
 
 QPoint* VuePrincipale::getPosInGrille(QPoint pos)
