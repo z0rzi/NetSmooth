@@ -363,6 +363,3 @@ VueEntitee* Entitee::getVue()
     return this->m_vue;
 }
 
-Entitee::~Entitee()
-{
-}

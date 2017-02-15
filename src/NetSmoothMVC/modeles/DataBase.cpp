@@ -1,8 +1,6 @@
 #include "DataBase.h"
 
 
-using namespace std;
-
 int DataBase::m_nbreOrdinateur = 0;
 int DataBase::m_nbrePasserelle = 0;
 int DataBase::m_nbreHub = 0;
@@ -22,10 +20,12 @@ Ordinateur* DataBase::getNewOrdinateur(void)
 
         while(elemActuel!=NULL && idAvailable){
             if(elemActuel->entitee->getID()==id)
+            {
                 idAvailable=false;
-
+            }
             elemActuel=elemActuel->nextElement;
         }
+
     }
 
     if(id==0)//Cas où aucun ordinateur n'existe

@@ -53,6 +53,7 @@ public:
      */
     Machine(int d, int type, const char* cntName);
 
+    virtual ~Machine(){};
     /*	struct lxc_container* getContainer() const
      *
      *	permet de recuperer le container associé a la machine
