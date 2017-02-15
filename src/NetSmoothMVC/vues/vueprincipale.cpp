@@ -58,15 +58,15 @@ bool VuePrincipale::eventFilter(QObject *obj, QEvent *event)
         if( this->pressedKeys.contains(Qt::Key_Control) && this->pressedKeys.contains(Qt::Key_Plus) )
         {
             this->m_view->scale(1.1,1.1);
-            this->largeurCase*=1.1;
-            this->hauteurCase*=1.1;
+            this->largeurCase=m_view->sceneRect().width()/NB_CASE_X;
+            this->hauteurCase=m_view->sceneRect().height()/NB_CASE_Y;;
             this->refreshItems();
         }
         if( this->pressedKeys.contains(Qt::Key_Control) && this->pressedKeys.contains(Qt::Key_Minus) )
         {
             this->m_view->scale(0.9,0.9);
-            this->largeurCase*=0.9;
-            this->hauteurCase*=0.9;
+            this->largeurCase=m_view->sceneRect().width()/NB_CASE_X;
+            this->hauteurCase=m_view->sceneRect().height()/NB_CASE_Y;;
             this->refreshItems();
         }
 
