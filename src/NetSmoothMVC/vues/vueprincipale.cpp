@@ -49,18 +49,6 @@ void VuePrincipale::mousePressEvent(QMouseEvent *e)
     }
 }
 
-void VuePrincipale::keyPressEvent(QKeyEvent* e)
-{
-    bool ctrlPressed = false,
-                    plusPressed = false,
-                    moinsPressed = false;
-
-    if(e->key() == Qt::Key_Escape)
-    {
-
-    }
-}
-
 bool VuePrincipale::eventFilter(QObject *obj, QEvent *event)
 {
     if(event->type()==QEvent::KeyPress) {
@@ -69,15 +57,17 @@ bool VuePrincipale::eventFilter(QObject *obj, QEvent *event)
 
         if( this->pressedKeys.contains(Qt::Key_Control) && this->pressedKeys.contains(Qt::Key_Plus) )
         {
-                this->m_view->scale(1.1,1.1);
-                this->largeurCase*=1.1;
-                this->hauteurCase*=1.1;
+            this->m_view->scale(1.1,1.1);
+            this->largeurCase*=1.1;
+            this->hauteurCase*=1.1;
+            this->refreshItems();
         }
         if( this->pressedKeys.contains(Qt::Key_Control) && this->pressedKeys.contains(Qt::Key_Minus) )
         {
-                this->m_view->scale(0.9,0.9);
-                this->largeurCase*=0.9;
-                this->hauteurCase*=0.9;
+            this->m_view->scale(0.9,0.9);
+            this->largeurCase*=0.9;
+            this->hauteurCase*=0.9;
+            this->refreshItems();
         }
 
     }
@@ -90,7 +80,14 @@ bool VuePrincipale::eventFilter(QObject *obj, QEvent *event)
     return false;
 }
 
-
+void VuePrincipale::refreshItems()
+{
+    QList<QGraphicsItem*> items = this->m_view->items();
+    for (int i = 0; i < items.size(); ++i) {
+        VueEntitee* vue = (VueEntitee*)items.at(i);
+        vue->setOffset(vue->getColGrille()*this->getHauteurCaseEntiere(),vue->getLigneGrille()*this->getLargeurCaseEntiere());
+    }
+}
 
 QWidget* VuePrincipale::getwidget()
 {
@@ -217,12 +214,12 @@ bool VuePrincipale::deplacerEntitee(VueEntitee *v,QPoint* pos)
 
 int VuePrincipale::getHauteurCaseEntiere()
 {
-    return (int)trunc(this->hauteurCase);
+    return (int)round(this->hauteurCase);
 }
 
 int VuePrincipale::getLargeurCaseEntiere()
 {
-    return (int)trunc(this->largeurCase);
+    return (int)round(this->largeurCase);
 }
 
 QPoint* VuePrincipale::getPosInGrille(QPoint pos)

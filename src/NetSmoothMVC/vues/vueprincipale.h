@@ -31,13 +31,13 @@ public:
     QGraphicsView* getView();
     static VuePrincipale* getInstanceOf();
     bool deplacerEntitee(VueEntitee* v,QPoint* posRelativeToparent);
+
     int getHauteurCaseEntiere();
     int getLargeurCaseEntiere();
 
 protected:
     void resizeEvent(QResizeEvent *);
     void mousePressEvent(QMouseEvent *e);
-    void keyPressEvent(QKeyEvent* e);
     bool eventFilter(QObject *obj, QEvent *event);
 
 private:
@@ -55,6 +55,7 @@ private:
     QPoint* getPosInGrille(QPoint pos);
 
     QSet<int> pressedKeys;
+    void refreshItems();
 
 signals:
     void clickSouris(QPoint pos);
