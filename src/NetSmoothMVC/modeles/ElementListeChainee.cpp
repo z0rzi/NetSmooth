@@ -2,7 +2,6 @@
 #include "Entitee.h"
 #include "ElementListeChainee.h"
 
-using namespace std;
 
 ElementListeChainee::ElementListeChainee(Entitee* m_entitee0,ElementListeChainee* m_nextElement0)
 {
