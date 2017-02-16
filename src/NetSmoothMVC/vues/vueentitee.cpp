@@ -29,6 +29,7 @@ void VueEntitee::paint(QPainter * painter, const QStyleOptionGraphicsItem * opti
     painter->drawText(vp->getLargeurCaseEntiere()*this->colonne+this->pixmap().width()/2-nom.size()*3.5,
                       vp->getHauteurCaseEntiere()*this->ligne+this->pixmap().height(),
                       *(new QString(nom.c_str())));
+
 }
 
 int VueEntitee::getLigneGrille()
@@ -64,6 +65,7 @@ VueEntitee* VueEntitee::getLabelEnSelection()
 void VueEntitee::moveOnCursor(){
         QPoint viewPoint = VuePrincipale::getInstanceOf()->getView()->mapFromGlobal(QCursor::pos());
         QPointF scenePoint = VuePrincipale::getInstanceOf()->getView()->mapToScene(viewPoint);
+        this->scene()->update();
 
         VuePrincipale::getInstanceOf()->deplacerEntitee(this,
                                                         new QPoint(trunc(scenePoint.x()-this->pixmap().width()/2),
@@ -86,7 +88,10 @@ void VueEntitee::mousePressEvent(QGraphicsSceneMouseEvent *e)
                 }
 
                 if(Selection::getEnSelection()==CABLE)
+                {
                         VueCable::creerVueCable(this);
+                        this->scene()->update();
+                }
         }
         else if (e->button() == Qt::RightButton)
                 emit rightClick();

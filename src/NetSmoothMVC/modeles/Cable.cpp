@@ -13,6 +13,16 @@ void Cable::getExtremites(Entitee** arr) const
     arr[1]=m_ext2;
 }
 
+VueCable* Cable::getVue()
+{
+    return this->m_vue;
+}
+
+void Cable::setVue(VueCable* vue)
+{
+    this->m_vue=vue;
+}
+
 Cable* Cable::creerCable(Entitee* ext1, Entitee* ext2)
 {
     Cable* c = new Cable(ext1, ext2);

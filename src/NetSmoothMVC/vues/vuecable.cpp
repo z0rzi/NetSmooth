@@ -6,24 +6,127 @@
 VueEntitee* VueCable::PremiereSelection = NULL;
 VueEntitee* VueCable::SecondeSelection = NULL;
 
-VueCable::VueCable(VueEntitee* v1, VueEntitee* v2,QWidget *parent)
-        : QWidget(parent),m_v1(v1),m_v2(v2)
+VueCable::VueCable(VueEntitee* v1, VueEntitee* v2, QGraphicsItem* parent)
+        : QGraphicsPathItem(parent),m_v1(v1),m_v2(v2)
 {
         this->cable = Cable::creerCable(v1->getModele(),v2->getModele());
+        this->cable->setVue(this);
+
+        this->setFlag(QGraphicsItem::ItemIsFocusable,true);
+        this->setFlag(QGraphicsItem::ItemIsSelectable,true);
 
         /**********TRANSPARENCE****************/
+    /*
         this->setAttribute( Qt::WA_TranslucentBackground);
         this->setWindowFlags (Qt::FramelessWindowHint);
         this->setAutoFillBackground(false);
+        */
         /**************************************/
 }
 
-void VueCable::paintEvent(QPaintEvent *event)
+bool VueCable::isSeq(int xinit, int yinit, double coef, int x1, int y1, int x2, int y2)
+{
+    if(x1==x2)
+    {
+        y1=yinit-y1-1;
+        y2=yinit-y2-1;
+        float res1=((y1))/coef;
+        float res2=((y2))/coef;
+        x1-=xinit;
+        x1--;
+        cout << "res1 = " << res1 << " ; res2 = " << res2 << " ; y1 = " << y1 << " ; y2 = " << y2 << " ; yinit = " << yinit << " ; x = " << x1 << endl;
+        if((x1>=res1 && x1<=res2) || (x1>=res2 && x1<=res1))
+            return true;
+    }
+    else if(y1==y2)
+    {
+        x1-=xinit+1;
+        x2-=xinit+1;
+        float res1=coef*x1;
+        float res2=coef*x2;
+        y1=yinit-y1;
+        cout << "res1 = " << res1 << " ; res2 = " << res2 << " ; x1 = " << x1 << " ; x2 = " << x2 << " ; xinit = " << xinit << " ; y = " << y1 << endl;
+        if((y1>=res1 && y1<=res2) || (y1>=res2 && y1<=res1))
+            return true;
+    }
+    cout << "false" << endl;
+    return false;
+}
+
+void VueCable::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
 {
 
-        QPainter painter(this);
-        QPen myPen(Qt::black, 2, Qt::SolidLine);
-        painter.setPen(myPen);
+        QPen pen(Qt::black, 2, Qt::SolidLine);
+        painter->setPen(pen);
+        VuePrincipale* vp = VuePrincipale::getInstanceOf();
+
+        int unitx = vp->getScene()->width()/NB_CASE_X;
+        int unity = vp->getScene()->height()/NB_CASE_Y;
+
+        int x=m_v1->getColGrille()+2, y=m_v1->getLigneGrille()+2;
+        int goalx=m_v2->getColGrille()+2, goaly=m_v2->getLigneGrille()+2;
+
+        int i=1, j=1, gx=x, gy=y;
+        if(goalx<x)
+        {
+            gx=goalx;
+            gy=goaly;
+            i=-1;
+        }
+        if(goaly<y)
+            j=-1;
+
+        float rapport;
+        if(x!=goalx)
+                rapport=((y-goaly)*1.0)/((x-goalx)*1.0);
+        rapport*=-1;
+
+
+        int width = x-goalx;
+        width*=(width<0)?-1:1;
+        int height = y-goaly;
+        height*=(height<0)?-1:1;
+
+        int dist;
+        if(height!=0 && width!=0)
+            if(rapport<1)
+                dist=width/height;
+            else
+                dist=height/width;
+
+        painter->drawLine(x*unitx, y*unity,goalx*unitx, goaly*unity);
+/*
+        cout << "rapport = " << rapport << endl;
+        bool bi=(rapport>1)?true:false, goalReached=false;
+        bool sens=bi;
+        int k=0;
+        bool force=false;
+        while(!goalReached)
+        {
+                if(force || bi && ((y<goaly && j>0) || (y>goaly && j<0)))    //horizontal
+                {
+                    painter->drawLine(x*unitx, y*unity, x*unitx, (y+j)*unity);
+                    y+=j;
+                    if(k==0 || this->isSeq(gx, gy, rapport, x, y, x, y+j))
+                        bi=!bi;
+                    force=false;
+                }
+                else if((x<goalx && i>0) || (x>goalx && i<0))   //vertical
+                {
+                    painter->drawLine(x*unitx, y*unity, (x+i)*unitx, y*unity);
+                    x+=i;
+                    if(k==0 || this->isSeq(gx, gy, rapport, x, y, x+i, y))
+                        bi=!bi;
+                }
+                else
+                    force=true;
+                k++;
+
+                if(x==goalx && y==goaly)
+                    goalReached=true;
+
+        }*/
+        /*
         int x1,y1;  //représente les coordonnées dans le widget de la première vue
         int x2,y2; //de la deuxième vue
         int width,height;
@@ -69,7 +172,13 @@ void VueCable::paintEvent(QPaintEvent *event)
 
         painter.drawLine(x1,y1,x2,y2);
         this->setGeometry(gauche->pos().x(),haut->pos().y(),width,height);
+        */
+}
 
+void VueCable::mousePressEvent(QGraphicsSceneMouseEvent *e)
+{
+        cout << "clickCable" << endl;
+        QGraphicsItem::mousePressEvent(e);
 }
 
 Cable* VueCable::getModele()
@@ -84,9 +193,9 @@ void VueCable::creerVueCable(VueEntitee *v)
         else
         {
                 VuePrincipale* vue = (VuePrincipale*) VuePrincipale::getwidget();
-                VueCable* vueCable = new VueCable(VueCable::getPremiereSelection(),v);
+                VueCable* vc = new VueCable(VueCable::getPremiereSelection(),v);
                 //        VueCableControleur *c = new VueCableControleur(vueCable);
-                QGraphicsProxyWidget* proxy = vue->getScene()->addWidget(vueCable);
+                vue->getScene()->addItem(vc);
                 vue->getView()->setScene(vue->getScene());
                 vue->getView()->show();
 

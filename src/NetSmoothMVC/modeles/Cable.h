@@ -1,8 +1,11 @@
 #ifndef CABLE_DEF
 #define CABLE_DEF
 
+class VueCable;
+
 #include <iostream>
 #include <vector>
+#include "vues/vuecable.h"
 
 class Entitee;
 
@@ -26,6 +29,9 @@ public:
          */
     void getExtremites(Entitee** arr) const;
 
+    VueCable* getVue();
+    void setVue(VueCable* vue);
+
     static Cable* creerCable(Entitee* ext1, Entitee* ext2);
 
 private:
@@ -36,6 +42,7 @@ private:
          */
     Entitee *m_ext1;
     Entitee *m_ext2;
+    VueCable* m_vue;
 };
 
 #endif
