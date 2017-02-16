@@ -1,11 +1,15 @@
 #include "Hub.h"
 
-using namespace std;
-
+#include "DataBase.h"
 
 Hub::Hub(int id)
 	:Entitee(id, TYPE_HUB)
 {
+}
+
+Hub::~Hub()
+{
+ DataBase::detruireHub(this);
 }
 
 int Hub::lancerContainer(){return 0;}

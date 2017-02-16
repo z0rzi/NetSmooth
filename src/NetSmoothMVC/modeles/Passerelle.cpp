@@ -1,13 +1,12 @@
 #include "Passerelle.h"
-
-using namespace std;
+#include "DataBase.h"
 
 Passerelle::Passerelle(int id)
-	:Machine(id, TYPE_PASSERELLE, "passerelle")
+        :Machine(id, TYPE_PASSERELLE, "passerelle")
 {
     for(int numInterface = 0; numInterface < NOMBRE_INTERFACES_PASSERELLE ; numInterface++)
     {
-        ostringstream convert;
+        std::ostringstream convert;
         convert << numInterface;
 
         struct paramIp* ip = new paramIp();
@@ -22,5 +21,5 @@ Passerelle::Passerelle(int id)
 
 Passerelle::~Passerelle()
 {
-
+    DataBase::detruirePasserelle(this);
 }

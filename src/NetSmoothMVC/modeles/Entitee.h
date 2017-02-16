@@ -291,7 +291,7 @@ public:
         void setVue(VueEntitee* v);
         VueEntitee* getVue();
 
-        ~Entitee();
+        virtual ~Entitee() {};
 protected:
         /*	m_bridgeInit
                  *

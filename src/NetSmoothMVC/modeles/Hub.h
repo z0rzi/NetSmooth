@@ -6,6 +6,8 @@
 
 #include "Entitee.h"
 
+class DataBase;
+
 class Hub : public Entitee
 {
     public:
@@ -15,6 +17,7 @@ class Hub : public Entitee
          *	de son parent
          */
         Hub(int id);
+        ~Hub();
 
         /*	Methodes inutiles
          *

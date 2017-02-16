@@ -6,7 +6,7 @@
 #include <lxc/lxccontainer.h>
 
 #include "Machine.h"
-
+class DataBase;
 
 class Ordinateur : public Machine
 {
