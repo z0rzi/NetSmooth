@@ -94,7 +94,6 @@ QWidget* VuePrincipale::getwidget()
     return ca;
 }
 
-
 VueEntitee *VuePrincipale::ajoutEntitee(int x, int y, int type)
 {
     QPoint* newPos = this->getPosInGrille(*(new QPoint(x, y)));

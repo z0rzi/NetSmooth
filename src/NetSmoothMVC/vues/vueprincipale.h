@@ -34,6 +34,7 @@ public:
 
     int getHauteurCaseEntiere();
     int getLargeurCaseEntiere();
+    void refreshItems();
 
 protected:
     void resizeEvent(QResizeEvent *);
@@ -55,7 +56,6 @@ private:
     QPoint* getPosInGrille(QPoint pos);
 
     QSet<int> pressedKeys;
-    void refreshItems();
 
 signals:
     void clickSouris(QPoint pos);

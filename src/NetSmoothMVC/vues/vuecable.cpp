@@ -28,28 +28,26 @@ bool VueCable::isSeq(int xinit, int yinit, double coef, int x1, int y1, int x2, 
 {
     if(x1==x2)
     {
-        y1=yinit-y1-1;
-        y2=yinit-y2-1;
+        y1=yinit-y1;
+        y2=yinit-y2;
         float res1=((y1))/coef;
         float res2=((y2))/coef;
         x1-=xinit;
-        x1--;
-        cout << "res1 = " << res1 << " ; res2 = " << res2 << " ; y1 = " << y1 << " ; y2 = " << y2 << " ; yinit = " << yinit << " ; x = " << x1 << endl;
+        //cout << "res1 = " << res1 << " ; res2 = " << res2 << " ; y1 = " << y1 << " ; y2 = " << y2 << " ; yinit = " << yinit << " ; x = " << x1 << endl;
         if((x1>=res1 && x1<=res2) || (x1>=res2 && x1<=res1))
             return true;
     }
     else if(y1==y2)
     {
-        x1-=xinit+1;
-        x2-=xinit+1;
+            x1-=xinit;
+            x2-=xinit;
         float res1=coef*x1;
         float res2=coef*x2;
         y1=yinit-y1;
-        cout << "res1 = " << res1 << " ; res2 = " << res2 << " ; x1 = " << x1 << " ; x2 = " << x2 << " ; xinit = " << xinit << " ; y = " << y1 << endl;
+        //cout << "res1 = " << res1 << " ; res2 = " << res2 << " ; x1 = " << x1 << " ; x2 = " << x2 << " ; xinit = " << xinit << " ; y = " << y1 << endl;
         if((y1>=res1 && y1<=res2) || (y1>=res2 && y1<=res1))
             return true;
     }
-    cout << "false" << endl;
     return false;
 }
 
@@ -82,23 +80,7 @@ void VueCable::paint(QPainter * painter, const QStyleOptionGraphicsItem * option
         rapport*=-1;
 
 
-        int width = x-goalx;
-        width*=(width<0)?-1:1;
-        int height = y-goaly;
-        height*=(height<0)?-1:1;
-
-        int dist;
-        if(height!=0 && width!=0)
-            if(rapport<1)
-                dist=width/height;
-            else
-                dist=height/width;
-
-        painter->drawLine(x*unitx, y*unity,goalx*unitx, goaly*unity);
-/*
-        cout << "rapport = " << rapport << endl;
-        bool bi=(rapport>1)?true:false, goalReached=false;
-        bool sens=bi;
+        bool bi=(rapport>1)?true:(rapport<-1)?true:false, goalReached=false;
         int k=0;
         bool force=false;
         while(!goalReached)
@@ -106,17 +88,17 @@ void VueCable::paint(QPainter * painter, const QStyleOptionGraphicsItem * option
                 if(force || bi && ((y<goaly && j>0) || (y>goaly && j<0)))    //horizontal
                 {
                     painter->drawLine(x*unitx, y*unity, x*unitx, (y+j)*unity);
-                    y+=j;
                     if(k==0 || this->isSeq(gx, gy, rapport, x, y, x, y+j))
                         bi=!bi;
+                    y+=j;
                     force=false;
                 }
                 else if((x<goalx && i>0) || (x>goalx && i<0))   //vertical
                 {
                     painter->drawLine(x*unitx, y*unity, (x+i)*unitx, y*unity);
-                    x+=i;
                     if(k==0 || this->isSeq(gx, gy, rapport, x, y, x+i, y))
                         bi=!bi;
+                    x+=i;
                 }
                 else
                     force=true;
@@ -125,7 +107,7 @@ void VueCable::paint(QPainter * painter, const QStyleOptionGraphicsItem * option
                 if(x==goalx && y==goaly)
                     goalReached=true;
 
-        }*/
+        }
         /*
         int x1,y1;  //représente les coordonnées dans le widget de la première vue
         int x2,y2; //de la deuxième vue
