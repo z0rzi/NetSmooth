@@ -61,7 +61,7 @@ void VueCable::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
 }
 
 const QMetaObject VueCable::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_VueCable.data,
+    { &QObject::staticMetaObject, qt_meta_stringdata_VueCable.data,
       qt_meta_data_VueCable,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
@@ -76,12 +76,14 @@ void *VueCable::qt_metacast(const char *_clname)
     if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_VueCable.stringdata0))
         return static_cast<void*>(const_cast< VueCable*>(this));
-    return QWidget::qt_metacast(_clname);
+    if (!strcmp(_clname, "QGraphicsPathItem"))
+        return static_cast< QGraphicsPathItem*>(const_cast< VueCable*>(this));
+    return QObject::qt_metacast(_clname);
 }
 
 int VueCable::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QWidget::qt_metacall(_c, _id, _a);
+    _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     return _id;

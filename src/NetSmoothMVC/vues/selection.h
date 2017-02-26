@@ -26,6 +26,7 @@ public:
     QPushButton* getSupprimer();
 
 private:
+    void setButtonStyle(QPushButton* b, std::string imgPath);
     static int m_enSelection;
     QPushButton *m_souris;
     QPushButton *m_machine;
