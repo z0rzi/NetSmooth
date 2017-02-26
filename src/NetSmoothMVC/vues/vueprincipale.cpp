@@ -20,6 +20,8 @@ VuePrincipale::VuePrincipale(QWidget *parent) : QWidget(parent)
 
     this->m_scene = new QGraphicsScene(this);
     this->m_view = new QGraphicsView(m_scene,this);
+    this->m_view->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+
     this->m_vpc = new VuePrincipaleControleur(this);
 
     this->m_scene->setSceneRect(0,0,NB_CASE_X*LARGEUR_CASE_INI,NB_CASE_Y*HAUTEUR_CASE_INI);
@@ -59,7 +61,7 @@ bool VuePrincipale::eventFilter(QObject *obj, QEvent *event)
         {
             this->m_view->scale(1.1,1.1);
             this->largeurCase=m_view->sceneRect().width()/NB_CASE_X;
-            this->hauteurCase=m_view->sceneRect().height()/NB_CASE_Y;;
+            this->hauteurCase=m_view->sceneRect().height()/NB_CASE_Y;
             this->refreshItems();
         }
         if( this->pressedKeys.contains(Qt::Key_Control) && this->pressedKeys.contains(Qt::Key_Minus) )
