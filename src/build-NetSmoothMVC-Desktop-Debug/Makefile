@@ -502,6 +502,7 @@ moc_vueprincipale.cpp: ../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -511,7 +512,6 @@ moc_vueprincipale.cpp: ../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/vues/selection.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
@@ -527,6 +527,7 @@ moc_vuemachine.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -548,6 +549,7 @@ moc_vueprincipalecontroleur.cpp: ../NetSmoothMVC/vues/vueprincipale.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -556,7 +558,6 @@ moc_vueprincipalecontroleur.cpp: ../NetSmoothMVC/vues/vueprincipale.h \
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/vues/selection.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
@@ -571,6 +572,8 @@ moc_vueentitee.cpp: ../NetSmoothMVC/modeles/Machine.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
+		../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -584,6 +587,7 @@ moc_vuehub.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -597,6 +601,7 @@ moc_vueentiteecontroleur.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -610,6 +615,7 @@ moc_vuepasserelle.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -624,6 +630,7 @@ moc_vuemachinecontroleur.cpp: ../NetSmoothMVC/controleurs/vueentiteecontroleur.h
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -639,6 +646,7 @@ moc_vuehubcontroleur.cpp: ../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -654,6 +662,7 @@ moc_vuepasserellecontroleur.cpp: ../NetSmoothMVC/controleurs/vueentiteecontroleu
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -663,11 +672,12 @@ moc_vuepasserellecontroleur.cpp: ../NetSmoothMVC/controleurs/vueentiteecontroleu
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/jicquelv/github/bulto/src/NetSmoothMVC -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6.2.1 -I/usr/include/c++/6.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include-fixed -I/usr/include ../NetSmoothMVC/controleurs/vuepasserellecontroleur.h -o moc_vuepasserellecontroleur.cpp
 
 moc_vuecable.cpp: ../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
+		../NetSmoothMVC/vues/vueentitee.h \
+		../NetSmoothMVC/modeles/Machine.h \
 		../NetSmoothMVC/modeles/Entitee.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
-		../NetSmoothMVC/vues/vueentitee.h \
-		../NetSmoothMVC/modeles/Machine.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -684,6 +694,7 @@ moc_vueinformation.cpp: ../NetSmoothMVC/vues/vueRoutes.h \
 		../NetSmoothMVC/controleurs/vueRoutesControleur.h \
 		../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -707,6 +718,7 @@ moc_vueinformationcontroleur.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -733,6 +745,7 @@ moc_vueRoutes.cpp: ../NetSmoothMVC/vues/ligneroute.h \
 		../NetSmoothMVC/controleurs/vueRoutesControleur.h \
 		../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -750,6 +763,7 @@ moc_vueRoutesControleur.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -769,6 +783,7 @@ moc_VueIP.cpp: ../NetSmoothMVC/modeles/Entitee.h \
 		../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/Machine.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -786,6 +801,7 @@ moc_VueFormulaireIP.cpp: ../NetSmoothMVC/modeles/Entitee.h \
 		../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/Machine.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -801,6 +817,7 @@ moc_VueFormulaireIPControleur.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -838,6 +855,7 @@ main.o: ../NetSmoothMVC/main.cpp ../NetSmoothMVC/vues/selection.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -846,7 +864,6 @@ main.o: ../NetSmoothMVC/main.cpp ../NetSmoothMVC/vues/selection.h \
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
 		../NetSmoothMVC/controleurs/vuemachinecontroleur.h \
 		../NetSmoothMVC/controleurs/vuehubcontroleur.h \
@@ -879,6 +896,7 @@ vueprincipale.o: ../NetSmoothMVC/vues/vueprincipale.cpp ../NetSmoothMVC/vues/vue
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -887,7 +905,6 @@ vueprincipale.o: ../NetSmoothMVC/vues/vueprincipale.cpp ../NetSmoothMVC/vues/vue
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/vues/selection.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
@@ -903,6 +920,7 @@ vuemachine.o: ../NetSmoothMVC/vues/vuemachine.cpp ../NetSmoothMVC/vues/vuemachin
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -923,6 +941,7 @@ vueprincipalecontroleur.o: ../NetSmoothMVC/controleurs/vueprincipalecontroleur.c
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -930,7 +949,6 @@ vueprincipalecontroleur.o: ../NetSmoothMVC/controleurs/vueprincipalecontroleur.c
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/vues/selection.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
@@ -945,6 +963,7 @@ vueentitee.o: ../NetSmoothMVC/vues/vueentitee.cpp ../NetSmoothMVC/vues/vueentite
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -965,7 +984,6 @@ vueentitee.o: ../NetSmoothMVC/vues/vueentitee.cpp ../NetSmoothMVC/vues/vueentite
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
 		../NetSmoothMVC/controleurs/vuemachinecontroleur.h \
 		../NetSmoothMVC/controleurs/vuehubcontroleur.h \
@@ -979,6 +997,7 @@ vuehub.o: ../NetSmoothMVC/vues/vuehub.cpp ../NetSmoothMVC/vues/vuehub.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -992,6 +1011,7 @@ vueentiteecontroleur.o: ../NetSmoothMVC/controleurs/vueentiteecontroleur.cpp ../
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1002,7 +1022,6 @@ vueentiteecontroleur.o: ../NetSmoothMVC/controleurs/vueentiteecontroleur.cpp ../
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/vues/selection.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		../NetSmoothMVC/controleurs/vuemachinecontroleur.h \
@@ -1017,6 +1036,7 @@ vuepasserelle.o: ../NetSmoothMVC/vues/vuepasserelle.cpp ../NetSmoothMVC/vues/vue
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1031,6 +1051,7 @@ vuemachinecontroleur.o: ../NetSmoothMVC/controleurs/vuemachinecontroleur.cpp ../
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1046,6 +1067,7 @@ vuehubcontroleur.o: ../NetSmoothMVC/controleurs/vuehubcontroleur.cpp ../NetSmoot
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1061,6 +1083,7 @@ vuepasserellecontroleur.o: ../NetSmoothMVC/controleurs/vuepasserellecontroleur.c
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1081,6 +1104,7 @@ Entitee.o: ../NetSmoothMVC/modeles/Entitee.cpp ../NetSmoothMVC/modeles/Entitee.h
 		../NetSmoothMVC/modeles/Machine.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Hub.h
@@ -1090,20 +1114,39 @@ Ordinateur.o: ../NetSmoothMVC/modeles/Ordinateur.cpp ../NetSmoothMVC/modeles/Ord
 		../NetSmoothMVC/modeles/Machine.h \
 		../NetSmoothMVC/modeles/Entitee.h \
 		../NetSmoothMVC/modeles/Constantes.h \
-		../NetSmoothMVC/modeles/Bridge.h
+		../NetSmoothMVC/modeles/Bridge.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
+		../NetSmoothMVC/vues/vueentitee.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Ordinateur.o ../NetSmoothMVC/modeles/Ordinateur.cpp
 
 Passerelle.o: ../NetSmoothMVC/modeles/Passerelle.cpp ../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Machine.h \
 		../NetSmoothMVC/modeles/Entitee.h \
 		../NetSmoothMVC/modeles/Constantes.h \
-		../NetSmoothMVC/modeles/Bridge.h
+		../NetSmoothMVC/modeles/Bridge.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Ordinateur.h \
+		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
+		../NetSmoothMVC/vues/vueentitee.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Passerelle.o ../NetSmoothMVC/modeles/Passerelle.cpp
 
 Hub.o: ../NetSmoothMVC/modeles/Hub.cpp ../NetSmoothMVC/modeles/Hub.h \
 		../NetSmoothMVC/modeles/Entitee.h \
 		../NetSmoothMVC/modeles/Constantes.h \
-		../NetSmoothMVC/modeles/Bridge.h
+		../NetSmoothMVC/modeles/Bridge.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Machine.h \
+		../NetSmoothMVC/modeles/Ordinateur.h \
+		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
+		../NetSmoothMVC/vues/vueentitee.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Hub.o ../NetSmoothMVC/modeles/Hub.cpp
 
 DataBase.o: ../NetSmoothMVC/modeles/DataBase.cpp ../NetSmoothMVC/modeles/DataBase.h \
@@ -1114,13 +1157,22 @@ DataBase.o: ../NetSmoothMVC/modeles/DataBase.cpp ../NetSmoothMVC/modeles/DataBas
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Hub.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/modeles/Cable.h
+		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
+		../NetSmoothMVC/vues/vueentitee.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DataBase.o ../NetSmoothMVC/modeles/DataBase.cpp
 
 Cable.o: ../NetSmoothMVC/modeles/Cable.cpp ../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
+		../NetSmoothMVC/vues/vueentitee.h \
+		../NetSmoothMVC/modeles/Machine.h \
 		../NetSmoothMVC/modeles/Entitee.h \
 		../NetSmoothMVC/modeles/Constantes.h \
-		../NetSmoothMVC/modeles/Bridge.h
+		../NetSmoothMVC/modeles/Bridge.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Ordinateur.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Cable.o ../NetSmoothMVC/modeles/Cable.cpp
 
 Bridge.o: ../NetSmoothMVC/modeles/Bridge.cpp ../NetSmoothMVC/modeles/Bridge.h
@@ -1143,6 +1195,7 @@ Save.o: ../NetSmoothMVC/modeles/Save.cpp ../NetSmoothMVC/modeles/Save.h \
 		../NetSmoothMVC/modeles/Hub.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/vues/vueprincipale.h \
 		../NetSmoothMVC/vues/constantes.h \
@@ -1150,7 +1203,6 @@ Save.o: ../NetSmoothMVC/modeles/Save.cpp ../NetSmoothMVC/modeles/Save.h \
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/vues/selection.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
@@ -1194,6 +1246,7 @@ vueinformation.o: ../NetSmoothMVC/vues/vueinformation.cpp ../NetSmoothMVC/vues/v
 		../NetSmoothMVC/controleurs/vueRoutesControleur.h \
 		../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1218,6 +1271,7 @@ vueinformationcontroleur.o: ../NetSmoothMVC/controleurs/vueinformationcontroleur
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1238,7 +1292,6 @@ vueinformationcontroleur.o: ../NetSmoothMVC/controleurs/vueinformationcontroleur
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
 		../NetSmoothMVC/controleurs/vuemachinecontroleur.h \
 		../NetSmoothMVC/controleurs/vuehubcontroleur.h \
@@ -1254,6 +1307,7 @@ vueRoutes.o: ../NetSmoothMVC/vues/vueRoutes.cpp ../NetSmoothMVC/vues/vueRoutes.h
 		../NetSmoothMVC/controleurs/vueRoutesControleur.h \
 		../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1270,6 +1324,7 @@ vueRoutesControleur.o: ../NetSmoothMVC/controleurs/vueRoutesControleur.cpp ../Ne
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1291,6 +1346,7 @@ VueIP.o: ../NetSmoothMVC/vues/VueIP.cpp ../NetSmoothMVC/vues/VueIP.h \
 		../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/Machine.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1308,6 +1364,7 @@ VueFormulaireIP.o: ../NetSmoothMVC/vues/VueFormulaireIP.cpp ../NetSmoothMVC/vues
 		../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/modeles/Machine.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1322,6 +1379,7 @@ VueFormulaireIPControleur.o: ../NetSmoothMVC/controleurs/VueFormulaireIPControle
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1340,6 +1398,7 @@ fenetre.o: ../NetSmoothMVC/vues/fenetre.cpp ../NetSmoothMVC/vues/selection.h \
 		../NetSmoothMVC/modeles/Constantes.h \
 		../NetSmoothMVC/modeles/Bridge.h \
 		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1348,7 +1407,6 @@ fenetre.o: ../NetSmoothMVC/vues/fenetre.cpp ../NetSmoothMVC/vues/selection.h \
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
 		../NetSmoothMVC/controleurs/vuemachinecontroleur.h \
 		../NetSmoothMVC/controleurs/vuehubcontroleur.h \
