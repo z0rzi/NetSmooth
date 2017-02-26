@@ -23,10 +23,9 @@ echo "installez tout ce dont vous avez besoins dans ce container."
 lxc-start -n ordinateur0 > /dev/null
 xterm -hold -e "lxc-attach -n ordinateur0; kill \$PPID" &
 a=""
-while [ "$a" != "ok" ] || [ "$b" = "" ]; do
+while [ "$a" != "ok" ]; do
 	echo -n "fermez le xterm et tapez 'ok' quand vous avez terminé : "
 	read a
-	b=$(ps | grep xterm)
 done
 lxc-stop -n ordinateur0 > /dev/null
 
