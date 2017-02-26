@@ -22,6 +22,11 @@ VueCable::VueCable(VueEntitee* v1, VueEntitee* v2, QGraphicsItem* parent)
         this->setAutoFillBackground(false);
         */
         /**************************************/
+
+    this->updatePath();
+
+        VuePrincipale* vp = VuePrincipale::getInstanceOf();
+        vp->getScene()->addItem(this);
 }
 
 /*     isSeq(int xinit, int yinit, double coef, int x1, int y1, int x2, int y2)
@@ -54,11 +59,9 @@ bool VueCable::isSeq(int xinit, int yinit, double coef, int x1, int y1, int x2, 
     return false;
 }
 
-void VueCable::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
-{
 
-        QPen pen(Qt::black, 2, Qt::SolidLine);
-        painter->setPen(pen);
+void VueCable::updatePath()
+{
         VuePrincipale* vp = VuePrincipale::getInstanceOf();
 
         /* taille d'une case en pixels: */
@@ -68,6 +71,8 @@ void VueCable::paint(QPainter * painter, const QStyleOptionGraphicsItem * option
         /* x,y = point de depart ; goalx, goaly = point d'arrive */
         int x=m_v1->getColGrille()+2, y=m_v1->getLigneGrille()+2;
         int goalx=m_v2->getColGrille()+2, goaly=m_v2->getLigneGrille()+2;
+
+        QPainterPath* paintpath = new QPainterPath(*(new QPoint(x*unitx, y*unity)));
 
         int i=1, j=1, gx=x, gy=y;
 
@@ -86,8 +91,8 @@ void VueCable::paint(QPainter * painter, const QStyleOptionGraphicsItem * option
                 rapport=-1*((y-goaly)*1.0)/((x-goalx)*1.0);     /* coefficient directeur */
 
 
-        /* bi determine si il faut evoluer en vertical ou en horizontal */
-        bool bi=(rapport>1)?true:(rapport<-1)?true:false, goalReached=false;
+        /* direction determine si il faut evoluer en vertical ou en horizontal */
+        bool direction=(rapport>1)?true:(rapport<-1)?true:false, goalReached=false;
         int k=0;
 
         /* force oblige le cable a aller horizontalement (quand y==ygoal) */
@@ -95,23 +100,23 @@ void VueCable::paint(QPainter * painter, const QStyleOptionGraphicsItem * option
 
         while(!goalReached)
         {
-                if(force || ( bi && y!=goaly))       //horizontal
+                if(force || ( direction && y!=goaly))       //horizontal
                 {       /* si c'est son tour, et que il n'est pas au meme niveau que le goal
                          * ex: x=10; goalx=10; on ne peut plus se deplacer horzontalement
                          */
 
-                    painter->drawLine(x*unitx, y*unity, x*unitx, (y+j)*unity);
+                    paintpath->lineTo(x*unitx, (y+j)*unity);
                     if(k==0 || this->isSeq(gx, gy, rapport, x, y, x, y+j))
-                        bi=!bi;
+                        direction=!direction;
                     y+=j;
                     force=false;
                 }
                 else if(x!=goalx)                   //vertical
                 {       /* si c'est son tour, et que il n'est pas au meme niveau que le goal */
 
-                    painter->drawLine(x*unitx, y*unity, (x+i)*unitx, y*unity);
+                    paintpath->lineTo((x+i)*unitx, y*unity);
                     if(k==0 || this->isSeq(gx, gy, rapport, x, y, x+i, y))
-                        bi=!bi;
+                        direction=!direction;
                     x+=i;
                 }
                 else
@@ -120,8 +125,9 @@ void VueCable::paint(QPainter * painter, const QStyleOptionGraphicsItem * option
 
                 if(x==goalx && y==goaly)
                     goalReached=true;
-
         }
+
+        this->setPath(*paintpath);
 }
 
 void VueCable::mousePressEvent(QGraphicsSceneMouseEvent *e)

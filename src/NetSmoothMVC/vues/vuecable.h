@@ -17,13 +17,14 @@ public:
     explicit VueCable(VueEntitee* v1, VueEntitee* v2, QGraphicsItem *parent = 0);
     Cable* getModele(void);
 
-void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget);
+//void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget);
     static void creerVueCable(VueEntitee *v);
     static VueEntitee* getPremiereSelection();
     static VueEntitee* getSecondeSelection();
     static void setPremiereSelection(VueEntitee* v);
     static void setSecondeSelection(VueEntitee* v);
     void mousePressEvent(QGraphicsSceneMouseEvent *e);
+    void updatePath();
 
 private:
     VueEntitee *m_v1 = NULL;

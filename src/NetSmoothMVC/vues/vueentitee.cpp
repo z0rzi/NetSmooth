@@ -10,6 +10,7 @@ VueEntitee::VueEntitee(QGraphicsItem *parent) : QGraphicsPixmapItem(parent)
         this->setFlag(QGraphicsItem::ItemIsSelectable,true);
         this->ligne=0;
         this->colonne=0;
+        this->setZValue(5);
 }
 
 Entitee* VueEntitee::getModele(){
@@ -30,6 +31,9 @@ void VueEntitee::paint(QPainter * painter, const QStyleOptionGraphicsItem * opti
                       vp->getHauteurCaseEntiere()*this->ligne+this->pixmap().height(),
                       *(new QString(nom.c_str())));
 
+    vector<Cable*> c = this->getModele()->getCables();
+    for(int i=0 ; i<c.size() ; i++)
+        c[i]->getVue()->updatePath();
 }
 
 int VueEntitee::getLigneGrille()

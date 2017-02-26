@@ -76,7 +76,6 @@ bool VuePrincipale::eventFilter(QObject *obj, QEvent *event)
 
         this->pressedKeys -= ((QKeyEvent*)event)->key();
     }
-
     return false;
 }
 
