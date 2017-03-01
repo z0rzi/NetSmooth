@@ -17,7 +17,7 @@ class Cable
 
 public:
     Cable(Entitee *ext1, Entitee *ext2);
-
+~Cable();
     /*	void getExtremitees(Entitee** arr) const
          *
          *	ARGS

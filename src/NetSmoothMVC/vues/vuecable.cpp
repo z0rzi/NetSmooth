@@ -9,8 +9,8 @@ VueEntitee* VueCable::SecondeSelection = NULL;
 VueCable::VueCable(VueEntitee* v1, VueEntitee* v2, QGraphicsItem* parent)
         : QGraphicsPathItem(parent),m_v1(v1),m_v2(v2)
 {
-        this->cable = Cable::creerCable(v1->getModele(),v2->getModele());
-        this->cable->setVue(this);
+        this->m_cable = Cable::creerCable(v1->getModele(),v2->getModele());
+        this->m_cable->setVue(this);
 
         this->setFlag(QGraphicsItem::ItemIsFocusable,true);
         this->setFlag(QGraphicsItem::ItemIsSelectable,true);
@@ -28,6 +28,13 @@ VueCable::VueCable(VueEntitee* v1, VueEntitee* v2, QGraphicsItem* parent)
         VuePrincipale* vp = VuePrincipale::getInstanceOf();
         vp->getScene()->addItem(this);
 }
+
+VueCable::~VueCable()
+{
+    delete(this->m_cable);
+    this->deleteLater();
+}
+
 
 /*     isSeq(int xinit, int yinit, double coef, int x1, int y1, int x2, int y2)
  *
@@ -132,13 +139,16 @@ void VueCable::updatePath()
 
 void VueCable::mousePressEvent(QGraphicsSceneMouseEvent *e)
 {
-        cout << "clickCable" << endl;
+
+    if(Selection::getEnSelection() == SUPPRIMER)
+        emit(this->deleteCableSignal());
+
         QGraphicsItem::mousePressEvent(e);
 }
 
 Cable* VueCable::getModele()
 {
-        return this->cable;
+        return this->m_cable;
 }
 
 void VueCable::creerVueCable(VueEntitee *v)
@@ -149,7 +159,7 @@ void VueCable::creerVueCable(VueEntitee *v)
         {
                 VuePrincipale* vue = (VuePrincipale*) VuePrincipale::getwidget();
                 VueCable* vc = new VueCable(VueCable::getPremiereSelection(),v);
-                //        VueCableControleur *c = new VueCableControleur(vueCable);
+                VueCableControleur *c = new VueCableControleur(vc);
                 vue->getScene()->addItem(vc);
                 vue->getView()->setScene(vue->getScene());
                 vue->getView()->show();

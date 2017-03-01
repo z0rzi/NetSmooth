@@ -277,6 +277,8 @@ public:
         std::string getNom();
         void setNom(std::string nom);
 
+        void deleteCable(Cable const *c);
+
         virtual std::vector<struct paramIp*> getIpConfig() = 0 ;
         virtual void lireModifContainer() = 0;
         virtual void appliquerParamIp() = 0;
