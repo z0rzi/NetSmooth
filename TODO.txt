@@ -1,10 +1,18 @@
-[ ] cables
-
-[ ] zoom a finir
-
 [ ] bouton pour tout allumer/eteindre
 
 [ ] remix design (mettre du foncé!!!)
+
+[ ] resoudre bug cable PC baptiste
+
+[ ] prendre en compte le mot "default" dans script alias route
+
+[ ] ajouter les noms des machines aux fichiers de sauvegarde
+
+[ ] finir configuration ipv6 (modif container = modif onglet, et vis versa)
+
+[ ] suppression cables
+
+[ ] algo cables A*, Lee
 
 
 
@@ -13,6 +21,10 @@
 
 
 
+
+[X] zoom a finir
+
+[X] cables
 
 [X] sauvegarde (nom de fichier + correction position machines)
 
