@@ -10,6 +10,7 @@ VueEntitee::VueEntitee(QGraphicsItem *parent) : QGraphicsPixmapItem(parent)
         this->setFlag(QGraphicsItem::ItemIsSelectable,true);
         this->ligne=0;
         this->colonne=0;
+        this->isDeleted=false;
         this->setZValue(5);
 }
 
@@ -18,6 +19,8 @@ Entitee* VueEntitee::getModele(){
 
 void VueEntitee::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
 {
+    if(this->isDeleted)
+        return;
     QGraphicsPixmapItem::paint(painter, option, widget);
     VuePrincipale* vp  = VuePrincipale::getInstanceOf();
     string nom = this->getModele()->getNom();
@@ -78,29 +81,34 @@ void VueEntitee::moveOnCursor(){
 
 void VueEntitee::mousePressEvent(QGraphicsSceneMouseEvent *e)
 {
-        if(Selection::getEnSelection()==SUPPRIMER)
-        {
-                this->getModele()->~Entitee();
-                this->deleteLater();
-        }
-        else if (e->button() == Qt::LeftButton)
-        {
-                if(VueEntitee::getLabelEnSelection()!=this)
-                {
-                        VueEntitee::setLabelEnSelection(this);
-                        VueInformation::getInstanceOf()->refresh(this);
-                }
+    if(Selection::getEnSelection()==SUPPRIMER)
+    {
+            if(this->getModele()->getEtatEntitee()==false)
+            {
+                    this->deleteLater();
+                    this->getModele()->~Entitee();
+                    this->isDeleted=true;
+            }
+            Selection::setEnSelection(SOURIS);
+    }
+    else if (e->button() == Qt::LeftButton)
+    {
+            if(VueEntitee::getLabelEnSelection()!=this)
+            {
+                    VueEntitee::setLabelEnSelection(this);
+                    VueInformation::getInstanceOf()->refresh(this);
+            }
 
-                if(Selection::getEnSelection()==CABLE)
-                {
-                        VueCable::creerVueCable(this);
-                        this->scene()->update();
-                }
-        }
-        else if (e->button() == Qt::RightButton)
-                emit rightClick();
+            if(Selection::getEnSelection()==CABLE)
+            {
+                    VueCable::creerVueCable(this);
+                    this->scene()->update();
+            }
+    }
+    else if (e->button() == Qt::RightButton)
+            emit rightClick();
 
-        QGraphicsItem::mousePressEvent(e);
+    QGraphicsItem::mousePressEvent(e);
 }
 
 void VueEntitee::mouseMoveEvent(QGraphicsSceneMouseEvent *e)

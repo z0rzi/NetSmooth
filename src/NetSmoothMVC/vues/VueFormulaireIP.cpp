@@ -1,4 +1,5 @@
 #include "VueFormulaireIP.h"
+#include <sstream>
 
 VueFormulaireIP::VueFormulaireIP(int numInterface, Entitee* modele, QWidget *parent)
         : m_modele(modele),m_numInterface(numInterface),QWidget(parent)
@@ -64,14 +65,64 @@ void VueFormulaireIP::appliquerModification()
         perror("VueFormulaireIP appliquerModification");
     else
     {
+        /*
         struct paramIp* ip = this->m_modele->getIpConfig()[this->m_numInterface];
 
         ip->ipv4 = this->m_ipv4->toPlainText().toStdString();
         ip->maskv4 = this->m_mask->toPlainText().toStdString();
         ip->ipv6 = this->m_ipv6->toPlainText().toStdString();
+        */
+        struct paramIp* ip = new paramIp;
+
+        std::cout << "interface = " << this->m_numInterface << std::endl;
+        std::stringstream* ss = new std::stringstream();
+        (*ss) << "eth" << this->m_numInterface;
+        ip->interface = ss->str();
+        ip->ipv4 = this->m_ipv4->toPlainText().toStdString();
+        ip->maskv4 = this->m_mask->toPlainText().toStdString();
+        ip->ipv6 = this->m_ipv6->toPlainText().toStdString();
+
+        this->m_modele->setIpConfig(ip);
 
         this->m_modele->appliquerParamIp();
 
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

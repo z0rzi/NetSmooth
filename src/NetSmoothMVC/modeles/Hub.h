@@ -38,6 +38,7 @@ class Hub : public Entitee
         void lireModifContainer();
         void majIpContainer();
         void majRouteContainer();
+        void setIpConfig(struct paramIp* ip);
 
     private:
         /* 	numHub

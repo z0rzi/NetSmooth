@@ -206,6 +206,8 @@ public:
      */
     void lancerXterm();
 
+    void launchLxcContainer();
+
     void reinitNetworkConfig();
 
     void lireModifContainer();
@@ -248,6 +250,8 @@ private:
     std::vector<struct paramRoutage> m_paramRoutage4;
 
     std::vector<struct paramRoutage> m_paramRoutage6;
+
+    std::string m_oldV6[4];
 };
 
 #endif

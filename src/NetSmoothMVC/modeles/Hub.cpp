@@ -23,3 +23,4 @@ void Hub::separerDeBridge(){}
 void Hub::lireModifContainer(){}
 void Hub::majIpContainer(){}
 void Hub::majRouteContainer(){}
+void Hub::setIpConfig(struct paramIp* ip){}

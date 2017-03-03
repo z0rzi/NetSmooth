@@ -2,17 +2,10 @@
 
 [ ] remix design (mettre du foncé!!!)
 
-[ ] resoudre bug cable PC baptiste
-
-[ ] prendre en compte le mot "default" dans script alias route
-
-[ ] ajouter les noms des machines aux fichiers de sauvegarde
-
-[ ] finir configuration ipv6 (modif container = modif onglet, et vis versa)
-
-[ ] suppression cables
-
 [ ] algo cables A*, Lee
+
+[?] suppression cables
+
 
 
 
@@ -21,6 +14,17 @@
 
 
 
+
+
+
+
+[X] prendre en compte le mot "default" dans script alias route
+
+[X] resoudre bug cable PC baptiste
+
+[X] ajouter les noms des machines aux fichiers de sauvegarde
+
+[X] finir configuration ipv6 (modif container = modif onglet, et vis versa)
 
 [X] zoom a finir
 

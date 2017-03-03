@@ -58,6 +58,10 @@ void Save::load_session(string fileName)
                 e->setID(id);
 
                 getline(fichier, line); //nom
+                e->setNom(line);
+
+                getline(fichier, line); //bridgeInit
+
 
                 getline(fichier, line);
 
@@ -200,7 +204,7 @@ void Save::save_session(string fileName)
                         fichier << e->getVue()->getColGrille()*vp->getHauteurCaseEntiere() << endl;
                         fichier << e->getVue()->getLigneGrille()*vp->getLargeurCaseEntiere() << endl;
                         fichier << e->getID() << endl;
-                        //fichier << e->getNom() << endl;
+                        fichier << e->getNom() << endl;
                         fichier << e->getBridgeInit() << endl;
                         if(e->getType()!=TYPE_HUB)
                         {

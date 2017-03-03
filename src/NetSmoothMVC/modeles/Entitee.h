@@ -279,6 +279,7 @@ public:
 
         void deleteCable(Cable const *c);
 
+        virtual void setIpConfig(struct paramIp* ip) = 0;
         virtual std::vector<struct paramIp*> getIpConfig() = 0 ;
         virtual void lireModifContainer() = 0;
         virtual void appliquerParamIp() = 0;

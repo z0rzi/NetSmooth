@@ -43,6 +43,7 @@ private:
         static VueEntitee* labelEnSelection;
         int colonne;
         int ligne;
+        bool isDeleted;
 
 protected:
         void mousePressEvent(QGraphicsSceneMouseEvent *e) override;
