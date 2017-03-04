@@ -4,7 +4,7 @@
 #include <QObject>
 #include <iostream>
 
-using namespace std;
+#include <QApplication>
 
 class Selection;
 

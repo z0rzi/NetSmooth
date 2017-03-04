@@ -5,6 +5,7 @@
 
 
 #include "vues/vueentitee.h"
+#include "vues/selection.h"
 class VueCableControleur : public QObject
 {
     Q_OBJECT
