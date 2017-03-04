@@ -14,19 +14,6 @@ VueCable::VueCable(VueEntitee* v1, VueEntitee* v2, QGraphicsItem* parent)
 
         this->setFlag(QGraphicsItem::ItemIsFocusable,true);
         this->setFlag(QGraphicsItem::ItemIsSelectable,true);
-
-        /**********TRANSPARENCE****************/
-    /*
-        this->setAttribute( Qt::WA_TranslucentBackground);
-        this->setWindowFlags (Qt::FramelessWindowHint);
-        this->setAutoFillBackground(false);
-        */
-        /**************************************/
-
-    this->updatePath();
-
-        VuePrincipale* vp = VuePrincipale::getInstanceOf();
-        vp->getScene()->addItem(this);
 }
 
 VueCable::~VueCable()

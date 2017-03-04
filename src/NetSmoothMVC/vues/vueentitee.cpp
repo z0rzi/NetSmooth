@@ -85,15 +85,12 @@ void VueEntitee::moveOnCursor(){
 void VueEntitee::detruire()
 {
     this->isDeleted=true;
-    std::cout << this->getModele() << std::endl;
-    std::vector<Cable*>* cables = this->getModele()->getCables();
-    for(int i = 0 ; i < cables->size() ; i++)
+    std::vector<Cable*> cables = *(this->getModele()->getCables());
+    for(int i = 0 ; i < cables.size() ; i++)
     {
-        std::cout << "i :" << i << std::endl;
-        Cable* c = (*cables)[i];
+        Cable* c = cables[i];
         delete(c->getVue());
     }
-    std::cout << "fin bite" << std::endl;
     delete(this->getModele());
 
     this->deleteLater();

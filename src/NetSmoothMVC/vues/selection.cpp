@@ -32,7 +32,11 @@ int Selection::getEnSelection()
 
 void Selection::setEnSelection(int es)
 {
-    m_enSelection = es;
+    Selection::m_enSelection = es;
+    if(Selection::m_enSelection==SOURIS)
+    {
+   QApplication::setOverrideCursor(Qt::ArrowCursor);
+    }
 }
 
 QPushButton* Selection::getSouris()

@@ -16,7 +16,7 @@ int Selection::m_enSelection = 0;
 void chld_handler(int s)
 {
     int ho;
-    while(waitpid(0,&ho,WNOHANG)>0);
+   // while(waitpid(0,&ho,WNOHANG)>0);
 }
 
 int main(int argc, char** argv)

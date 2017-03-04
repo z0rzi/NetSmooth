@@ -9,5 +9,5 @@ VueCableControleur::VueCableControleur(VueCable* v,QObject *parent) : QObject(pa
 void VueCableControleur::actionDeleteCable()
 {
     delete(this->vue);
-    std::cout << "ok"<<std::endl;
+    Selection::setEnSelection(SOURIS);
 }
