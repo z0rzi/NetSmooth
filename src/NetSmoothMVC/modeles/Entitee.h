@@ -140,7 +140,7 @@ public:
                  *	d'adresses de Cables dans lequel tous les
                  *	cables auquels l'entitee est relié sont repertoriés
                  */
-        std::vector<Cable*> getCables(void);
+        std::vector<Cable *> *getCables(void);
 
         /*	void addCable(Cable* cable)
                  *
@@ -352,7 +352,7 @@ protected:
                  *	IL NE FAUT PAS LE FAIRE, sinon ca va tout casser
                  *	au demarage de la machine... TOUT CASSER!!!
                  */
-        std::vector<Cable*> m_cableList;
+        std::vector<Cable*> *m_cableList=NULL;
 
         int m_type;
         int m_id;

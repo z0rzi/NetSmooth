@@ -3,7 +3,7 @@
 
 VuePasserelle::VuePasserelle(VueEntitee *parent) : VueEntitee(parent)
 {
-	this->passerelle=DataBase::getNewPasserelle();
+    this->passerelle=DataBase::getNewPasserelle();
     this->etat = false;
 	QPixmap* img = new QPixmap();
     img->load(QCoreApplication::applicationDirPath()+"/images/passerelleoff.png");

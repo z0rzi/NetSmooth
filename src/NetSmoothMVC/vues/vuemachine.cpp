@@ -27,3 +27,4 @@ void VueMachine::terminal()
     if (this->etat == true)
             this->getModele()->lancerXterm();
 }
+
