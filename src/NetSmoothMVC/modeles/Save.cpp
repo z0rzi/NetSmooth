@@ -186,17 +186,17 @@ void Save::save_session(string fileName)
 
                         Entitee* e=ent->entitee;
 
-                        vector<Cable*> cab=e->getCables();
+                        vector<Cable*> *cab=e->getCables();
 
-                        for(j=0 ; j<cab.size() ; j++)
+                        for(j=0 ; j<cab->size() ; j++)
                         {
                                 ok=true;
                                 for(k=0 ; k<cables.size() ; k++)
-                                        if(cab[j]==cables[k])
+                                        if((*cab)[j]==cables[k])
                                                 ok=false;
 
                                 if(ok==true)
-                                        cables.push_back(cab[j]);
+                                        cables.push_back((*cab)[j]);
                         }
                         VuePrincipale* vp=VuePrincipale::getInstanceOf();
 

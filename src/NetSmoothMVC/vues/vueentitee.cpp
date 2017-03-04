@@ -6,12 +6,15 @@ VueEntitee* VueEntitee::labelEnSelection = NULL;// A quoi LabelEnSelection sert?
 
 VueEntitee::VueEntitee(QGraphicsItem *parent) : QGraphicsPixmapItem(parent)
 {
-        this->setFlag(QGraphicsItem::ItemIsFocusable,true);
-        this->setFlag(QGraphicsItem::ItemIsSelectable,true);
-        this->ligne=0;
-        this->colonne=0;
-        this->isDeleted=false;
-        this->setZValue(5);
+    this->setFlag(QGraphicsItem::ItemIsFocusable,true);
+    this->setFlag(QGraphicsItem::ItemIsSelectable,true);
+    this->ligne=0;
+    this->colonne=0;
+    this->isDeleted=false;
+    this->setZValue(5);
+}
+VueEntitee::~VueEntitee()
+{
 }
 
 Entitee* VueEntitee::getModele(){
@@ -34,79 +37,94 @@ void VueEntitee::paint(QPainter * painter, const QStyleOptionGraphicsItem * opti
                       vp->getHauteurCaseEntiere()*this->ligne+this->pixmap().height(),
                       *(new QString(nom.c_str())));
 
-    vector<Cable*> c = this->getModele()->getCables();
-    for(int i=0 ; i<c.size() ; i++)
-        c[i]->getVue()->updatePath();
+    vector<Cable*> *c = this->getModele()->getCables();
+    for(int i=0 ; i<c->size() ; i++)
+        (*c)[i]->getVue()->updatePath();
 }
 
 int VueEntitee::getLigneGrille()
 {
-        return this->ligne;
+    return this->ligne;
 }
 
 void VueEntitee::setLigneGrille(int l)
 {
-        this->ligne = l;
+    this->ligne = l;
 }
 
 int VueEntitee::getColGrille()
 {
-        return this->colonne;
+    return this->colonne;
 }
 
 void VueEntitee::setColGrille(int c)
 {
-        this->colonne=c;
+    this->colonne=c;
 }
 
 void VueEntitee::setLabelEnSelection(VueEntitee* label)
 {
-        VueEntitee::labelEnSelection = label;
+    VueEntitee::labelEnSelection = label;
 }
 
 VueEntitee* VueEntitee::getLabelEnSelection()
 {
-        return VueEntitee::labelEnSelection;
+    return VueEntitee::labelEnSelection;
 }
 
 void VueEntitee::moveOnCursor(){
-        QPoint viewPoint = VuePrincipale::getInstanceOf()->getView()->mapFromGlobal(QCursor::pos());
-        QPointF scenePoint = VuePrincipale::getInstanceOf()->getView()->mapToScene(viewPoint);
-        this->scene()->update();
+    QPoint viewPoint = VuePrincipale::getInstanceOf()->getView()->mapFromGlobal(QCursor::pos());
+    QPointF scenePoint = VuePrincipale::getInstanceOf()->getView()->mapToScene(viewPoint);
+    this->scene()->update();
 
-        VuePrincipale::getInstanceOf()->deplacerEntitee(this,
-                                                        new QPoint(trunc(scenePoint.x()-this->pixmap().width()/2),
-                                                                   trunc(scenePoint.y()-this->pixmap().height()/2)));
+    VuePrincipale::getInstanceOf()->deplacerEntitee(this,
+                                                    new QPoint(trunc(scenePoint.x()-this->pixmap().width()/2),
+                                                               trunc(scenePoint.y()-this->pixmap().height()/2)));
+}
+
+void VueEntitee::detruire()
+{
+    this->isDeleted=true;
+    std::cout << this->getModele() << std::endl;
+    std::vector<Cable*>* cables = this->getModele()->getCables();
+    for(int i = 0 ; i < cables->size() ; i++)
+    {
+        std::cout << "i :" << i << std::endl;
+        Cable* c = (*cables)[i];
+        delete(c->getVue());
+    }
+    std::cout << "fin bite" << std::endl;
+    delete(this->getModele());
+
+    this->deleteLater();
 }
 
 void VueEntitee::mousePressEvent(QGraphicsSceneMouseEvent *e)
 {
     if(Selection::getEnSelection()==SUPPRIMER)
     {
-            if(this->getModele()->getEtatEntitee()==false)
-            {
-                    this->deleteLater();
-                    this->getModele()->~Entitee();
-                    this->isDeleted=true;
-            }
-            Selection::setEnSelection(SOURIS);
+        if(this->getModele()->getEtatEntitee()==false)
+        {
+            this->detruire();
+        }
+        Selection::setEnSelection(SOURIS);
     }
     else if (e->button() == Qt::LeftButton)
     {
-            if(VueEntitee::getLabelEnSelection()!=this)
-            {
-                    VueEntitee::setLabelEnSelection(this);
-                    VueInformation::getInstanceOf()->refresh(this);
-            }
+        if(VueEntitee::getLabelEnSelection()!=this)
+        {
+            VueEntitee::setLabelEnSelection(this);
+            VueInformation::getInstanceOf()->refresh(this);
+        }
 
-            if(Selection::getEnSelection()==CABLE)
-            {
-                    VueCable::creerVueCable(this);
-                    this->scene()->update();
-            }
+        if(Selection::getEnSelection()==CABLE)
+        {
+            VueCable::creerVueCable(this);
+            this->scene()->update();
+        }
     }
     else if (e->button() == Qt::RightButton)
-            emit rightClick();
+        emit rightClick();
 
     QGraphicsItem::mousePressEvent(e);
 }
@@ -114,16 +132,16 @@ void VueEntitee::mousePressEvent(QGraphicsSceneMouseEvent *e)
 void VueEntitee::mouseMoveEvent(QGraphicsSceneMouseEvent *e)
 {
 
-        if (e->buttons() == Qt::LeftButton)
-        {
-                emit moveLeftButton();
+    if (e->buttons() == Qt::LeftButton)
+    {
+        emit moveLeftButton();
 
-        }
-        QGraphicsItem::mouseMoveEvent(e);
+    }
+    QGraphicsItem::mouseMoveEvent(e);
 }
 
 void VueEntitee::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *e)
 {
-        emit doubleClick();
+    emit doubleClick();
 }
 

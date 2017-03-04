@@ -32,9 +32,7 @@ VueCable::VueCable(VueEntitee* v1, VueEntitee* v2, QGraphicsItem* parent)
 VueCable::~VueCable()
 {
     delete(this->m_cable);
-    this->deleteLater();
 }
-
 
 /*     isSeq(int xinit, int yinit, double coef, int x1, int y1, int x2, int y2)
  *
