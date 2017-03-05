@@ -6,6 +6,7 @@
 #include <QGridLayout>
 #include <QTextEdit>
 #include <QLabel>
+#include <QCoreApplication>
 #include "vues/vueRoutes.h"
 #include "vues/ligneroute.h"
 #include "controleurs/vueRoutesControleur.h"
@@ -19,9 +20,9 @@ class VueInformation : public QWidget
     Q_OBJECT
 public:
     static VueInformation* getInstanceOf();
-    void refresh(QWidget* s);
-    void setSource(QWidget* s);
-    QWidget* getSource();
+    void refresh(QGraphicsPixmapItem* s);
+    void setSource(QGraphicsPixmapItem* s);
+    QGraphicsPixmapItem* getSource();
     void vider();
     void setAllumer(QPushButton*);
     QPushButton* getAllumer();
@@ -32,14 +33,18 @@ public:
 
     VueIP* getVueIP(void);
     void setVueIP(VueIP* v);
+    void addNewInfos();
+    Entitee* getModele();
+    std::string getName();
 
 private:
     static VueInformation* instance;
     explicit VueInformation(QWidget *parent = 0);
-    QWidget* m_source;
+    QGraphicsPixmapItem* m_source;
     QPushButton* m_allumer;
     VueRoutes* m_routes;
     VueIP* m_vueIP;
+    QTextEdit* m_name;
 
 signals:
     void refresh();

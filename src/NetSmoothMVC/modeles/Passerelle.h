@@ -7,6 +7,7 @@
 
 #include "Machine.h"
 
+class DataBase;
 
 class Passerelle : public Machine
 {

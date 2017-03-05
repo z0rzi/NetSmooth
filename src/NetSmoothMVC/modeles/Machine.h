@@ -11,6 +11,7 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <lxc/lxccontainer.h>
+#include <errno.h>
 
 #include "Entitee.h"
 
@@ -53,6 +54,7 @@ public:
      */
     Machine(int d, int type, const char* cntName);
 
+    virtual ~Machine(){};
     /*	struct lxc_container* getContainer() const
      *
      *	permet de recuperer le container associé a la machine
@@ -205,6 +207,12 @@ public:
      */
     void lancerXterm();
 
+    void launchLxcContainer();
+
+    void reinitNetworkConfig();
+
+    void lireModifContainer();
+
     int getNewIdIp();
 
     int getNewIdRoute4();
@@ -219,11 +227,20 @@ public:
 
     void supprimerContainerRoutage6(int id);
 
+    void majIpContainer();
+
+    void majRouteContainer();
+
     void appliquerParamRoutage6();
 
     void addRouteConfig6(struct paramRoutage route);
 
     std::vector<struct paramRoutage> getRouteConfig6() const;
+
+
+    //!\\ FONCTION PRISE DE LXC, CORRIGER POUR INCLURE LES HEADERS DE LXC (LXC_UTILS)
+     int wait_for_pid(pid_t pid);
+
 
 
 private:
@@ -234,11 +251,15 @@ private:
      */
     struct lxc_container *m_container;
 
+    std::string m_contrainerName;
+
     std::vector<struct paramIp*> m_paramIp;
 
     std::vector<struct paramRoutage> m_paramRoutage4;
 
     std::vector<struct paramRoutage> m_paramRoutage6;
+
+    std::string m_oldV6[4];
 };
 
 #endif

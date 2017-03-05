@@ -1,4 +1,5 @@
 #include "selectioncontroleur.h"
+#include <QApplication>
 
 SelectionControleur::SelectionControleur(Selection *vue0, QObject *parent) : QObject(parent)
 {
@@ -9,12 +10,14 @@ SelectionControleur::SelectionControleur(Selection *vue0, QObject *parent) : QOb
       connect(vue->getPasserelle(),SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
       connect(vue->getHub(),SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
       connect(vue->getCable(),SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
+      connect(vue->getSupprimer(),SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
 }
 
 void SelectionControleur::changeEnSelection()
 {
    QPushButton* b = qobject_cast<QPushButton*>(sender());
 
+   QApplication::setOverrideCursor(Qt::ArrowCursor);
    if(b->text() == "Souris")
    {
        Selection::setEnSelection(SOURIS);
@@ -34,6 +37,11 @@ void SelectionControleur::changeEnSelection()
    if(b->text() == "Cable")
    {
        Selection::setEnSelection(CABLE);
+   }
+   if(b->text() == "X")
+   {
+       Selection::setEnSelection(SUPPRIMER);
+       QApplication::setOverrideCursor(Qt::CrossCursor);
    }
 }
 

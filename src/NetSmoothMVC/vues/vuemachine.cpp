@@ -1,5 +1,8 @@
 #include "vuemachine.h"
 #include "modeles/DataBase.h"
+#include <iostream>
+
+using namespace std;
 
 VueMachine::VueMachine(VueEntitee *parent) : VueEntitee(parent)
 {
@@ -7,7 +10,8 @@ VueMachine::VueMachine(VueEntitee *parent) : VueEntitee(parent)
 	etat = false;
 
 	QPixmap* img = new QPixmap();
-	img->load("../build-NetSmoothMVC-Desktop-Debug/images/ordinateuroff.png");
+    img->load(QCoreApplication::applicationDirPath()+"/images/ordinateuroff.png");
+    cout << QCoreApplication::applicationDirPath().toStdString() << "/images/ordinateuroff.png" << endl;
     *img = img->scaled(130,130);
     this->setPixmap(*img);
     this->ordinateur->setVue(this);
@@ -23,3 +27,4 @@ void VueMachine::terminal()
     if (this->etat == true)
             this->getModele()->lancerXterm();
 }
+

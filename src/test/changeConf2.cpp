@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <lxc/lxccontainer.h>
-
+#include <unistd.h>
+#include <sys/wait.h>
+#include <errno.h>
+#include <lxc/utils.h>
 
 int main(void) {
   struct lxc_container *c;
@@ -11,7 +14,7 @@ int main(void) {
   lxc_attach_exec_t salut;
   pid_t pid;
   /* Setup container struct */
-  c = lxc_container_new("apicontainer", NULL);
+  c = lxc_container_new("ordinateur0", NULL);
   if (!c) {
     fprintf(stderr, "Failed to setup lxc_container struct\n");
     goto out;
@@ -31,6 +34,14 @@ int main(void) {
   if(c->attach(c,lxc_attach_run_command,&command,&options,&pid)!=0){
     printf("dommage ça marche pas");
   }
+  printf("%d",pid);
+//  while(waitpid(pid,0,WNOHANG)>0);
+wait_for_pid(pid);
+
+
+
+
+  
 
 
   /* Stop the container */

@@ -1,6 +1,9 @@
 #include <QApplication>
 #include <QWidget>
 #include <QGridLayout>
+#include <signal.h>
+#include <sys/wait.h>
+#include <unistd.h>
 
 #include "vues/selection.h"
 #include "vues/vueprincipale.h"
@@ -8,11 +11,10 @@
 #include "controleurs/vueinformationcontroleur.h"
 #include "vues/fenetre.h"
 
-int Selection::m_enSelection = 0;
+int Selection::m_enSelection = SOURIS;
 
 int main(int argc, char** argv)
 {
-    cout << "click droit pour demarer une machine, double click pour xterm" << endl;
     QApplication app(argc, argv);
 
     Fenetre* fen=new Fenetre();

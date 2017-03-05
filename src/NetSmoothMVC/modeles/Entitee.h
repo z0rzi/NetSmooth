@@ -140,7 +140,7 @@ public:
                  *	d'adresses de Cables dans lequel tous les
                  *	cables auquels l'entitee est relié sont repertoriés
                  */
-        std::vector<Cable*> getCables(void);
+        std::vector<Cable *> *getCables(void);
 
         /*	void addCable(Cable* cable)
                  *
@@ -274,8 +274,14 @@ public:
                  *	ici en tant que methodes virtuelles pures evite les transtypages
                  *	du type < ((Machine*)this)->lancerContainer() >
                  */
+        std::string getNom();
+        void setNom(std::string nom);
 
+        void deleteCable(Cable const *c);
+
+        virtual void setIpConfig(struct paramIp* ip) = 0;
         virtual std::vector<struct paramIp*> getIpConfig() = 0 ;
+        virtual void lireModifContainer() = 0;
         virtual void appliquerParamIp() = 0;
         virtual void appliquerParamRoutage4() = 0;
         virtual void appliquerParamRoutage6() = 0;
@@ -283,10 +289,12 @@ public:
         virtual void stopperContainer() = 0;
         virtual void lierABridge() = 0;
         virtual void separerDeBridge() = 0;
+        virtual void majIpContainer() = 0;
+        virtual void majRouteContainer() = 0;
         void setVue(VueEntitee* v);
         VueEntitee* getVue();
 
-        ~Entitee();
+        virtual ~Entitee() {};
 protected:
         /*	m_bridgeInit
                  *
@@ -344,10 +352,12 @@ protected:
                  *	IL NE FAUT PAS LE FAIRE, sinon ca va tout casser
                  *	au demarage de la machine... TOUT CASSER!!!
                  */
-        std::vector<Cable*> m_cableList;
+        std::vector<Cable*> *m_cableList=NULL;
 
         int m_type;
         int m_id;
+
+        std::string m_nom;
 
         VueEntitee* m_vue;
 };

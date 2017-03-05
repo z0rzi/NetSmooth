@@ -5,9 +5,31 @@ if [ "$UID" -ne "0" ]; then
 	exit
 fi
 clear
-echo "vos containers sont en cours de création, veuillez patienter..."
+
+echo "veuillez patienter, le premier container est en cours de de création"
 
 lxc-create -n ordinateur0 -t download -- -d debian -r jessie -a i386 > /dev/null 2> /dev/null
+
+echo "lxc.include = /usr/share/lxc/config/debian.common.conf" > /var/lib/lxc/ordinateur0/config
+echo "lxc.arch = x86" >> /var/lib/lxc/ordinateur0/config
+echo "" >> /var/lib/lxc/ordinateur0/config
+echo "lxc.rootfs = /var/lib/lxc/ordinateur0/rootfs" >> /var/lib/lxc/ordinateur0/config
+echo "lxc.rootfs.backend = dir" >> /var/lib/lxc/ordinateur0/config
+echo "lxc.utsname = ordinateur0" >> /var/lib/lxc/ordinateur0/config
+echo "" >> /var/lib/lxc/ordinateur0/config
+echo "lxc.network.type = none" >> /var/lib/lxc/ordinateur0/config
+cp /etc/resolv.conf /var/lib/lxc/ordinateur0/rootfs/etc/resolv.conf
+echo "installez tout ce dont vous avez besoins dans ce container."
+lxc-start -n ordinateur0 > /dev/null
+xterm -hold -e "lxc-attach -n ordinateur0; kill \$PPID" &
+a=""
+while [ "$a" != "ok" ]; do
+	echo -n "fermez le xterm et tapez 'ok' quand vous avez terminé : "
+	read a
+done
+lxc-stop -n ordinateur0 > /dev/null
+
+echo "vos containers sont en cours de création, veuillez patienter..."
 
 echo "lxc.include = /usr/share/lxc/config/debian.common.conf" > /var/lib/lxc/ordinateur0/config
 echo "lxc.arch = x86" >> /var/lib/lxc/ordinateur0/config
@@ -20,7 +42,7 @@ echo "lxc.network.type = veth" >> /var/lib/lxc/ordinateur0/config
 echo "lxc.network.name = eth0" >> /var/lib/lxc/ordinateur0/config
 echo "lxc.network.flags = up" >> /var/lib/lxc/ordinateur0/config
 
-lxc-create -n passerelle0 -t download -- -d debian -r jessie -a i386 > /dev/null 2> /dev/null
+lxc-copy -n ordinateur0 -N passerelle0 > /dev/null 2> /dev/null
 
 echo "lxc.include = /usr/share/lxc/config/debian.common.conf" > /var/lib/lxc/passerelle0/config
 echo "lxc.arch = x86" >> /var/lib/lxc/passerelle0/config
@@ -29,12 +51,12 @@ echo "lxc.rootfs = /var/lib/lxc/passerelle0/rootfs" >> /var/lib/lxc/passerelle0/
 echo "lxc.rootfs.backend = dir" >> /var/lib/lxc/passerelle0/config
 echo "lxc.utsname = passerelle0" >> /var/lib/lxc/passerelle0/config
 echo "" >> /var/lib/lxc/passerelle0/config
-echo "lxc.network.type = veth" >> /var/lib/lxc/passerelle0/config
-echo "lxc.network.name = eth0" >> /var/lib/lxc/passerelle0/config
-echo "lxc.network.flags = up" >> /var/lib/lxc/passerelle0/config
-echo "lxc.network.type = veth" >> /var/lib/lxc/passerelle0/config
-echo "lxc.network.name = eth1" >> /var/lib/lxc/passerelle0/config
-echo "lxc.network.flags = up" >> /var/lib/lxc/passerelle0/config
+for i in {0..3}; do
+	echo "lxc.network.type = veth" >> /var/lib/lxc/passerelle0/config
+	echo "lxc.network.name = eth$i" >> /var/lib/lxc/passerelle0/config
+	echo "lxc.network.flags = up" >> /var/lib/lxc/passerelle0/config
+	echo "" >> /var/lib/lxc/passerelle0/config
+done
 
 for i in {1..9}; do
 	lxc-copy -n ordinateur0 -N ordinateur$i > /dev/null 2> /dev/null &

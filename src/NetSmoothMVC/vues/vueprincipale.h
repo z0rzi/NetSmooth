@@ -5,15 +5,16 @@
 #include <QGridLayout>
 #include <QPainter>
 #include <QGraphicsScene>
-#include <QGraphicsView>
 #include <QGraphicsRectItem>
 #include <QPen>
 #include <iostream>
 #include <QMouseEvent>
+#include <QKeyEvent>
+#include <math.h>
+
 #include "constantes.h"
 #include "../vues/vueentitee.h"
 
-using namespace std;
 
 class VuePrincipaleControleur;
 
@@ -23,26 +24,37 @@ class VuePrincipale : public QWidget
 {
     Q_OBJECT
 public:
-    explicit VuePrincipale(QWidget *parent = 0);
-    void mousePressEvent(QMouseEvent *e);
-    void mouseDoubleClickEvent(QMouseEvent *e);
     static QWidget* getwidget();
     void paintEntitee(QPoint posSouris);
     VueEntitee *ajoutEntitee(int x, int y, int type);
     QGraphicsScene* getScene();
     QGraphicsView* getView();
     static VuePrincipale* getInstanceOf();
+    bool deplacerEntitee(VueEntitee* v,QPoint* posRelativeToparent);
+
+    int getHauteurCaseEntiere();
+    int getLargeurCaseEntiere();
 
 protected:
     void resizeEvent(QResizeEvent *);
+    void mousePressEvent(QMouseEvent *e);
+    bool eventFilter(QObject *obj, QEvent *event);
 
 private:
     static QWidget* ca;
     QGraphicsScene *m_scene;
     QGraphicsView *m_view;
-    QPoint m_pos;
+
     VuePrincipaleControleur *m_vpc;
     static VuePrincipale* instance;
+    explicit VuePrincipale(QWidget *parent = 0);
+
+    int grille[NB_CASE_Y][NB_CASE_X];
+    double largeurCase;
+    double hauteurCase;
+    QPoint* getPosInGrille(QPoint pos);
+
+    QSet<int> pressedKeys;
 
 signals:
     void clickSouris(QPoint pos);

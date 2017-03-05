@@ -1,4 +1,5 @@
 #include "VueFormulaireIP.h"
+#include <sstream>
 
 VueFormulaireIP::VueFormulaireIP(int numInterface, Entitee* modele, QWidget *parent)
         : m_modele(modele),m_numInterface(numInterface),QWidget(parent)
@@ -29,7 +30,12 @@ VueFormulaireIP::VueFormulaireIP(int numInterface, Entitee* modele, QWidget *par
 
     this->setLayout(this->m_layout);
 
-    VueFormulaireIPControleur* cntrl = new VueFormulaireIPControleur(this,valider);
+    new VueFormulaireIPControleur(this,valider);
+}
+
+Entitee* VueFormulaireIP::getModele()
+{
+    return this->m_modele;
 }
 
 void VueFormulaireIP::setModele(Entitee* e)
@@ -39,7 +45,7 @@ void VueFormulaireIP::setModele(Entitee* e)
 
 void VueFormulaireIP::refresh()
 {
-    if(this->m_modele == NULL || this->m_numInterface > this->m_modele->getIpConfig().size())
+    if(this->m_modele == NULL || this->m_numInterface > (int)this->m_modele->getIpConfig().size())
         perror("VueFormulaireIP refresh");
     else
     {
@@ -55,18 +61,68 @@ void VueFormulaireIP::refresh()
 void VueFormulaireIP::appliquerModification()
 {
 
-    if(this->m_modele == NULL || this->m_numInterface > this->m_modele->getIpConfig().size())
+    if(this->m_modele == NULL || this->m_numInterface > (int)this->m_modele->getIpConfig().size())
         perror("VueFormulaireIP appliquerModification");
     else
     {
+        /*
         struct paramIp* ip = this->m_modele->getIpConfig()[this->m_numInterface];
 
         ip->ipv4 = this->m_ipv4->toPlainText().toStdString();
         ip->maskv4 = this->m_mask->toPlainText().toStdString();
         ip->ipv6 = this->m_ipv6->toPlainText().toStdString();
+        */
+        struct paramIp* ip = new paramIp;
+
+        std::cout << "interface = " << this->m_numInterface << std::endl;
+        std::stringstream* ss = new std::stringstream();
+        (*ss) << "eth" << this->m_numInterface;
+        ip->interface = ss->str();
+        ip->ipv4 = this->m_ipv4->toPlainText().toStdString();
+        ip->maskv4 = this->m_mask->toPlainText().toStdString();
+        ip->ipv6 = this->m_ipv6->toPlainText().toStdString();
+
+        this->m_modele->setIpConfig(ip);
 
         this->m_modele->appliquerParamIp();
 
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

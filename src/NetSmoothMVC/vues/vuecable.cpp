@@ -6,75 +6,133 @@
 VueEntitee* VueCable::PremiereSelection = NULL;
 VueEntitee* VueCable::SecondeSelection = NULL;
 
-VueCable::VueCable(VueEntitee* v1, VueEntitee* v2,QWidget *parent)
-        : QWidget(parent),m_v1(v1),m_v2(v2)
+VueCable::VueCable(VueEntitee* v1, VueEntitee* v2, QGraphicsItem* parent)
+        : QGraphicsPathItem(parent),m_v1(v1),m_v2(v2)
 {
-        this->cable = Cable::creerCable(v1->getModele(),v2->getModele());
+        this->m_cable = Cable::creerCable(v1->getModele(),v2->getModele());
+        this->m_cable->setVue(this);
 
-        /**********TRANSPARENCE****************/
-        this->setAttribute( Qt::WA_TranslucentBackground);
-        this->setWindowFlags (Qt::FramelessWindowHint);
-        this->setAutoFillBackground(false);
-        /**************************************/
+        this->setFlag(QGraphicsItem::ItemIsFocusable,true);
+        this->setFlag(QGraphicsItem::ItemIsSelectable,true);
 }
 
-void VueCable::paintEvent(QPaintEvent *event)
+VueCable::~VueCable()
+{
+    delete(this->m_cable);
+}
+
+/*     isSeq(int xinit, int yinit, double coef, int x1, int y1, int x2, int y2)
+ *
+ *      Permet de determiner si la droite, qui passe par (xinit, yinit) et qui
+ *      a pour coefficient directeur coef, coupe le segment x1,y1,x2,y2 ou non.
+ */
+bool VueCable::isSeq(int xinit, int yinit, double coef, int x1, int y1, int x2, int y2)
+{
+    if(x1==x2)
+    {
+        y1=yinit-y1;
+        y2=yinit-y2;
+        float res1=((y1))/coef;
+        float res2=((y2))/coef;
+        x1-=xinit;
+        if((x1>=res1 && x1<=res2) || (x1>=res2 && x1<=res1))
+            return true;
+    }
+    else if(y1==y2)
+    {
+            x1-=xinit;
+            x2-=xinit;
+        float res1=coef*x1;
+        float res2=coef*x2;
+        y1=yinit-y1;
+        if((y1>=res1 && y1<=res2) || (y1>=res2 && y1<=res1))
+            return true;
+    }
+    return false;
+}
+
+void VueCable::updatePath()
+{
+        VuePrincipale* vp = VuePrincipale::getInstanceOf();
+
+        /* taille d'une case en pixels: */
+        int unitx = vp->getScene()->width()/NB_CASE_X;
+        int unity = vp->getScene()->height()/NB_CASE_Y;
+
+        /* x,y = point de depart ; goalx, goaly = point d'arrive */
+        int x=m_v1->getColGrille()+2, y=m_v1->getLigneGrille()+2;
+        int goalx=m_v2->getColGrille()+2, goaly=m_v2->getLigneGrille()+2;
+
+        QPainterPath* paintpath = new QPainterPath(*(new QPoint(x*unitx, y*unity)));
+
+        int i=1, j=1, gx=x, gy=y;
+
+        if(goalx<x)     /* si il faut aller vers la gauche */
+        {
+            gx=goalx;
+            gy=goaly;
+            i=-1;
+        }
+
+        if(goaly<y)     /* sil il faut monter */
+            j=-1;
+
+        float rapport;
+        if(x!=goalx)
+                rapport=-1*((y-goaly)*1.0)/((x-goalx)*1.0);     /* coefficient directeur */
+
+
+        /* direction determine si il faut evoluer en vertical ou en horizontal */
+        bool direction=(rapport>1)?true:(rapport<-1)?true:false, goalReached=false;
+        int k=0;
+
+        /* force oblige le cable a aller horizontalement (quand y==ygoal) */
+        bool force=false;
+
+        while(!goalReached)
+        {
+                if(force || ( direction && y!=goaly))       //horizontal
+                {       /* si c'est son tour, et que il n'est pas au meme niveau que le goal
+                         * ex: x=10; goalx=10; on ne peut plus se deplacer horzontalement
+                         */
+
+                    paintpath->lineTo(x*unitx, (y+j)*unity);
+                    if(k==0 || this->isSeq(gx, gy, rapport, x, y, x, y+j))
+                        direction=!direction;
+                    y+=j;
+                    force=false;
+                }
+                else if(x!=goalx)                   //vertical
+                {       /* si c'est son tour, et que il n'est pas au meme niveau que le goal */
+
+                    paintpath->lineTo((x+i)*unitx, y*unity);
+                    if(k==0 || this->isSeq(gx, gy, rapport, x, y, x+i, y))
+                        direction=!direction;
+                    x+=i;
+                }
+                else
+                    force=true;
+                k++;
+
+                if(x==goalx && y==goaly)
+                    goalReached=true;
+        }
+
+        this->setPath(*paintpath);
+}
+
+void VueCable::mousePressEvent(QGraphicsSceneMouseEvent *e)
 {
 
-        QPainter painter(this);
-        QPen myPen(Qt::black, 2, Qt::SolidLine);
-        painter.setPen(myPen);
-        int x1,y1;  //représente les coordonnées dans le widget de la première vue
-        int x2,y2; //de la deuxième vue
-        int width,height;
-        int tailleEntitee = this->m_v1->height();
-        VueEntitee *haut, *bas, *droite, *gauche;
+    if(Selection::getEnSelection() == SUPPRIMER)
+        emit(this->deleteCableSignal());
 
-        if(this->m_v1->pos().x() > this->m_v2->pos().x())
-        {
-            gauche=this->m_v2;
-            droite=this->m_v1;
-        }
-        else
-        {
-            gauche=this->m_v1;
-            droite=this->m_v2;
-        }
-        if(this->m_v1->pos().y() > this->m_v2->pos().y())
-        {
-            haut=this->m_v2;
-            bas=this->m_v1;
-        }
-        else
-        {
-            haut=this->m_v1;
-            bas=this->m_v2;
-        }
-
-        if(gauche==haut)
-        {
-            x1=y1=tailleEntitee/2;
-            x2=droite->pos().x()-gauche->pos().x()+tailleEntitee/2;
-            y2=bas->pos().y()-haut->pos().y()+tailleEntitee/2;
-        }
-        else
-        {
-                y1=bas->pos().y()-haut->pos().y()+tailleEntitee/2;
-                x1=tailleEntitee/2;
-                x2=droite->pos().x()-gauche->pos().x()+tailleEntitee/2;
-                y2=tailleEntitee/2;
-        }
-        height = bas->pos().y()-haut->pos().y()+tailleEntitee;
-        width = droite->pos().x()-gauche->pos().x()+tailleEntitee;
-
-        painter.drawLine(x1,y1,x2,y2);
-        this->setGeometry(gauche->pos().x(),haut->pos().y(),width,height);
-
+        QGraphicsItem::mousePressEvent(e);
 }
 
 Cable* VueCable::getModele()
 {
-        return this->cable;
+        return this->m_cable;
 }
 
 void VueCable::creerVueCable(VueEntitee *v)
@@ -84,9 +142,9 @@ void VueCable::creerVueCable(VueEntitee *v)
         else
         {
                 VuePrincipale* vue = (VuePrincipale*) VuePrincipale::getwidget();
-                VueCable* vueCable = new VueCable(VueCable::getPremiereSelection(),v);
-                //        VueCableControleur *c = new VueCableControleur(vueCable);
-                QGraphicsProxyWidget* proxy = vue->getScene()->addWidget(vueCable);
+                VueCable* vc = new VueCable(VueCable::getPremiereSelection(),v);
+                new VueCableControleur(vc);
+                vue->getScene()->addItem(vc);
                 vue->getView()->setScene(vue->getScene());
                 vue->getView()->show();
 

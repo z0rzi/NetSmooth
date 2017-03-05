@@ -10,7 +10,7 @@ class VueMachine : public VueEntitee
 {
 	Q_OBJECT
 	public:
-		explicit VueMachine(VueEntitee *parent = 0);
+        explicit VueMachine(VueEntitee *parent = 0);
         Ordinateur* getModele(void);
         void terminal();
 	private:

@@ -1,14 +1,13 @@
 #include "Ordinateur.h"
-
-using namespace std;
+#include "DataBase.h"
 
 Ordinateur::Ordinateur(int id)
-	:Machine(id, TYPE_ORDINATEUR, "ordinateur")
+        :Machine(id, TYPE_ORDINATEUR, "ordinateur")
 {
 
     for(int numInterface = 0; numInterface < NOMBRE_INTERFACES_ORDINATEUR ; numInterface++)
     {
-        ostringstream convert;
+        std::ostringstream convert;
         convert << numInterface;
 
         //POURQUOI MALLOC NE FONCTIONNE PAS?? VINCENT
@@ -25,5 +24,5 @@ Ordinateur::Ordinateur(int id)
 
 Ordinateur::~Ordinateur(void)
 {
-
+    DataBase::detruireOrdinateur(this);
 }

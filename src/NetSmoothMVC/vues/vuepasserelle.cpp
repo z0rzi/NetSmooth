@@ -3,10 +3,10 @@
 
 VuePasserelle::VuePasserelle(VueEntitee *parent) : VueEntitee(parent)
 {
-	this->passerelle=DataBase::getNewPasserelle();
+    this->passerelle=DataBase::getNewPasserelle();
     this->etat = false;
 	QPixmap* img = new QPixmap();
-	img->load("../build-NetSmoothMVC-Desktop-Debug/images/passerelleoff.png");
+    img->load(QCoreApplication::applicationDirPath()+"/images/passerelleoff.png");
     *img = img->scaled(130,130);
     this->setPixmap(*img);
     this->passerelle->setVue(this);

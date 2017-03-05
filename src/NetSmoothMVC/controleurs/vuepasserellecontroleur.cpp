@@ -1,6 +1,6 @@
 #include "vuepasserellecontroleur.h"
 
-VuePasserelleControleur::VuePasserelleControleur(VuePasserelle* vue0, VueEntiteeControleur *parent) : VueEntiteeControleur(parent)
+VuePasserelleControleur::VuePasserelleControleur(VuePasserelle* vue0, VueEntiteeControleur *parent) : VueEntiteeControleur(vue0,parent)
 {
 	vue = vue0;
 

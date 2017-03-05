@@ -11,6 +11,7 @@ Selection::Selection(QWidget *parent) : QWidget(parent)
     this->m_passerelle = new QPushButton(tr("Passerelle"), this);
     this->m_hub = new QPushButton(tr("Hub"), this);
     this->m_cable = new QPushButton(tr("Cable"), this);
+    this->m_supprimer = new QPushButton(tr("X"),this);
     this->m_sc = new SelectionControleur(this);
 
     QGridLayout *layout = new QGridLayout;
@@ -19,6 +20,7 @@ Selection::Selection(QWidget *parent) : QWidget(parent)
     layout->addWidget(m_passerelle,2,0);
     layout->addWidget(m_hub,3,0);
     layout->addWidget(m_cable,4,0);
+    layout->addWidget(m_supprimer,5,0);
     this->setLayout(layout);
 
 }
@@ -30,7 +32,11 @@ int Selection::getEnSelection()
 
 void Selection::setEnSelection(int es)
 {
-    m_enSelection = es;
+    Selection::m_enSelection = es;
+    if(Selection::m_enSelection==SOURIS)
+    {
+   QApplication::setOverrideCursor(Qt::ArrowCursor);
+    }
 }
 
 QPushButton* Selection::getSouris()
@@ -56,4 +62,9 @@ QPushButton* Selection::getHub()
 QPushButton* Selection::getCable()
 {
     return this->m_cable;
+}
+
+QPushButton* Selection::getSupprimer()
+{
+    return this->m_supprimer;
 }

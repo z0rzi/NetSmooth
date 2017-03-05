@@ -9,4 +9,6 @@ VueFormulaireIPControleur::VueFormulaireIPControleur(VueFormulaireIP* vue0, QPus
 void VueFormulaireIPControleur::appliquerModif()
 {
     this->vue->appliquerModification();
+    this->vue->getModele()->majIpContainer();
+    this->vue->getModele()->majRouteContainer();
 }

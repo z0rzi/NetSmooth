@@ -113,7 +113,7 @@ void VueRoutes::addRoutes()
         routeConf = m->getRouteConfig4();
         l = (QGridLayout*)this->routesVersion4->layout();
 
-        for(numLine=0;numLine<routeConf.size();numLine++)
+        for(numLine=0 ; numLine<(int)routeConf.size() ; numLine++)
         {
             newLine = new LigneRoute();
             const char* interface = routeConf[numLine].interface.c_str();
@@ -138,7 +138,7 @@ void VueRoutes::addRoutes()
         routeConf = m->getRouteConfig6();
         l = (QGridLayout*)this->routesVersion6->layout();
 
-        for(numLine=0;numLine<routeConf.size();numLine++)
+        for(numLine=0 ; numLine<(int)routeConf.size() ; numLine++)
         {
             newLine = new LigneRoute();
             const char* interface = routeConf[numLine].interface.c_str();
@@ -174,6 +174,10 @@ void VueRoutes::deleteRoute4()
     }
 
     this->refresh();
+
+    VueEntitee* ve = VueEntitee::getLabelEnSelection();
+    ve->getModele()->majIpContainer();
+    ve->getModele()->majRouteContainer();
 }
 
 void VueRoutes::addRoute4()
@@ -197,6 +201,10 @@ void VueRoutes::addRoute4()
         }
         this->refresh();
     }
+
+    VueEntitee* ve = VueEntitee::getLabelEnSelection();
+    ve->getModele()->majIpContainer();
+    ve->getModele()->majRouteContainer();
 }
 
 void VueRoutes::deleteRoute6()
@@ -211,6 +219,10 @@ void VueRoutes::deleteRoute6()
     }
 
     this->refresh();
+
+    VueEntitee* ve = VueEntitee::getLabelEnSelection();
+    ve->getModele()->majIpContainer();
+    ve->getModele()->majRouteContainer();
 }
 
 void VueRoutes::addRoute6()
@@ -233,4 +245,8 @@ void VueRoutes::addRoute6()
         }
         this->refresh();
     }
+
+    VueEntitee* ve = VueEntitee::getLabelEnSelection();
+    ve->getModele()->majIpContainer();
+    ve->getModele()->majRouteContainer();
 }

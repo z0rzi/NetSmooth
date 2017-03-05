@@ -1,10 +1,10 @@
 {
 	(
 		type
-		id
-		nom
 		position x
 		position y
+		id
+		//nom
 		\
 			interface
 			ipv4

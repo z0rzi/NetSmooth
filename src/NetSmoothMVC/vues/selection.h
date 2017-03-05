@@ -23,14 +23,17 @@ public:
     QPushButton* getPasserelle();
     QPushButton* getHub();
     QPushButton* getCable();
+    QPushButton* getSupprimer();
 
 private:
+    void setButtonStyle(QPushButton* b, std::string imgPath);
     static int m_enSelection;
     QPushButton *m_souris;
     QPushButton *m_machine;
     QPushButton *m_passerelle;
     QPushButton *m_hub;
     QPushButton *m_cable;
+    QPushButton *m_supprimer;
     SelectionControleur *m_sc;
 };
 

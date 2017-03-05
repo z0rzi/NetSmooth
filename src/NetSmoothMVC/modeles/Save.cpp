@@ -58,6 +58,10 @@ void Save::load_session(string fileName)
                 e->setID(id);
 
                 getline(fichier, line); //nom
+                e->setNom(line);
+
+                getline(fichier, line); //bridgeInit
+
 
                 getline(fichier, line);
 
@@ -182,30 +186,30 @@ void Save::save_session(string fileName)
 
                         Entitee* e=ent->entitee;
 
-                        vector<Cable*> cab=e->getCables();
+                        vector<Cable*> *cab=e->getCables();
 
-                        for(j=0 ; j<cab.size() ; j++)
+                        for(j=0 ; j<(int)cab->size() ; j++)
                         {
                                 ok=true;
-                                for(k=0 ; k<cables.size() ; k++)
-                                        if(cab[j]==cables[k])
+                                for(k=0 ; k<(int)cables.size() ; k++)
+                                        if((*cab)[j]==cables[k])
                                                 ok=false;
 
                                 if(ok==true)
-                                        cables.push_back(cab[j]);
+                                        cables.push_back((*cab)[j]);
                         }
+                        VuePrincipale* vp=VuePrincipale::getInstanceOf();
 
                         fichier << e->getType() << endl;
-                        fichier << e->getVue()->pos().x() << endl;
-                        fichier << e->getVue()->pos().y() << endl;
+                        fichier << e->getVue()->getColGrille()*vp->getHauteurCaseEntiere() << endl;
+                        fichier << e->getVue()->getLigneGrille()*vp->getLargeurCaseEntiere() << endl;
                         fichier << e->getID() << endl;
-                        //fichier << e->getNom() << endl;
+                        fichier << e->getNom() << endl;
                         fichier << e->getBridgeInit() << endl;
                         if(e->getType()!=TYPE_HUB)
                         {
-                                Machine* m=(Machine*)e;
                                 vector<paramIp*> ips=e->getIpConfig();
-                                for(j=0 ; j<ips.size() ; j++)
+                                for(j=0 ; j<(int)ips.size() ; j++)
                                 {
                                         if(ips[j]->ipv4!="" || ips[j]->maskv4!="" || ips[j]->ipv6!="")
                                         {
@@ -218,7 +222,7 @@ void Save::save_session(string fileName)
                                         }
                                 }
                                 vector<paramRoutage> r4=((Machine*)e)->getRouteConfig4();
-                                for(j=0 ; j<r4.size() ; j++)
+                                for(j=0 ; j<(int)r4.size() ; j++)
                                 {
                                         fichier << "[4" << endl;
                                         fichier << r4[j].interface << endl;
@@ -228,7 +232,7 @@ void Save::save_session(string fileName)
                                         fichier << "]4" << endl;
                                 }
                                 vector<paramRoutage> r6=((Machine*)e)->getRouteConfig6();
-                                for(j=0 ; j<r6.size() ; j++)
+                                for(j=0 ; j<(int)r6.size() ; j++)
                                 {
                                         fichier << "[6" << endl;
                                         fichier << r6[j].interface << endl;
@@ -244,7 +248,7 @@ void Save::save_session(string fileName)
         }
         fichier << "}" << endl;
 
-        for(i=0 ; i<cables.size() ; i++)
+        for(i=0 ; i<(int)cables.size() ; i++)
         {
                 Cable* c=cables[i];
                 Entitee* tab[2];
