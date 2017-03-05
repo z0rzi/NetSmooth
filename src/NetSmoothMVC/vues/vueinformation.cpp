@@ -40,7 +40,7 @@ VueInformation::VueInformation(QWidget *parent) : QWidget(parent)
     layoutGlobal->addWidget(m_allumer,3,1,Qt::AlignHCenter);
 
     this->setLayout(layoutGlobal);
-    VueInformationControleur *vic = new VueInformationControleur(this, m_allumer, rafraichir, okName);
+    new VueInformationControleur(this, m_allumer, rafraichir, okName);
 }
 
 string VueInformation::getName()
@@ -129,7 +129,6 @@ void VueInformation::allumer()
         if (vueE->etat == false)
         {
             vueE->etat = true;
-            Hub* p = (Hub*)vueE->getModele();
             vueE->getModele()->launchEntitee();
             img->load(QCoreApplication::applicationDirPath()+"/images/Hubon.png");
             *img = img->scaled(130,130);

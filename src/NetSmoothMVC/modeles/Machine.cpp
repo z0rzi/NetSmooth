@@ -3,6 +3,8 @@
 #include <string>
 #include <bitset>
 #include <sstream>
+#include <QProcess>
+#include <QStringList>
 
 using namespace std;
 
@@ -21,6 +23,8 @@ Machine::Machine(int id, int type, const char* cntName)
 
         for(int i=0 ; i<4 ; i++)
                 this->m_oldV6[i] = "";
+
+        this->m_contrainerName = buff;
 }
 
 void Machine::addIpConfig(struct paramIp* ip)
@@ -31,7 +35,7 @@ void Machine::addIpConfig(struct paramIp* ip)
 void Machine::setIpConfig(struct paramIp* ip)
 {
         std::cout <<this->m_paramIp.size()<< std::endl;
-        for(int i = 0; i<this->m_paramIp.size() ; i++)
+        for(int i = 0; i<(int)this->m_paramIp.size() ; i++)
         {
                 std::cout << this->m_paramIp[i]->interface+";"+ip->interface << std::endl;
                 if(ip->interface.compare(this->m_paramIp[i]->interface.c_str()) == 0)
@@ -111,81 +115,41 @@ void Machine::stopperContainer()
 
 void Machine::force_stopperContainer()
 {
-        int x=fork();
-
-        if(x==-1)
-        {
-                perror("fork");
-                exit(1);
-        }
-        if(x==0)
-        {
-                char cntName[20];
-                this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
-                execl("../NetSmoothMVC/scripts/stopperContainer.sh", "stopContainer", cntName, NULL);
-                exit(0);
-        }
-        int useless;
-        while(wait(&useless)<0);
+    QProcess *p = new QProcess();
+    QStringList args;
+    args << this->m_contrainerName.c_str();
+    p->start("../NetSmoothMVC/scripts/stopperContainer.sh", args);
+    if(!p->waitForFinished(10000))
+        std::cout << "failed stopping the container" << std::endl;
 }
 void Machine::separerDeBridge()
 {
-        int x=fork();
-
-        if(x==-1)
-        {
-                perror("fork");
-                exit(1);
-        }
-        if(x==0)
-        {
-                char cntName[20];
-                this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
-                execl("../NetSmoothMVC/scripts/unjoinCntAndBridge.sh", "joinCntBridge", cntName,this->m_bridgeActuel.c_str(), NULL);
-                exit(0);
-        }
-        int useless;
-        while(wait(&useless)<0);
+    QProcess *p = new QProcess();
+    QStringList args;
+    args << this->m_contrainerName.c_str() << this->m_bridgeActuel.c_str();
+    p->start("../NetSmoothMVC/scripts/unjoinCntAndBridge.sh", args);
+    if(!p->waitForFinished(10000))
+        std::cout << "failed unjoining bridge" << std::endl;
 }
 
 void Machine::launchLxcContainer()
 {
-        int x=fork();
-
-        if(x==-1)
-        {
-                perror("fork");
-                exit(1);
-        }
-        if(x==0)
-        {
-                char cntName[20];
-                this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
-                execl("../NetSmoothMVC/scripts/lancerContainer.sh", "joinCntBridge", cntName, NULL);
-                exit(0);
-        }
-        int useless;
-        while(wait(&useless)<0);
+    QProcess *p = new QProcess();
+    QStringList args;
+    args << this->m_contrainerName.c_str();
+    p->start("../NetSmoothMVC/scripts/lancerContainer.sh", args);
+    if(!p->waitForFinished(10000))
+        std::cout << "failed launching container" << std::endl;
 }
 
 void Machine::lierABridge()
 {
-        int x=fork();
-
-        if(x==-1)
-        {
-                perror("fork");
-                exit(1);
-        }
-        if(x==0)
-        {
-                char cntName[20];
-                this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
-                execl("../NetSmoothMVC/scripts/joinCntAndBridge.sh", "joinCntBridge", cntName,this->m_bridgeActuel.c_str(), NULL);
-                exit(0);
-        }
-        int useless;
-        while(wait(&useless)<0);
+    QProcess *p = new QProcess();
+    QStringList args;
+    args << this->m_contrainerName.c_str(), this->m_bridgeActuel.c_str();
+    p->start("../NetSmoothMVC/scripts/joinCntAndBridge.sh", args);
+    if(!p->waitForFinished(10000))
+        std::cout << "failed attaching to bridge" << std::endl;
 }
 
 void Machine::lancerCommandeDansContainer(const char** commande)
@@ -203,7 +167,7 @@ void Machine::appliquerParamIp()
         int i;
 
         vector<struct paramIp*> tab=this->getIpConfig();
-        for(i=0 ; i<tab.size() ; i++)
+        for(i=0 ; i<(int)tab.size() ; i++)
         {
                 if(tab[i]->ipv4 != "" && tab[i]->maskv4 != "")
                 {
@@ -234,7 +198,7 @@ void Machine::supprimerContainerRoutage4(int id)
         vector<struct paramRoutage> tab=this->getRouteConfig4();
         int indice;
 
-        for(indice=0 ; indice<this->m_paramRoutage4.size() && !found ; indice++)
+        for(indice=0 ; indice<(int)this->m_paramRoutage4.size() && !found ; indice++)
         {
                 found = false;
                 {
@@ -256,7 +220,7 @@ void Machine::supprimerContainerRoutage6(int id)
         vector<struct paramRoutage> tab=this->getRouteConfig6();
         int indice;
 
-        for(indice=0 ; indice<this->m_paramRoutage6.size() && !found ; indice++)
+        for(indice=0 ; indice<(int)this->m_paramRoutage6.size() && !found ; indice++)
         {
                 found = false;
                 {
@@ -276,7 +240,7 @@ void Machine::appliquerParamRoutage4()
         int i;
 
         vector<struct paramRoutage> tab = this->getRouteConfig4();
-        for(i=0 ; i<tab.size() ; i++)
+        for(i=0 ; i<(int)tab.size() ; i++)
         {
                 const char* cmd[]={"route", "add", "-net", tab[i].destination.c_str(), "gw", tab[i].passerelle.c_str(), "dev", tab[i].interface.c_str(), NULL};
 
@@ -288,38 +252,22 @@ void Machine::appliquerParamRoutage4()
  */
 void Machine::lancerXterm()
 {
-        int x=fork();
-
-        if(x==-1)
-        {
-                perror("fork");
-                exit(1);
-        }
-        if(x==0)
-        {
-                char cntName[20];
-                this->getContainer()->get_config_item(this->getContainer(), "lxc.utsname", cntName, 20);
-                execl("../NetSmoothMVC/scripts/launchXtermRoot.sh", "launchCnt", cntName, this->getNom().c_str(), NULL);
-                exit(0);
-        }
+    QProcess *p = new QProcess();
+    QStringList args;
+    args << this->m_contrainerName.c_str() << this->m_nom.c_str();
+    p->start("../NetSmoothMVC/scripts/launchXtermRoot.sh", args);
 }
 
 void Machine::reinitNetworkConfig()
 {
-        int x=fork();
-
-        if(x==-1)
-        {
-                perror("fork");
-                exit(1);
-        }
-        if(x==0)
-        {
-                char cntName[20];
-                this->getContainer()->get_config_item(this->getContainer(), "lxc.utsname", cntName, 20);
-                execl("../NetSmoothMVC/scripts/reinitConfigContainer.sh", "reinit", cntName, NULL);
-                exit(0);
-        }
+    QProcess *p = new QProcess();
+    QStringList args;
+    args << this->m_contrainerName.c_str();
+    p->start("../NetSmoothMVC/scripts/reinitConfigContainer.sh", args);
+    if(!p->waitForFinished(10000))
+        std::cout << "failed reinitialating network configuration" << std::endl;
+    else
+        std::cout << "succefully reinitialating network configuration" << std::endl;
 }
 
 void Machine::majIpContainer()
@@ -346,7 +294,7 @@ int Machine::getNewIdRoute4()
         for(id = 0 ; !found ; id++)
         {
                 found = true;
-                for(int i=0;i<this->m_paramRoutage4.size();i++)
+                for(int i=0;i<(int)this->m_paramRoutage4.size();i++)
                 {
                         if(this->m_paramRoutage4[i].id == id)
                                 found = false;
@@ -369,7 +317,7 @@ void Machine::lireModifContainer()
         while(getline(ipFile, line))
         {
                 bool ok=false;
-                for(i=0 ; i<this->m_paramIp.size() && !ok ; i++)
+                for(i=0 ; i<(int)this->m_paramIp.size() && !ok ; i++)
                 {
                         if(line == this->m_paramIp[i]->interface)
                                 ok=true;
@@ -410,7 +358,7 @@ void Machine::lireModifContainer()
                 tmp->passerelle=line;
 
                 getline(route4File, line);
-                for(j=0 ; j<line.size() ; j++)
+                for(j=0 ; j<(int)line.size() ; j++)
                         if(line[j]=='.')
                         {
                                 if(buff=="255")
@@ -466,7 +414,7 @@ void Machine::removeParamRoute4(int id)
 {
         bool found = false;
 
-        for(int i = 0 ; i < this->m_paramRoutage4.size() && !found ; i++)
+        for(int i = 0 ; i<(int)this->m_paramRoutage4.size() && !found ; i++)
         {
 
                 if(this->m_paramRoutage4[i].id == id)
@@ -483,7 +431,7 @@ void Machine::removeParamRoute6(int id)
 {
         bool found = false;
 
-        for(int i = 0 ; i < this->m_paramRoutage6.size() && !found ; i++)
+        for(int i = 0 ; i<(int)this->m_paramRoutage6.size() && !found ; i++)
         {
 
                 if(this->m_paramRoutage6[i].id == id)
@@ -502,7 +450,7 @@ void Machine::appliquerParamRoutage6()
         int i;
 
         vector<struct paramRoutage> tab = this->getRouteConfig6();
-        for(i=0 ; i<tab.size() ; i++)
+        for(i=0 ; i<(int)tab.size() ; i++)
         {
                 const char* cmd[]={"/.scr/aliasRoute.sh", "-A", "inet6", "add", tab[i].destination.c_str(), "gw", tab[i].passerelle.c_str(), "dev", tab[i].interface.c_str(), NULL};
                 this->lancerCommandeDansContainer(cmd);

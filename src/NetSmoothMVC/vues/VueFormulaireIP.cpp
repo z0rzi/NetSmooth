@@ -30,7 +30,7 @@ VueFormulaireIP::VueFormulaireIP(int numInterface, Entitee* modele, QWidget *par
 
     this->setLayout(this->m_layout);
 
-    VueFormulaireIPControleur* cntrl = new VueFormulaireIPControleur(this,valider);
+    new VueFormulaireIPControleur(this,valider);
 }
 
 Entitee* VueFormulaireIP::getModele()
@@ -45,7 +45,7 @@ void VueFormulaireIP::setModele(Entitee* e)
 
 void VueFormulaireIP::refresh()
 {
-    if(this->m_modele == NULL || this->m_numInterface > this->m_modele->getIpConfig().size())
+    if(this->m_modele == NULL || this->m_numInterface > (int)this->m_modele->getIpConfig().size())
         perror("VueFormulaireIP refresh");
     else
     {
@@ -61,7 +61,7 @@ void VueFormulaireIP::refresh()
 void VueFormulaireIP::appliquerModification()
 {
 
-    if(this->m_modele == NULL || this->m_numInterface > this->m_modele->getIpConfig().size())
+    if(this->m_modele == NULL || this->m_numInterface > (int)this->m_modele->getIpConfig().size())
         perror("VueFormulaireIP appliquerModification");
     else
     {

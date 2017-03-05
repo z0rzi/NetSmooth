@@ -144,7 +144,7 @@ void VueCable::creerVueCable(VueEntitee *v)
         {
                 VuePrincipale* vue = (VuePrincipale*) VuePrincipale::getwidget();
                 VueCable* vc = new VueCable(VueCable::getPremiereSelection(),v);
-                VueCableControleur *c = new VueCableControleur(vc);
+                new VueCableControleur(vc);
                 vue->getScene()->addItem(vc);
                 vue->getView()->setScene(vue->getScene());
                 vue->getView()->show();

@@ -124,7 +124,7 @@ void Entitee::appliquerBridgeEntiteeSuivante(string bridge)
     cout << "bridge " << bridge << " applique a '" << this->getBridgeInit() << "'" << endl;
     this->setBridgeActuel(bridge);
     this->lierABridge();
-    for(i=0 ; i<listCable->size() ; i++)
+    for(i=0 ; i<(int)listCable->size() ; i++)
     {
         Entitee* ext[2];
         Entitee* autre;
@@ -150,12 +150,12 @@ void Entitee::modifBridgesSousReseau_entiteeLancee()
     bool machineValide=false;
     bool qqnAutour=false;
 
-    for(i=0 ; i<listCable->size() && superieur==NULL ; i++)
+    for(i=0 ; i<(int)listCable->size() && superieur==NULL ; i++)
     {
         Entitee* autre;
         Entitee* ext[2];
         machineValide=false;
-        while(!machineValide && i<listCable->size())   /* permet de ne prendre en consideeration que les machines allumees */
+        while(!machineValide && i<(int)listCable->size())   /* permet de ne prendre en consideeration que les machines allumees */
         {
             (*listCable)[i]->getExtremites(ext);
             autre=(this==ext[0])?ext[1]:ext[0];
@@ -185,7 +185,7 @@ void Entitee::modifBridgesSousReseau_entiteeLancee()
     if(superieur==NULL)
     {
         cout << "je suis le plus fort" << endl;
-        for(i=0 ; i<listCable->size() && superieur==NULL ; i++)
+        for(i=0 ; i<(int)listCable->size() && superieur==NULL ; i++)
         {
             Entitee* autre;
             Entitee* ext[2];
@@ -215,7 +215,7 @@ void Entitee::modifBridgesSousReseau_entiteeLancee()
             supAlone=true;
             cout << "sup pas connecte" << endl;
         }
-        for(i=0 ; i<listCable->size(); i++)
+        for(i=0 ; i<(int)listCable->size(); i++)
         {
             Entitee* autre;
             Entitee* ext[2];
@@ -242,7 +242,7 @@ bool Entitee::verifAlone(Entitee* source)
     int i;
     bool alone=true;
     vector<Cable*> *listCable=this->getCables();
-    for(i=0 ; i<listCable->size() && alone ; i++)
+    for(i=0 ; i<(int)listCable->size() && alone ; i++)
     {
         Entitee* ext[2];
         Entitee* autre;
@@ -261,7 +261,7 @@ void Entitee::modifBridgesSousReseau_entiteeStoppee()
 {
     vector<Cable*> *listCable=this->getCables();
     vector<Entitee*> alones;
-    int i, j;
+    int i;
     bool supprBridge=true, onlyAlones=true;
 
     if(this->getConnexion()==false)
@@ -272,7 +272,7 @@ void Entitee::modifBridgesSousReseau_entiteeStoppee()
     /* si son bridge actuel est un bridge init de son entourage, on le
      * supprime pas
      */
-    for(i=0 ; i<listCable->size() ; i++)
+    for(i=0 ; i<(int)listCable->size() ; i++)
     {
         Entitee* ext[2];
         Entitee* autre;
@@ -290,7 +290,7 @@ void Entitee::modifBridgesSousReseau_entiteeStoppee()
     }
     this->setBridgeActuel("\0");
 
-    for(i=0 ; i<listCable->size() ; i++)
+    for(i=0 ; i<(int)listCable->size() ; i++)
     {
         Entitee* ext[2];
         Entitee* autre;
@@ -316,7 +316,7 @@ void Entitee::modifBridgesSousReseau_entiteeStoppee()
             }
         }
     }
-    for(i=0 ; i<alones.size() ; i++)
+    for(i=0 ; i<(int)alones.size() ; i++)
     {
         if(onlyAlones)
             Bridge::detruireBridge(alones[i]->getBridgeActuel().c_str());
@@ -370,7 +370,7 @@ VueEntitee* Entitee::getVue()
 
 void Entitee::deleteCable(Cable const *c )
 {
-    for(int i= 0 ; i < this->m_cableList->size(); i++)
+    for(int i= 0 ; i<(int)this->m_cableList->size(); i++)
     {
         if((*this->m_cableList)[i] == c)
         {

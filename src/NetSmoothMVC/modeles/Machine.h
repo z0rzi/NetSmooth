@@ -245,6 +245,8 @@ private:
      */
     struct lxc_container *m_container;
 
+    std::string m_contrainerName;
+
     std::vector<struct paramIp*> m_paramIp;
 
     std::vector<struct paramRoutage> m_paramRoutage4;

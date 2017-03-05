@@ -102,7 +102,7 @@ VueEntitee *VuePrincipale::ajoutEntitee(int x, int y, int type)
     if(type == TYPE_ORDINATEUR)
     {
         e = new VueMachine();
-        VueMachineControleur* c = new VueMachineControleur((VueMachine*)e);
+        new VueMachineControleur((VueMachine*)e);
         e->setOffset(x,y);
         e->setColGrille(newPos->x());
         e->setLigneGrille(newPos->y());
@@ -111,7 +111,7 @@ VueEntitee *VuePrincipale::ajoutEntitee(int x, int y, int type)
     if(type == TYPE_PASSERELLE)
     {
         e = new VuePasserelle();
-        VuePasserelleControleur* c = new VuePasserelleControleur((VuePasserelle*)e);
+        new VuePasserelleControleur((VuePasserelle*)e);
         e->setColGrille(newPos->x());
         e->setLigneGrille(newPos->y());
         e->setOffset(x,y);
@@ -120,7 +120,7 @@ VueEntitee *VuePrincipale::ajoutEntitee(int x, int y, int type)
     if(type == TYPE_HUB)
     {
         e = new VueHub();
-        VueHubControleur* c = new VueHubControleur((VueHub*)e);
+        new VueHubControleur((VueHub*)e);
         e->setColGrille(newPos->x());
         e->setLigneGrille(newPos->y());
         e->setOffset(x,y);
@@ -143,7 +143,7 @@ void VuePrincipale::paintEntitee(QPoint m_posSouris)
     if(Selection::getEnSelection() == MACHINE)
     {
         VueMachine* e = new VueMachine();
-        VueMachineControleur* c = new VueMachineControleur(e);
+        new VueMachineControleur(e);
         e->setOffset(newPos->x()*this->largeurCase,newPos->y()*this->hauteurCase);
         this->m_scene->addItem(e);
         e->setColGrille(newPos->x());
@@ -152,7 +152,7 @@ void VuePrincipale::paintEntitee(QPoint m_posSouris)
     if(Selection::getEnSelection() == PASSERELLE)
     {
         VuePasserelle* e = new VuePasserelle();
-        VuePasserelleControleur* c = new VuePasserelleControleur(e);
+        new VuePasserelleControleur(e);
         e->setOffset(newPos->x()*this->largeurCase,newPos->y()*this->hauteurCase);
         this->m_scene->addItem(e);
         e->setColGrille(newPos->x());
@@ -161,7 +161,7 @@ void VuePrincipale::paintEntitee(QPoint m_posSouris)
     if(Selection::getEnSelection() == HUB)
     {
         VueHub* e = new VueHub();
-        VueHubControleur* c = new VueHubControleur(e);
+        new VueHubControleur(e);
         e->setOffset(newPos->x()*this->largeurCase,newPos->y()*this->hauteurCase);
         this->m_scene->addItem(e);
         e->setColGrille(newPos->x());

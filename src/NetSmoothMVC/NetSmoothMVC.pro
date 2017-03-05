@@ -78,4 +78,8 @@ SOURCES += \
     vues/fenetre.cpp\
     controleurs/VueCableControleur.cpp\
 
-QMAKE_LIBS += -llxc
+QMAKE_LIBS += \
+		-llxc \
+
+QMAKE_CXXFLAGS += \
+		-std=c++11 \

@@ -38,7 +38,7 @@ void VueEntitee::paint(QPainter * painter, const QStyleOptionGraphicsItem * opti
                       *(new QString(nom.c_str())));
 
     vector<Cable*> *c = this->getModele()->getCables();
-    for(int i=0 ; i<c->size() ; i++)
+    for(int i=0 ; i<(int)c->size() ; i++)
         (*c)[i]->getVue()->updatePath();
 }
 
@@ -86,7 +86,7 @@ void VueEntitee::detruire()
 {
     this->isDeleted=true;
     std::vector<Cable*> cables = *(this->getModele()->getCables());
-    for(int i = 0 ; i < cables.size() ; i++)
+    for(int i = 0 ; i<(int)cables.size() ; i++)
     {
         Cable* c = cables[i];
         delete(c->getVue());

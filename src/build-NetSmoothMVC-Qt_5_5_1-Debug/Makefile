@@ -14,7 +14,7 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -m32 -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-CXXFLAGS      = -m32 -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+CXXFLAGS      = -m32 -pipe -std=c++11 -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 INCPATH       = -I../NetSmoothMVC -I. -I/opt/Qt/5.5/gcc/include -I/opt/Qt/5.5/gcc/include/QtWidgets -I/opt/Qt/5.5/gcc/include/QtGui -I/opt/Qt/5.5/gcc/include/QtCore -I. -I/opt/Qt/5.5/gcc/mkspecs/linux-g++-32
 QMAKE         = /opt/Qt/5.5/gcc/bin/qmake
 DEL_FILE      = rm -f
@@ -82,7 +82,8 @@ SOURCES       = ../NetSmoothMVC/main.cpp \
 		../NetSmoothMVC/vues/VueIP.cpp \
 		../NetSmoothMVC/vues/VueFormulaireIP.cpp \
 		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.cpp \
-		../NetSmoothMVC/vues/fenetre.cpp moc_selection.cpp \
+		../NetSmoothMVC/vues/fenetre.cpp \
+		../NetSmoothMVC/controleurs/VueCableControleur.cpp moc_selection.cpp \
 		moc_information.cpp \
 		moc_vueprincipale.cpp \
 		moc_vuemachine.cpp \
@@ -104,7 +105,8 @@ SOURCES       = ../NetSmoothMVC/main.cpp \
 		moc_VueIP.cpp \
 		moc_VueFormulaireIP.cpp \
 		moc_VueFormulaireIPControleur.cpp \
-		moc_fenetre.cpp
+		moc_fenetre.cpp \
+		moc_VueCableControleur.cpp
 OBJECTS       = main.o \
 		selection.o \
 		information.o \
@@ -140,6 +142,7 @@ OBJECTS       = main.o \
 		VueFormulaireIP.o \
 		VueFormulaireIPControleur.o \
 		fenetre.o \
+		VueCableControleur.o \
 		moc_selection.o \
 		moc_information.o \
 		moc_vueprincipale.o \
@@ -162,7 +165,8 @@ OBJECTS       = main.o \
 		moc_VueIP.o \
 		moc_VueFormulaireIP.o \
 		moc_VueFormulaireIPControleur.o \
-		moc_fenetre.o
+		moc_fenetre.o \
+		moc_VueCableControleur.o
 DIST          = /opt/Qt/5.5/gcc/mkspecs/features/spec_pre.prf \
 		/opt/Qt/5.5/gcc/mkspecs/common/unix.conf \
 		/opt/Qt/5.5/gcc/mkspecs/common/linux.conf \
@@ -333,7 +337,8 @@ DIST          = /opt/Qt/5.5/gcc/mkspecs/features/spec_pre.prf \
 		../NetSmoothMVC/vues/VueIP.h \
 		../NetSmoothMVC/vues/VueFormulaireIP.h \
 		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
-		../NetSmoothMVC/vues/fenetre.h ../NetSmoothMVC/main.cpp \
+		../NetSmoothMVC/vues/fenetre.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h ../NetSmoothMVC/main.cpp \
 		../NetSmoothMVC/vues/selection.cpp \
 		../NetSmoothMVC/vues/information.cpp \
 		../NetSmoothMVC/vues/vueprincipale.cpp \
@@ -367,7 +372,8 @@ DIST          = /opt/Qt/5.5/gcc/mkspecs/features/spec_pre.prf \
 		../NetSmoothMVC/vues/VueIP.cpp \
 		../NetSmoothMVC/vues/VueFormulaireIP.cpp \
 		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.cpp \
-		../NetSmoothMVC/vues/fenetre.cpp
+		../NetSmoothMVC/vues/fenetre.cpp \
+		../NetSmoothMVC/controleurs/VueCableControleur.cpp
 QMAKE_TARGET  = NetSmoothMVC
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = NetSmoothMVC
@@ -689,8 +695,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../NetSmoothMVC/vues/selection.h ../NetSmoothMVC/vues/information.h ../NetSmoothMVC/vues/vueprincipale.h ../NetSmoothMVC/vues/vuemachine.h ../NetSmoothMVC/controleurs/selectioncontroleur.h ../NetSmoothMVC/controleurs/vueprincipalecontroleur.h ../NetSmoothMVC/vues/vueentitee.h ../NetSmoothMVC/vues/vuehub.h ../NetSmoothMVC/controleurs/vueentiteecontroleur.h ../NetSmoothMVC/vues/vuepasserelle.h ../NetSmoothMVC/controleurs/vuemachinecontroleur.h ../NetSmoothMVC/controleurs/vuehubcontroleur.h ../NetSmoothMVC/controleurs/vuepasserellecontroleur.h ../NetSmoothMVC/modeles/Machine.h ../NetSmoothMVC/modeles/Entitee.h ../NetSmoothMVC/modeles/Ordinateur.h ../NetSmoothMVC/modeles/Passerelle.h ../NetSmoothMVC/modeles/Constantes.h ../NetSmoothMVC/modeles/Hub.h ../NetSmoothMVC/modeles/DataBase.h ../NetSmoothMVC/modeles/Cable.h ../NetSmoothMVC/modeles/Bridge.h ../NetSmoothMVC/modeles/Cable.h ../NetSmoothMVC/modeles/ElementListeChainee.h ../NetSmoothMVC/modeles/Save.h ../NetSmoothMVC/vues/vuecable.h ../NetSmoothMVC/vues/constantes.h ../NetSmoothMVC/vues/vueinformation.h ../NetSmoothMVC/vues/ligneroute.h ../NetSmoothMVC/controleurs/vueinformationcontroleur.h ../NetSmoothMVC/vues/vueRoutes.h ../NetSmoothMVC/controleurs/vueRoutesControleur.h ../NetSmoothMVC/controleurs/VueIPControleur.h ../NetSmoothMVC/vues/VueIP.h ../NetSmoothMVC/vues/VueFormulaireIP.h ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h ../NetSmoothMVC/vues/fenetre.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../NetSmoothMVC/main.cpp ../NetSmoothMVC/vues/selection.cpp ../NetSmoothMVC/vues/information.cpp ../NetSmoothMVC/vues/vueprincipale.cpp ../NetSmoothMVC/vues/vuemachine.cpp ../NetSmoothMVC/controleurs/selectioncontroleur.cpp ../NetSmoothMVC/controleurs/vueprincipalecontroleur.cpp ../NetSmoothMVC/vues/vueentitee.cpp ../NetSmoothMVC/vues/vuehub.cpp ../NetSmoothMVC/controleurs/vueentiteecontroleur.cpp ../NetSmoothMVC/vues/vuepasserelle.cpp ../NetSmoothMVC/controleurs/vuemachinecontroleur.cpp ../NetSmoothMVC/controleurs/vuehubcontroleur.cpp ../NetSmoothMVC/controleurs/vuepasserellecontroleur.cpp ../NetSmoothMVC/modeles/Machine.cpp ../NetSmoothMVC/modeles/Entitee.cpp ../NetSmoothMVC/modeles/Ordinateur.cpp ../NetSmoothMVC/modeles/Passerelle.cpp ../NetSmoothMVC/modeles/Hub.cpp ../NetSmoothMVC/modeles/DataBase.cpp ../NetSmoothMVC/modeles/Cable.cpp ../NetSmoothMVC/modeles/Bridge.cpp ../NetSmoothMVC/modeles/ElementListeChainee.cpp ../NetSmoothMVC/modeles/Save.cpp ../NetSmoothMVC/vues/vuecable.cpp ../NetSmoothMVC/vues/vueinformation.cpp ../NetSmoothMVC/vues/ligneroute.cpp ../NetSmoothMVC/controleurs/vueinformationcontroleur.cpp ../NetSmoothMVC/vues/vueRoutes.cpp ../NetSmoothMVC/controleurs/vueRoutesControleur.cpp ../NetSmoothMVC/controleurs/VueIPControleur.cpp ../NetSmoothMVC/vues/VueIP.cpp ../NetSmoothMVC/vues/VueFormulaireIP.cpp ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.cpp ../NetSmoothMVC/vues/fenetre.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../NetSmoothMVC/vues/selection.h ../NetSmoothMVC/vues/information.h ../NetSmoothMVC/vues/vueprincipale.h ../NetSmoothMVC/vues/vuemachine.h ../NetSmoothMVC/controleurs/selectioncontroleur.h ../NetSmoothMVC/controleurs/vueprincipalecontroleur.h ../NetSmoothMVC/vues/vueentitee.h ../NetSmoothMVC/vues/vuehub.h ../NetSmoothMVC/controleurs/vueentiteecontroleur.h ../NetSmoothMVC/vues/vuepasserelle.h ../NetSmoothMVC/controleurs/vuemachinecontroleur.h ../NetSmoothMVC/controleurs/vuehubcontroleur.h ../NetSmoothMVC/controleurs/vuepasserellecontroleur.h ../NetSmoothMVC/modeles/Machine.h ../NetSmoothMVC/modeles/Entitee.h ../NetSmoothMVC/modeles/Ordinateur.h ../NetSmoothMVC/modeles/Passerelle.h ../NetSmoothMVC/modeles/Constantes.h ../NetSmoothMVC/modeles/Hub.h ../NetSmoothMVC/modeles/DataBase.h ../NetSmoothMVC/modeles/Cable.h ../NetSmoothMVC/modeles/Bridge.h ../NetSmoothMVC/modeles/Cable.h ../NetSmoothMVC/modeles/ElementListeChainee.h ../NetSmoothMVC/modeles/Save.h ../NetSmoothMVC/vues/vuecable.h ../NetSmoothMVC/vues/constantes.h ../NetSmoothMVC/vues/vueinformation.h ../NetSmoothMVC/vues/ligneroute.h ../NetSmoothMVC/controleurs/vueinformationcontroleur.h ../NetSmoothMVC/vues/vueRoutes.h ../NetSmoothMVC/controleurs/vueRoutesControleur.h ../NetSmoothMVC/controleurs/VueIPControleur.h ../NetSmoothMVC/vues/VueIP.h ../NetSmoothMVC/vues/VueFormulaireIP.h ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h ../NetSmoothMVC/vues/fenetre.h ../NetSmoothMVC/controleurs/VueCableControleur.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../NetSmoothMVC/main.cpp ../NetSmoothMVC/vues/selection.cpp ../NetSmoothMVC/vues/information.cpp ../NetSmoothMVC/vues/vueprincipale.cpp ../NetSmoothMVC/vues/vuemachine.cpp ../NetSmoothMVC/controleurs/selectioncontroleur.cpp ../NetSmoothMVC/controleurs/vueprincipalecontroleur.cpp ../NetSmoothMVC/vues/vueentitee.cpp ../NetSmoothMVC/vues/vuehub.cpp ../NetSmoothMVC/controleurs/vueentiteecontroleur.cpp ../NetSmoothMVC/vues/vuepasserelle.cpp ../NetSmoothMVC/controleurs/vuemachinecontroleur.cpp ../NetSmoothMVC/controleurs/vuehubcontroleur.cpp ../NetSmoothMVC/controleurs/vuepasserellecontroleur.cpp ../NetSmoothMVC/modeles/Machine.cpp ../NetSmoothMVC/modeles/Entitee.cpp ../NetSmoothMVC/modeles/Ordinateur.cpp ../NetSmoothMVC/modeles/Passerelle.cpp ../NetSmoothMVC/modeles/Hub.cpp ../NetSmoothMVC/modeles/DataBase.cpp ../NetSmoothMVC/modeles/Cable.cpp ../NetSmoothMVC/modeles/Bridge.cpp ../NetSmoothMVC/modeles/ElementListeChainee.cpp ../NetSmoothMVC/modeles/Save.cpp ../NetSmoothMVC/vues/vuecable.cpp ../NetSmoothMVC/vues/vueinformation.cpp ../NetSmoothMVC/vues/ligneroute.cpp ../NetSmoothMVC/controleurs/vueinformationcontroleur.cpp ../NetSmoothMVC/vues/vueRoutes.cpp ../NetSmoothMVC/controleurs/vueRoutesControleur.cpp ../NetSmoothMVC/controleurs/VueIPControleur.cpp ../NetSmoothMVC/vues/VueIP.cpp ../NetSmoothMVC/vues/VueFormulaireIP.cpp ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.cpp ../NetSmoothMVC/vues/fenetre.cpp ../NetSmoothMVC/controleurs/VueCableControleur.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -713,9 +719,9 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_selection.cpp moc_information.cpp moc_vueprincipale.cpp moc_vuemachine.cpp moc_selectioncontroleur.cpp moc_vueprincipalecontroleur.cpp moc_vueentitee.cpp moc_vuehub.cpp moc_vueentiteecontroleur.cpp moc_vuepasserelle.cpp moc_vuemachinecontroleur.cpp moc_vuehubcontroleur.cpp moc_vuepasserellecontroleur.cpp moc_vuecable.cpp moc_vueinformation.cpp moc_ligneroute.cpp moc_vueinformationcontroleur.cpp moc_vueRoutes.cpp moc_vueRoutesControleur.cpp moc_VueIP.cpp moc_VueFormulaireIP.cpp moc_VueFormulaireIPControleur.cpp moc_fenetre.cpp
+compiler_moc_header_make_all: moc_selection.cpp moc_information.cpp moc_vueprincipale.cpp moc_vuemachine.cpp moc_selectioncontroleur.cpp moc_vueprincipalecontroleur.cpp moc_vueentitee.cpp moc_vuehub.cpp moc_vueentiteecontroleur.cpp moc_vuepasserelle.cpp moc_vuemachinecontroleur.cpp moc_vuehubcontroleur.cpp moc_vuepasserellecontroleur.cpp moc_vuecable.cpp moc_vueinformation.cpp moc_ligneroute.cpp moc_vueinformationcontroleur.cpp moc_vueRoutes.cpp moc_vueRoutesControleur.cpp moc_VueIP.cpp moc_VueFormulaireIP.cpp moc_VueFormulaireIPControleur.cpp moc_fenetre.cpp moc_VueCableControleur.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_selection.cpp moc_information.cpp moc_vueprincipale.cpp moc_vuemachine.cpp moc_selectioncontroleur.cpp moc_vueprincipalecontroleur.cpp moc_vueentitee.cpp moc_vuehub.cpp moc_vueentiteecontroleur.cpp moc_vuepasserelle.cpp moc_vuemachinecontroleur.cpp moc_vuehubcontroleur.cpp moc_vuepasserellecontroleur.cpp moc_vuecable.cpp moc_vueinformation.cpp moc_ligneroute.cpp moc_vueinformationcontroleur.cpp moc_vueRoutes.cpp moc_vueRoutesControleur.cpp moc_VueIP.cpp moc_VueFormulaireIP.cpp moc_VueFormulaireIPControleur.cpp moc_fenetre.cpp
+	-$(DEL_FILE) moc_selection.cpp moc_information.cpp moc_vueprincipale.cpp moc_vuemachine.cpp moc_selectioncontroleur.cpp moc_vueprincipalecontroleur.cpp moc_vueentitee.cpp moc_vuehub.cpp moc_vueentiteecontroleur.cpp moc_vuepasserelle.cpp moc_vuemachinecontroleur.cpp moc_vuehubcontroleur.cpp moc_vuepasserellecontroleur.cpp moc_vuecable.cpp moc_vueinformation.cpp moc_ligneroute.cpp moc_vueinformationcontroleur.cpp moc_vueRoutes.cpp moc_vueRoutesControleur.cpp moc_VueIP.cpp moc_VueFormulaireIP.cpp moc_VueFormulaireIPControleur.cpp moc_fenetre.cpp moc_VueCableControleur.cpp
 moc_selection.cpp: /opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qwidget.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qwindowdefs.h \
@@ -829,6 +835,13 @@ moc_selection.cpp: /opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
 		../NetSmoothMVC/vues/selection.h \
 		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/selection.h
@@ -1081,21 +1094,27 @@ moc_vueprincipale.cpp: /opt/Qt/5.5/gcc/include/QtWidgets/QMainWindow \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
-		../NetSmoothMVC/modeles/DataBase.h \
-		../NetSmoothMVC/modeles/Passerelle.h \
-		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/controleurs/vueprincipalecontroleur.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QObject \
-		../NetSmoothMVC/vues/vueprincipale.h \
-		../NetSmoothMVC/vues/vuemachine.h \
-		../NetSmoothMVC/vues/vuepasserelle.h \
-		../NetSmoothMVC/vues/vuehub.h \
 		../NetSmoothMVC/vues/selection.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Ordinateur.h \
+		../NetSmoothMVC/controleurs/vueprincipalecontroleur.h \
+		../NetSmoothMVC/vues/vueprincipale.h \
+		../NetSmoothMVC/vues/vuemachine.h \
+		../NetSmoothMVC/vues/vuepasserelle.h \
+		../NetSmoothMVC/vues/vuehub.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QPoint \
 		../NetSmoothMVC/controleurs/vuemachinecontroleur.h \
@@ -1230,6 +1249,25 @@ moc_vuemachine.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1290,16 +1328,20 @@ moc_selectioncontroleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QObject \
 		/opt/Qt/5.5/gcc/include/QtCore/qcontainerfwd.h \
 		/opt/Qt/5.5/gcc/include/QtCore/qisenum.h \
 		/opt/Qt/5.5/gcc/include/QtCore/qobject_impl.h \
-		../NetSmoothMVC/vues/selection.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qwidget.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qwindowdefs.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qwindowdefs_win.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qpoint.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsize.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qcursor.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qwidget.h \
 		/opt/Qt/5.5/gcc/include/QtCore/qmargins.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qpaintdevice.h \
 		/opt/Qt/5.5/gcc/include/QtCore/qrect.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qsize.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qpoint.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qpalette.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qcolor.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qrgb.h \
@@ -1325,7 +1367,6 @@ moc_selectioncontroleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QObject \
 		/opt/Qt/5.5/gcc/include/QtGui/qfontmetrics.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qfontinfo.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qsizepolicy.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qcursor.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qkeysequence.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qevent.h \
 		/opt/Qt/5.5/gcc/include/QtCore/qvariant.h \
@@ -1341,6 +1382,10 @@ moc_selectioncontroleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QObject \
 		/opt/Qt/5.5/gcc/include/QtCore/qfiledevice.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qvector2d.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qtouchdevice.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
@@ -1499,6 +1544,17 @@ moc_vueprincipalecontroleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QObject \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1507,11 +1563,6 @@ moc_vueprincipalecontroleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QObject \
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/vues/selection.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
-		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QPoint \
 		../NetSmoothMVC/controleurs/vuemachinecontroleur.h \
@@ -1650,6 +1701,25 @@ moc_vueentitee.cpp: /opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsView \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/vueentitee.h
 	/opt/Qt/5.5/gcc/bin/moc $(DEFINES) -I/opt/Qt/5.5/gcc/mkspecs/linux-g++-32 -I/root/projet/NetSmooth/src/NetSmoothMVC -I/opt/Qt/5.5/gcc/include -I/opt/Qt/5.5/gcc/include/QtWidgets -I/opt/Qt/5.5/gcc/include/QtGui -I/opt/Qt/5.5/gcc/include/QtCore -I. ../NetSmoothMVC/vues/vueentitee.h -o moc_vueentitee.cpp
 
@@ -1779,6 +1849,25 @@ moc_vuehub.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -1914,6 +2003,24 @@ moc_vueentiteecontroleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QPoint \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -2047,6 +2154,25 @@ moc_vuepasserelle.cpp: ../NetSmoothMVC/vues/vueentitee.h \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -2183,6 +2309,24 @@ moc_vuemachinecontroleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QObject \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -2320,6 +2464,24 @@ moc_vuehubcontroleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QObject \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -2457,6 +2619,24 @@ moc_vuepasserellecontroleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QObject \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -2595,6 +2775,25 @@ moc_vuecable.cpp: /opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/vuecable.h
 	/opt/Qt/5.5/gcc/bin/moc $(DEFINES) -I/opt/Qt/5.5/gcc/mkspecs/linux-g++-32 -I/root/projet/NetSmooth/src/NetSmoothMVC -I/opt/Qt/5.5/gcc/include -I/opt/Qt/5.5/gcc/include/QtWidgets -I/opt/Qt/5.5/gcc/include/QtGui -I/opt/Qt/5.5/gcc/include/QtCore -I. ../NetSmoothMVC/vues/vuecable.h -o moc_vuecable.cpp
 
@@ -2745,13 +2944,19 @@ moc_vueinformation.cpp: /opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		../NetSmoothMVC/modeles/Cable.h \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/vues/constantes.h \
-		../NetSmoothMVC/vues/selection.h \
-		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QScrollArea \
 		../NetSmoothMVC/vues/VueIP.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QLayout \
@@ -3017,11 +3222,7 @@ moc_vueinformationcontroleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QObject \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
-		../NetSmoothMVC/modeles/DataBase.h \
-		../NetSmoothMVC/modeles/Passerelle.h \
-		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/vues/constantes.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
 		../NetSmoothMVC/vues/selection.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
@@ -3033,6 +3234,16 @@ moc_vueinformationcontroleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QObject \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/modeles/Save.h \
 		../NetSmoothMVC/vues/vueinformation.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QTextEdit \
@@ -3203,13 +3414,19 @@ moc_vueRoutes.cpp: /opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		../NetSmoothMVC/modeles/Cable.h \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/vues/constantes.h \
-		../NetSmoothMVC/vues/selection.h \
-		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		../NetSmoothMVC/vues/vueRoutes.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QScrollArea \
 		../NetSmoothMVC/vues/vueRoutes.h
@@ -3342,11 +3559,7 @@ moc_vueRoutesControleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QObject \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
-		../NetSmoothMVC/modeles/DataBase.h \
-		../NetSmoothMVC/modeles/Passerelle.h \
-		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/vues/constantes.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
 		../NetSmoothMVC/vues/selection.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
@@ -3358,6 +3571,16 @@ moc_vueRoutesControleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QObject \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vueRoutes.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QTextEdit \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qtextedit.h \
@@ -3518,6 +3741,16 @@ moc_VueIP.cpp: /opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		../NetSmoothMVC/modeles/Cable.h \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -3526,8 +3759,6 @@ moc_VueIP.cpp: /opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtGui/QMouseEvent \
 		/opt/Qt/5.5/gcc/include/QtCore/QString \
 		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
-		/opt/Qt/5.5/gcc/include/QtCore/QObject \
-		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/VueIP.h
 	/opt/Qt/5.5/gcc/bin/moc $(DEFINES) -I/opt/Qt/5.5/gcc/mkspecs/linux-g++-32 -I/root/projet/NetSmooth/src/NetSmoothMVC -I/opt/Qt/5.5/gcc/include -I/opt/Qt/5.5/gcc/include/QtWidgets -I/opt/Qt/5.5/gcc/include/QtGui -I/opt/Qt/5.5/gcc/include/QtCore -I. ../NetSmoothMVC/vues/VueIP.h -o moc_VueIP.cpp
 
@@ -3677,11 +3908,19 @@ moc_VueFormulaireIP.cpp: /opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		../NetSmoothMVC/modeles/Cable.h \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/VueFormulaireIP.h \
 		../NetSmoothMVC/vues/VueFormulaireIP.h
 	/opt/Qt/5.5/gcc/bin/moc $(DEFINES) -I/opt/Qt/5.5/gcc/mkspecs/linux-g++-32 -I/root/projet/NetSmooth/src/NetSmoothMVC -I/opt/Qt/5.5/gcc/include -I/opt/Qt/5.5/gcc/include/QtWidgets -I/opt/Qt/5.5/gcc/include/QtGui -I/opt/Qt/5.5/gcc/include/QtCore -I. ../NetSmoothMVC/vues/VueFormulaireIP.h -o moc_VueFormulaireIP.cpp
@@ -3813,11 +4052,28 @@ moc_VueFormulaireIPControleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QObject \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/vues/VueFormulaireIP.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QLabel \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qlabel.h \
@@ -3827,16 +4083,7 @@ moc_VueFormulaireIPControleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QObject \
 		/opt/Qt/5.5/gcc/include/QtGui/qtextdocument.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qtextcursor.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qtextformat.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QString \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
 		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
 		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h
 	/opt/Qt/5.5/gcc/bin/moc $(DEFINES) -I/opt/Qt/5.5/gcc/mkspecs/linux-g++-32 -I/root/projet/NetSmooth/src/NetSmoothMVC -I/opt/Qt/5.5/gcc/include -I/opt/Qt/5.5/gcc/include/QtWidgets -I/opt/Qt/5.5/gcc/include/QtGui -I/opt/Qt/5.5/gcc/include/QtCore -I. ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h -o moc_VueFormulaireIPControleur.cpp
@@ -3948,6 +4195,158 @@ moc_fenetre.cpp: /opt/Qt/5.5/gcc/include/QtWidgets/QMainWindow \
 		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
 		../NetSmoothMVC/vues/fenetre.h
 	/opt/Qt/5.5/gcc/bin/moc $(DEFINES) -I/opt/Qt/5.5/gcc/mkspecs/linux-g++-32 -I/root/projet/NetSmooth/src/NetSmoothMVC -I/opt/Qt/5.5/gcc/include -I/opt/Qt/5.5/gcc/include/QtWidgets -I/opt/Qt/5.5/gcc/include/QtGui -I/opt/Qt/5.5/gcc/include/QtCore -I. ../NetSmoothMVC/vues/fenetre.h -o moc_fenetre.cpp
+
+moc_VueCableControleur.cpp: /opt/Qt/5.5/gcc/include/QtCore/QObject \
+		/opt/Qt/5.5/gcc/include/QtCore/qobject.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qobjectdefs.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qnamespace.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qglobal.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qconfig.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qfeatures.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsystemdetection.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qprocessordetection.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcompilerdetection.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qtypeinfo.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qtypetraits.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsysinfo.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qlogging.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qflags.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qbasicatomic.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_bootstrap.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qgenericatomic.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_cxx11.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_gcc.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_msvc.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_armv7.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_armv6.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_armv5.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_ia64.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_mips.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_x86.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_unix.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qglobalstatic.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qmutex.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qnumeric.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qobjectdefs_impl.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qstring.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qchar.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qbytearray.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qrefcount.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qarraydata.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qstringbuilder.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qlist.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qalgorithms.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qiterator.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qbytearraylist.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qstringlist.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qregexp.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qstringmatcher.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcoreevent.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qscopedpointer.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qmetatype.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qvarlengtharray.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcontainerfwd.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qisenum.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qobject_impl.h \
+		../NetSmoothMVC/vues/vueentitee.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsView \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicsview.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpainter.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qrect.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qmargins.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsize.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qpoint.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpixmap.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpaintdevice.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qwindowdefs.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qwindowdefs_win.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qcolor.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qrgb.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsharedpointer.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qshareddata.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qhash.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qpair.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsharedpointer_impl.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qimage.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qtransform.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qmatrix.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpolygon.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qvector.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qregion.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qdatastream.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qiodevice.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qline.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpainterpath.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpixelformat.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qtextoption.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpen.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qbrush.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qfontinfo.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qfont.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qfontmetrics.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qscrollarea.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractscrollarea.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qframe.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpalette.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qsizepolicy.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qcursor.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qkeysequence.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qevent.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qvariant.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qmap.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qdebug.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qtextstream.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qlocale.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qset.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcontiguouscache.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qurl.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qurlquery.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qfile.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qfiledevice.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qvector2d.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qtouchdevice.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicsscene.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPixmapItem \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicsitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsSceneMouseEvent \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicssceneevent.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QCoreApplication \
+		/opt/Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h \
+		../NetSmoothMVC/modeles/Machine.h \
+		../NetSmoothMVC/modeles/Entitee.h \
+		../NetSmoothMVC/modeles/Constantes.h \
+		../NetSmoothMVC/modeles/Bridge.h \
+		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Ordinateur.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h
+	/opt/Qt/5.5/gcc/bin/moc $(DEFINES) -I/opt/Qt/5.5/gcc/mkspecs/linux-g++-32 -I/root/projet/NetSmooth/src/NetSmoothMVC -I/opt/Qt/5.5/gcc/include -I/opt/Qt/5.5/gcc/include/QtWidgets -I/opt/Qt/5.5/gcc/include/QtGui -I/opt/Qt/5.5/gcc/include/QtCore -I. ../NetSmoothMVC/controleurs/VueCableControleur.h -o moc_VueCableControleur.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -4117,6 +4516,7 @@ main.o: ../NetSmoothMVC/main.cpp /opt/Qt/5.5/gcc/include/QtWidgets/QApplication 
 		../NetSmoothMVC/modeles/Cable.h \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -4267,6 +4667,13 @@ selection.o: ../NetSmoothMVC/vues/selection.cpp ../NetSmoothMVC/vues/selection.h
 		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
 		../NetSmoothMVC/vues/constantes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o selection.o ../NetSmoothMVC/vues/selection.cpp
 
@@ -4518,20 +4925,26 @@ vueprincipale.o: ../NetSmoothMVC/vues/vueprincipale.cpp ../NetSmoothMVC/vues/vue
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
-		../NetSmoothMVC/modeles/DataBase.h \
-		../NetSmoothMVC/modeles/Passerelle.h \
-		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/controleurs/vueprincipalecontroleur.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QObject \
-		../NetSmoothMVC/vues/vuemachine.h \
-		../NetSmoothMVC/vues/vuepasserelle.h \
-		../NetSmoothMVC/vues/vuehub.h \
 		../NetSmoothMVC/vues/selection.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Ordinateur.h \
+		../NetSmoothMVC/controleurs/vueprincipalecontroleur.h \
+		../NetSmoothMVC/vues/vuemachine.h \
+		../NetSmoothMVC/vues/vuepasserelle.h \
+		../NetSmoothMVC/vues/vuehub.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QPoint \
 		../NetSmoothMVC/controleurs/vuemachinecontroleur.h \
@@ -4666,6 +5079,25 @@ vuemachine.o: ../NetSmoothMVC/vues/vuemachine.cpp ../NetSmoothMVC/vues/vuemachin
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -4726,16 +5158,20 @@ selectioncontroleur.o: ../NetSmoothMVC/controleurs/selectioncontroleur.cpp ../Ne
 		/opt/Qt/5.5/gcc/include/QtCore/qcontainerfwd.h \
 		/opt/Qt/5.5/gcc/include/QtCore/qisenum.h \
 		/opt/Qt/5.5/gcc/include/QtCore/qobject_impl.h \
-		../NetSmoothMVC/vues/selection.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qwidget.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qwindowdefs.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qwindowdefs_win.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qpoint.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsize.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qcursor.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qwidget.h \
 		/opt/Qt/5.5/gcc/include/QtCore/qmargins.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qpaintdevice.h \
 		/opt/Qt/5.5/gcc/include/QtCore/qrect.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qsize.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qpoint.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qpalette.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qcolor.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qrgb.h \
@@ -4761,7 +5197,6 @@ selectioncontroleur.o: ../NetSmoothMVC/controleurs/selectioncontroleur.cpp ../Ne
 		/opt/Qt/5.5/gcc/include/QtGui/qfontmetrics.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qfontinfo.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qsizepolicy.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qcursor.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qkeysequence.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qevent.h \
 		/opt/Qt/5.5/gcc/include/QtCore/qvariant.h \
@@ -4777,6 +5212,10 @@ selectioncontroleur.o: ../NetSmoothMVC/controleurs/selectioncontroleur.cpp ../Ne
 		/opt/Qt/5.5/gcc/include/QtCore/qfiledevice.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qvector2d.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qtouchdevice.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
@@ -4786,14 +5225,7 @@ selectioncontroleur.o: ../NetSmoothMVC/controleurs/selectioncontroleur.cpp ../Ne
 		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
-		../NetSmoothMVC/vues/constantes.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h
+		../NetSmoothMVC/vues/constantes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o selectioncontroleur.o ../NetSmoothMVC/controleurs/selectioncontroleur.cpp
 
 vueprincipalecontroleur.o: ../NetSmoothMVC/controleurs/vueprincipalecontroleur.cpp ../NetSmoothMVC/controleurs/vueprincipalecontroleur.h \
@@ -4941,6 +5373,17 @@ vueprincipalecontroleur.o: ../NetSmoothMVC/controleurs/vueprincipalecontroleur.c
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -4948,11 +5391,6 @@ vueprincipalecontroleur.o: ../NetSmoothMVC/controleurs/vueprincipalecontroleur.c
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/vues/selection.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
-		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QPoint \
 		../NetSmoothMVC/controleurs/vuemachinecontroleur.h \
@@ -5086,11 +5524,9 @@ vueentitee.o: ../NetSmoothMVC/vues/vueentitee.cpp ../NetSmoothMVC/vues/vueentite
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
-		../NetSmoothMVC/modeles/DataBase.h \
-		../NetSmoothMVC/modeles/Passerelle.h \
-		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/vues/vueinformation.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
@@ -5100,6 +5536,18 @@ vueentitee.o: ../NetSmoothMVC/vues/vueentitee.cpp ../NetSmoothMVC/vues/vueentite
 		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Ordinateur.h \
+		../NetSmoothMVC/vues/vueinformation.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QTextEdit \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qtextedit.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qtextdocument.h \
@@ -5111,10 +5559,6 @@ vueentitee.o: ../NetSmoothMVC/vues/vueentitee.cpp ../NetSmoothMVC/vues/vueentite
 		../NetSmoothMVC/vues/ligneroute.h \
 		/opt/Qt/5.5/gcc/include/QtGui/QMouseEvent \
 		../NetSmoothMVC/controleurs/vueRoutesControleur.h \
-		/opt/Qt/5.5/gcc/include/QtCore/QObject \
-		../NetSmoothMVC/vues/constantes.h \
-		../NetSmoothMVC/vues/selection.h \
-		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QScrollArea \
 		../NetSmoothMVC/vues/VueIP.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QLayout \
@@ -5270,6 +5714,25 @@ vuehub.o: ../NetSmoothMVC/vues/vuehub.cpp ../NetSmoothMVC/vues/vuehub.h \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -5405,6 +5868,24 @@ vueentiteecontroleur.o: ../NetSmoothMVC/controleurs/vueentiteecontroleur.cpp ../
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -5413,28 +5894,16 @@ vueentiteecontroleur.o: ../NetSmoothMVC/controleurs/vueentiteecontroleur.cpp ../
 		/opt/Qt/5.5/gcc/include/QtWidgets/QMainWindow \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qmainwindow.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qtabwidget.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
 		/opt/Qt/5.5/gcc/include/QtGui/QPainter \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsScene \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsRectItem \
 		/opt/Qt/5.5/gcc/include/QtGui/QPen \
 		/opt/Qt/5.5/gcc/include/QtGui/QMouseEvent \
 		/opt/Qt/5.5/gcc/include/QtGui/QKeyEvent \
-		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/controleurs/vueprincipalecontroleur.h \
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/vues/selection.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
-		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		../NetSmoothMVC/controleurs/vuemachinecontroleur.h \
 		../NetSmoothMVC/controleurs/vuehubcontroleur.h \
 		../NetSmoothMVC/controleurs/vuepasserellecontroleur.h
@@ -5567,6 +6036,25 @@ vuepasserelle.o: ../NetSmoothMVC/vues/vuepasserelle.cpp ../NetSmoothMVC/vues/vue
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -5703,6 +6191,24 @@ vuemachinecontroleur.o: ../NetSmoothMVC/controleurs/vuemachinecontroleur.cpp ../
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -5840,6 +6346,24 @@ vuehubcontroleur.o: ../NetSmoothMVC/controleurs/vuehubcontroleur.cpp ../NetSmoot
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -5977,6 +6501,24 @@ vuepasserellecontroleur.o: ../NetSmoothMVC/controleurs/vuepasserellecontroleur.c
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -6119,7 +6661,26 @@ Entitee.o: ../NetSmoothMVC/modeles/Entitee.cpp ../NetSmoothMVC/modeles/Entitee.h
 		/opt/Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
 		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h \
 		../NetSmoothMVC/modeles/DataBase.h \
-		../NetSmoothMVC/modeles/Hub.h
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Entitee.o ../NetSmoothMVC/modeles/Entitee.cpp
 
 Ordinateur.o: ../NetSmoothMVC/modeles/Ordinateur.cpp ../NetSmoothMVC/modeles/Ordinateur.h \
@@ -6251,7 +6812,26 @@ Ordinateur.o: ../NetSmoothMVC/modeles/Ordinateur.cpp ../NetSmoothMVC/modeles/Ord
 		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicssceneevent.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QCoreApplication \
 		/opt/Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h
+		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Ordinateur.o ../NetSmoothMVC/modeles/Ordinateur.cpp
 
 Passerelle.o: ../NetSmoothMVC/modeles/Passerelle.cpp ../NetSmoothMVC/modeles/Passerelle.h \
@@ -6383,7 +6963,26 @@ Passerelle.o: ../NetSmoothMVC/modeles/Passerelle.cpp ../NetSmoothMVC/modeles/Pas
 		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicssceneevent.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QCoreApplication \
 		/opt/Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h
+		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Passerelle.o ../NetSmoothMVC/modeles/Passerelle.cpp
 
 Hub.o: ../NetSmoothMVC/modeles/Hub.cpp ../NetSmoothMVC/modeles/Hub.h \
@@ -6515,7 +7114,26 @@ Hub.o: ../NetSmoothMVC/modeles/Hub.cpp ../NetSmoothMVC/modeles/Hub.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicssceneevent.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QCoreApplication \
 		/opt/Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h
+		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Hub.o ../NetSmoothMVC/modeles/Hub.cpp
 
 DataBase.o: ../NetSmoothMVC/modeles/DataBase.cpp ../NetSmoothMVC/modeles/DataBase.h \
@@ -6647,7 +7265,26 @@ DataBase.o: ../NetSmoothMVC/modeles/DataBase.cpp ../NetSmoothMVC/modeles/DataBas
 		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicssceneevent.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QCoreApplication \
 		/opt/Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h
+		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DataBase.o ../NetSmoothMVC/modeles/DataBase.cpp
 
 Cable.o: ../NetSmoothMVC/modeles/Cable.cpp ../NetSmoothMVC/modeles/Cable.h \
@@ -6779,7 +7416,26 @@ Cable.o: ../NetSmoothMVC/modeles/Cable.cpp ../NetSmoothMVC/modeles/Cable.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/Ordinateur.h
+		../NetSmoothMVC/modeles/Ordinateur.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Cable.o ../NetSmoothMVC/modeles/Cable.cpp
 
 Bridge.o: ../NetSmoothMVC/modeles/Bridge.cpp ../NetSmoothMVC/modeles/Bridge.h
@@ -6924,32 +7580,38 @@ Save.o: ../NetSmoothMVC/modeles/Save.cpp ../NetSmoothMVC/modeles/Save.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QCoreApplication \
 		/opt/Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
 		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h \
-		../NetSmoothMVC/vues/vueprincipale.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QMainWindow \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qmainwindow.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qtabwidget.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
+		../NetSmoothMVC/vues/vueprincipale.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QMainWindow \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qmainwindow.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qtabwidget.h \
 		/opt/Qt/5.5/gcc/include/QtGui/QPainter \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsScene \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsRectItem \
 		/opt/Qt/5.5/gcc/include/QtGui/QPen \
 		/opt/Qt/5.5/gcc/include/QtGui/QMouseEvent \
 		/opt/Qt/5.5/gcc/include/QtGui/QKeyEvent \
-		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/controleurs/vueprincipalecontroleur.h \
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/vues/selection.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
-		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QPoint \
 		../NetSmoothMVC/controleurs/vuemachinecontroleur.h \
@@ -7087,33 +7749,39 @@ vuecable.o: ../NetSmoothMVC/vues/vuecable.cpp ../NetSmoothMVC/vues/vuecable.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/vues/vueprincipale.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QMainWindow \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qmainwindow.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qtabwidget.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
 		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
+		../NetSmoothMVC/vues/vueprincipale.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QMainWindow \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qmainwindow.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qtabwidget.h \
 		/opt/Qt/5.5/gcc/include/QtGui/QPainter \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsScene \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsRectItem \
 		/opt/Qt/5.5/gcc/include/QtGui/QPen \
 		/opt/Qt/5.5/gcc/include/QtGui/QMouseEvent \
 		/opt/Qt/5.5/gcc/include/QtGui/QKeyEvent \
-		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/controleurs/vueprincipalecontroleur.h \
-		/opt/Qt/5.5/gcc/include/QtCore/QObject \
 		../NetSmoothMVC/vues/vuemachine.h \
 		../NetSmoothMVC/vues/vuepasserelle.h \
 		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/vues/selection.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
-		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QPoint \
 		../NetSmoothMVC/controleurs/vuemachinecontroleur.h \
@@ -7269,13 +7937,19 @@ vueinformation.o: ../NetSmoothMVC/vues/vueinformation.cpp ../NetSmoothMVC/vues/v
 		../NetSmoothMVC/modeles/Cable.h \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/vues/constantes.h \
-		../NetSmoothMVC/vues/selection.h \
-		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QScrollArea \
 		../NetSmoothMVC/vues/VueIP.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QLayout \
@@ -7542,11 +8216,7 @@ vueinformationcontroleur.o: ../NetSmoothMVC/controleurs/vueinformationcontroleur
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
-		../NetSmoothMVC/modeles/DataBase.h \
-		../NetSmoothMVC/modeles/Passerelle.h \
-		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/vues/constantes.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
 		../NetSmoothMVC/vues/selection.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
@@ -7558,6 +8228,16 @@ vueinformationcontroleur.o: ../NetSmoothMVC/controleurs/vueinformationcontroleur
 		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/modeles/Save.h \
 		../NetSmoothMVC/vues/vueinformation.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QTextEdit \
@@ -7745,13 +8425,19 @@ vueRoutes.o: ../NetSmoothMVC/vues/vueRoutes.cpp ../NetSmoothMVC/vues/vueRoutes.h
 		../NetSmoothMVC/modeles/Cable.h \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/vues/constantes.h \
-		../NetSmoothMVC/vues/selection.h \
-		../NetSmoothMVC/controleurs/selectioncontroleur.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QScrollArea
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vueRoutes.o ../NetSmoothMVC/vues/vueRoutes.cpp
 
@@ -7883,11 +8569,7 @@ vueRoutesControleur.o: ../NetSmoothMVC/controleurs/vueRoutesControleur.cpp ../Ne
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
-		../NetSmoothMVC/modeles/DataBase.h \
-		../NetSmoothMVC/modeles/Passerelle.h \
-		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/vues/constantes.h \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
 		../NetSmoothMVC/vues/selection.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
@@ -7899,6 +8581,16 @@ vueRoutesControleur.o: ../NetSmoothMVC/controleurs/vueRoutesControleur.cpp ../Ne
 		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Ordinateur.h \
 		../NetSmoothMVC/vues/vueRoutes.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QTextEdit \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qtextedit.h \
@@ -8061,6 +8753,16 @@ VueIP.o: ../NetSmoothMVC/vues/VueIP.cpp ../NetSmoothMVC/vues/VueIP.h \
 		../NetSmoothMVC/modeles/Cable.h \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		../NetSmoothMVC/vues/selection.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
@@ -8068,9 +8770,7 @@ VueIP.o: ../NetSmoothMVC/vues/VueIP.cpp ../NetSmoothMVC/vues/VueIP.h \
 		../NetSmoothMVC/vues/VueFormulaireIP.h \
 		/opt/Qt/5.5/gcc/include/QtGui/QMouseEvent \
 		/opt/Qt/5.5/gcc/include/QtCore/QString \
-		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
-		/opt/Qt/5.5/gcc/include/QtCore/QObject \
-		../NetSmoothMVC/vues/constantes.h
+		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o VueIP.o ../NetSmoothMVC/vues/VueIP.cpp
 
 VueFormulaireIP.o: ../NetSmoothMVC/vues/VueFormulaireIP.cpp ../NetSmoothMVC/vues/VueFormulaireIP.h \
@@ -8220,14 +8920,386 @@ VueFormulaireIP.o: ../NetSmoothMVC/vues/VueFormulaireIP.cpp ../NetSmoothMVC/vues
 		../NetSmoothMVC/modeles/Cable.h \
 		../NetSmoothMVC/vues/vuecable.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Ordinateur.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o VueFormulaireIP.o ../NetSmoothMVC/vues/VueFormulaireIP.cpp
+
+VueFormulaireIPControleur.o: ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.cpp ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		/opt/Qt/5.5/gcc/include/QtCore/qobject.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qobjectdefs.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qnamespace.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qglobal.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qconfig.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qfeatures.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsystemdetection.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qprocessordetection.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcompilerdetection.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qtypeinfo.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qtypetraits.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsysinfo.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qlogging.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qflags.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qbasicatomic.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_bootstrap.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qgenericatomic.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_cxx11.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_gcc.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_msvc.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_armv7.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_armv6.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_armv5.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_ia64.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_mips.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_x86.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_unix.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qglobalstatic.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qmutex.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qnumeric.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qobjectdefs_impl.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qstring.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qchar.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qbytearray.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qrefcount.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qarraydata.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qstringbuilder.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qlist.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qalgorithms.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qiterator.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qbytearraylist.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qstringlist.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qregexp.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qstringmatcher.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcoreevent.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qscopedpointer.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qmetatype.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qvarlengtharray.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcontainerfwd.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qisenum.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qobject_impl.h \
+		../NetSmoothMVC/vues/vueentitee.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsView \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicsview.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpainter.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qrect.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qmargins.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsize.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qpoint.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpixmap.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpaintdevice.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qwindowdefs.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qwindowdefs_win.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qcolor.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qrgb.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsharedpointer.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qshareddata.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qhash.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qpair.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsharedpointer_impl.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qimage.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qtransform.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qmatrix.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpolygon.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qvector.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qregion.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qdatastream.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qiodevice.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qline.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpainterpath.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpixelformat.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qtextoption.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpen.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qbrush.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qfontinfo.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qfont.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qfontmetrics.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qscrollarea.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractscrollarea.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qframe.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpalette.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qsizepolicy.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qcursor.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qkeysequence.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qevent.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qvariant.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qmap.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qdebug.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qtextstream.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qlocale.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qset.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcontiguouscache.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qurl.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qurlquery.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qfile.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qfiledevice.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qvector2d.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qtouchdevice.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicsscene.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPixmapItem \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicsitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsSceneMouseEvent \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicssceneevent.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QCoreApplication \
+		/opt/Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h \
+		../NetSmoothMVC/modeles/Machine.h \
+		../NetSmoothMVC/modeles/Entitee.h \
+		../NetSmoothMVC/modeles/Constantes.h \
+		../NetSmoothMVC/modeles/Bridge.h \
+		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
 		../NetSmoothMVC/modeles/DataBase.h \
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/vues/constantes.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o VueFormulaireIP.o ../NetSmoothMVC/vues/VueFormulaireIP.cpp
+		../NetSmoothMVC/vues/VueFormulaireIP.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QLabel \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlabel.h \
+		/opt/Qt/5.5/gcc/include/QtGui/QMouseEvent \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QTextEdit \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qtextedit.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qtextdocument.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qtextcursor.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qtextformat.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QString
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o VueFormulaireIPControleur.o ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.cpp
 
-VueFormulaireIPControleur.o: ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.cpp ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
+fenetre.o: ../NetSmoothMVC/vues/fenetre.cpp /opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qwindowdefs.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qglobal.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qconfig.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qfeatures.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsystemdetection.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qprocessordetection.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcompilerdetection.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qtypeinfo.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qtypetraits.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsysinfo.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qlogging.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qflags.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qbasicatomic.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_bootstrap.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qgenericatomic.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_cxx11.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_gcc.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_msvc.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_armv7.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_armv6.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_armv5.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_ia64.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_mips.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_x86.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qatomic_unix.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qglobalstatic.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qmutex.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qnumeric.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qobjectdefs.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qnamespace.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qobjectdefs_impl.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qwindowdefs_win.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qobject.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qstring.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qchar.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qbytearray.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qrefcount.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qarraydata.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qstringbuilder.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qlist.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qalgorithms.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qiterator.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qbytearraylist.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qstringlist.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qregexp.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qstringmatcher.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcoreevent.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qscopedpointer.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qmetatype.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qvarlengtharray.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcontainerfwd.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qisenum.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qobject_impl.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qmargins.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpaintdevice.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qrect.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsize.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qpoint.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpalette.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qcolor.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qrgb.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qbrush.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qpair.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qvector.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qmatrix.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpolygon.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qregion.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qdatastream.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qiodevice.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qline.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qtransform.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpainterpath.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qimage.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpixelformat.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpixmap.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsharedpointer.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qshareddata.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qhash.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qsharedpointer_impl.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qfont.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qfontmetrics.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qfontinfo.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qsizepolicy.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qcursor.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qkeysequence.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qevent.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qvariant.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qmap.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qdebug.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qtextstream.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qlocale.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qset.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcontiguouscache.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qurl.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qurlquery.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qfile.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qfiledevice.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qvector2d.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qtouchdevice.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QToolBar \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qtoolbar.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QMenu \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qmenu.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qaction.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qactiongroup.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QFileDialog \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qfiledialog.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qdir.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qfileinfo.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdialog.h \
+		../NetSmoothMVC/vues/selection.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		../NetSmoothMVC/controleurs/selectioncontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QObject \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
+		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h \
+		../NetSmoothMVC/vues/vueprincipale.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QMainWindow \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qmainwindow.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qtabwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/QPainter \
+		/opt/Qt/5.5/gcc/include/QtGui/qpainter.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qtextoption.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qpen.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsScene \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicsscene.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsRectItem \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicsitem.h \
+		/opt/Qt/5.5/gcc/include/QtGui/QPen \
+		/opt/Qt/5.5/gcc/include/QtGui/QMouseEvent \
+		/opt/Qt/5.5/gcc/include/QtGui/QKeyEvent \
+		../NetSmoothMVC/vues/vueentitee.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsView \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicsview.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qscrollarea.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractscrollarea.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qframe.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPixmapItem \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsSceneMouseEvent \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicssceneevent.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QCoreApplication \
+		../NetSmoothMVC/modeles/Machine.h \
+		../NetSmoothMVC/modeles/Entitee.h \
+		../NetSmoothMVC/modeles/Constantes.h \
+		../NetSmoothMVC/modeles/Bridge.h \
+		../NetSmoothMVC/modeles/Cable.h \
+		../NetSmoothMVC/vues/vuecable.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
+		../NetSmoothMVC/controleurs/VueCableControleur.h \
+		../NetSmoothMVC/modeles/DataBase.h \
+		../NetSmoothMVC/modeles/Passerelle.h \
+		../NetSmoothMVC/modeles/Hub.h \
+		../NetSmoothMVC/modeles/Ordinateur.h \
+		../NetSmoothMVC/controleurs/vueprincipalecontroleur.h \
+		../NetSmoothMVC/vues/vuemachine.h \
+		../NetSmoothMVC/vues/vuepasserelle.h \
+		../NetSmoothMVC/vues/vuehub.h \
+		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QPoint \
+		../NetSmoothMVC/controleurs/vuemachinecontroleur.h \
+		../NetSmoothMVC/controleurs/vuehubcontroleur.h \
+		../NetSmoothMVC/controleurs/vuepasserellecontroleur.h \
+		../NetSmoothMVC/vues/vueinformation.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QTextEdit \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qtextedit.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qtextdocument.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qtextcursor.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qtextformat.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QLabel \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlabel.h \
+		../NetSmoothMVC/vues/vueRoutes.h \
+		../NetSmoothMVC/vues/ligneroute.h \
+		../NetSmoothMVC/controleurs/vueRoutesControleur.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QScrollArea \
+		../NetSmoothMVC/vues/VueIP.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QTabWidget \
+		../NetSmoothMVC/vues/VueFormulaireIP.h \
+		/opt/Qt/5.5/gcc/include/QtCore/QString \
+		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
+		../NetSmoothMVC/modeles/Save.h \
+		../NetSmoothMVC/controleurs/vueinformationcontroleur.h \
+		../NetSmoothMVC/vues/fenetre.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o fenetre.o ../NetSmoothMVC/vues/fenetre.cpp
+
+VueCableControleur.o: ../NetSmoothMVC/controleurs/VueCableControleur.cpp ../NetSmoothMVC/controleurs/VueCableControleur.h \
 		/opt/Qt/5.5/gcc/include/QtCore/QObject \
 		/opt/Qt/5.5/gcc/include/QtCore/qobject.h \
 		/opt/Qt/5.5/gcc/include/QtCore/qobjectdefs.h \
@@ -8359,223 +9431,24 @@ VueFormulaireIPControleur.o: ../NetSmoothMVC/controleurs/VueFormulaireIPControle
 		../NetSmoothMVC/modeles/Passerelle.h \
 		../NetSmoothMVC/modeles/Hub.h \
 		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/vues/constantes.h \
-		../NetSmoothMVC/vues/VueFormulaireIP.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QLabel \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qlabel.h \
-		/opt/Qt/5.5/gcc/include/QtGui/QMouseEvent \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QTextEdit \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qtextedit.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qtextdocument.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qtextcursor.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qtextformat.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
-		/opt/Qt/5.5/gcc/include/QtCore/QString \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qicon.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o VueFormulaireIPControleur.o ../NetSmoothMVC/controleurs/VueFormulaireIPControleur.cpp
-
-fenetre.o: ../NetSmoothMVC/vues/fenetre.cpp /opt/Qt/5.5/gcc/include/QtWidgets/QWidget \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qwidget.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qwindowdefs.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qglobal.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qconfig.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qfeatures.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qsystemdetection.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qprocessordetection.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qcompilerdetection.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qtypeinfo.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qtypetraits.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qsysinfo.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qlogging.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qflags.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qatomic.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qbasicatomic.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qatomic_bootstrap.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qgenericatomic.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qatomic_cxx11.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qatomic_gcc.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qatomic_msvc.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qatomic_armv7.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qatomic_armv6.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qatomic_armv5.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qatomic_ia64.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qatomic_mips.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qatomic_x86.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qatomic_unix.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qglobalstatic.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qmutex.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qnumeric.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qobjectdefs.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qnamespace.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qobjectdefs_impl.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qwindowdefs_win.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qobject.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qstring.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qchar.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qbytearray.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qrefcount.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qarraydata.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qstringbuilder.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qlist.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qalgorithms.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qiterator.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qbytearraylist.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qstringlist.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qregexp.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qstringmatcher.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qcoreevent.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qscopedpointer.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qmetatype.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qvarlengtharray.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qcontainerfwd.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qisenum.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qobject_impl.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qmargins.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qpaintdevice.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qrect.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qsize.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qpoint.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qpalette.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qcolor.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qrgb.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qbrush.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qpair.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qvector.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qmatrix.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qpolygon.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qregion.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qdatastream.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qiodevice.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qline.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qtransform.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qpainterpath.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qimage.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qpixelformat.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qpixmap.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qsharedpointer.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qshareddata.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qhash.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qsharedpointer_impl.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qfont.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qfontmetrics.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qfontinfo.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qsizepolicy.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qcursor.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qkeysequence.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qevent.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qvariant.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qmap.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qdebug.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qtextstream.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qlocale.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qset.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qcontiguouscache.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qurl.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qurlquery.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qfile.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qfiledevice.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qvector2d.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qtouchdevice.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QToolBar \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qtoolbar.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QMenu \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qmenu.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qaction.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qactiongroup.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QFileDialog \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qfiledialog.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qdir.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qfileinfo.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qdialog.h \
 		../NetSmoothMVC/vues/selection.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/QPushButton \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
 		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qicon.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/QGridLayout \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayout.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
 		../NetSmoothMVC/controleurs/selectioncontroleur.h \
-		/opt/Qt/5.5/gcc/include/QtCore/QObject \
-		../NetSmoothMVC/vues/constantes.h \
-		../NetSmoothMVC/vues/vueprincipale.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QMainWindow \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qmainwindow.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qtabwidget.h \
-		/opt/Qt/5.5/gcc/include/QtGui/QPainter \
-		/opt/Qt/5.5/gcc/include/QtGui/qpainter.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qtextoption.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qpen.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsScene \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicsscene.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsRectItem \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicsitem.h \
-		/opt/Qt/5.5/gcc/include/QtGui/QPen \
-		/opt/Qt/5.5/gcc/include/QtGui/QMouseEvent \
-		/opt/Qt/5.5/gcc/include/QtGui/QKeyEvent \
-		../NetSmoothMVC/vues/vueentitee.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsView \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicsview.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qscrollarea.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qabstractscrollarea.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qframe.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPixmapItem \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsSceneMouseEvent \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qgraphicssceneevent.h \
-		/opt/Qt/5.5/gcc/include/QtCore/QCoreApplication \
-		/opt/Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
-		/opt/Qt/5.5/gcc/include/QtCore/qeventloop.h \
-		../NetSmoothMVC/modeles/Machine.h \
-		../NetSmoothMVC/modeles/Entitee.h \
-		../NetSmoothMVC/modeles/Constantes.h \
-		../NetSmoothMVC/modeles/Bridge.h \
-		../NetSmoothMVC/modeles/Cable.h \
-		../NetSmoothMVC/vues/vuecable.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QGraphicsPathItem \
-		../NetSmoothMVC/modeles/DataBase.h \
-		../NetSmoothMVC/modeles/Passerelle.h \
-		../NetSmoothMVC/modeles/Hub.h \
-		../NetSmoothMVC/modeles/Ordinateur.h \
-		../NetSmoothMVC/controleurs/vueprincipalecontroleur.h \
-		../NetSmoothMVC/vues/vuemachine.h \
-		../NetSmoothMVC/vues/vuepasserelle.h \
-		../NetSmoothMVC/vues/vuehub.h \
-		../NetSmoothMVC/controleurs/vueentiteecontroleur.h \
-		/opt/Qt/5.5/gcc/include/QtCore/QPoint \
-		../NetSmoothMVC/controleurs/vuemachinecontroleur.h \
-		../NetSmoothMVC/controleurs/vuehubcontroleur.h \
-		../NetSmoothMVC/controleurs/vuepasserellecontroleur.h \
-		../NetSmoothMVC/vues/vueinformation.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QTextEdit \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qtextedit.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qtextdocument.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qtextcursor.h \
-		/opt/Qt/5.5/gcc/include/QtGui/qtextformat.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QLabel \
-		/opt/Qt/5.5/gcc/include/QtWidgets/qlabel.h \
-		../NetSmoothMVC/vues/vueRoutes.h \
-		../NetSmoothMVC/vues/ligneroute.h \
-		../NetSmoothMVC/controleurs/vueRoutesControleur.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QScrollArea \
-		../NetSmoothMVC/vues/VueIP.h \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QLayout \
-		/opt/Qt/5.5/gcc/include/QtWidgets/QTabWidget \
-		../NetSmoothMVC/vues/VueFormulaireIP.h \
-		/opt/Qt/5.5/gcc/include/QtCore/QString \
-		../NetSmoothMVC/controleurs/VueFormulaireIPControleur.h \
-		../NetSmoothMVC/modeles/Save.h \
-		../NetSmoothMVC/controleurs/vueinformationcontroleur.h \
-		../NetSmoothMVC/vues/fenetre.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o fenetre.o ../NetSmoothMVC/vues/fenetre.cpp
+		/opt/Qt/5.5/gcc/include/QtWidgets/QApplication \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		/opt/Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		/opt/Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../NetSmoothMVC/vues/constantes.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o VueCableControleur.o ../NetSmoothMVC/controleurs/VueCableControleur.cpp
 
 moc_selection.o: moc_selection.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_selection.o moc_selection.cpp
@@ -8645,6 +9518,9 @@ moc_VueFormulaireIPControleur.o: moc_VueFormulaireIPControleur.cpp
 
 moc_fenetre.o: moc_fenetre.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_fenetre.o moc_fenetre.cpp
+
+moc_VueCableControleur.o: moc_VueCableControleur.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_VueCableControleur.o moc_VueCableControleur.cpp
 
 ####### Install
 
