@@ -34,7 +34,6 @@ public:
 
     int getHauteurCaseEntiere();
     int getLargeurCaseEntiere();
-    void refreshItems();
 
 protected:
     void resizeEvent(QResizeEvent *);

@@ -62,14 +62,12 @@ bool VuePrincipale::eventFilter(QObject *obj, QEvent *event)
             this->m_view->scale(1.1,1.1);
             this->largeurCase=m_view->sceneRect().width()/NB_CASE_X;
             this->hauteurCase=m_view->sceneRect().height()/NB_CASE_Y;
-            this->refreshItems();
         }
         if( this->pressedKeys.contains(Qt::Key_Control) && this->pressedKeys.contains(Qt::Key_Minus) )
         {
             this->m_view->scale(0.9,0.9);
             this->largeurCase=m_view->sceneRect().width()/NB_CASE_X;
             this->hauteurCase=m_view->sceneRect().height()/NB_CASE_Y;;
-            this->refreshItems();
         }
 
     }
@@ -79,15 +77,6 @@ bool VuePrincipale::eventFilter(QObject *obj, QEvent *event)
         this->pressedKeys -= ((QKeyEvent*)event)->key();
     }
     return false;
-}
-
-void VuePrincipale::refreshItems()
-{
-    QList<QGraphicsItem*> items = this->m_view->items();
-    for (int i = 0; i < items.size(); ++i) {
-        VueEntitee* vue = (VueEntitee*)items.at(i);
-        vue->setOffset(vue->getColGrille()*this->getHauteurCaseEntiere(),vue->getLigneGrille()*this->getLargeurCaseEntiere());
-    }
 }
 
 QWidget* VuePrincipale::getwidget()

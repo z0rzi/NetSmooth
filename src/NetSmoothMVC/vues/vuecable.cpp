@@ -51,7 +51,6 @@ bool VueCable::isSeq(int xinit, int yinit, double coef, int x1, int y1, int x2, 
     return false;
 }
 
-
 void VueCable::updatePath()
 {
         VuePrincipale* vp = VuePrincipale::getInstanceOf();
