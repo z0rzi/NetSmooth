@@ -11,6 +11,7 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <lxc/lxccontainer.h>
+#include <errno.h>
 
 #include "Entitee.h"
 
@@ -235,6 +236,11 @@ public:
     void addRouteConfig6(struct paramRoutage route);
 
     std::vector<struct paramRoutage> getRouteConfig6() const;
+
+
+    //!\\ FONCTION PRISE DE LXC, CORRIGER POUR INCLURE LES HEADERS DE LXC (LXC_UTILS)
+     int wait_for_pid(pid_t pid);
+
 
 
 private:

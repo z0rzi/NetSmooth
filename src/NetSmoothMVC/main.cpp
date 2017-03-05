@@ -11,23 +11,10 @@
 #include "controleurs/vueinformationcontroleur.h"
 #include "vues/fenetre.h"
 
-int Selection::m_enSelection = 0;
-
-void chld_handler(int s)
-{
-}
+int Selection::m_enSelection = SOURIS;
 
 int main(int argc, char** argv)
 {
-    struct sigaction sa;
-    sa.sa_handler=chld_handler;
-    sa.sa_flags=SA_RESTART;
-    sigemptyset(&sa.sa_mask);
-
-
-    sigaction(SIGCHLD, &sa, NULL);
-
-
     QApplication app(argc, argv);
 
     Fenetre* fen=new Fenetre();

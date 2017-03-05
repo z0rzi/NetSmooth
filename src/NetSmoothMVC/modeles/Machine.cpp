@@ -156,10 +156,14 @@ void Machine::lancerCommandeDansContainer(const char** commande)
 {
         lxc_attach_options_t options = LXC_ATTACH_OPTIONS_DEFAULT;
         lxc_attach_command_t cmd={(char*)commande[0], (char**)commande};		/* rien de compliqué par ici, juste */
-        pid_t pid=(this->m_container)->init_pid(this->m_container);					/* transférer les arguments la ou il faut
+        pid_t pid;
+        /*(this->m_container)->init_pid(this->m_container);					/* transférer les arguments la ou il faut
                  * pour lancer une commande dans le container*/
 
-        this->m_container->attach(this->m_container, lxc_attach_run_command, &cmd, &options, &pid);
+        if(this->m_container->attach(this->m_container, lxc_attach_run_command, &cmd, &options, &pid) == -1)
+            qDebug("attach lancerCommandeDansContainer");
+        this->wait_for_pid(pid);//!\\ FONCTION DE LXC, A CHANGER CAR PAS ENCORE INCLUSE PAR HEADER
+
 }
 
 void Machine::appliquerParamIp()
@@ -167,8 +171,8 @@ void Machine::appliquerParamIp()
         int i;
 
         vector<struct paramIp*> tab=this->getIpConfig();
+       {
         for(i=0 ; i<(int)tab.size() ; i++)
-        {
                 if(tab[i]->ipv4 != "" && tab[i]->maskv4 != "")
                 {
                         const char* cmd[]={"/.scr/aliasIfconfig.sh", tab[i]->interface.c_str(), tab[i]->ipv4.c_str(), "netmask", tab[i]->maskv4.c_str(), "up", NULL};
@@ -179,6 +183,7 @@ void Machine::appliquerParamIp()
                         const char* cmd[]={"/.scr/aliasIfconfig.sh", tab[i]->interface.c_str(), "default", NULL};
                         this->lancerCommandeDansContainer(cmd);
                 }
+        /*
                 if(tab[i]->ipv6 != "")
                 {
                         const char* cmd[]={"/.scr/aliasIfconfig.sh", tab[i]->interface.c_str(), "add", tab[i]->ipv6.c_str(), NULL};
@@ -189,7 +194,9 @@ void Machine::appliquerParamIp()
                         const char* cmd[]={"/.scr/aliasIfconfig.sh", tab[i]->interface.c_str(), "del", this->m_oldV6[i].c_str(), NULL};
                         this->lancerCommandeDansContainer(cmd);
                 }
+*/
         }
+
 }
 
 void Machine::supprimerContainerRoutage4(int id)
@@ -456,3 +463,21 @@ void Machine::appliquerParamRoutage6()
                 this->lancerCommandeDansContainer(cmd);
         }
 }
+
+        int Machine::wait_for_pid(pid_t pid)
+        {
+            int status, ret;
+
+        again:
+            ret = waitpid(pid, &status, 0);
+            if (ret == -1) {
+                if (errno == EINTR)
+                    goto again;
+                return -1;
+            }
+            if (ret != pid)
+                goto again;
+            if (!WIFEXITED(status) || WEXITSTATUS(status) != 0)
+                return -1;
+            return 0;
+        }

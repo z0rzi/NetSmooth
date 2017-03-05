@@ -90,9 +90,6 @@ void Entitee::addCable(Cable *cable)
 
 vector<Cable*>* Entitee::getCables(void)
 {
-    std::cout << "hoho" << std::endl;
-    std::cout << this << std::endl;
-    std::cout << this->m_cableList << std::endl;
     return this->m_cableList;
 }
 
@@ -374,7 +371,6 @@ void Entitee::deleteCable(Cable const *c )
     {
         if((*this->m_cableList)[i] == c)
         {
-            std::cout << "cable supprimé = " << this->m_cableList << std::endl;
             this->m_cableList->erase(this->m_cableList->begin()+i);
         }
     }

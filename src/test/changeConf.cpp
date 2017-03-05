@@ -24,7 +24,7 @@ int main(int argc, char ** argv) {
 	lxc_attach_options_t options = LXC_ATTACH_OPTIONS_DEFAULT;
 
 	/* Setup container struct */
-	c = lxc_container_new("apicontainer", NULL);
+	c = lxc_container_new("passerelle1", NULL);
 	if (!c) {
 		fprintf(stderr, "Failed to setup lxc_container struct\n");
 		goto out;
