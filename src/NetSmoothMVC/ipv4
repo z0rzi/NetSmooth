@@ -1,0 +1,1279 @@
+controleurs/vuepasserellecontroleur.cpp:    vue->terminal();
+controleurs/vueprincipalecontroleur.cpp:    vue->paintEntitee(pos);
+controleurs/vuemachinecontroleur.cpp:    this->connect(vue,SIGNAL(doubleClick()),this,SLOT(actionDoubleClick()));
+controleurs/vuemachinecontroleur.cpp:    vue->terminal();
+controleurs/VueCableControleur.cpp:    this->vue = v;
+controleurs/VueCableControleur.cpp:    this->connect(this->vue,SIGNAL(deleteCableSignal()),this,SLOT(actionDeleteCable()));
+controleurs/VueCableControleur.cpp:    delete(this->vue);
+controleurs/vueentiteecontroleur.cpp:    this->vue = v;
+controleurs/vueentiteecontroleur.cpp:    this->connect(this->vue,SIGNAL(moveLeftButton()),this,SLOT(actionMoveLeftButton()));
+controleurs/vueentiteecontroleur.cpp:    this->vue->moveOnCursor();
+controleurs/VueFormulaireIPControleur.cpp:    this->vue = vue0;
+controleurs/VueFormulaireIPControleur.cpp:    this->vue->appliquerModification();
+controleurs/VueFormulaireIPControleur.cpp:    this->vue->getModele()->majIpContainer();
+controleurs/VueFormulaireIPControleur.cpp:    this->vue->getModele()->majRouteContainer();
+controleurs/selectioncontroleur.cpp:      connect(vue->getSouris(),SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
+controleurs/selectioncontroleur.cpp:      connect(vue->getMachine(),SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
+controleurs/selectioncontroleur.cpp:      connect(vue->getPasserelle(),SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
+controleurs/selectioncontroleur.cpp:      connect(vue->getHub(),SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
+controleurs/selectioncontroleur.cpp:      connect(vue->getCable(),SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
+controleurs/selectioncontroleur.cpp:      connect(vue->getSupprimer(),SIGNAL(clicked(bool)),this,SLOT(changeEnSelection()));
+controleurs/selectioncontroleur.cpp:   if(b->text() == "Souris")
+controleurs/selectioncontroleur.cpp:   if(b->text() == "Machine")
+controleurs/selectioncontroleur.cpp:   if(b->text() == "Passerelle")
+controleurs/selectioncontroleur.cpp:   if(b->text() == "Hub")
+controleurs/selectioncontroleur.cpp:   if(b->text() == "Cable")
+controleurs/selectioncontroleur.cpp:   if(b->text() == "X")
+controleurs/vueinformationcontroleur.cpp:   this->vue->allumer();
+controleurs/vueinformationcontroleur.cpp:    this->vue->addNewInfos();
+controleurs/vueinformationcontroleur.cpp:            VueEntitee::getLabelEnSelection()->getModele()->setNom(this->vue->getName());
+controleurs/vueinformationcontroleur.cpp:            VueEntitee::getLabelEnSelection()->update();
+Fichier binaire vueprincipale.o correspondant
+Fichier binaire vuepasserelle.o correspondant
+Fichier binaire moc_vuemachinecontroleur.o correspondant
+moc_VueFormulaireIPControleur.cpp:        case 0: _t->appliquerModif(); break;
+moc_VueFormulaireIPControleur.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_VueFormulaireIPControleur.cpp:        _id -= 1;
+moc_vueentitee.cpp:        case 0: _t->rightClick(); break;
+moc_vueentitee.cpp:        case 1: _t->doubleClick(); break;
+moc_vueentitee.cpp:        case 2: _t->moveLeftButton(); break;
+moc_vueentitee.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_vueentitee.cpp:        _id -= 3;
+Fichier binaire Bridge.o correspondant
+moc_vuepasserelle.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+Fichier binaire selectioncontroleur.o correspondant
+Fichier binaire vuemachine.o correspondant
+Fichier binaire moc_Scene.o correspondant
+Fichier binaire moc_vuehub.o correspondant
+Fichier binaire fenetre.o correspondant
+Fichier binaire information.o correspondant
+moc_vueprincipale.cpp:        case 0: _t->clickSouris((*reinterpret_cast< QPoint(*)>(_a[1]))); break;
+moc_vueprincipale.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_vueprincipale.cpp:        _id -= 1;
+Fichier binaire Ordinateur.o correspondant
+Fichier binaire vuecable.o correspondant
+Fichier binaire VueIPControleur.o correspondant
+moc_Scene.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+Fichier binaire Passerelle.o correspondant
+moc_information.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+NetSmoothMVC.pro.user.0e2384a:<?xml version="1.0" encoding="UTF-8"?>
+NetSmoothMVC.pro.user.0e2384a:<!-- Written by QtCreator 3.2.1, 2017-01-12T17:28:52. -->
+NetSmoothMVC.pro.user.0e2384a:  <value type="QByteArray">{0e2384aa-a031-4264-9283-617e73273ba0}</value>
+NetSmoothMVC.pro.user.0e2384a:   <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
+NetSmoothMVC.pro.user.0e2384a:   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{5d65c73c-2973-49c2-983e-ed1e0d9e4d32}</value>
+NetSmoothMVC.pro.user.0e2384a:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/root/projet/NetSmooth/src/build-NetSmoothMVC-Desktop-Debug</value>
+NetSmoothMVC.pro.user.0e2384a:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.0e2384a:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.0e2384a:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.0e2384a:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.0e2384a:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/root/projet/NetSmooth/src/build-NetSmoothMVC-Desktop-Release</value>
+NetSmoothMVC.pro.user.0e2384a:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.0e2384a:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.0e2384a:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.0e2384a:       <value type="QString">-r</value>
+Fichier binaire moc_information.o correspondant
+Fichier binaire moc_selectioncontroleur.o correspondant
+moc_vuecable.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_KeyPressEater.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_VueIP.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+Fichier binaire moc_vueentiteecontroleur.o correspondant
+Fichier binaire moc_vuecable.o correspondant
+moc_selection.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+modeles/Cable.h:         *	-arr:
+modeles/ElementListeChainee.cpp:	this->m_entitee = m_entitee0;
+modeles/ElementListeChainee.cpp:	this->m_nextElement=m_nextElement0;
+modeles/ElementListeChainee.cpp:	delete this->m_entitee;
+modeles/ElementListeChainee.cpp:	this->m_entitee = m_entitee0;
+modeles/ElementListeChainee.cpp:	this->m_nextElement=m_nextElement0;
+modeles/ElementListeChainee.cpp:	return this->m_entitee;
+modeles/ElementListeChainee.cpp:	return this->m_nextElement;
+modeles/Entitee.cpp:    this->setBridgeActuel("\0");
+modeles/Entitee.cpp:    return this->m_nom;
+modeles/Entitee.cpp:    this->m_nom=nom;
+modeles/Entitee.cpp:    return this->m_bridgeInit;
+modeles/Entitee.cpp:    return this->m_bridgeActuel;
+modeles/Entitee.cpp:    this->m_bridgeActuel=bridge;
+modeles/Entitee.cpp:    this->m_running=etat;
+modeles/Entitee.cpp:    return this->m_running;
+modeles/Entitee.cpp:    return this->m_type;
+modeles/Entitee.cpp:    return this->m_cableList;
+modeles/Entitee.cpp:    this->m_estConnecteAuBridge=con;
+modeles/Entitee.cpp:    return this->m_estConnecteAuBridge;
+modeles/Entitee.cpp:    this->m_id = id;
+modeles/Entitee.cpp:    return this->m_id;
+modeles/Entitee.cpp:    vector<Cable*> listCable=this->m_cableList;
+modeles/Entitee.cpp:    if(this->getConnexion()==true)
+modeles/Entitee.cpp:        this->separerDeBridge();
+modeles/Entitee.cpp:    cout << "bridge " << bridge << " applique a '" << this->getBridgeInit() << "'" << endl;
+modeles/Entitee.cpp:    this->setBridgeActuel(bridge);
+modeles/Entitee.cpp:    this->lierABridge();
+modeles/Entitee.cpp:        listCable[i]->getExtremites(ext);
+modeles/Entitee.cpp:        cout << "applique bridge a voisins ; connection = " << autre->getConnexion() << " ; bridge = " << autre->getBridgeActuel() << " ; etat = " << autre->getEtatEntitee() << endl ;
+modeles/Entitee.cpp:        if(autre->getEtatEntitee()==MACHINE_LANCEE && autre->getBridgeActuel()!=bridge)
+modeles/Entitee.cpp:            autre->appliquerBridgeEntiteeSuivante(bridge);
+modeles/Entitee.cpp:            cout << "ok bien applique" << autre->getConnexion() << endl;
+modeles/Entitee.cpp:    vector<Cable*> listCable=this->getCables();
+modeles/Entitee.cpp:            listCable[i]->getExtremites(ext);
+modeles/Entitee.cpp:            if(autre->getEtatEntitee()==MACHINE_LANCEE)
+modeles/Entitee.cpp:        if(autre!=NULL && autre->getType()>this->getType())
+modeles/Entitee.cpp:            i=-1;
+modeles/Entitee.cpp:    this->setConnexion(true);
+modeles/Entitee.cpp:            listCable[i]->getExtremites(ext);
+modeles/Entitee.cpp:            if(autre->getEtatEntitee()==true)
+modeles/Entitee.cpp:                if(autre->getConnexion()==false)
+modeles/Entitee.cpp:                    autre->setConnexion(true);
+modeles/Entitee.cpp:                    Bridge::detruireBridge(autre->getBridgeActuel().c_str());
+modeles/Entitee.cpp:        Bridge::creerBridge(this->getBridgeInit().c_str());
+modeles/Entitee.cpp:        this->appliquerBridgeEntiteeSuivante(this->getBridgeInit());
+modeles/Entitee.cpp:        cout << "quelqu'un est plus fort que moi : " << superieur->getBridgeInit() << endl;
+modeles/Entitee.cpp:        cout << "sa connection est : " << ((superieur->getConnexion())?"connecte":"non connecte") << endl;
+modeles/Entitee.cpp:        cout << "son etat est : " << ((superieur->getEtatEntitee())?"allume":"eteint") << endl;
+modeles/Entitee.cpp:        if(superieur->getConnexion()==false)
+modeles/Entitee.cpp:            superieur->setConnexion(true);
+modeles/Entitee.cpp:            Bridge::creerBridge(superieur->getBridgeInit().c_str());
+modeles/Entitee.cpp:            listCable[i]->getExtremites(ext);
+modeles/Entitee.cpp:            cout << "trifie ; connection = " << autre->getConnexion() << " ; bridge = " << autre->getBridgeActuel() << " ; etat = " << autre->getEtatEntitee() << endl ;
+modeles/Entitee.cpp:            if(autre->getEtatEntitee()==true && autre!=superieur)
+modeles/Entitee.cpp:                if(autre->getConnexion()==false)
+modeles/Entitee.cpp:                    autre->setConnexion(true);
+modeles/Entitee.cpp:                    Bridge::detruireBridge(autre->getBridgeActuel().c_str());
+modeles/Entitee.cpp:            superieur->appliquerBridgeEntiteeSuivante(superieur->getBridgeInit());
+modeles/Entitee.cpp:            this->appliquerBridgeEntiteeSuivante(superieur->getBridgeActuel());
+modeles/Entitee.cpp:    vector<Cable*> listCable=this->getCables();
+modeles/Entitee.cpp:        listCable[i]->getExtremites(ext);
+modeles/Entitee.cpp:        if(autre->getEtatEntitee()==MACHINE_LANCEE && autre!=source)
+modeles/Entitee.cpp:    vector<Cable*> listCable=this->getCables();
+modeles/Entitee.cpp:    if(this->getConnexion()==false)
+modeles/Entitee.cpp:    this->setConnexion(false);
+modeles/Entitee.cpp:        listCable[i]->getExtremites(ext);
+modeles/Entitee.cpp:        if(autre->getEtatEntitee()==true && this->getBridgeActuel().compare(autre->getBridgeInit())==0 && autre->verifAlone(this)==false)    /* ce sont les memes */
+modeles/Entitee.cpp:        Bridge::detruireBridge(this->getBridgeActuel().c_str());
+modeles/Entitee.cpp:        cout << "bridgeActuel de " << this->getBridgeInit() << " detruit" << endl;
+modeles/Entitee.cpp:    this->setBridgeActuel("\0");
+modeles/Entitee.cpp:        listCable[i]->getExtremites(ext);
+modeles/Entitee.cpp:        if(autre->getEtatEntitee()==MACHINE_LANCEE)
+modeles/Entitee.cpp:            if(autre->verifAlone(this)==true)
+modeles/Entitee.cpp:                    Bridge::detruireBridge(autre->getBridgeActuel().c_str());
+modeles/Entitee.cpp:                autre->separerDeBridge();
+modeles/Entitee.cpp:                //autre->setBridgeActuel("\0");
+modeles/Entitee.cpp:                autre->setConnexion(false);
+modeles/Entitee.cpp:                Bridge::creerBridge(autre->getBridgeInit().c_str());
+modeles/Entitee.cpp:                autre->appliquerBridgeEntiteeSuivante(autre->getBridgeInit());
+modeles/Entitee.cpp:            Bridge::detruireBridge(alones[i]->getBridgeActuel().c_str());
+modeles/Entitee.cpp:        alones[i]->setBridgeActuel("\0");
+modeles/Entitee.cpp:        cout << "reset bridge of entitee '" << alones[i]->getBridgeInit() << "'" << endl;
+modeles/Entitee.cpp:    cout << "lancement de " << this->getBridgeInit() << endl;
+modeles/Entitee.cpp:    if(this->getEtatEntitee()==MACHINE_LANCEE)
+modeles/Entitee.cpp:    this->lancerContainer();	/*ces 3 lignes ne font rien si c'est un Hub*/
+modeles/Entitee.cpp:    this->appliquerParamIp();
+modeles/Entitee.cpp:    this->appliquerParamRoutage4();
+modeles/Entitee.cpp:    this->appliquerParamRoutage6();
+modeles/Entitee.cpp:    this->setEtatEntitee(MACHINE_LANCEE);	/* modifie flag dans entitee */
+modeles/Entitee.cpp:    this->modifBridgesSousReseau_entiteeLancee();
+modeles/Entitee.cpp:    cout << "arret de " << this->getBridgeInit() << endl;
+modeles/Entitee.cpp:    if(this->getEtatEntitee()==MACHINE_STOPEE)
+modeles/Entitee.cpp:    this->setEtatEntitee(MACHINE_STOPEE);	/* modifie flag dans entitee */
+modeles/Entitee.cpp:    this->stopperContainer();
+modeles/Entitee.cpp:    this->modifBridgesSousReseau_entiteeStoppee();
+modeles/Entitee.cpp:    this->m_vue=v;
+modeles/Entitee.cpp:    return this->m_vue;
+modeles/Entitee.cpp:    for(int i= 0 ; i < this->m_cableList.size(); i++)
+modeles/Entitee.cpp:        if(this->m_cableList[i] == c)
+modeles/Entitee.cpp:            this->m_cableList.erase(this->m_cableList.begin()+i);
+modeles/Bridge.h:		 *	-nomPont:
+modeles/Bridge.h:		 *	-nomPont:
+modeles/Ordinateur.cpp:        ip->interface="eth"+convert.str();
+modeles/Ordinateur.cpp:        ip->ipv4="";
+modeles/Ordinateur.cpp:        ip->ipv6="";
+modeles/Ordinateur.cpp:        ip->maskv4="";
+modeles/Ordinateur.cpp:        this->addIpConfig(ip);
+modeles/DataBase.cpp:            if(elemActuel->entitee->getID()==id)
+modeles/DataBase.cpp:            elemActuel=elemActuel->nextElement;
+modeles/DataBase.cpp:            id--;
+modeles/DataBase.cpp:        DataBase::m_premierOrdinateur->entitee=new Ordinateur(id);
+modeles/DataBase.cpp:        DataBase::m_premierOrdinateur->nextElement=tmp;
+modeles/DataBase.cpp:    return (Ordinateur*) DataBase::m_premierOrdinateur->entitee;
+modeles/DataBase.cpp:            if(elemActuel->entitee->getID()==id)
+modeles/DataBase.cpp:            elemActuel=elemActuel->nextElement;
+modeles/DataBase.cpp:            id--;
+modeles/DataBase.cpp:        DataBase::m_premierePasserelle->entitee=new Passerelle(id);
+modeles/DataBase.cpp:        DataBase::m_premierePasserelle->nextElement=tmp;
+modeles/DataBase.cpp:    return (Passerelle*) DataBase::m_premierePasserelle->entitee;
+modeles/DataBase.cpp:            if(elemActuel->entitee->getID()==id)
+modeles/DataBase.cpp:            elemActuel=elemActuel->nextElement;
+modeles/DataBase.cpp:            id--;
+modeles/DataBase.cpp:        DataBase::m_premierHub->entitee=new Hub(id);
+modeles/DataBase.cpp:        DataBase::m_premierHub->nextElement=tmp;
+modeles/DataBase.cpp:    return (Hub*) DataBase::m_premierHub->entitee;
+modeles/DataBase.cpp:    int id = ordi->getID();
+modeles/DataBase.cpp:    else if(elemActuel->entitee->getID()==id)//Cas où c'est le premier élément à supprimer
+modeles/DataBase.cpp:        DataBase::m_premierOrdinateur = elemActuel->nextElement;
+modeles/DataBase.cpp:        DataBase::m_nbreOrdinateur-=1;
+modeles/DataBase.cpp:        while(elemActuel->nextElement!=NULL)
+modeles/DataBase.cpp:            if(elemActuel->nextElement->entitee->getID()==id)//ID Machine de Element suivant est le bon
+modeles/DataBase.cpp:                ElementListeChainee* tmp = elemActuel->nextElement;
+modeles/DataBase.cpp:                elemActuel->nextElement=elemActuel->nextElement->nextElement;//Element actuel prend comme suivant le suivant de l'élément détruit
+modeles/DataBase.cpp:                DataBase::m_nbreOrdinateur-=1;
+modeles/DataBase.cpp:                elemActuel = elemActuel->nextElement;
+modeles/DataBase.cpp:    int id = passerelle->getID();
+modeles/DataBase.cpp:    else if(elemActuel->entitee->getID()==id)//Cas où c'est le premier élément à supprimer
+modeles/DataBase.cpp:        DataBase::m_premierePasserelle = elemActuel->nextElement;
+modeles/DataBase.cpp:        DataBase::m_nbrePasserelle-=1;
+modeles/DataBase.cpp:        while(elemActuel->nextElement!=NULL)
+modeles/DataBase.cpp:            if(elemActuel->nextElement->entitee->getID()==id)//ID Machine de Element suivant est le bon
+modeles/DataBase.cpp:                ElementListeChainee* tmp = elemActuel->nextElement;
+modeles/DataBase.cpp:                elemActuel->nextElement=elemActuel->nextElement->nextElement;//Element actuel prend comme suivant le suivant de l'élément détruit
+modeles/DataBase.cpp:                DataBase::m_nbrePasserelle-=1;
+modeles/DataBase.cpp:                elemActuel = elemActuel->nextElement;
+modeles/DataBase.cpp:    int id = hub->getID();
+modeles/DataBase.cpp:    else if(elemActuel->entitee->getID()==id)//Cas où c'est le premier élément à supprimer
+modeles/DataBase.cpp:        DataBase::m_premierHub = elemActuel->nextElement;
+modeles/DataBase.cpp:        DataBase::m_nbreHub-=1;
+modeles/DataBase.cpp:        while(elemActuel->nextElement!=NULL)
+modeles/DataBase.cpp:            if(elemActuel->nextElement->entitee->getID()==id)//ID Machine de Element suivant est le bon
+modeles/DataBase.cpp:                ElementListeChainee* tmp = elemActuel->nextElement;
+modeles/DataBase.cpp:                elemActuel->nextElement=elemActuel->nextElement->nextElement;//Element actuel prend comme suivant le suivant de l'élément détruit
+modeles/DataBase.cpp:                DataBase::m_nbreHub-=1;
+modeles/DataBase.cpp:                elemActuel = elemActuel->nextElement;
+modeles/Passerelle.h:		 *	-container:
+modeles/Passerelle.cpp:        ip->interface="eth"+convert.str();
+modeles/Passerelle.cpp:        ip->ipv4="";
+modeles/Passerelle.cpp:        ip->ipv6="";
+modeles/Passerelle.cpp:        ip->maskv4="";
+modeles/Passerelle.cpp:        this->addIpConfig(ip);
+modeles/Ordinateur.h:		 *	-container:
+modeles/Save.cpp:                VueEntitee* v=(vp->ajoutEntitee(posx, posy, type));
+modeles/Save.cpp:                e=v->getModele();    /*renvoie le modele de l'objet cree*/
+modeles/Save.cpp:                e->setID(id);
+modeles/Save.cpp:                        ip->interface=line;
+modeles/Save.cpp:                        ip->ipv4=line;
+modeles/Save.cpp:                        ip->maskv4=line;
+modeles/Save.cpp:                        ip->ipv6=line;
+modeles/Save.cpp:                        ((Machine*)e)->setIpConfig(ip);
+modeles/Save.cpp:                        r->interface=line;
+modeles/Save.cpp:                        r->destination=line;
+modeles/Save.cpp:                        r->passerelle=line;
+modeles/Save.cpp:                        r->id=id;
+modeles/Save.cpp:                        ((Machine*)e)->addRouteConfig4(*r);
+modeles/Save.cpp:                        r->interface=line;
+modeles/Save.cpp:                        r->destination=line;
+modeles/Save.cpp:                        r->passerelle=line;
+modeles/Save.cpp:                        r->id=id;
+modeles/Save.cpp:                        ((Machine*)e)->addRouteConfig6(*r);
+modeles/Save.cpp:                        ent->nextElement=DataBase::getListPasserelle();
+modeles/Save.cpp:                        ent->nextElement=DataBase::getListOrdinateur();
+modeles/Save.cpp:                        ent->nextElement=DataBase::getListHub();
+modeles/Save.cpp:                while(ent->nextElement!=NULL)
+modeles/Save.cpp:                        ent=ent->nextElement;
+modeles/Save.cpp:                        Entitee* e=ent->entitee;
+modeles/Save.cpp:                        vector<Cable*> cab=e->getCables();
+modeles/Save.cpp:                        fichier << e->getType() << endl;
+modeles/Save.cpp:                        fichier << e->getVue()->getColGrille()*vp->getHauteurCaseEntiere() << endl;
+modeles/Save.cpp:                        fichier << e->getVue()->getLigneGrille()*vp->getLargeurCaseEntiere() << endl;
+modeles/Save.cpp:                        fichier << e->getID() << endl;
+modeles/Save.cpp:                        //fichier << e->getNom() << endl;
+modeles/Save.cpp:                        fichier << e->getBridgeInit() << endl;
+modeles/Save.cpp:                        if(e->getType()!=TYPE_HUB)
+modeles/Save.cpp:                                vector<paramIp*> ips=e->getIpConfig();
+modeles/Save.cpp:                                        if(ips[j]->ipv4!="" || ips[j]->maskv4!="" || ips[j]->ipv6!="")
+modeles/Save.cpp:                                                fichier << ips[j]->interface << endl;
+modeles/Save.cpp:                                                fichier << ips[j]->ipv4 << endl;
+modeles/Save.cpp:                                                fichier << ips[j]->maskv4 << endl;
+modeles/Save.cpp:                                                fichier << ips[j]->ipv6 << endl;
+modeles/Save.cpp:                                vector<paramRoutage> r4=((Machine*)e)->getRouteConfig4();
+modeles/Save.cpp:                                vector<paramRoutage> r6=((Machine*)e)->getRouteConfig6();
+modeles/Save.cpp:                c->getExtremites(tab);
+modeles/Save.cpp:                fichier << tab[0]->getType() << endl;
+modeles/Save.cpp:                fichier << tab[0]->getID() << endl;
+modeles/Save.cpp:                fichier << tab[1]->getType() << endl;
+modeles/Save.cpp:                fichier << tab[1]->getID() << endl;
+modeles/Machine.cpp:        m_container->set_config_item(m_container, "lxc.utsname", buff);
+modeles/Machine.cpp:        this->reinitNetworkConfig();
+modeles/Machine.cpp:        this->m_paramIp.push_back(ip);
+modeles/Machine.cpp:        std::cout <<this->m_paramIp.size()<< std::endl;
+modeles/Machine.cpp:        for(int i = 0; i<this->m_paramIp.size() ; i++)
+modeles/Machine.cpp:                std::cout << this->m_paramIp[i]->interface+";"+ip->interface << std::endl;
+modeles/Machine.cpp:                if(ip->interface.compare(this->m_paramIp[i]->interface.c_str()) == 0)
+modeles/Machine.cpp:                        this->m_paramIp[i]->ipv4 = ip->ipv4;
+modeles/Machine.cpp:                        this->m_paramIp[i]->maskv4 = ip->maskv4;
+modeles/Machine.cpp:                        this->m_paramIp[i]->ipv6 = ip->ipv6;
+modeles/Machine.cpp:        return this->m_paramIp;
+modeles/Machine.cpp:        this->m_paramRoutage4.push_back(route);
+modeles/Machine.cpp:        return this->m_paramRoutage4;
+modeles/Machine.cpp:        return this->m_paramRoutage6;
+modeles/Machine.cpp:        this->m_paramRoutage6.push_back(route);
+modeles/Machine.cpp:        tst = this->m_container->start(this->m_container, 0, NULL);
+modeles/Machine.cpp:        //this->launchLxcContainer();       //solution de dernier recours
+modeles/Machine.cpp:                this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
+modeles/Machine.cpp:                return -1;
+modeles/Machine.cpp:        int tst;this->lancerContainer();
+modeles/Machine.cpp:        tst = this->m_container->shutdown(this->m_container, 1);
+modeles/Machine.cpp:        if(x==-1)
+modeles/Machine.cpp:                this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
+modeles/Machine.cpp:        if(x==-1)
+modeles/Machine.cpp:                this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
+modeles/Machine.cpp:                execl("../NetSmoothMVC/scripts/unjoinCntAndBridge.sh", "joinCntBridge", cntName,this->m_bridgeActuel.c_str(), NULL);
+modeles/Machine.cpp:        if(x==-1)
+modeles/Machine.cpp:                this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
+modeles/Machine.cpp:        if(x==-1)
+modeles/Machine.cpp:                this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
+modeles/Machine.cpp:                execl("../NetSmoothMVC/scripts/joinCntAndBridge.sh", "joinCntBridge", cntName,this->m_bridgeActuel.c_str(), NULL);
+modeles/Machine.cpp:        pid_t pid=(this->m_container)->init_pid(this->m_container);					/* transférer les arguments la ou il faut
+modeles/Machine.cpp:        this->m_container->attach(this->m_container, lxc_attach_run_command, &cmd, &options, &pid);
+modeles/Machine.cpp:        vector<struct paramIp*> tab=this->getIpConfig();
+modeles/Machine.cpp:                if(tab[i]->ipv4 != "" && tab[i]->maskv4 != "")
+modeles/Machine.cpp:                        const char* cmd[]={"ifconfig", tab[i]->interface.c_str(), tab[i]->ipv4.c_str(), "netmask", tab[i]->maskv4.c_str(), "up", NULL};
+modeles/Machine.cpp:                        this->lancerCommandeDansContainer(cmd);
+modeles/Machine.cpp:                        const char* cmd[]={"ifconfig", tab[i]->interface.c_str(), "default", NULL};
+modeles/Machine.cpp:                        this->lancerCommandeDansContainer(cmd);
+modeles/Machine.cpp:                if(tab[i]->ipv6 != "")
+modeles/Machine.cpp:                        const char* cmd[]={"ifconfig", tab[i]->interface.c_str(), "add", tab[i]->ipv6.c_str(), NULL};
+modeles/Machine.cpp:                        this->lancerCommandeDansContainer(cmd);
+modeles/Machine.cpp:                        const char* cmd[]={"ifconfig", tab[i]->interface.c_str(), "del", tab[i]->ipv6.c_str(), NULL};
+modeles/Machine.cpp:                        this->lancerCommandeDansContainer(cmd);
+modeles/Machine.cpp:        vector<struct paramRoutage> tab=this->getRouteConfig4();
+modeles/Machine.cpp:        for(indice=0 ; indice<this->m_paramRoutage4.size() && !found ; indice++)
+modeles/Machine.cpp:                        if(this->m_paramRoutage4[indice].id == id)
+modeles/Machine.cpp:        const char* cmd[]={"route", "del", "-net", tab[indice-1].destination.c_str(), "gw", tab[indice-1].passerelle.c_str(), "dev", tab[indice-1].interface.c_str(), NULL};
+modeles/Machine.cpp:        this->lancerCommandeDansContainer(cmd);
+modeles/Machine.cpp:        vector<struct paramRoutage> tab=this->getRouteConfig6();
+modeles/Machine.cpp:        for(indice=0 ; indice<this->m_paramRoutage6.size() && !found ; indice++)
+modeles/Machine.cpp:                        if(this->m_paramRoutage6[indice].id == id)
+modeles/Machine.cpp:        const char* cmd[]={"route", "del", "-inet6", tab[indice-1].destination.c_str(), "gw", tab[indice-1].passerelle.c_str(), "dev", tab[indice-1].interface.c_str(), NULL};
+modeles/Machine.cpp:        this->lancerCommandeDansContainer(cmd);
+modeles/Machine.cpp:        vector<struct paramRoutage> tab = this->getRouteConfig4();
+modeles/Machine.cpp:                const char* cmd[]={"route", "add", "-net", tab[i].destination.c_str(), "gw", tab[i].passerelle.c_str(), "dev", tab[i].interface.c_str(), NULL};
+modeles/Machine.cpp:                this->lancerCommandeDansContainer(cmd);
+modeles/Machine.cpp:        if(x==-1)
+modeles/Machine.cpp:                this->getContainer()->get_config_item(this->getContainer(), "lxc.utsname", cntName, 20);
+modeles/Machine.cpp:                execl("../NetSmoothMVC/scripts/launchXtermRoot.sh", "launchCnt", cntName, this->getNom().c_str(), NULL);
+modeles/Machine.cpp:        if(x==-1)
+modeles/Machine.cpp:                this->getContainer()->get_config_item(this->getContainer(), "lxc.utsname", cntName, 20);
+modeles/Machine.cpp:        this->lancerCommandeDansContainer(cmd);
+modeles/Machine.cpp:        this->lancerCommandeDansContainer(cmd);
+modeles/Machine.cpp:                for(int i=0;i<this->m_paramRoutage4.size();i++)
+modeles/Machine.cpp:                        if(this->m_paramRoutage4[i].id == id)
+modeles/Machine.cpp:        return id-1;
+modeles/Machine.cpp:        this->m_container->get_config_item(this->m_container, "lxc.utsname", cntName, 20);
+modeles/Machine.cpp:                for(i=0 ; i<this->m_paramIp.size() && !ok ; i++)
+modeles/Machine.cpp:                        if(line == this->m_paramIp[i]->interface)
+modeles/Machine.cpp:                i--;
+modeles/Machine.cpp:                        this->m_paramIp[i]->interface=line;
+modeles/Machine.cpp:                        this->m_paramIp[i]->ipv4=line;
+modeles/Machine.cpp:                        this->m_paramIp[i]->maskv4=line;
+modeles/Machine.cpp:                        this->m_paramIp[i]->ipv6=line;
+modeles/Machine.cpp:                tmp->id=i;
+modeles/Machine.cpp:                tmp->interface=line;
+modeles/Machine.cpp:                tmp->passerelle=line;
+modeles/Machine.cpp:                tmp->destination=dest+"/"+ss.str();
+modeles/Machine.cpp:                p->push_back(*tmp);
+modeles/Machine.cpp:        this->m_paramRoutage4 = *p;
+modeles/Machine.cpp:        for(int i = 0 ; i < this->m_paramRoutage4.size() && !found ; i++)
+modeles/Machine.cpp:                if(this->m_paramRoutage4[i].id == id)
+modeles/Machine.cpp:                        this->supprimerContainerRoutage4(id);
+modeles/Machine.cpp:                        this->m_paramRoutage4.erase(this->m_paramRoutage4.begin() + i);
+modeles/Machine.cpp:        for(int i = 0 ; i < this->m_paramRoutage6.size() && !found ; i++)
+modeles/Machine.cpp:                if(this->m_paramRoutage6[i].id == id)
+modeles/Machine.cpp:                        this->supprimerContainerRoutage6(id);
+modeles/Machine.cpp:                        this->m_paramRoutage6.erase(this->m_paramRoutage6.begin() + i);
+modeles/Machine.cpp:        vector<struct paramRoutage> tab = this->getRouteConfig6();
+modeles/Machine.cpp:                const char* cmd[]={"route", "add", "-inet6", tab[i].destination.c_str(), "gw", tab[i].passerelle.c_str(), "dev", tab[i].interface.c_str(), NULL};
+modeles/Machine.cpp:                this->lancerCommandeDansContainer(cmd);
+modeles/Bridge.cpp:	if(x==-1)
+modeles/Bridge.cpp:	if(x==-1)
+modeles/Entitee.h:                 *	-numtype :
+modeles/Entitee.h:                 *	-type :
+modeles/Entitee.h:                 *		Constantes.h -> TYPE_****
+modeles/Entitee.h:                 *	-bridge
+modeles/Entitee.h:                 *	-etat:
+modeles/Entitee.h:                 *	au fichier Constantes.h -> TYPE_****
+modeles/Entitee.h:                 *	-cable:
+modeles/Entitee.h:                 *	-con
+modeles/Entitee.h:                 *	-bridge
+modeles/Entitee.h:                 *	        sous-reseau mon bridgeInit
+modeles/Entitee.h:                 *	du type < ((Machine*)this)->lancerContainer() >
+modeles/Cable.cpp:    this->m_ext1->deleteCable(this);
+modeles/Cable.cpp:    this->m_ext2->deleteCable(this);
+modeles/Cable.cpp:    return this->m_vue;
+modeles/Cable.cpp:    this->m_vue=vue;
+modeles/Cable.cpp:    ext1->addCable(c);
+modeles/Cable.cpp:    ext2->addCable(c);
+modeles/Machine.h:     *	-id
+modeles/Machine.h:     *	-type
+modeles/Machine.h:     *	-c
+modeles/Machine.h:     *	-ip
+modeles/Machine.h:     *	-route
+modeles/Machine.h:     *	0 en cas de succes, -1 sinon
+modeles/Machine.h:     *	-commande:
+NetSmoothMVC.pro.user.b915466.3.3-pre1:<?xml version="1.0" encoding="UTF-8"?>
+NetSmoothMVC.pro.user.b915466.3.3-pre1:<!-- Written by QtCreator 3.2.1, 2017-02-14T02:48:27. -->
+NetSmoothMVC.pro.user.b915466.3.3-pre1:  <value type="QByteArray">{b915466d-ebf0-45c8-9079-c95faacbae66}</value>
+NetSmoothMVC.pro.user.b915466.3.3-pre1:   <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
+NetSmoothMVC.pro.user.b915466.3.3-pre1:   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{369bb5ba-11e8-4ec3-be59-7488e36d0ebc}</value>
+NetSmoothMVC.pro.user.b915466.3.3-pre1:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/root/projet/NetSmooth/src/build-NetSmoothMVC-Qt_5_5_1-Debug</value>
+NetSmoothMVC.pro.user.b915466.3.3-pre1:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.b915466.3.3-pre1:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.b915466.3.3-pre1:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.b915466.3.3-pre1:       <value type="QString">-r</value>
+.qmake.stash:    /usr/include/c++/6.2.1/x86_64-pc-linux-gnu \
+.qmake.stash:    /usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include \
+.qmake.stash:    /usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1/include-fixed \
+.qmake.stash:    /usr/lib/gcc/x86_64-pc-linux-gnu/6.2.1 \
+moc_vueRoutes.cpp:        case 0: _t->deleteRoute4(); break;
+moc_vueRoutes.cpp:        case 1: _t->addRoute4(); break;
+moc_vueRoutes.cpp:        case 2: _t->deleteRoute6(); break;
+moc_vueRoutes.cpp:        case 3: _t->addRoute6(); break;
+moc_vueRoutes.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_vueRoutes.cpp:        _id -= 4;
+NetSmoothMVC.pro.user.b915466:<?xml version="1.0" encoding="UTF-8"?>
+NetSmoothMVC.pro.user.b915466:<!-- Written by QtCreator 3.2.1, 2017-01-13T00:21:53. -->
+NetSmoothMVC.pro.user.b915466:  <value type="QByteArray">{b915466d-ebf0-45c8-9079-c95faacbae66}</value>
+NetSmoothMVC.pro.user.b915466:   <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
+NetSmoothMVC.pro.user.b915466:   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{98d6dd6a-c8e3-47eb-a635-8773d7d72e77}</value>
+NetSmoothMVC.pro.user.b915466:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/root/projet/NetSmooth/src/build-NetSmoothMVC-Qt_5_5_1-Debug</value>
+NetSmoothMVC.pro.user.b915466:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.b915466:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.b915466:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.b915466:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.b915466:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/root/projet/NetSmooth/src/build-NetSmoothMVC-Qt_5_5_1-Release</value>
+NetSmoothMVC.pro.user.b915466:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.b915466:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.b915466:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.b915466:       <value type="QString">-r</value>
+moc_fenetre.cpp:        case 0: _t->save(); break;
+moc_fenetre.cpp:        case 1: _t->load(); break;
+moc_fenetre.cpp:        case 2: _t->quit(); break;
+moc_fenetre.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_fenetre.cpp:        _id -= 3;
+Fichier binaire moc_vueinformation.o correspondant
+Fichier binaire moc_vueprincipalecontroleur.o correspondant
+Fichier binaire moc_VueFormulaireIP.o correspondant
+Fichier binaire moc_MaGraphicsView.o correspondant
+Fichier binaire selection.o correspondant
+moc_vuehub.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+Fichier binaire vuemachinecontroleur.o correspondant
+Fichier binaire moc_vuepasserellecontroleur.o correspondant
+Fichier binaire vueentitee.o correspondant
+Fichier binaire moc_vueprincipale.o correspondant
+Fichier binaire MaGraphicsView.o correspondant
+Fichier binaire Cable.o correspondant
+moc_selectioncontroleur.cpp:        case 0: _t->changeEnSelection(); break;
+moc_selectioncontroleur.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_selectioncontroleur.cpp:        _id -= 1;
+Fichier binaire vueRoutes.o correspondant
+NetSmoothMVC.pro.user.c27b78d.18:<?xml version="1.0" encoding="UTF-8"?>
+NetSmoothMVC.pro.user.c27b78d.18:<!-- Written by QtCreator 4.1.0, 2017-01-12T10:12:15. -->
+NetSmoothMVC.pro.user.c27b78d.18:  <value type="QByteArray">{c27b78dc-9782-4474-b7a1-464f3cf8ca4f}</value>
+NetSmoothMVC.pro.user.c27b78d.18:   <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
+NetSmoothMVC.pro.user.c27b78d.18:   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{6ebc0cee-15a8-4ac6-b0f8-c0fd484c595d}</value>
+NetSmoothMVC.pro.user.c27b78d.18:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/user/github/NetSmooth/src/build-NetSmoothMVC-Desktop-Debug</value>
+NetSmoothMVC.pro.user.c27b78d.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.c27b78d.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.c27b78d.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.c27b78d.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.c27b78d.18:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/user/github/NetSmooth/src/build-NetSmoothMVC-Desktop-Release</value>
+NetSmoothMVC.pro.user.c27b78d.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.c27b78d.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.c27b78d.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.c27b78d.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.c27b78d.18:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/user/github/NetSmooth/src/build-NetSmoothMVC-Desktop-Profile</value>
+NetSmoothMVC.pro.user.c27b78d.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.c27b78d.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.c27b78d.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.c27b78d.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.c27b78d.18:    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default">/home/user/github/NetSmooth/src/build-NetSmoothMVC-Desktop-Debug</value>
+NetSmoothMVC.pro.user.0e2384a.3.3-pre1:<?xml version="1.0" encoding="UTF-8"?>
+NetSmoothMVC.pro.user.0e2384a.3.3-pre1:<!-- Written by QtCreator 3.2.1, 2017-01-13T14:34:39. -->
+NetSmoothMVC.pro.user.0e2384a.3.3-pre1:  <value type="QByteArray">{0e2384aa-a031-4264-9283-617e73273ba0}</value>
+NetSmoothMVC.pro.user.0e2384a.3.3-pre1:   <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
+NetSmoothMVC.pro.user.0e2384a.3.3-pre1:   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{5d65c73c-2973-49c2-983e-ed1e0d9e4d32}</value>
+NetSmoothMVC.pro.user.0e2384a.3.3-pre1:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/root/projet/NetSmooth/src/build-NetSmoothMVC-Desktop-Debug</value>
+NetSmoothMVC.pro.user.0e2384a.3.3-pre1:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.0e2384a.3.3-pre1:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.0e2384a.3.3-pre1:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.0e2384a.3.3-pre1:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.0e2384a.3.3-pre1:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/root/projet/NetSmooth/src/build-NetSmoothMVC-Desktop-Release</value>
+NetSmoothMVC.pro.user.0e2384a.3.3-pre1:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.0e2384a.3.3-pre1:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.0e2384a.3.3-pre1:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.0e2384a.3.3-pre1:       <value type="QString">-r</value>
+moc_vuepasserellecontroleur.cpp:        case 0: _t->actionDoubleClick(); break;
+moc_vuepasserellecontroleur.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_vuepasserellecontroleur.cpp:        _id -= 1;
+Fichier binaire ElementListeChainee.o correspondant
+Fichier binaire VueIP.o correspondant
+NetSmoothMVC.pro:QMAKE_LIBS += -llxc
+vues/vuehub.cpp:    this->hub=DataBase::getNewHub();
+vues/vuehub.cpp:    this->etat = false;
+vues/vuehub.cpp:    img->load(QCoreApplication::applicationDirPath()+"/images/Huboff.png");
+vues/vuehub.cpp:    *img = img->scaled(130,130);
+vues/vuehub.cpp:    this->setPixmap(*img);
+vues/vuehub.cpp:    this->hub->setVue(this);
+vues/vuehub.cpp:    return this->hub;
+vues/vuehub.cpp:  this->hub=hub0;
+vues/vueinformation.cpp:    this->setBaseSize(400,500);
+vues/vueinformation.cpp:    this->setMaximumWidth(500);
+vues/vueinformation.cpp:    m_name->setFixedHeight(25);
+vues/vueinformation.cpp:    this->m_routes = new VueRoutes();
+vues/vueinformation.cpp:    this->m_vueIP = new VueIP();
+vues/vueinformation.cpp:    layoutGlobal->addWidget(m_name, 0, 0, 1, 1);
+vues/vueinformation.cpp:    layoutGlobal->addWidget(okName, 0, 1, 1, 1);
+vues/vueinformation.cpp:    layoutGlobal->addWidget(this->m_vueIP, 1, 0, 1, 2);
+vues/vueinformation.cpp:    layoutGlobal->addLayout(m_routes,2,0, 1, 2);
+vues/vueinformation.cpp:    this->m_allumer = new QPushButton();
+vues/vueinformation.cpp:    m_allumer->setText("Allumer");
+vues/vueinformation.cpp:    layoutGlobal->addWidget(rafraichir,3,0,Qt::AlignHCenter);
+vues/vueinformation.cpp:    layoutGlobal->addWidget(m_allumer,3,1,Qt::AlignHCenter);
+vues/vueinformation.cpp:    this->setLayout(layoutGlobal);
+vues/vueinformation.cpp:    return this->m_name->toPlainText().toStdString();
+vues/vueinformation.cpp:    vueE->getModele()->majIpContainer();
+vues/vueinformation.cpp:    vueE->getModele()->majRouteContainer();
+vues/vueinformation.cpp:    vueE->getModele()->lireModifContainer();
+vues/vueinformation.cpp:    this->m_routes->refresh();
+vues/vueinformation.cpp:    this->m_vueIP->refresh();
+vues/vueinformation.cpp:    this->setSource(s);
+vues/vueinformation.cpp:    this->m_routes->refresh();
+vues/vueinformation.cpp:    this->m_vueIP->refresh();
+vues/vueinformation.cpp:    this->m_name->setText(*(new QString(VueEntitee::getLabelEnSelection()->getModele()->getNom().c_str())));
+vues/vueinformation.cpp:    if(VueEntitee::getLabelEnSelection()->getModele()->getEtatEntitee() == true)
+vues/vueinformation.cpp:        this->m_allumer->setText(*(new QString("Eteindre")));
+vues/vueinformation.cpp:        this->m_allumer->setText(*(new QString("Allumer")));
+vues/vueinformation.cpp:    if(vueE->getModele()->getType()==TYPE_ORDINATEUR)
+vues/vueinformation.cpp:        if (vueE->etat == false)
+vues/vueinformation.cpp:            vueE->etat = true;
+vues/vueinformation.cpp:            vueE->getModele()->launchEntitee();
+vues/vueinformation.cpp:            img->load(QCoreApplication::applicationDirPath()+"/images/ordinateuron.png");
+vues/vueinformation.cpp:            *img = img->scaled(130,130);
+vues/vueinformation.cpp:            vueE->setPixmap(*img);
+vues/vueinformation.cpp:            vueE->etat = false;
+vues/vueinformation.cpp:            vueE->getModele()->stopEntitee();
+vues/vueinformation.cpp:            img->load(QCoreApplication::applicationDirPath()+"/images/ordinateuroff.png");
+vues/vueinformation.cpp:            *img = img->scaled(130,130);
+vues/vueinformation.cpp:            vueE->setPixmap(*img);
+vues/vueinformation.cpp:    else if(vueE->getModele()->getType()==TYPE_PASSERELLE)
+vues/vueinformation.cpp:        if (vueE->etat == false)
+vues/vueinformation.cpp:            vueE->etat = true;
+vues/vueinformation.cpp:            vueE->getModele()->launchEntitee();
+vues/vueinformation.cpp:            img->load(QCoreApplication::applicationDirPath()+"/images/passerelleon.png");
+vues/vueinformation.cpp:            *img = img->scaled(130,130);
+vues/vueinformation.cpp:            vueE->setPixmap(*img);
+vues/vueinformation.cpp:            vueE->etat = false;
+vues/vueinformation.cpp:            vueE->getModele()->stopEntitee();
+vues/vueinformation.cpp:            img->load(QCoreApplication::applicationDirPath()+"/images/passerelleoff.png");
+vues/vueinformation.cpp:            *img = img->scaled(130,130);
+vues/vueinformation.cpp:            vueE->setPixmap(*img);
+vues/vueinformation.cpp:    else if(vueE->getModele()->getType()==TYPE_HUB)
+vues/vueinformation.cpp:        if (vueE->etat == false)
+vues/vueinformation.cpp:            vueE->etat = true;
+vues/vueinformation.cpp:            Hub* p = (Hub*)vueE->getModele();
+vues/vueinformation.cpp:            vueE->getModele()->launchEntitee();
+vues/vueinformation.cpp:            img->load(QCoreApplication::applicationDirPath()+"/images/Hubon.png");
+vues/vueinformation.cpp:            *img = img->scaled(130,130);
+vues/vueinformation.cpp:            vueE->setPixmap(*img);
+vues/vueinformation.cpp:            vueE->etat = false;
+vues/vueinformation.cpp:            vueE->getModele()->stopEntitee();
+vues/vueinformation.cpp:            img->load(QCoreApplication::applicationDirPath()+"/images/Huboff.png");
+vues/vueinformation.cpp:            *img = img->scaled(130,130);
+vues/vueinformation.cpp:            vueE->setPixmap(*img);
+vues/vueinformation.cpp:    if(VueEntitee::getLabelEnSelection()->getModele()->getEtatEntitee() == true)
+vues/vueinformation.cpp:        this->m_allumer->setText(*(new QString("Eteindre")));
+vues/vueinformation.cpp:        this->m_allumer->setText(*(new QString("Allumer")));
+vues/vueinformation.cpp:    this->m_source = s;
+vues/vueinformation.cpp:    return this->m_source;
+vues/vueinformation.cpp:    this->m_allumer = p;
+vues/vueinformation.cpp:    return this->m_allumer;
+vues/vueinformation.cpp:    return this->m_routes;
+vues/vueinformation.cpp:    this->m_routes = v;
+vues/vueinformation.cpp:    return this->m_vueIP;
+vues/vueinformation.cpp:    this->m_vueIP = v;
+vues/fenetre.cpp:    g->addWidget(s,0,0,0);
+vues/fenetre.cpp:    g->addWidget(vp,0,1,0);
+vues/fenetre.cpp:    g->addWidget(vi,0,2,0);
+vues/fenetre.cpp:    w->setLayout(g);
+vues/fenetre.cpp:    mopt->addAction("Preferences...");
+vues/fenetre.cpp:    aopt->setMenu(mopt);
+vues/fenetre.cpp:    aopt->setText("Options");
+vues/fenetre.cpp:    mfichier->addAction("Sauvegarder",this,SLOT(save()));
+vues/fenetre.cpp:    mfichier->addAction("Charger",this,SLOT(load()));
+vues/fenetre.cpp:    mfichier->addAction("Quitter",this,SLOT(quit()));
+vues/fenetre.cpp:    afichier->setText("Fichier");
+vues/fenetre.cpp:    afichier->setMenu(mfichier);
+vues/fenetre.cpp:    tb->addAction(afichier);
+vues/fenetre.cpp:    tb->addAction(aopt);
+vues/fenetre.cpp:    this->setCentralWidget(w);
+vues/fenetre.cpp:    this->addToolBar(tb);
+vues/fenetre.cpp:        fl->setDefaultSuffix(*(new QString("ns")));
+vues/fenetre.cpp:        fl->setDirectory(*(new QString("../saves")));
+vues/fenetre.cpp:        fl->setViewMode(QFileDialog::List);
+vues/fenetre.cpp:        fl->setAcceptMode(QFileDialog::AcceptSave);
+vues/fenetre.cpp:        QString bob = fl->getSaveFileName();
+vues/fenetre.cpp:        fl->setDirectory(*(new QString("../saves")));
+vues/fenetre.cpp:        fl->setViewMode(QFileDialog::List);
+vues/fenetre.cpp:        fl->setAcceptMode(QFileDialog::AcceptOpen);
+vues/fenetre.cpp:        QString bob = fl->getOpenFileName();
+vues/clicklabel.cpp:    if (e->button() == Qt::LeftButton)
+vues/clicklabel.cpp:    QWidget* vq=vp->parentWidget();
+vues/clicklabel.cpp:    if (e->buttons() == Qt::LeftButton)
+vues/clicklabel.cpp:        int x = e->globalPos().x()-vp->pos().x()-vq->pos().x();
+vues/clicklabel.cpp:        int y = e->globalPos().y()-vp->pos().y()-vq->pos().y();
+vues/clicklabel.cpp:        y-=this->height()/2+35;	/*35 = hauteur bandeau en haut fenetre*/
+vues/clicklabel.cpp:        x-=this->width()/2;
+vues/clicklabel.cpp:        this->move(x, y);
+vues/clicklabel.cpp:    if (e->buttons() == Qt::LeftButton)
+vues/clicklabel.cpp:        this->move(e->globalPos());
+vues/clicklabel.cpp:    palette->setColor(QPalette::Background,Qt::white);
+vues/clicklabel.cpp:    this->setPalette(*palette);
+vues/vueentitee.cpp:        this->setFlag(QGraphicsItem::ItemIsFocusable,true);
+vues/vueentitee.cpp:        this->setFlag(QGraphicsItem::ItemIsSelectable,true);
+vues/vueentitee.cpp:        this->ligne=0;
+vues/vueentitee.cpp:        this->colonne=0;
+vues/vueentitee.cpp:        this->setZValue(5);
+vues/vueentitee.cpp:    string nom = this->getModele()->getNom();
+vues/vueentitee.cpp:    painter->setPen(pen);
+vues/vueentitee.cpp:    painter->setRenderHint(QPainter::Antialiasing);
+vues/vueentitee.cpp:    painter->setBrush(QColor(255,0,0,100));
+vues/vueentitee.cpp:    painter->drawText(vp->getLargeurCaseEntiere()*this->colonne+this->pixmap().width()/2-nom.size()*3.5,
+vues/vueentitee.cpp:                      vp->getHauteurCaseEntiere()*this->ligne+this->pixmap().height(),
+vues/vueentitee.cpp:    vector<Cable*> c = this->getModele()->getCables();
+vues/vueentitee.cpp:        c[i]->getVue()->updatePath();
+vues/vueentitee.cpp:        return this->ligne;
+vues/vueentitee.cpp:        this->ligne = l;
+vues/vueentitee.cpp:        return this->colonne;
+vues/vueentitee.cpp:        this->colonne=c;
+vues/vueentitee.cpp:        QPoint viewPoint = VuePrincipale::getInstanceOf()->getView()->mapFromGlobal(QCursor::pos());
+vues/vueentitee.cpp:        QPointF scenePoint = VuePrincipale::getInstanceOf()->getView()->mapToScene(viewPoint);
+vues/vueentitee.cpp:        this->scene()->update();
+vues/vueentitee.cpp:        VuePrincipale::getInstanceOf()->deplacerEntitee(this,
+vues/vueentitee.cpp:                                                        new QPoint(trunc(scenePoint.x()-this->pixmap().width()/2),
+vues/vueentitee.cpp:                                                                   trunc(scenePoint.y()-this->pixmap().height()/2)));
+vues/vueentitee.cpp:                this->getModele()->~Entitee();
+vues/vueentitee.cpp:                this->deleteLater();
+vues/vueentitee.cpp:        else if (e->button() == Qt::LeftButton)
+vues/vueentitee.cpp:                        VueInformation::getInstanceOf()->refresh(this);
+vues/vueentitee.cpp:                        this->scene()->update();
+vues/vueentitee.cpp:        else if (e->button() == Qt::RightButton)
+vues/vueentitee.cpp:        if (e->buttons() == Qt::LeftButton)
+vues/ligneroute.cpp:    this->setMinimumSize(350,100);
+vues/ligneroute.cpp:    this->setFixedHeight(35);
+vues/ligneroute.cpp:    this->valider = new QPushButton();
+vues/ligneroute.cpp:    this->layout = new QGridLayout();
+vues/ligneroute.cpp:    this->edest = new QTextEdit();
+vues/ligneroute.cpp:    this->epass = new QTextEdit();
+vues/ligneroute.cpp:    this->einter = new QTextEdit();
+vues/ligneroute.cpp:    this->valider->setText("OK");
+vues/ligneroute.cpp:    this->valider->setFixedHeight(25);
+vues/ligneroute.cpp:    this->valider->setFixedWidth(25);
+vues/ligneroute.cpp:    this->edest->setFixedHeight(25);
+vues/ligneroute.cpp:    this->epass->setFixedHeight(25);
+vues/ligneroute.cpp:    this->einter->setFixedHeight(25);
+vues/ligneroute.cpp:    this->layout->addWidget(edest,0,0);
+vues/ligneroute.cpp:    this->layout->addWidget(epass,0,1);
+vues/ligneroute.cpp:    this->layout->addWidget(einter,0,2);
+vues/ligneroute.cpp:    this->layout->addWidget(valider,0,3);
+vues/ligneroute.cpp:    this->setLayout(layout);
+vues/ligneroute.cpp:    return this->valider;
+vues/ligneroute.cpp:    return this->edest;
+vues/ligneroute.cpp:    return this->epass;
+vues/ligneroute.cpp:    return this->einter;
+vues/ligneroute.cpp:    this->edest->setReadOnly(true);
+vues/ligneroute.cpp:    this->epass->setReadOnly(true);
+vues/ligneroute.cpp:    this->einter->setReadOnly(true);
+vues/ligneroute.cpp:    this->valider->setText("X");
+vues/ligneroute.cpp:    this->edest->setReadOnly(false);
+vues/ligneroute.cpp:    this->epass->setReadOnly(false);
+vues/ligneroute.cpp:    this->einter->setReadOnly(false);
+vues/ligneroute.cpp:    this->valider->setText("OK");
+vues/ligneroute.cpp:    this->m_id=id;
+vues/ligneroute.cpp:    return this->m_id;
+vues/vuemachine.cpp:    this->ordinateur = DataBase::getNewOrdinateur();
+vues/vuemachine.cpp:    img->load(QCoreApplication::applicationDirPath()+"/images/ordinateuroff.png");
+vues/vuemachine.cpp:    *img = img->scaled(130,130);
+vues/vuemachine.cpp:    this->setPixmap(*img);
+vues/vuemachine.cpp:    this->ordinateur->setVue(this);
+vues/vuemachine.cpp:  return this->ordinateur;
+vues/vuemachine.cpp:    if (this->etat == true)
+vues/vuemachine.cpp:            this->getModele()->lancerXterm();
+vues/VueIP.cpp:    this->m_layout = new QGridLayout();
+vues/VueIP.cpp:    this->setLayout(this->m_layout);
+vues/VueIP.cpp:    this->m_layout->addWidget(paramIP,0,0,Qt::AlignHCenter);
+vues/VueIP.cpp:    Entitee* modele = VueEntitee::getLabelEnSelection()->getModele();
+vues/VueIP.cpp:    this->m_formulairesIP.clear();
+vues/VueIP.cpp:    if(modele->getType()==TYPE_HUB);
+vues/VueIP.cpp:    else if(modele->getType() == TYPE_ORDINATEUR)
+vues/VueIP.cpp:            this->m_formulairesIP.push_back(new VueFormulaireIP(numInterface,modele));
+vues/VueIP.cpp:    else if(modele->getType() == TYPE_PASSERELLE)
+vues/VueIP.cpp:            this->m_formulairesIP.push_back(new VueFormulaireIP(numInterface,modele));
+vues/VueIP.cpp:    this->clearLayout(this->m_layout);
+vues/VueIP.cpp:    this->m_layout->addWidget(new QLabel("Paramètres IP :"),0,0,Qt::AlignHCenter);
+vues/VueIP.cpp:    for(unsigned int i = 0 ; i < this->m_formulairesIP.size() ;i++)
+vues/VueIP.cpp:        //this->m_layout->addWidget(this->m_formulairesIP[i],i+1,0);
+vues/VueIP.cpp:        onglet->addTab(this->m_formulairesIP[i],"eth"+QString::number(i));
+vues/VueIP.cpp:    this->m_layout->addWidget(onglet,1,0);
+vues/VueIP.cpp:    for(unsigned int i = 0 ; i < this->m_formulairesIP.size() ;i++)
+vues/VueIP.cpp:        this->m_formulairesIP[i]->refresh();
+vues/VueIP.cpp:    while ((item = layout->takeAt(0)))
+vues/VueIP.cpp:        if (item->layout())
+vues/VueIP.cpp:            clearLayout(item->layout());
+vues/VueIP.cpp:            delete item->layout();
+vues/VueIP.cpp:        delete item->widget();
+vues/vueprincipale.cpp:    this->largeurCase = LARGEUR_CASE_INI;
+vues/vueprincipale.cpp:    this->hauteurCase = HAUTEUR_CASE_INI;
+vues/vueprincipale.cpp:    this->installEventFilter(this);
+vues/vueprincipale.cpp:            this->grille[ligne][col] = VIDE;
+vues/vueprincipale.cpp:    this->setMinimumSize(NB_CASE_X*LARGEUR_CASE_MIN,NB_CASE_Y*HAUTEUR_CASE_MIN);
+vues/vueprincipale.cpp:    this->setMaximumSize(NB_CASE_X*LARGEUR_CASE_MAX,NB_CASE_Y*HAUTEUR_CASE_MAX);
+vues/vueprincipale.cpp:    this->m_scene = new QGraphicsScene(this);
+vues/vueprincipale.cpp:    this->m_view = new QGraphicsView(m_scene,this);
+vues/vueprincipale.cpp:    this->m_view->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+vues/vueprincipale.cpp:    this->m_vpc = new VuePrincipaleControleur(this);
+vues/vueprincipale.cpp:    this->m_scene->setSceneRect(0,0,NB_CASE_X*LARGEUR_CASE_INI,NB_CASE_Y*HAUTEUR_CASE_INI);
+vues/vueprincipale.cpp:    this->m_scene->setBackgroundBrush(Qt::white);
+vues/vueprincipale.cpp:    this->m_view->show();
+vues/vueprincipale.cpp:    this->ca=this;
+vues/vueprincipale.cpp:    else if (e->buttons() == Qt::LeftButton)
+vues/vueprincipale.cpp:        QPoint p = this->mapFromGlobal(QCursor::pos());
+vues/vueprincipale.cpp:        QPointF scenePoint = this->m_view->mapToScene(p);
+vues/vueprincipale.cpp:    if(event->type()==QEvent::KeyPress) {
+vues/vueprincipale.cpp:        this->pressedKeys += ((QKeyEvent*)event)->key();
+vues/vueprincipale.cpp:        if( this->pressedKeys.contains(Qt::Key_Control) && this->pressedKeys.contains(Qt::Key_Plus) )
+vues/vueprincipale.cpp:            this->m_view->scale(1.1,1.1);
+vues/vueprincipale.cpp:            this->largeurCase=m_view->sceneRect().width()/NB_CASE_X;
+vues/vueprincipale.cpp:            this->hauteurCase=m_view->sceneRect().height()/NB_CASE_Y;
+vues/vueprincipale.cpp:            this->refreshItems();
+vues/vueprincipale.cpp:        if( this->pressedKeys.contains(Qt::Key_Control) && this->pressedKeys.contains(Qt::Key_Minus) )
+vues/vueprincipale.cpp:            this->m_view->scale(0.9,0.9);
+vues/vueprincipale.cpp:            this->largeurCase=m_view->sceneRect().width()/NB_CASE_X;
+vues/vueprincipale.cpp:            this->hauteurCase=m_view->sceneRect().height()/NB_CASE_Y;;
+vues/vueprincipale.cpp:            this->refreshItems();
+vues/vueprincipale.cpp:    else if(event->type()==QEvent::KeyRelease)
+vues/vueprincipale.cpp:        this->pressedKeys -= ((QKeyEvent*)event)->key();
+vues/vueprincipale.cpp:    QList<QGraphicsItem*> items = this->m_view->items();
+vues/vueprincipale.cpp:        vue->setOffset(vue->getColGrille()*this->getHauteurCaseEntiere(),vue->getLigneGrille()*this->getLargeurCaseEntiere());
+vues/vueprincipale.cpp:    QPoint* newPos = this->getPosInGrille(*(new QPoint(x, y)));
+vues/vueprincipale.cpp:        e->setOffset(x,y);
+vues/vueprincipale.cpp:        e->setColGrille(newPos->x());
+vues/vueprincipale.cpp:        e->setLigneGrille(newPos->y());
+vues/vueprincipale.cpp:        this->m_scene->addItem(e);
+vues/vueprincipale.cpp:        e->setColGrille(newPos->x());
+vues/vueprincipale.cpp:        e->setLigneGrille(newPos->y());
+vues/vueprincipale.cpp:        e->setOffset(x,y);
+vues/vueprincipale.cpp:        this->m_scene->addItem(e);
+vues/vueprincipale.cpp:        e->setColGrille(newPos->x());
+vues/vueprincipale.cpp:        e->setLigneGrille(newPos->y());
+vues/vueprincipale.cpp:        e->setOffset(x,y);
+vues/vueprincipale.cpp:        this->m_scene->addItem(e);
+vues/vueprincipale.cpp:    this->m_view->setScene(this->m_scene);
+vues/vueprincipale.cpp:    this->m_view->show();
+vues/vueprincipale.cpp:    QPoint* newPos = this->getPosInGrille(m_posSouris);
+vues/vueprincipale.cpp:        e->setOffset(newPos->x()*this->largeurCase,newPos->y()*this->hauteurCase);
+vues/vueprincipale.cpp:        this->m_scene->addItem(e);
+vues/vueprincipale.cpp:        e->setColGrille(newPos->x());
+vues/vueprincipale.cpp:        e->setLigneGrille(newPos->y());
+vues/vueprincipale.cpp:        e->setOffset(newPos->x()*this->largeurCase,newPos->y()*this->hauteurCase);
+vues/vueprincipale.cpp:        this->m_scene->addItem(e);
+vues/vueprincipale.cpp:        e->setColGrille(newPos->x());
+vues/vueprincipale.cpp:        e->setLigneGrille(newPos->y());
+vues/vueprincipale.cpp:        e->setOffset(newPos->x()*this->largeurCase,newPos->y()*this->hauteurCase);
+vues/vueprincipale.cpp:        this->m_scene->addItem(e);
+vues/vueprincipale.cpp:        e->setColGrille(newPos->x());
+vues/vueprincipale.cpp:        e->setLigneGrille(newPos->y());
+vues/vueprincipale.cpp:    this->m_view->setScene(this->m_scene);
+vues/vueprincipale.cpp:    this->m_view->show();
+vues/vueprincipale.cpp:    return this->m_scene;
+vues/vueprincipale.cpp:    return this->m_view;
+vues/vueprincipale.cpp:    QPoint* grillePos = this->getPosInGrille(*pos);
+vues/vueprincipale.cpp:    int largeurCaseEntiere = this->getLargeurCaseEntiere();
+vues/vueprincipale.cpp:    int hauteurCaseEntiere = this->getHauteurCaseEntiere();
+vues/vueprincipale.cpp:    if(this->grille[grillePos->y()][grillePos->x()] == VIDE)
+vues/vueprincipale.cpp:        v->setOffset(grillePos->x()*largeurCaseEntiere,
+vues/vueprincipale.cpp:                     grillePos->y()*hauteurCaseEntiere);
+vues/vueprincipale.cpp:        this->grille[v->getLigneGrille()][v->getColGrille()]= VIDE;
+vues/vueprincipale.cpp:        v->setLigneGrille(grillePos->y());
+vues/vueprincipale.cpp:        v->setColGrille(grillePos->x());
+vues/vueprincipale.cpp:        this->grille[grillePos->y()][grillePos->x()] = OCCUPE;
+vues/vueprincipale.cpp:    return (int)trunc(this->hauteurCase);
+vues/vueprincipale.cpp:    return (int)trunc(this->largeurCase);
+vues/vueprincipale.cpp:    return new QPoint(pos.x()/this->largeurCase,
+vues/vueprincipale.cpp:                      pos.y()/this->hauteurCase);
+vues/vueprincipale.cpp:    this->m_view->setMinimumSize(this->width(),this->height());
+vues/vueprincipale.cpp:    this->m_view->setMaximumSize(this->width(),this->height());
+vues/vuecable.cpp:        this->m_cable = Cable::creerCable(v1->getModele(),v2->getModele());
+vues/vuecable.cpp:        this->m_cable->setVue(this);
+vues/vuecable.cpp:        this->setFlag(QGraphicsItem::ItemIsFocusable,true);
+vues/vuecable.cpp:        this->setFlag(QGraphicsItem::ItemIsSelectable,true);
+vues/vuecable.cpp:        this->setAttribute( Qt::WA_TranslucentBackground);
+vues/vuecable.cpp:        this->setWindowFlags (Qt::FramelessWindowHint);
+vues/vuecable.cpp:        this->setAutoFillBackground(false);
+vues/vuecable.cpp:    this->updatePath();
+vues/vuecable.cpp:        vp->getScene()->addItem(this);
+vues/vuecable.cpp:    delete(this->m_cable);
+vues/vuecable.cpp:    this->deleteLater();
+vues/vuecable.cpp:        y1=yinit-y1;
+vues/vuecable.cpp:        y2=yinit-y2;
+vues/vuecable.cpp:        x1-=xinit;
+vues/vuecable.cpp:            x1-=xinit;
+vues/vuecable.cpp:            x2-=xinit;
+vues/vuecable.cpp:        y1=yinit-y1;
+vues/vuecable.cpp:        int unitx = vp->getScene()->width()/NB_CASE_X;
+vues/vuecable.cpp:        int unity = vp->getScene()->height()/NB_CASE_Y;
+vues/vuecable.cpp:        int x=m_v1->getColGrille()+2, y=m_v1->getLigneGrille()+2;
+vues/vuecable.cpp:        int goalx=m_v2->getColGrille()+2, goaly=m_v2->getLigneGrille()+2;
+vues/vuecable.cpp:            i=-1;
+vues/vuecable.cpp:            j=-1;
+vues/vuecable.cpp:                rapport=-1*((y-goaly)*1.0)/((x-goalx)*1.0);     /* coefficient directeur */
+vues/vuecable.cpp:        bool direction=(rapport>1)?true:(rapport<-1)?true:false, goalReached=false;
+vues/vuecable.cpp:                    paintpath->lineTo(x*unitx, (y+j)*unity);
+vues/vuecable.cpp:                    if(k==0 || this->isSeq(gx, gy, rapport, x, y, x, y+j))
+vues/vuecable.cpp:                    paintpath->lineTo((x+i)*unitx, y*unity);
+vues/vuecable.cpp:                    if(k==0 || this->isSeq(gx, gy, rapport, x, y, x+i, y))
+vues/vuecable.cpp:        this->setPath(*paintpath);
+vues/vuecable.cpp:        emit(this->deleteCableSignal());
+vues/vuecable.cpp:        return this->m_cable;
+vues/vuecable.cpp:                vue->getScene()->addItem(vc);
+vues/vuecable.cpp:                vue->getView()->setScene(vue->getScene());
+vues/vuecable.cpp:                vue->getView()->show();
+vues/vueRoutes.cpp:    this->m_source = NULL;
+vues/vueRoutes.cpp:    this->routesVersion4 = new QWidget();
+vues/vueRoutes.cpp:    this->routesVersion6 = new QWidget();
+vues/vueRoutes.cpp:    scroll4->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+vues/vueRoutes.cpp:    scroll4->setWidgetResizable(true);
+vues/vueRoutes.cpp:    scroll4->setWidget(routesVersion4);
+vues/vueRoutes.cpp:    scroll6->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+vues/vueRoutes.cpp:    scroll6->setWidgetResizable(true);
+vues/vueRoutes.cpp:    scroll6->setWidget(routesVersion6);
+vues/vueRoutes.cpp:    this->routesVersion4->setLayout(new QGridLayout());
+vues/vueRoutes.cpp:    this->routesVersion6->setLayout(new QGridLayout());
+vues/vueRoutes.cpp:    this->controleur = new VueRoutesControleur(this);
+vues/vueRoutes.cpp:    QGridLayout* l = (QGridLayout*)this->routesVersion4->layout();
+vues/vueRoutes.cpp:    l->addWidget(newLine,0,0);
+vues/vueRoutes.cpp:    this->controleur->connect(newLine->getValider(),SIGNAL(clicked(bool)),this,SLOT(addRoute4()));
+vues/vueRoutes.cpp:    this->addWidget(paramRoute,0,0); //!\\ mettre dans vue information pour centrer
+vues/vueRoutes.cpp:    this->addWidget(v4,1,0);
+vues/vueRoutes.cpp:    this->addWidget(dest4,2,0);
+vues/vueRoutes.cpp:    this->addWidget(pass4,2,1);
+vues/vueRoutes.cpp:    this->addWidget(inter4,2,2);
+vues/vueRoutes.cpp:    this->addWidget(scroll4,3,0,1,4);
+vues/vueRoutes.cpp:    l = (QGridLayout*)this->routesVersion6->layout();
+vues/vueRoutes.cpp:    l->addWidget(newLine,0,0);
+vues/vueRoutes.cpp:    this->controleur->connect(newLine->getValider(),SIGNAL(clicked(bool)),this,SLOT(addRoute6()));
+vues/vueRoutes.cpp:    this->addWidget(v6,4,0);
+vues/vueRoutes.cpp:    this->addWidget(dest6,5,0);
+vues/vueRoutes.cpp:    this->addWidget(pass6,5,1);
+vues/vueRoutes.cpp:    this->addWidget(inter6,5,2);
+vues/vueRoutes.cpp:    this->addWidget(scroll6,6,0,1,4);
+vues/vueRoutes.cpp:    this->deleteRoutes();
+vues/vueRoutes.cpp:    this->addRoutes();
+vues/vueRoutes.cpp:    QGridLayout* l = (QGridLayout*)this->routesVersion4->layout();
+vues/vueRoutes.cpp:    while((child = l->takeAt(0)) != 0)
+vues/vueRoutes.cpp:        child->widget()->deleteLater();
+vues/vueRoutes.cpp:    l = (QGridLayout*)this->routesVersion6->layout();
+vues/vueRoutes.cpp:    while((child = l->takeAt(0)) != 0)
+vues/vueRoutes.cpp:        child->widget()->deleteLater();
+vues/vueRoutes.cpp:    if(VueEntitee::getLabelEnSelection()->getModele()->getType() == TYPE_HUB)
+vues/vueRoutes.cpp:        Machine* m = (Machine*)VueEntitee::getLabelEnSelection()->getModele();
+vues/vueRoutes.cpp:        routeConf = m->getRouteConfig4();
+vues/vueRoutes.cpp:        l = (QGridLayout*)this->routesVersion4->layout();
+vues/vueRoutes.cpp:            newLine->getEdest()->setText(destination);
+vues/vueRoutes.cpp:            newLine->getEpass()->setText(passerelle);
+vues/vueRoutes.cpp:            newLine->getEinter()->setText(interface);
+vues/vueRoutes.cpp:            newLine->setId(routeConf[numLine].id);
+vues/vueRoutes.cpp:            newLine->bloquer();
+vues/vueRoutes.cpp:            l->addWidget(newLine,numLine,0);
+vues/vueRoutes.cpp:            this->controleur->connect(newLine->getValider(),SIGNAL(clicked(bool)),this,SLOT(deleteRoute4()));
+vues/vueRoutes.cpp:        l->addWidget(newLine,numLine,0);
+vues/vueRoutes.cpp:        this->controleur->connect(newLine->getValider(),SIGNAL(clicked(bool)),this,SLOT(addRoute4()));
+vues/vueRoutes.cpp:        routeConf = m->getRouteConfig6();
+vues/vueRoutes.cpp:        l = (QGridLayout*)this->routesVersion6->layout();
+vues/vueRoutes.cpp:            newLine->getEdest()->setText(destination);
+vues/vueRoutes.cpp:            newLine->getEpass()->setText(passerelle);
+vues/vueRoutes.cpp:            newLine->getEinter()->setText(interface);
+vues/vueRoutes.cpp:            newLine->setId(routeConf[numLine].id);
+vues/vueRoutes.cpp:            newLine->bloquer();
+vues/vueRoutes.cpp:            l->addWidget(newLine,numLine,0);
+vues/vueRoutes.cpp:            this->controleur->connect(newLine->getValider(),SIGNAL(clicked(bool)),this,SLOT(deleteRoute6()));
+vues/vueRoutes.cpp:        l->addWidget(newLine,numLine,0);
+vues/vueRoutes.cpp:        this->controleur->connect(newLine->getValider(),SIGNAL(clicked(bool)),this,SLOT(addRoute6()));
+vues/vueRoutes.cpp:    LigneRoute* parent = (LigneRoute*)b->parentWidget();
+vues/vueRoutes.cpp:    if(VueEntitee::getLabelEnSelection()->getModele()->getType()!=TYPE_HUB)
+vues/vueRoutes.cpp:        Machine* m = (Machine*)VueEntitee::getLabelEnSelection()->getModele();
+vues/vueRoutes.cpp:        std::cout << "id : " << parent->getId() << std::endl;
+vues/vueRoutes.cpp:        m->removeParamRoute4(parent->getId());
+vues/vueRoutes.cpp:    this->refresh();
+vues/vueRoutes.cpp:    ve->getModele()->majIpContainer();
+vues/vueRoutes.cpp:    ve->getModele()->majRouteContainer();
+vues/vueRoutes.cpp:        LigneRoute* parent = (LigneRoute*)b->parentWidget();
+vues/vueRoutes.cpp:        if(VueEntitee::getLabelEnSelection()->getModele()->getType()!=TYPE_HUB)
+vues/vueRoutes.cpp:            Machine* m = (Machine*)VueEntitee::getLabelEnSelection()->getModele();
+vues/vueRoutes.cpp:            struct paramRoutage route = {m->getNewIdRoute4(),
+vues/vueRoutes.cpp:                                parent->getEinter()->toPlainText().toStdString(),
+vues/vueRoutes.cpp:                                parent->getEdest()->toPlainText().toStdString(),
+vues/vueRoutes.cpp:                                parent->getEpass()->toPlainText().toStdString()};
+vues/vueRoutes.cpp:            m->addRouteConfig4(route);
+vues/vueRoutes.cpp:            m->appliquerParamRoutage4();
+vues/vueRoutes.cpp:        this->refresh();
+vues/vueRoutes.cpp:    ve->getModele()->majIpContainer();
+vues/vueRoutes.cpp:    ve->getModele()->majRouteContainer();
+vues/vueRoutes.cpp:    LigneRoute* parent = (LigneRoute*)b->parentWidget();
+vues/vueRoutes.cpp:    if(VueEntitee::getLabelEnSelection()->getModele()->getType()!=TYPE_HUB)
+vues/vueRoutes.cpp:        Machine* m = (Machine*)VueEntitee::getLabelEnSelection()->getModele();
+vues/vueRoutes.cpp:        m->removeParamRoute6(parent->getId());
+vues/vueRoutes.cpp:    this->refresh();
+vues/vueRoutes.cpp:    ve->getModele()->majIpContainer();
+vues/vueRoutes.cpp:    ve->getModele()->majRouteContainer();
+vues/vueRoutes.cpp:        LigneRoute* parent = (LigneRoute*)b->parentWidget();
+vues/vueRoutes.cpp:        if(VueEntitee::getLabelEnSelection()->getModele()->getType()!=TYPE_HUB)
+vues/vueRoutes.cpp:            Machine* m = (Machine*)VueEntitee::getLabelEnSelection()->getModele();
+vues/vueRoutes.cpp:            struct paramRoutage route = {m->getNewIdRoute4(),
+vues/vueRoutes.cpp:                                parent->getEinter()->toPlainText().toStdString(),
+vues/vueRoutes.cpp:                                parent->getEdest()->toPlainText().toStdString(),
+vues/vueRoutes.cpp:                                parent->getEpass()->toPlainText().toStdString()};
+vues/vueRoutes.cpp:            m->addRouteConfig6(route);
+vues/vueRoutes.cpp:            m->appliquerParamRoutage6();
+vues/vueRoutes.cpp:        this->refresh();
+vues/vueRoutes.cpp:    ve->getModele()->majIpContainer();
+vues/vueRoutes.cpp:    ve->getModele()->majRouteContainer();
+vues/VueFormulaireIP.cpp:    this->m_nomInterface = new QLabel();
+vues/VueFormulaireIP.cpp:    this->m_ipv4 = new QTextEdit();
+vues/VueFormulaireIP.cpp:    this->m_mask = new QTextEdit();
+vues/VueFormulaireIP.cpp:    this->m_ipv6 = new QTextEdit();
+vues/VueFormulaireIP.cpp:    this->m_layout = new QGridLayout();
+vues/VueFormulaireIP.cpp:    this->m_ipv4->setFixedHeight(25);
+vues/VueFormulaireIP.cpp:    this->m_mask->setFixedHeight(25);
+vues/VueFormulaireIP.cpp:    this->m_ipv6->setFixedHeight(25);
+vues/VueFormulaireIP.cpp:    this->m_layout->addWidget(labelIpv4,0,0);
+vues/VueFormulaireIP.cpp:    this->m_layout->addWidget(this->m_ipv4,0,1);
+vues/VueFormulaireIP.cpp:    this->m_layout->addWidget(labelMask,1,0);
+vues/VueFormulaireIP.cpp:    this->m_layout->addWidget(this->m_mask,1,1);
+vues/VueFormulaireIP.cpp:    this->m_layout->addWidget(labelIpv6,2,0);
+vues/VueFormulaireIP.cpp:    this->m_layout->addWidget(this->m_ipv6,2,1);
+vues/VueFormulaireIP.cpp:    this->m_layout->addWidget(valider,3,2);
+vues/VueFormulaireIP.cpp:    this->setLayout(this->m_layout);
+vues/VueFormulaireIP.cpp:    return this->m_modele;
+vues/VueFormulaireIP.cpp:    this->m_modele = e;
+vues/VueFormulaireIP.cpp:    if(this->m_modele == NULL || this->m_numInterface > this->m_modele->getIpConfig().size())
+vues/VueFormulaireIP.cpp:        struct paramIp* ip = this->m_modele->getIpConfig()[this->m_numInterface];
+vues/VueFormulaireIP.cpp:        this->m_nomInterface->setText(QString::fromStdString(ip->interface));
+vues/VueFormulaireIP.cpp:        this->m_ipv4->setText(QString::fromStdString(ip->ipv4));
+vues/VueFormulaireIP.cpp:        this->m_mask->setText(QString::fromStdString(ip->maskv4));
+vues/VueFormulaireIP.cpp:        this->m_ipv6->setText(QString::fromStdString(ip->ipv6));
+vues/VueFormulaireIP.cpp:    if(this->m_modele == NULL || this->m_numInterface > this->m_modele->getIpConfig().size())
+vues/VueFormulaireIP.cpp:        struct paramIp* ip = this->m_modele->getIpConfig()[this->m_numInterface];
+vues/VueFormulaireIP.cpp:        ip->ipv4 = this->m_ipv4->toPlainText().toStdString();
+vues/VueFormulaireIP.cpp:        ip->maskv4 = this->m_mask->toPlainText().toStdString();
+vues/VueFormulaireIP.cpp:        ip->ipv6 = this->m_ipv6->toPlainText().toStdString();
+vues/VueFormulaireIP.cpp:        ip->interface = "eth"+this->m_numInterface;
+vues/VueFormulaireIP.cpp:        ip->ipv4 = this->m_ipv4->toPlainText().toStdString();
+vues/VueFormulaireIP.cpp:        ip->maskv4 = this->m_mask->toPlainText().toStdString();
+vues/VueFormulaireIP.cpp:        ip->ipv6 = this->m_ipv6->toPlainText().toStdString();
+vues/VueFormulaireIP.cpp:        this->m_modele->setIpConfig(ip);
+vues/VueFormulaireIP.cpp:        this->m_modele->appliquerParamIp();
+vues/selection.cpp:    this->setFixedSize(150,500);
+vues/selection.cpp:    this->setEnSelection(SOURIS);
+vues/selection.cpp:    this->m_souris = new QPushButton(tr("Souris"),this);
+vues/selection.cpp:    this->m_machine = new QPushButton(tr("Machine"), this);
+vues/selection.cpp:    this->m_passerelle = new QPushButton(tr("Passerelle"), this);
+vues/selection.cpp:    this->m_hub = new QPushButton(tr("Hub"), this);
+vues/selection.cpp:    this->m_cable = new QPushButton(tr("Cable"), this);
+vues/selection.cpp:    this->m_supprimer = new QPushButton(tr("X"),this);
+vues/selection.cpp:    this->m_sc = new SelectionControleur(this);
+vues/selection.cpp:    layout->addWidget(m_souris,0,0);
+vues/selection.cpp:    layout->addWidget(m_machine,1,0);
+vues/selection.cpp:    layout->addWidget(m_passerelle,2,0);
+vues/selection.cpp:    layout->addWidget(m_hub,3,0);
+vues/selection.cpp:    layout->addWidget(m_cable,4,0);
+vues/selection.cpp:    layout->addWidget(m_supprimer,5,0);
+vues/selection.cpp:    this->setLayout(layout);
+vues/selection.cpp:    return this->m_souris;
+vues/selection.cpp:    return this->m_machine;
+vues/selection.cpp:    return this->m_passerelle;
+vues/selection.cpp:    return this->m_hub;
+vues/selection.cpp:    return this->m_cable;
+vues/selection.cpp:    return this->m_supprimer;
+vues/vuepasserelle.cpp:	this->passerelle=DataBase::getNewPasserelle();
+vues/vuepasserelle.cpp:    this->etat = false;
+vues/vuepasserelle.cpp:    img->load(QCoreApplication::applicationDirPath()+"/images/passerelleoff.png");
+vues/vuepasserelle.cpp:    *img = img->scaled(130,130);
+vues/vuepasserelle.cpp:    this->setPixmap(*img);
+vues/vuepasserelle.cpp:    this->passerelle->setVue(this);
+vues/vuepasserelle.cpp:    return this->passerelle;
+vues/vuepasserelle.cpp:    this->passerelle = passerelle0;
+vues/vuepasserelle.cpp:    if (this->etat == true)
+vues/vuepasserelle.cpp:            this->getModele()->lancerXterm();
+Fichier binaire moc_vueRoutesControleur.o correspondant
+moc_vuemachinecontroleur.cpp:        case 0: _t->actionDoubleClick(); break;
+moc_vuemachinecontroleur.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_vuemachinecontroleur.cpp:        _id -= 1;
+moc_VueFormulaireIP.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+NetSmoothMVC.pro.user.5c35eb8.18:<?xml version="1.0" encoding="UTF-8"?>
+NetSmoothMVC.pro.user.5c35eb8.18:<!-- Written by QtCreator 4.1.0, 2017-01-12T16:45:49. -->
+NetSmoothMVC.pro.user.5c35eb8.18:  <value type="QByteArray">{5c35eb8f-fdb3-4b26-a32a-ea1b548ffefb}</value>
+NetSmoothMVC.pro.user.5c35eb8.18:   <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
+NetSmoothMVC.pro.user.5c35eb8.18:   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{58b54520-cca7-4c6f-932a-cfc96346c332}</value>
+NetSmoothMVC.pro.user.5c35eb8.18:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/user/GitHub/NetSmooth/src/build-NetSmoothMVC-Desktop-Debug</value>
+NetSmoothMVC.pro.user.5c35eb8.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.5c35eb8.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.5c35eb8.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.5c35eb8.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.5c35eb8.18:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/user/github/NetSmooth/src/build-NetSmoothMVC-Desktop-Release</value>
+NetSmoothMVC.pro.user.5c35eb8.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.5c35eb8.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.5c35eb8.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.5c35eb8.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.5c35eb8.18:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/user/github/NetSmooth/src/build-NetSmoothMVC-Desktop-Profile</value>
+NetSmoothMVC.pro.user.5c35eb8.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.5c35eb8.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.5c35eb8.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.5c35eb8.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.5c35eb8.18:    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default">/home/user/GitHub/NetSmooth/src/build-NetSmoothMVC-Desktop-Debug</value>
+Fichier binaire moc_vueRoutes.o correspondant
+Fichier binaire moc_selection.o correspondant
+Fichier binaire DataBase.o correspondant
+moc_vueinformationcontroleur.cpp:        case 0: _t->actionClickAllumer(); break;
+moc_vueinformationcontroleur.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_vueinformationcontroleur.cpp:        _id -= 1;
+Fichier binaire moc_VueIP.o correspondant
+Fichier binaire vueprincipalecontroleur.o correspondant
+Fichier binaire moc_fenetre.o correspondant
+Fichier binaire Hub.o correspondant
+scripts/reinitConfigContainer.sh:echo -n > /var/lib/lxc/$1/rootfs/.networkInfo/ipConfig.info
+scripts/reinitConfigContainer.sh:echo -n > /var/lib/lxc/$1/rootfs/.networkInfo/routeConfig.info
+scripts/joinCntAndBridge.sh:if [ $# -ne 2 ] ; then
+scripts/joinCntAndBridge.sh:a=$(lxc-info -n $1 | grep Link)
+scripts/lancerContainer.sh:lxc-start -n $1
+scripts/stopperContainer.sh:lxc-stop -n $1
+scripts/launchXtermRoot.sh:xterm -T "$2" -e "lxc-attach -n $1; kill \$PPID"
+scripts/unjoinCntAndBridge.sh:if [ $# -ne 2 ] ; then
+scripts/unjoinCntAndBridge.sh:a=$(lxc-info -n $1 | grep Link)
+Fichier binaire moc_KeyPressEater.o correspondant
+NetSmoothMVC.pro.user.7e4c6f9.3.3-pre1:<?xml version="1.0" encoding="UTF-8"?>
+NetSmoothMVC.pro.user.7e4c6f9.3.3-pre1:<!-- Written by QtCreator 3.2.1, 2017-02-07T23:02:32. -->
+NetSmoothMVC.pro.user.7e4c6f9.3.3-pre1:  <value type="QByteArray">{7e4c6f9d-eb3d-415c-9c87-b5850cd964fd}</value>
+NetSmoothMVC.pro.user.7e4c6f9.3.3-pre1:   <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
+NetSmoothMVC.pro.user.7e4c6f9.3.3-pre1:   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{f7de65f1-3ea0-4f03-ab62-210d425d0b55}</value>
+NetSmoothMVC.pro.user.7e4c6f9.3.3-pre1:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.7e4c6f9.3.3-pre1:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.7e4c6f9.3.3-pre1:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.7e4c6f9.3.3-pre1:       <value type="QString">-r</value>
+Fichier binaire vuepasserellecontroleur.o correspondant
+Fichier binaire a.out correspondant
+Fichier binaire VueFormulaireIP.o correspondant
+Fichier binaire vueinformationcontroleur.o correspondant
+Makefile:# Command: /usr/lib/x86_64-linux-gnu/qt4/bin/qmake -spec /usr/share/qt4/mkspecs/linux-g++ CONFIG+=debug CONFIG+=declarative_debug -o Makefile NetSmoothMVC.pro
+Makefile:DEFINES       = -DQT_WEBKIT -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SHARED
+Makefile:CFLAGS        = -pipe -g -Wall -W -D_REENTRANT $(DEFINES)
+Makefile:CXXFLAGS      = -pipe -g -Wall -W -D_REENTRANT $(DEFINES)
+Makefile:INCPATH       = -I/usr/share/qt4/mkspecs/linux-g++ -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I.
+Makefile:LIBS          = $(SUBLIBS)  -L/usr/lib/x86_64-linux-gnu -llxc -lQtGui -lQtCore -lpthread 
+Makefile:QMAKE         = /usr/lib/x86_64-linux-gnu/qt4/bin/qmake
+Makefile:TAR           = tar -cf
+Makefile:COMPRESS      = gzip -9f
+Makefile:COPY          = cp -f
+Makefile:COPY_DIR      = $(COPY) -r
+Makefile:INSTALL_FILE  = install -m 644 -p
+Makefile:INSTALL_PROGRAM = install -m 755 -p
+Makefile:DEL_FILE      = rm -f
+Makefile:SYMLINK       = ln -f -s
+Makefile:MOVE          = mv -f
+Makefile:CHK_DIR_EXISTS= test -d
+Makefile:MKDIR         = mkdir -p
+Makefile:		/usr/share/qt4/mkspecs/common/gcc-base.conf \
+Makefile:		/usr/share/qt4/mkspecs/common/gcc-base-unix.conf \
+Makefile:		/usr/share/qt4/mkspecs/common/g++-base.conf \
+Makefile:		/usr/share/qt4/mkspecs/common/g++-unix.conf \
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o "$@" "$<"
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o "$@" "$<"
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o "$@" "$<"
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o "$@" "$<"
+Makefile:	$(CC) -c $(CFLAGS) $(INCPATH) -o "$@" "$<"
+Makefile:	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
+Makefile:	{ test -n "$(DESTDIR)" && DESTDIR="$(DESTDIR)" || DESTDIR=.; } && test $$(gdb --version | sed -e 's,[^0-9][^0-9]*\([0-9]\)\.\([0-9]\).*,\1\2,;q') -gt 72 && gdb --nx --batch --quiet -ex 'set confirm off' -ex "save gdb-index $$DESTDIR" -ex quit '$(TARGET)' && test -f $(TARGET).gdb-index && objcopy --add-section '.gdb_index=$(TARGET).gdb-index' --set-section-flags '.gdb_index=readonly' '$(TARGET)' '$(TARGET)' && rm -f $(TARGET).gdb-index || true
+Makefile:Makefile: NetSmoothMVC.pro  /usr/share/qt4/mkspecs/linux-g++/qmake.conf /usr/share/qt4/mkspecs/common/unix.conf \
+Makefile:		/usr/share/qt4/mkspecs/common/gcc-base.conf \
+Makefile:		/usr/share/qt4/mkspecs/common/gcc-base-unix.conf \
+Makefile:		/usr/share/qt4/mkspecs/common/g++-base.conf \
+Makefile:		/usr/share/qt4/mkspecs/common/g++-unix.conf \
+Makefile:		/usr/lib/x86_64-linux-gnu/libQtGui.prl \
+Makefile:		/usr/lib/x86_64-linux-gnu/libQtCore.prl
+Makefile:	$(QMAKE) -spec /usr/share/qt4/mkspecs/linux-g++ CONFIG+=debug CONFIG+=declarative_debug -o Makefile NetSmoothMVC.pro
+Makefile:/usr/share/qt4/mkspecs/common/gcc-base.conf:
+Makefile:/usr/share/qt4/mkspecs/common/gcc-base-unix.conf:
+Makefile:/usr/share/qt4/mkspecs/common/g++-base.conf:
+Makefile:/usr/share/qt4/mkspecs/common/g++-unix.conf:
+Makefile:/usr/lib/x86_64-linux-gnu/libQtGui.prl:
+Makefile:/usr/lib/x86_64-linux-gnu/libQtCore.prl:
+Makefile:	@$(QMAKE) -spec /usr/share/qt4/mkspecs/linux-g++ CONFIG+=debug CONFIG+=declarative_debug -o Makefile NetSmoothMVC.pro
+Makefile:	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/NetSmoothMVC1.0.0/ && $(COPY_FILE) --parents vues/selection.h vues/information.h vues/vueprincipale.h vues/vuemachine.h controleurs/selectioncontroleur.h controleurs/vueprincipalecontroleur.h vues/vueentitee.h vues/vuehub.h controleurs/vueentiteecontroleur.h vues/vuepasserelle.h controleurs/vuemachinecontroleur.h controleurs/vuehubcontroleur.h controleurs/vuepasserellecontroleur.h modeles/Machine.h modeles/Entitee.h modeles/Ordinateur.h modeles/Passerelle.h modeles/Constantes.h modeles/Hub.h modeles/DataBase.h modeles/Cable.h modeles/Bridge.h modeles/Cable.h modeles/ElementListeChainee.h modeles/Save.h vues/vuecable.h vues/constantes.h vues/vueinformation.h vues/ligneroute.h controleurs/vueinformationcontroleur.h vues/vueRoutes.h controleurs/vueRoutesControleur.h controleurs/VueIPControleur.h vues/VueIP.h vues/VueFormulaireIP.h controleurs/VueFormulaireIPControleur.h vues/fenetre.h .tmp/NetSmoothMVC1.0.0/ && $(COPY_FILE) --parents main.cpp vues/selection.cpp vues/information.cpp vues/vueprincipale.cpp vues/vuemachine.cpp controleurs/selectioncontroleur.cpp controleurs/vueprincipalecontroleur.cpp vues/vueentitee.cpp vues/vuehub.cpp controleurs/vueentiteecontroleur.cpp vues/vuepasserelle.cpp controleurs/vuemachinecontroleur.cpp controleurs/vuehubcontroleur.cpp controleurs/vuepasserellecontroleur.cpp modeles/Machine.cpp modeles/Entitee.cpp modeles/Ordinateur.cpp modeles/Passerelle.cpp modeles/Hub.cpp modeles/DataBase.cpp modeles/Cable.cpp modeles/Bridge.cpp modeles/ElementListeChainee.cpp modeles/Save.cpp vues/vuecable.cpp vues/vueinformation.cpp vues/ligneroute.cpp controleurs/vueinformationcontroleur.cpp vues/vueRoutes.cpp controleurs/vueRoutesControleur.cpp controleurs/VueIPControleur.cpp vues/VueIP.cpp vues/VueFormulaireIP.cpp controleurs/VueFormulaireIPControleur.cpp vues/fenetre.cpp .tmp/NetSmoothMVC1.0.0/ && (cd `dirname .tmp/NetSmoothMVC1.0.0` && $(TAR) NetSmoothMVC1.0.0.tar NetSmoothMVC1.0.0 && $(COMPRESS) NetSmoothMVC1.0.0.tar) && $(MOVE) `dirname .tmp/NetSmoothMVC1.0.0`/NetSmoothMVC1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/NetSmoothMVC1.0.0
+Makefile:	-$(DEL_FILE) $(OBJECTS)
+Makefile:	-$(DEL_FILE) *~ core *.core
+Makefile:####### Sub-libraries
+Makefile:	-$(DEL_FILE) $(TARGET) 
+Makefile:	-$(DEL_FILE) Makefile
+Makefile:	-$(DEL_FILE) moc_selection.cpp moc_information.cpp moc_vueprincipale.cpp moc_vuemachine.cpp moc_selectioncontroleur.cpp moc_vueprincipalecontroleur.cpp moc_vueentitee.cpp moc_vuehub.cpp moc_vueentiteecontroleur.cpp moc_vuepasserelle.cpp moc_vuemachinecontroleur.cpp moc_vuehubcontroleur.cpp moc_vuepasserellecontroleur.cpp moc_vuecable.cpp moc_vueinformation.cpp moc_ligneroute.cpp moc_vueinformationcontroleur.cpp moc_vueRoutes.cpp moc_vueRoutesControleur.cpp moc_VueIP.cpp moc_VueFormulaireIP.cpp moc_VueFormulaireIPControleur.cpp moc_fenetre.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) vues/selection.h -o moc_selection.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) vues/information.h -o moc_information.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) vues/vueprincipale.h -o moc_vueprincipale.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) vues/vuemachine.h -o moc_vuemachine.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) controleurs/selectioncontroleur.h -o moc_selectioncontroleur.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) controleurs/vueprincipalecontroleur.h -o moc_vueprincipalecontroleur.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) vues/vueentitee.h -o moc_vueentitee.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) vues/vuehub.h -o moc_vuehub.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) controleurs/vueentiteecontroleur.h -o moc_vueentiteecontroleur.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) vues/vuepasserelle.h -o moc_vuepasserelle.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) controleurs/vuemachinecontroleur.h -o moc_vuemachinecontroleur.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) controleurs/vuehubcontroleur.h -o moc_vuehubcontroleur.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) controleurs/vuepasserellecontroleur.h -o moc_vuepasserellecontroleur.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) vues/vuecable.h -o moc_vuecable.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) vues/vueinformation.h -o moc_vueinformation.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) vues/ligneroute.h -o moc_ligneroute.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) controleurs/vueinformationcontroleur.h -o moc_vueinformationcontroleur.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) vues/vueRoutes.h -o moc_vueRoutes.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) controleurs/vueRoutesControleur.h -o moc_vueRoutesControleur.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) vues/VueIP.h -o moc_VueIP.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) vues/VueFormulaireIP.h -o moc_VueFormulaireIP.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) controleurs/VueFormulaireIPControleur.h -o moc_VueFormulaireIPControleur.cpp
+Makefile:	/usr/lib/x86_64-linux-gnu/qt4/bin/moc $(DEFINES) $(INCPATH) vues/fenetre.h -o moc_fenetre.cpp
+Makefile:	-$(DEL_FILE) qmake_image_collection.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o selection.o vues/selection.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o information.o vues/information.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vueprincipale.o vues/vueprincipale.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vuemachine.o vues/vuemachine.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o selectioncontroleur.o controleurs/selectioncontroleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vueprincipalecontroleur.o controleurs/vueprincipalecontroleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vueentitee.o vues/vueentitee.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vuehub.o vues/vuehub.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vueentiteecontroleur.o controleurs/vueentiteecontroleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vuepasserelle.o vues/vuepasserelle.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vuemachinecontroleur.o controleurs/vuemachinecontroleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vuehubcontroleur.o controleurs/vuehubcontroleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vuepasserellecontroleur.o controleurs/vuepasserellecontroleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Machine.o modeles/Machine.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Entitee.o modeles/Entitee.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Ordinateur.o modeles/Ordinateur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Passerelle.o modeles/Passerelle.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Hub.o modeles/Hub.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DataBase.o modeles/DataBase.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Cable.o modeles/Cable.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Bridge.o modeles/Bridge.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ElementListeChainee.o modeles/ElementListeChainee.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Save.o modeles/Save.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vuecable.o vues/vuecable.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vueinformation.o vues/vueinformation.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ligneroute.o vues/ligneroute.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vueinformationcontroleur.o controleurs/vueinformationcontroleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vueRoutes.o vues/vueRoutes.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vueRoutesControleur.o controleurs/vueRoutesControleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o VueIPControleur.o controleurs/VueIPControleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o VueIP.o vues/VueIP.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o VueFormulaireIP.o vues/VueFormulaireIP.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o VueFormulaireIPControleur.o controleurs/VueFormulaireIPControleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o fenetre.o vues/fenetre.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_selection.o moc_selection.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_information.o moc_information.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_vueprincipale.o moc_vueprincipale.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_vuemachine.o moc_vuemachine.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_selectioncontroleur.o moc_selectioncontroleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_vueprincipalecontroleur.o moc_vueprincipalecontroleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_vueentitee.o moc_vueentitee.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_vuehub.o moc_vuehub.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_vueentiteecontroleur.o moc_vueentiteecontroleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_vuepasserelle.o moc_vuepasserelle.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_vuemachinecontroleur.o moc_vuemachinecontroleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_vuehubcontroleur.o moc_vuehubcontroleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_vuepasserellecontroleur.o moc_vuepasserellecontroleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_vuecable.o moc_vuecable.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_vueinformation.o moc_vueinformation.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ligneroute.o moc_ligneroute.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_vueinformationcontroleur.o moc_vueinformationcontroleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_vueRoutes.o moc_vueRoutes.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_vueRoutesControleur.o moc_vueRoutesControleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_VueIP.o moc_VueIP.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_VueFormulaireIP.o moc_VueFormulaireIP.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_VueFormulaireIPControleur.o moc_VueFormulaireIPControleur.cpp
+Makefile:	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_fenetre.o moc_fenetre.cpp
+moc_vueprincipalecontroleur.cpp:        case 0: _t->actionClickSouris((*reinterpret_cast< QPoint(*)>(_a[1]))); break;
+moc_vueprincipalecontroleur.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_vueprincipalecontroleur.cpp:        _id -= 1;
+Fichier binaire vueRoutesControleur.o correspondant
+main.cpp:    fen->showMaximized();
+Fichier binaire Machine.o correspondant
+Fichier binaire Save.o correspondant
+moc_MaGraphicsView.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+Fichier binaire images/ordinateuron.png correspondant
+Fichier binaire images/passerelleoff.png correspondant
+Fichier binaire images/passerelleon.png correspondant
+Fichier binaire images/Huboff.png correspondant
+Fichier binaire images/Hubon.png correspondant
+Fichier binaire images/ordinateuroff.png correspondant
+Fichier binaire KeyPressEater.o correspondant
+Fichier binaire moc_vuemachine.o correspondant
+Fichier binaire Scene.o correspondant
+Fichier binaire moc_VueFormulaireIPControleur.o correspondant
+Fichier binaire vuehubcontroleur.o correspondant
+moc_vueinformation.cpp:        case 0: _t->refresh(); break;
+moc_vueinformation.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_vueinformation.cpp:        _id -= 1;
+Fichier binaire Entitee.o correspondant
+Fichier binaire moc_vueentitee.o correspondant
+moc_vueRoutesControleur.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_vuemachine.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_vuehubcontroleur.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+Fichier binaire VueFormulaireIPControleur.o correspondant
+NetSmoothMVC.pro.user:<?xml version="1.0" encoding="UTF-8"?>
+NetSmoothMVC.pro.user:<!-- Written by QtCreator 3.2.1, 2017-03-02T17:40:27. -->
+NetSmoothMVC.pro.user:  <value type="QByteArray">{b915466d-ebf0-45c8-9079-c95faacbae66}</value>
+NetSmoothMVC.pro.user:   <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
+NetSmoothMVC.pro.user:   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{369bb5ba-11e8-4ec3-be59-7488e36d0ebc}</value>
+NetSmoothMVC.pro.user:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/root/projet/NetSmooth/src/build-NetSmoothMVC-Qt_5_5_1_gcc-Debug</value>
+NetSmoothMVC.pro.user:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/root/projet/NetSmooth/src/build-NetSmoothMVC-Qt_5_5_1_gcc-Release</value>
+NetSmoothMVC.pro.user:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user:       <value type="QString">-r</value>
+Fichier binaire moc_vueinformationcontroleur.o correspondant
+Fichier binaire vuehub.o correspondant
+NetSmoothMVC.pro.user.7e4c6f9:<?xml version="1.0" encoding="UTF-8"?>
+NetSmoothMVC.pro.user.7e4c6f9:<!-- Written by QtCreator 3.2.1, 2017-02-07T23:02:32. -->
+NetSmoothMVC.pro.user.7e4c6f9:  <value type="QByteArray">{7e4c6f9d-eb3d-415c-9c87-b5850cd964fd}</value>
+NetSmoothMVC.pro.user.7e4c6f9:   <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
+NetSmoothMVC.pro.user.7e4c6f9:   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{f7de65f1-3ea0-4f03-ab62-210d425d0b55}</value>
+NetSmoothMVC.pro.user.7e4c6f9:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.7e4c6f9:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.7e4c6f9:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.7e4c6f9:       <value type="QString">-r</value>
+Fichier binaire moc_vuehubcontroleur.o correspondant
+Fichier binaire moc_vuepasserelle.o correspondant
+Fichier binaire vueinformation.o correspondant
+Fichier binaire NetSmoothMVC correspondant
+moc_ligneroute.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+Fichier binaire vueentiteecontroleur.o correspondant
+Fichier binaire moc_ligneroute.o correspondant
+Fichier binaire ligneroute.o correspondant
+Fichier binaire main.o correspondant
+NetSmoothMVC.pro.user.b02f02a.18:<?xml version="1.0" encoding="UTF-8"?>
+NetSmoothMVC.pro.user.b02f02a.18:<!-- Written by QtCreator 3.5.1, 2017-02-04T21:56:22. -->
+NetSmoothMVC.pro.user.b02f02a.18:  <value type="QByteArray">{b02f02a4-77a6-4218-b4aa-f156a79d000e}</value>
+NetSmoothMVC.pro.user.b02f02a.18:   <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
+NetSmoothMVC.pro.user.b02f02a.18:   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{7318a169-5740-454f-9a87-50e5a709f4b2}</value>
+NetSmoothMVC.pro.user.b02f02a.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.b02f02a.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.b02f02a.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.b02f02a.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.b02f02a.18:   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{60343cbe-3636-4071-a26d-c53c4ef1d942}</value>
+NetSmoothMVC.pro.user.b02f02a.18:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/jicquelv/github/bulto/src/build-NetSmoothMVC-Desktop-Debug</value>
+NetSmoothMVC.pro.user.b02f02a.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.b02f02a.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.b02f02a.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.b02f02a.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.b02f02a.18:    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/jicquelv/github/bulto/src/build-NetSmoothMVC-Desktop-Release</value>
+NetSmoothMVC.pro.user.b02f02a.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.b02f02a.18:       <value type="QString">-r</value>
+NetSmoothMVC.pro.user.b02f02a.18:       <value type="QString">-w</value>
+NetSmoothMVC.pro.user.b02f02a.18:       <value type="QString">-r</value>
+moc_vueentiteecontroleur.cpp:        case 0: _t->actionMoveLeftButton(); break;
+moc_vueentiteecontroleur.cpp:    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+moc_vueentiteecontroleur.cpp:        _id -= 1;

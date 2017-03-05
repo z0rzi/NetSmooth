@@ -1,0 +1,52 @@
+Pour preparer les containers pour NetSmooth:
+
+1.
+	Lancez le script delAllContainer.sh
+
+	cela va supprimer tous les containers deja installés
+
+
+2.
+	Lancez le script creerContainers.sh
+
+	
+	dans un premier temps, le premier container va se créer (et l'image 
+	debian jessie i368 va se telecharger si ce n'est pas deja fait).
+	cela peut prendre un certain temps, qui depend de votre connection a internet
+	
+	ensuite, vous aurez la possibilitée d'installer tous les paquets dont 
+	vous avez besoin dans ce container.
+
+	ATTENTION, ce sera la premiere et la derniere fois que vous aurez acces
+	a internet depuis un container, donc installez bien tout ce qu'il vous faut
+
+	les paquets installés se retrouverons par la suite sur tous les containers.
+
+	(paquets conseillés: iputils-ping ; tcpdump ; traceroute)
+
+	Ensuite, vous pourrez poursuivre l'installation en entrant "ok" et en 
+	fermant le xterm.
+
+	le container deja créé va alors se copier pour preparer tous les containers
+	necessaire au bon fonctionnement de NetSmooth.
+
+	Cette etape est longue, il est temps d'aller prendre un café.
+
+	Cette etape terminée, vos containers sont créés, mais pas configurés!
+
+
+3.
+	Lancez le script configContainer.sh
+
+
+	ne prenez pas garde aux messages d'erreurs.
+
+	Voila, vos containers sont pres a fonctionner avec NetSmooth!
+
+Mise En Garde:
+	
+	Les dossiers "/.scr/" et "/.networkInfo/" dans les containers sont necessaires au bon fonctionnement
+	de NetSmooth, tout comme le fichier "/etc/bash.bashrc" ,si par mégarde, vous les modifiez, ou
+	supprimez, lancez "configContainer clean", puis "configContainer".
+
+	Si vous avez vraiment tout cassé, il est preferable de recommencer ce tutoriel du debut.
