@@ -1,0 +1,24 @@
+Introduction : 
+a.présenter problématique
+b.solution problématique => NetSmooth
+
+I. Résultat attendu
+Fonctionnalités du logiciel attendues avant codage.
+
+II. Exprimer les besoins.
+Besoin simuler réseau => LXC
+C++ api avec lxc, donc besoin interface graphique => Qt
+
+III. Structure du programme
+a. Interface graphique (MVC)
+b. Background (façon dont les containers sont gérés)
+  algo bridge
+
+Conclusion
+objectif atteint? critique, avis personnel.
+
+
+ 
+
+
+
